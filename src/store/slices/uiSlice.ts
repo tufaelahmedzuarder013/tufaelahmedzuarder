@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface UiState {
+  theme: "light" | "dark";
   mobileMenuOpen: boolean;
   isScrolled: boolean;
   activeModal: string | null;
@@ -8,6 +9,7 @@ interface UiState {
 }
 
 const initialState: UiState = {
+  theme: "light",
   mobileMenuOpen: false,
   isScrolled: false,
   activeModal: null,
@@ -18,6 +20,28 @@ export const uiSlice = createSlice({
   name: "ui",
   initialState,
   reducers: {
+    toggleTheme: (state) => {
+      state.theme = state.theme === "light" ? "dark" : "light";
+      if (typeof window !== "undefined") {
+        localStorage.setItem("theme", state.theme);
+        if (state.theme === "dark") {
+          document.documentElement.classList.add("dark");
+        } else {
+          document.documentElement.classList.remove("dark");
+        }
+      }
+    },
+    setTheme: (state, action: PayloadAction<"light" | "dark">) => {
+      state.theme = action.payload;
+      if (typeof window !== "undefined") {
+        localStorage.setItem("theme", state.theme);
+        if (state.theme === "dark") {
+          document.documentElement.classList.add("dark");
+        } else {
+          document.documentElement.classList.remove("dark");
+        }
+      }
+    },
     toggleMobileMenu: (state) => {
       state.mobileMenuOpen = !state.mobileMenuOpen;
     },
@@ -40,6 +64,8 @@ export const uiSlice = createSlice({
 });
 
 export const {
+  toggleTheme,
+  setTheme,
   toggleMobileMenu,
   setMobileMenuOpen,
   setIsScrolled,

@@ -58,31 +58,31 @@ export function HeroSection() {
           {/* Availability Status Pill */}
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-brand-ink/10 bg-brand-surface shadow-brand-sm mb-8 hover:border-brand-violet/40 transition-colors">
             <span className="w-2 h-2 rounded-full bg-[#22C55E] ring-4 ring-[#22C55E]/20" />
-            <span className="font-mono text-xs text-brand-ink2 font-medium">
+            <span className="font-mono text-xs text-brand-ink2 font-medium tracking-wider [word-spacing:0.15em]">
               Available for freelance · Sylhet, BD
             </span>
           </div>
 
           {/* Main Headline */}
-          <h1 className="font-heading font-extrabold text-5xl sm:text-7xl md:text-8xl tracking-tight leading-[1.02] text-brand-ink mb-6">
+          <h1 className="font-heading text-5xl sm:text-7xl md:text-8xl tracking-[0.06em] [word-spacing:0.35em] leading-[1.25] text-brand-ink mb-6">
             <span className="block">Tufael Ahmed</span>
-            <span className="block bg-gradient-to-r from-[#EC4899] via-[#8B5CF6] to-[#4F46E5] bg-clip-text text-transparent">
+            <span className="block mt-2 sm:mt-3 bg-gradient-to-r from-[#EC4899] via-[#8B5CF6] to-[#4F46E5] bg-clip-text text-transparent">
               Zuarder
             </span>
           </h1>
 
           {/* Rotating Role */}
           <div className="h-9 mb-5 flex items-center justify-center">
-            <p className="font-heading text-xl sm:text-2xl font-medium text-brand-ink">
+            <p className="font-heading text-xl sm:text-2xl text-brand-ink tracking-[0.06em] [word-spacing:0.25em]">
               I&apos;m a{" "}
-              <span className="font-semibold bg-gradient-to-r from-[#EC4899] via-[#8B5CF6] to-[#4F46E5] bg-clip-text text-transparent transition-all duration-300">
+              <span className="bg-gradient-to-r from-[#EC4899] via-[#8B5CF6] to-[#4F46E5] bg-clip-text text-transparent transition-all duration-300">
                 {ROLES[roleIndex]}
               </span>
             </p>
           </div>
 
           {/* Lead Description */}
-          <p className="font-sans text-base sm:text-lg text-brand-muted max-w-xl mx-auto leading-relaxed mb-9">
+          <p className="font-sans text-base sm:text-lg text-brand-muted max-w-xl mx-auto leading-relaxed tracking-[0.035em] [word-spacing:0.18em] mb-9">
             Crafting beautiful, functional, and user-centered digital experiences with modern technologies, clean UI/UX, and a relentless focus on performance.
           </p>
 
@@ -90,7 +90,7 @@ export function HeroSection() {
           <div className="flex flex-wrap items-center justify-center gap-3.5 mb-9">
             <Link
               href="/portfolio"
-              className="relative inline-flex items-center justify-center gap-2 font-heading font-semibold text-sm sm:text-base px-7 py-3.5 rounded-full bg-brand-gradient text-white shadow-brand-glow hover:-translate-y-0.5 hover:shadow-lg hover:shadow-brand-violet/40 transition-all duration-300 group cursor-pointer"
+              className="relative inline-flex items-center justify-center gap-2 font-heading text-sm sm:text-base px-7 py-3.5 rounded-full bg-brand-gradient text-white shadow-brand-glow hover:-translate-y-0.5 hover:shadow-lg hover:shadow-brand-violet/40 transition-all duration-300 group cursor-pointer tracking-[0.08em] [word-spacing:0.2em]"
             >
               <span>View My Work</span>
               <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
@@ -100,7 +100,7 @@ export function HeroSection() {
               href="https://drive.google.com/file/d/1E2pbJ454dFjodVbZVz70LDtv_ih5RKtW/view"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 font-heading font-semibold text-sm sm:text-base px-7 py-3.5 rounded-full bg-brand-surface border border-brand-ink/10 text-brand-ink shadow-brand-sm hover:border-brand-violet hover:text-brand-violet hover:-translate-y-0.5 transition-all duration-300 group cursor-pointer"
+              className="inline-flex items-center justify-center gap-2 font-heading text-sm sm:text-base px-7 py-3.5 rounded-full bg-brand-surface border border-brand-ink/10 text-brand-ink shadow-brand-sm hover:border-brand-violet hover:text-brand-violet hover:-translate-y-0.5 transition-all duration-300 group cursor-pointer tracking-[0.08em] [word-spacing:0.2em]"
             >
               <span>Download Resume</span>
               <Download className="w-4 h-4 transition-transform duration-300 group-hover:translate-y-0.5" />

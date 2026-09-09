@@ -40,11 +40,11 @@ export function Footer() {
           <div className="lg:col-span-2">
             <Link
               href="/"
-              className="font-heading font-bold text-xl tracking-tight flex items-center gap-2 mb-3"
+              className="font-heading text-xl tracking-[0.06em] [word-spacing:0.15em] flex items-center gap-2 mb-3"
             >
               <span className="w-2.5 h-2.5 rounded-full bg-brand-gradient" />
               <span>
-                Tufael<b className="text-brand-violet">.</b>dev
+                Tufael <span className="text-brand-violet font-semibold">.</span>dev
               </span>
             </Link>
             <p className="text-sm text-brand-muted leading-relaxed max-w-sm mb-6">

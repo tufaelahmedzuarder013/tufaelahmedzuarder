@@ -44,7 +44,7 @@ export function PageBanner({
         )}
 
         {/* Title */}
-        <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-brand-ink mb-4">
+        <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl tracking-[0.06em] [word-spacing:0.25em] leading-[1.25] text-brand-ink mb-4">
           {title}{" "}
           {highlightText && (
             <span className="bg-brand-gradient bg-clip-text text-transparent">

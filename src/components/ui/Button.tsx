@@ -24,7 +24,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     ref
   ) => {
     const baseStyles =
-      "relative inline-flex items-center justify-center font-heading font-semibold rounded-full transition-all duration-300 overflow-hidden group cursor-pointer";
+      "relative inline-flex items-center justify-center font-heading font-normal tracking-[0.07em] [word-spacing:0.2em] rounded-full transition-all duration-300 overflow-hidden group cursor-pointer";
 
     const variantStyles = {
       primary:

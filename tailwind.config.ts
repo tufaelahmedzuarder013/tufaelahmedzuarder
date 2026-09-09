@@ -12,13 +12,13 @@ const config: Config = {
     extend: {
       colors: {
         brand: {
-          bg: "#FAFAFD",
-          soft: "#F3F4F9",
-          surface: "#FFFFFF",
-          ink: "#15151F",
-          ink2: "#2C2C3A",
-          muted: "#6A6A7B",
-          muted2: "#9A9AAB",
+          bg: "rgb(var(--brand-bg) / <alpha-value>)",
+          soft: "rgb(var(--brand-soft) / <alpha-value>)",
+          surface: "rgb(var(--brand-surface) / <alpha-value>)",
+          ink: "rgb(var(--brand-ink) / <alpha-value>)",
+          ink2: "rgb(var(--brand-ink2) / <alpha-value>)",
+          muted: "rgb(var(--brand-muted) / <alpha-value>)",
+          muted2: "rgb(var(--brand-muted2) / <alpha-value>)",
           violet: "#7C3AED",
           indigo: "#4F46E5",
           blue: "#2563EB",
@@ -27,9 +27,30 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: ["var(--font-plus-jakarta-sans)", "system-ui", "sans-serif"],
-        heading: ["var(--font-space-grotesk)", "sans-serif"],
+        sans: [
+          "var(--font-casko-luxury)",
+          "'Casko Luxury'",
+          "var(--font-plus-jakarta-sans)",
+          "system-ui",
+          "sans-serif",
+        ],
+        heading: [
+          "var(--font-ncl-gasdrifo)",
+          "'NCL Gasdrifo'",
+          "var(--font-space-grotesk)",
+          "sans-serif",
+        ],
+        casko: ["var(--font-casko-luxury)", "'Casko Luxury'", "serif"],
+        gasdrifo: ["var(--font-ncl-gasdrifo)", "'NCL Gasdrifo'", "sans-serif"],
         mono: ["var(--font-jetbrains-mono)", "monospace"],
+      },
+      letterSpacing: {
+        tighter: "0.01em",
+        tight: "0.03em",
+        normal: "0.05em",
+        wide: "0.08em",
+        wider: "0.12em",
+        widest: "0.18em",
       },
       backgroundImage: {
         "brand-gradient": "linear-gradient(120deg, #7C3AED 0%, #4F46E5 42%, #EC4899 100%)",

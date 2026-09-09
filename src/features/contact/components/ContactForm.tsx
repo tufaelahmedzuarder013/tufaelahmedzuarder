@@ -100,8 +100,8 @@ export function ContactForm() {
       className="p-8 md:p-10 rounded-3xl border border-brand-ink/10 bg-brand-surface shadow-brand"
     >
       {status === "success" && (
-        <div className="p-4 mb-6 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-700 flex items-center gap-3">
-          <CheckCircle className="w-5 h-5 shrink-0 text-emerald-600" />
+        <div className="p-4 mb-6 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-700 dark:text-emerald-400 flex items-center gap-3">
+          <CheckCircle className="w-5 h-5 shrink-0 text-emerald-600 dark:text-emerald-400" />
           <p className="text-sm font-medium">
             Thank you! Your message has been sent successfully. I will get back to you shortly.
           </p>
@@ -109,8 +109,8 @@ export function ContactForm() {
       )}
 
       {status === "error" && errorMessage && (
-        <div className="p-4 mb-6 rounded-2xl bg-rose-500/10 border border-rose-500/20 text-rose-700 flex items-center gap-3">
-          <AlertCircle className="w-5 h-5 shrink-0 text-rose-600" />
+        <div className="p-4 mb-6 rounded-2xl bg-rose-500/10 border border-rose-500/20 text-rose-700 dark:text-rose-400 flex items-center gap-3">
+          <AlertCircle className="w-5 h-5 shrink-0 text-rose-600 dark:text-rose-400" />
           <p className="text-sm font-medium">{errorMessage}</p>
         </div>
       )}

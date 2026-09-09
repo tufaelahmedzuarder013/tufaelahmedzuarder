@@ -1,6 +1,7 @@
 import React from "react";
 import { HeroSection } from "@/features/home/components/HeroSection";
 import { MetricsTicker } from "@/features/home/components/MetricsTicker";
+import { HomeAboutTeaser } from "@/features/home/components/HomeAboutTeaser";
 import { ServicesOverview } from "@/features/home/components/ServicesOverview";
 import { FeaturedWork } from "@/features/home/components/FeaturedWork";
 import { ClientReviews } from "@/features/home/components/ClientReviews";
@@ -11,6 +12,7 @@ export default function HomePage() {
     <>
       <HeroSection />
       <MetricsTicker />
+      <HomeAboutTeaser />
       <ServicesOverview />
       <FeaturedWork />
       <ClientReviews />

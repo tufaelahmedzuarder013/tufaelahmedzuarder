@@ -10,6 +10,7 @@ import { useScrollPosition } from "@/hooks/useScrollPosition";
 import { NAV_LINKS, SITE_CONFIG } from "@/lib/constants";
 import { Container } from "./Container";
 import { Button } from "../ui/Button";
+import { ThemeToggle } from "../ui/ThemeToggle";
 import { cn } from "@/lib/utils";
 
 export function Navbar() {
@@ -37,11 +38,11 @@ export function Navbar() {
         {/* Brand Logo */}
         <Link
           href="/"
-          className="font-heading font-bold text-lg tracking-tight flex items-center gap-2 group"
+          className="font-heading text-xl tracking-[0.06em] [word-spacing:0.15em] flex items-center gap-2 group"
         >
           <span className="w-2.5 h-2.5 rounded-full bg-brand-gradient group-hover:scale-125 transition-transform duration-300" />
           <span>
-            Tufael<b className="text-brand-violet">.</b>dev
+            Tufael <span className="text-brand-violet font-semibold">.</span>dev
           </span>
         </Link>
 
@@ -58,9 +59,9 @@ export function Navbar() {
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  "relative text-sm font-medium transition-colors duration-200 py-1",
+                  "relative text-sm tracking-[0.05em] [word-spacing:0.12em] transition-colors duration-200 py-1",
                   isActive
-                    ? "text-brand-ink font-semibold"
+                    ? "text-brand-ink font-medium"
                     : "text-brand-muted hover:text-brand-ink"
                 )}
               >
@@ -73,8 +74,10 @@ export function Navbar() {
           })}
         </nav>
 
-        {/* Action Button & Mobile Burger */}
-        <div className="flex items-center gap-3">
+        {/* Action Button, Theme Switcher & Mobile Burger */}
+        <div className="flex items-center gap-2 sm:gap-3">
+          <ThemeToggle />
+
           <Button
             href="/contact"
             variant="primary"

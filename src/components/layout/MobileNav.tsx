@@ -9,6 +9,7 @@ import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { setMobileMenuOpen } from "@/store/slices/uiSlice";
 import { NAV_LINKS, SITE_CONFIG } from "@/lib/constants";
 import { Button } from "../ui/Button";
+import { ThemeToggle } from "../ui/ThemeToggle";
 
 export function MobileNav() {
   const pathname = usePathname();
@@ -27,14 +28,17 @@ export function MobileNav() {
           transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
           className="fixed inset-0 z-40 bg-brand-bg flex flex-col justify-between p-8 md:hidden overflow-y-auto pt-24"
         >
-          {/* Top Close Button */}
-          <button
-            onClick={closeMenu}
-            className="absolute top-6 right-6 p-2 rounded-xl border border-brand-ink/10 text-brand-ink"
-            aria-label="Close menu"
-          >
-            <X className="w-5 h-5" />
-          </button>
+          {/* Top Controls (Theme Toggle & Close Button) */}
+          <div className="absolute top-6 right-6 flex items-center gap-3">
+            <ThemeToggle />
+            <button
+              onClick={closeMenu}
+              className="p-2 rounded-xl border border-brand-ink/10 text-brand-ink hover:border-brand-violet transition-colors"
+              aria-label="Close menu"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
 
           {/* Navigation Links */}
           <div className="flex flex-col gap-3 my-auto">
