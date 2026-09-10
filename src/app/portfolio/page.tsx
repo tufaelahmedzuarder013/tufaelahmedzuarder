@@ -34,7 +34,7 @@ export default function PortfolioPage() {
       <Section>
         <Container>
           <div className="text-center max-w-2xl mx-auto mb-10">
-            <Eyebrow align="center">// All Projects</Eyebrow>
+            <Eyebrow align="center">{"// All Projects"}</Eyebrow>
             <h2 className="font-heading text-3xl sm:text-4xl font-bold text-brand-ink mb-3">
               Work I&apos;m proud of.
             </h2>

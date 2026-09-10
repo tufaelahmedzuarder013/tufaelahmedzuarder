@@ -33,7 +33,7 @@ export function BioSplit() {
 
       {/* Bio Copy Column */}
       <div className="lg:col-span-7 space-y-6">
-        <Eyebrow>// About Me</Eyebrow>
+        <Eyebrow>{"// About Me"}</Eyebrow>
 
         <h2 className="font-heading text-3xl sm:text-4xl text-brand-ink tracking-[0.06em] [word-spacing:0.25em] leading-[1.25]">
           Obsessed with code quality, user experience, and fast delivery.

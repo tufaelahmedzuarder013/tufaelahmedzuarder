@@ -31,7 +31,7 @@ export default function ServicesPage() {
       <Section>
         <Container>
           <div className="text-center max-w-2xl mx-auto mb-14">
-            <Eyebrow align="center">// What I Deliver</Eyebrow>
+            <Eyebrow align="center">{"// What I Deliver"}</Eyebrow>
             <h2 className="font-heading text-3xl sm:text-4xl font-bold text-brand-ink">
               Comprehensive digital solutions.
             </h2>

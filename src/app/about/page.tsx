@@ -41,7 +41,7 @@ export default function AboutPage() {
       <Section>
         <Container>
           <div className="text-center max-w-2xl mx-auto mb-14">
-            <Eyebrow align="center">// Technical Stack</Eyebrow>
+            <Eyebrow align="center">{"// Technical Stack"}</Eyebrow>
             <h2 className="font-heading text-3xl sm:text-4xl font-bold text-brand-ink">
               Tools & frameworks I master.
             </h2>
@@ -53,7 +53,7 @@ export default function AboutPage() {
       <Section softBg>
         <Container>
           <div className="text-center max-w-2xl mx-auto mb-14">
-            <Eyebrow align="center">// Career Path</Eyebrow>
+            <Eyebrow align="center">{"// Career Path"}</Eyebrow>
             <h2 className="font-heading text-3xl sm:text-4xl font-bold text-brand-ink">
               Milestones & experience.
             </h2>

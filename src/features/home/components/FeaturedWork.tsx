@@ -11,7 +11,7 @@ export function FeaturedWork() {
       <Container>
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
           <div>
-            <Eyebrow>// Selected Projects</Eyebrow>
+            <Eyebrow>{"// Selected Projects"}</Eyebrow>
             <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold text-brand-ink">
               Recent featured work.
             </h2>

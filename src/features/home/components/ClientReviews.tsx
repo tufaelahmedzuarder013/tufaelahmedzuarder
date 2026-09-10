@@ -10,7 +10,7 @@ export function ClientReviews() {
     <section className="py-20 md:py-28">
       <Container>
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <Eyebrow align="center">// Client Feedback</Eyebrow>
+          <Eyebrow align="center">{"// Client Feedback"}</Eyebrow>
           <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold text-brand-ink">
             What partners say.
           </h2>

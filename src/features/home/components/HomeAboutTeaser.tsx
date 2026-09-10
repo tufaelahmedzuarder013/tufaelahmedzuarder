@@ -38,7 +38,7 @@ export function HomeAboutTeaser() {
             {/* Eyebrow */}
             <div className="inline-flex items-center gap-2 font-mono text-xs text-brand-violet uppercase tracking-wider">
               <span>—</span>
-              <span>// About me</span>
+              <span>{"// About me"}</span>
             </div>
 
             {/* Headline */}

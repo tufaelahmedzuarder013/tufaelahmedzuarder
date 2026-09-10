@@ -34,7 +34,7 @@ export default function ContactPage() {
             {/* Direct Contact Cards (5 cols) */}
             <div className="lg:col-span-5 space-y-6">
               <div>
-                <Eyebrow>// Let&apos;s connect</Eyebrow>
+                <Eyebrow>{"// Let's connect"}</Eyebrow>
                 <h2 className="font-heading text-3xl sm:text-4xl font-bold text-brand-ink mb-4">
                   Let&apos;s build something great.
                 </h2>
@@ -58,7 +58,7 @@ export default function ContactPage() {
       <Section softBg>
         <Container>
           <div className="text-center max-w-2xl mx-auto mb-12">
-            <Eyebrow align="center">// Frequently Asked Questions</Eyebrow>
+            <Eyebrow align="center">{"// Frequently Asked Questions"}</Eyebrow>
             <h2 className="font-heading text-3xl sm:text-4xl font-bold text-brand-ink">
               Before you reach out.
             </h2>
