@@ -3,7 +3,7 @@
 import React, { useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ArrowUpRight, Music } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { toggleMobileMenu, setIsScrolled } from "@/store/slices/uiSlice";
 import { useScrollPosition } from "@/hooks/useScrollPosition";
@@ -11,6 +11,7 @@ import { NAV_LINKS, SITE_CONFIG } from "@/lib/constants";
 import { Container } from "./Container";
 import { Button } from "../ui/Button";
 import { ThemeToggle } from "../ui/ThemeToggle";
+import { MusicWaveToggle } from "../ui/MusicWaveToggle";
 import { cn } from "@/lib/utils";
 
 export function Navbar() {
@@ -35,18 +36,19 @@ export function Navbar() {
       )}
     >
       <Container className="flex items-center justify-between">
-        {/* Brand Logo with Music Icon on Left */}
-        <Link
-          href="/"
-          className="font-heading text-lg sm:text-xl tracking-[0.03em] flex items-center gap-2.5 group text-brand-ink hover:text-brand-violet transition-colors"
-        >
-          <span className="w-8 h-8 rounded-xl bg-brand-violet/10 border border-brand-violet/20 flex items-center justify-center text-brand-violet group-hover:scale-110 group-hover:bg-brand-gradient group-hover:text-white transition-all duration-300 shadow-xs dark:bg-white/[0.08] dark:backdrop-blur-md dark:border-white/15 dark:text-white">
-            <Music className="w-4 h-4" />
-          </span>
-          <span className="font-semibold">
-            Tufael Ahmed Zuarder
-          </span>
-        </Link>
+        {/* Brand Logo with Circular Music Wave Toggle on Left */}
+        <div className="flex items-center gap-2.5 sm:gap-3">
+          <MusicWaveToggle />
+
+          <Link
+            href="/"
+            className="font-heading text-lg sm:text-xl tracking-[0.03em] flex items-center group text-brand-ink hover:text-brand-violet transition-colors"
+          >
+            <span className="font-semibold">
+              Tufael Ahmed Zuarder
+            </span>
+          </Link>
+        </div>
 
         {/* Desktop Navigation Links */}
         <nav className="hidden md:flex items-center gap-8">
