@@ -3,7 +3,7 @@
 import React, { useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Music } from "lucide-react";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { toggleMobileMenu, setIsScrolled } from "@/store/slices/uiSlice";
 import { useScrollPosition } from "@/hooks/useScrollPosition";
@@ -35,14 +35,16 @@ export function Navbar() {
       )}
     >
       <Container className="flex items-center justify-between">
-        {/* Brand Logo */}
+        {/* Brand Logo with Music Icon on Left */}
         <Link
           href="/"
-          className="font-heading text-xl tracking-[0.06em] [word-spacing:0.15em] flex items-center gap-2 group"
+          className="font-heading text-lg sm:text-xl tracking-[0.03em] flex items-center gap-2.5 group text-brand-ink hover:text-brand-violet transition-colors"
         >
-          <span className="w-2.5 h-2.5 rounded-full bg-brand-gradient group-hover:scale-125 transition-transform duration-300" />
-          <span>
-            Tufael <span className="text-brand-violet font-semibold">.</span>dev
+          <span className="w-8 h-8 rounded-xl bg-brand-violet/10 border border-brand-violet/20 flex items-center justify-center text-brand-violet group-hover:scale-110 group-hover:bg-brand-gradient group-hover:text-white transition-all duration-300 shadow-xs dark:bg-white/[0.08] dark:backdrop-blur-md dark:border-white/15 dark:text-white">
+            <Music className="w-4 h-4" />
+          </span>
+          <span className="font-semibold">
+            Tufael Ahmed Zuarder
           </span>
         </Link>
 
@@ -92,7 +94,7 @@ export function Navbar() {
           <button
             onClick={() => dispatch(toggleMobileMenu())}
             aria-label="Toggle menu"
-            className="md:hidden flex flex-col justify-center items-center w-10 h-10 rounded-xl border border-brand-ink/10 bg-brand-surface text-brand-ink p-2"
+            className="md:hidden flex flex-col justify-center items-center w-10 h-10 rounded-xl border border-brand-ink/10 bg-brand-surface text-brand-ink p-2 dark:bg-white/[0.07] dark:backdrop-blur-xl dark:border-white/15 dark:text-white dark:hover:bg-white/[0.14] transition-all cursor-pointer"
           >
             <span
               className={cn(

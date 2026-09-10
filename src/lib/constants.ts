@@ -1,6 +1,6 @@
 export const SITE_CONFIG = {
   name: "Tufael Ahmed Zuarder",
-  brandMark: "Tufael.dev",
+  brandMark: "Tufael Ahmed Zuarder",
   title: "Tufael Ahmed Zuarder — Full-Stack Web Developer",
   description:
     "Crafting beautiful, fast, user-centered web experiences with modern UI/UX and performance-focused builds.",

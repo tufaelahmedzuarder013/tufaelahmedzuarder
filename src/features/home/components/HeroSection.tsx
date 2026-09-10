@@ -67,16 +67,16 @@ export function HeroSection() {
               </div>
 
               {/* Main Headline */}
-              <h1 className="font-heading text-5xl sm:text-7xl lg:text-8xl tracking-[0.06em] [word-spacing:0.35em] leading-[1.15] text-brand-ink mb-6">
+              <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl tracking-[0.05em] [word-spacing:0.25em] leading-[1.15] text-brand-ink mb-4 sm:mb-5">
                 <span className="block">Tufael Ahmed</span>
-                <span className="block mt-1 sm:mt-2 bg-gradient-to-r from-[#EC4899] via-[#8B5CF6] to-[#4F46E5] bg-clip-text text-transparent">
+                <span className="block mt-1 bg-gradient-to-r from-[#EC4899] via-[#8B5CF6] to-[#4F46E5] bg-clip-text text-transparent">
                   Zuarder
                 </span>
               </h1>
 
               {/* Rotating Role */}
               <div className="h-9 flex items-center">
-                <p className="font-heading text-xl sm:text-2xl lg:text-3xl text-brand-ink tracking-[0.06em] [word-spacing:0.25em]">
+                <p className="font-heading text-lg sm:text-xl lg:text-2xl text-brand-ink tracking-[0.05em] [word-spacing:0.2em]">
                   I&apos;m a{" "}
                   <span className="bg-gradient-to-r from-[#EC4899] via-[#8B5CF6] to-[#4F46E5] bg-clip-text text-transparent transition-all duration-300">
                     {ROLES[roleIndex]}
@@ -106,7 +106,7 @@ export function HeroSection() {
                   href="https://drive.google.com/file/d/1E2pbJ454dFjodVbZVz70LDtv_ih5RKtW/view"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 font-heading text-sm sm:text-base px-7 py-3.5 rounded-full bg-brand-surface border border-brand-ink/10 text-brand-ink shadow-brand-sm hover:border-brand-violet hover:text-brand-violet hover:-translate-y-0.5 transition-all duration-300 group cursor-pointer tracking-[0.08em] [word-spacing:0.2em]"
+                  className="inline-flex items-center justify-center gap-2 font-heading text-sm sm:text-base px-7 py-3.5 rounded-full bg-brand-surface border border-brand-ink/10 text-brand-ink shadow-brand-sm hover:border-brand-violet hover:text-brand-violet hover:-translate-y-0.5 transition-all duration-300 group cursor-pointer tracking-[0.08em] [word-spacing:0.2em] dark:bg-white/[0.06] dark:backdrop-blur-xl dark:border-white/15 dark:text-white dark:hover:bg-white/[0.12] dark:hover:border-brand-violet/60 dark:shadow-[0_4px_24px_rgba(0,0,0,0.4),inset_0_1px_1px_rgba(255,255,255,0.12)]"
                 >
                   <span>Download Resume</span>
                   <Download className="w-4 h-4 transition-transform duration-300 group-hover:translate-y-0.5" />
@@ -118,14 +118,14 @@ export function HeroSection() {
 
         {/* BOTTOM CENTER BLOCK */}
         <div className="w-full max-w-[1600px] mx-auto px-6 sm:px-10 lg:px-16 relative z-10 flex flex-col items-center gap-3 pb-2 pt-2">
-          {/* Social Icons Pill Card */}
-          <div className="inline-flex items-center gap-2.5 p-2 px-3.5 rounded-2xl bg-brand-surface/90 backdrop-blur-md border border-brand-ink/10 shadow-brand-sm">
+          {/* Social Icons Pill Card with Glass Effect in Dark Mode */}
+          <div className="inline-flex items-center gap-2.5 p-2 px-3.5 rounded-2xl bg-brand-surface/90 backdrop-blur-md border border-brand-ink/10 shadow-brand-sm dark:bg-white/[0.04] dark:backdrop-blur-2xl dark:border-white/15 dark:shadow-[0_8px_32px_rgba(0,0,0,0.4),inset_0_1px_1px_rgba(255,255,255,0.1)]">
             <a
               href={SITE_CONFIG.socials.github}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
-              className="w-10 h-10 rounded-xl border border-brand-ink/10 bg-brand-surface shadow-xs flex items-center justify-center text-brand-muted hover:text-brand-violet hover:border-brand-violet hover:-translate-y-0.5 transition-all duration-200"
+              className="w-10 h-10 rounded-xl border border-brand-ink/10 bg-brand-surface shadow-xs flex items-center justify-center text-brand-muted hover:text-brand-violet hover:border-brand-violet hover:-translate-y-0.5 transition-all duration-200 dark:bg-white/[0.06] dark:backdrop-blur-md dark:border-white/10 dark:text-zinc-200 dark:hover:text-brand-violet dark:hover:border-brand-violet/50 dark:hover:bg-white/[0.12]"
             >
               <Github className="w-4 h-4" />
             </a>
@@ -134,7 +134,7 @@ export function HeroSection() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
-              className="w-10 h-10 rounded-xl border border-brand-ink/10 bg-brand-surface shadow-xs flex items-center justify-center text-brand-muted hover:text-brand-violet hover:border-brand-violet hover:-translate-y-0.5 transition-all duration-200"
+              className="w-10 h-10 rounded-xl border border-brand-ink/10 bg-brand-surface shadow-xs flex items-center justify-center text-brand-muted hover:text-brand-violet hover:border-brand-violet hover:-translate-y-0.5 transition-all duration-200 dark:bg-white/[0.06] dark:backdrop-blur-md dark:border-white/10 dark:text-zinc-200 dark:hover:text-brand-violet dark:hover:border-brand-violet/50 dark:hover:bg-white/[0.12]"
             >
               <Linkedin className="w-4 h-4" />
             </a>
@@ -143,14 +143,14 @@ export function HeroSection() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="X (Twitter)"
-              className="w-10 h-10 rounded-xl border border-brand-ink/10 bg-brand-surface shadow-xs flex items-center justify-center text-brand-muted hover:text-brand-violet hover:border-brand-violet hover:-translate-y-0.5 transition-all duration-200"
+              className="w-10 h-10 rounded-xl border border-brand-ink/10 bg-brand-surface shadow-xs flex items-center justify-center text-brand-muted hover:text-brand-violet hover:border-brand-violet hover:-translate-y-0.5 transition-all duration-200 dark:bg-white/[0.06] dark:backdrop-blur-md dark:border-white/10 dark:text-zinc-200 dark:hover:text-brand-violet dark:hover:border-brand-violet/50 dark:hover:bg-white/[0.12]"
             >
               <Twitter className="w-4 h-4" />
             </a>
             <a
               href={`mailto:${SITE_CONFIG.email}`}
               aria-label="Email"
-              className="w-10 h-10 rounded-xl border border-brand-ink/10 bg-brand-surface shadow-xs flex items-center justify-center text-brand-muted hover:text-brand-violet hover:border-brand-violet hover:-translate-y-0.5 transition-all duration-200"
+              className="w-10 h-10 rounded-xl border border-brand-ink/10 bg-brand-surface shadow-xs flex items-center justify-center text-brand-muted hover:text-brand-violet hover:border-brand-violet hover:-translate-y-0.5 transition-all duration-200 dark:bg-white/[0.06] dark:backdrop-blur-md dark:border-white/10 dark:text-zinc-200 dark:hover:text-brand-violet dark:hover:border-brand-violet/50 dark:hover:bg-white/[0.12]"
             >
               <Mail className="w-4 h-4" />
             </a>

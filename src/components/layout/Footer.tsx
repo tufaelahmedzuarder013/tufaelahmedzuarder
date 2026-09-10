@@ -40,11 +40,11 @@ export function Footer() {
           <div className="lg:col-span-2">
             <Link
               href="/"
-              className="font-heading text-xl tracking-[0.06em] [word-spacing:0.15em] flex items-center gap-2 mb-3"
+              className="font-heading text-xl tracking-[0.03em] flex items-center gap-2.5 mb-3 group"
             >
-              <span className="w-2.5 h-2.5 rounded-full bg-brand-gradient" />
-              <span>
-                Tufael <span className="text-brand-violet font-semibold">.</span>dev
+              <span className="w-2.5 h-2.5 rounded-full bg-brand-gradient group-hover:scale-125 transition-transform duration-300" />
+              <span className="font-semibold text-brand-ink group-hover:text-brand-violet transition-colors">
+                Tufael Ahmed Zuarder
               </span>
             </Link>
             <p className="text-sm text-brand-muted leading-relaxed max-w-sm mb-6">
