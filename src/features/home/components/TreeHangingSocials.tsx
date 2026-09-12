@@ -26,7 +26,7 @@ const HANGING_SOCIALS: HangingSocialItem[] = [
     // Outer-left bough: hangs higher on mobile
     branchLeft: "26%",
     branchTop: "27%",
-    stringHeightMobile: 64,
+    stringHeightMobile: 54,
     stringHeightDesktop: 90,
     swingDuration: 4.8,
     swingAngle: 3.5,
@@ -45,7 +45,7 @@ const HANGING_SOCIALS: HangingSocialItem[] = [
     // Inner-left upper bough: hangs lower on mobile so it never collides horizontally with Facebook
     branchLeft: "38%",
     branchTop: "20%",
-    stringHeightMobile: 120,
+    stringHeightMobile: 92,
     stringHeightDesktop: 110,
     swingDuration: 5.6,
     swingAngle: 4.0,
@@ -92,7 +92,7 @@ const HANGING_SOCIALS: HangingSocialItem[] = [
     // Inner-right upper bough: hangs lower on mobile
     branchLeft: "62%",
     branchTop: "21%",
-    stringHeightMobile: 125,
+    stringHeightMobile: 96,
     stringHeightDesktop: 115,
     swingDuration: 4.4,
     swingAngle: 3.6,
@@ -111,7 +111,7 @@ const HANGING_SOCIALS: HangingSocialItem[] = [
     // Outer-right bough: hangs higher on mobile
     branchLeft: "74%",
     branchTop: "28%",
-    stringHeightMobile: 62,
+    stringHeightMobile: 52,
     stringHeightDesktop: 85,
     swingDuration: 5.0,
     swingAngle: 3.2,

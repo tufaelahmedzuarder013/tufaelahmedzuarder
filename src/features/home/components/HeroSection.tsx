@@ -194,11 +194,11 @@ export function HeroSection() {
         {/* ========================================================================= */}
         {/* MOBILE VERSION (lg:hidden) - EXACT 3-STEP USER REQUESTED LAYOUT            */}
         {/* ========================================================================= */}
-        <div className="flex lg:hidden flex-col items-center justify-between flex-1 w-full px-4 sm:px-8 py-2 z-10 gap-5 pointer-events-none">
+        <div className="flex lg:hidden flex-col items-center justify-center flex-1 w-full px-4 sm:px-8 py-2 z-10 gap-3 sm:gap-4 pointer-events-none">
           {/* 1ST: Availability, Headline, Role */}
-          <div className="flex flex-col items-center text-center w-full pt-2 pointer-events-auto relative z-20">
+          <div className="flex flex-col items-center text-center w-full pt-1 pointer-events-auto relative z-20">
             {/* Availability Status Pill */}
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-brand-ink/10 bg-brand-surface/90 backdrop-blur-sm shadow-brand-sm mb-3 hover:border-brand-emerald/40 transition-colors">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-brand-ink/10 bg-brand-surface/90 backdrop-blur-sm shadow-brand-sm mb-2.5 hover:border-brand-emerald/40 transition-colors">
               <span className="w-2 h-2 rounded-full bg-[#06D6A0] ring-4 ring-[#06D6A0]/25" />
               <span className="font-mono text-[10px] sm:text-xs text-brand-ink2 font-medium tracking-wider [word-spacing:0.12em]">
                 Available for freelance · Sylhet, BD
@@ -208,7 +208,7 @@ export function HeroSection() {
             {/* Main Headline */}
             <h1 className="font-heading text-3xl sm:text-4xl tracking-[0.04em] [word-spacing:0.18em] leading-[1.18] text-brand-ink mb-2">
               <span className="block">Tufael Ahmed</span>
-              <span className="block mt-1 bg-gradient-to-r from-[#06D6A0] via-[#10B981] to-[#0C4137] dark:from-[#06D6A0] dark:via-[#5EEAD4] dark:to-[#E6FBF6] bg-clip-text text-transparent">
+              <span className="block mt-0.5 bg-gradient-to-r from-[#06D6A0] via-[#10B981] to-[#0C4137] dark:from-[#06D6A0] dark:via-[#5EEAD4] dark:to-[#E6FBF6] bg-clip-text text-transparent">
                 Zuarder
               </span>
             </h1>
@@ -224,11 +224,11 @@ export function HeroSection() {
             </div>
           </div>
 
-          {/* 2ND: Tree & Hanging Social Cards */}
-          <div className="relative w-full max-w-[340px] sm:max-w-[400px] h-[310px] sm:h-[350px] flex items-center justify-center pointer-events-none select-none my-1 z-20 overflow-visible">
+          {/* 2ND: Tree & Hanging Social Cards (comfortably proportioned height and subtle margin) */}
+          <div className="relative w-full max-w-[340px] sm:max-w-[390px] h-[265px] sm:h-[295px] flex items-center justify-center pointer-events-none select-none -my-2 sm:-my-1 z-20 overflow-visible">
             <GenerativeTree
               transparent={true}
-              size={1.06}
+              size={1.08}
               particleAmount={0}
               speed={1}
               opacity={0.96}
@@ -239,7 +239,7 @@ export function HeroSection() {
           </div>
 
           {/* 3RD: Description, Buttons, Social Icons: relative z-30 pointer-events-none */}
-          <div className="flex flex-col items-center text-center space-y-4 w-full pb-2 relative z-30 pointer-events-none">
+          <div className="flex flex-col items-center text-center space-y-3.5 sm:space-y-4 w-full pb-1 relative z-30 pointer-events-none">
             {/* Description */}
             <p className="font-sans text-xs sm:text-sm text-brand-ink/85 max-w-[380px] leading-relaxed tracking-[0.02em] pointer-events-auto">
               Crafting beautiful, functional, and user-centered digital experiences with modern technologies, clean UI/UX, and a relentless focus on performance.
