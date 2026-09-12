@@ -58,8 +58,8 @@ export function HeroSection() {
         {/* ========================================================================= */}
         {/* DESKTOP VERSION (lg: and above) - 100% UNCHANGED & EXACT ORIGINAL LAYOUT */}
         {/* ========================================================================= */}
-        <div className="hidden lg:flex flex-col justify-between flex-1 w-full">
-          {/* Centered Generative Tree Animation & Hanging Cards */}
+        <div className="hidden lg:flex flex-col justify-between flex-1 w-full pointer-events-none">
+          {/* Generative Tree Canvas in background at z-0 */}
           <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[900px] h-[660px] pointer-events-none z-0 flex items-center justify-center overflow-visible select-none">
             <GenerativeTree
               transparent={true}
@@ -69,16 +69,20 @@ export function HeroSection() {
               opacity={0.96}
               className="w-full h-full relative pointer-events-none"
             />
+          </div>
+
+          {/* Hanging Social Cards in dedicated z-30 container so cards are 100% clickable */}
+          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[900px] h-[660px] pointer-events-none z-30 overflow-visible">
             <TreeHangingSocials />
           </div>
 
-          {/* Asymmetric Split: Left Block UP, Right Block DOWN */}
-          <div className="w-full max-w-[1600px] mx-auto px-6 sm:px-10 lg:px-16 flex-1 flex items-center relative z-10 py-6 lg:py-8">
-            <div className="w-full grid grid-cols-12 gap-8 items-start">
+          {/* Asymmetric Split: pointer-events-none on outer flex wrapper so center click passes through to tree */}
+          <div className="w-full max-w-[1600px] mx-auto px-6 sm:px-10 lg:px-16 flex-1 flex items-center relative z-20 py-6 lg:py-8 pointer-events-none">
+            <div className="w-full grid grid-cols-12 gap-8 items-start pointer-events-none">
               {/* LEFT BLOCK (Shifted UP) */}
-              <div className="col-span-6 flex flex-col items-start text-left -translate-y-12 xl:-translate-y-16">
+              <div className="col-span-6 flex flex-col items-start text-left -translate-y-12 xl:-translate-y-16 pointer-events-auto">
                 {/* Availability Status Pill */}
-                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-brand-ink/10 bg-brand-surface/90 backdrop-blur-sm shadow-brand-sm mb-6 hover:border-brand-emerald/40 transition-colors">
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-brand-ink/10 bg-brand-surface/90 backdrop-blur-sm shadow-brand-sm mb-6 hover:border-brand-emerald/40 transition-colors pointer-events-auto">
                   <span className="w-2 h-2 rounded-full bg-[#06D6A0] ring-4 ring-[#06D6A0]/25" />
                   <span className="font-mono text-xs text-brand-ink2 font-medium tracking-wider [word-spacing:0.15em]">
                     Available for freelance · Sylhet, BD
@@ -104,47 +108,47 @@ export function HeroSection() {
                 </div>
               </div>
 
-              {/* RIGHT BLOCK (Shifted DOWN) */}
-              <div className="col-span-6 flex flex-col items-end text-right translate-y-[260px] xl:translate-y-[300px] space-y-5">
+              {/* RIGHT BLOCK (Shifted DOWN): pointer-events-none on container so empty area doesn't block, children have pointer-events-auto */}
+              <div className="col-span-6 flex flex-col items-end text-right translate-y-[260px] xl:translate-y-[300px] space-y-5 pointer-events-none relative z-40">
                 {/* Lead Description */}
-                <p className="font-sans text-base lg:text-[17px] text-brand-ink/85 max-w-[460px] leading-relaxed tracking-[0.025em] text-right">
+                <p className="font-sans text-base lg:text-[17px] text-brand-ink/85 max-w-[460px] leading-relaxed tracking-[0.025em] text-right pointer-events-auto">
                   Crafting beautiful, functional, and user-centered digital experiences with modern technologies, clean UI/UX, and a relentless focus on performance.
                 </p>
 
-                {/* Action Buttons */}
-                <div className="flex flex-wrap items-center gap-3.5 justify-end">
+                {/* Action Buttons: z-[80] pointer-events-auto to ensure zero obstruction */}
+                <div className="flex flex-wrap items-center gap-3.5 justify-end relative z-[80] pointer-events-auto">
                   <Link
                     href="/portfolio"
-                    className="relative inline-flex items-center justify-center gap-2 font-heading text-base px-7 py-3.5 rounded-full bg-brand-gradient text-white shadow-brand-glow hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[#06D6A0]/40 transition-all duration-300 group cursor-pointer tracking-[0.08em] [word-spacing:0.2em]"
+                    className="relative z-[80] inline-flex items-center justify-center gap-2 font-heading text-base px-7 py-3.5 rounded-full bg-brand-gradient text-white shadow-brand-glow hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[#06D6A0]/40 transition-all duration-300 group cursor-pointer tracking-[0.08em] [word-spacing:0.2em] pointer-events-auto touch-manipulation"
                   >
                     <span>View My Work</span>
-                    <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+                    <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1 pointer-events-none" />
                   </Link>
 
                   <a
                     href="https://drive.google.com/file/d/1E2pbJ454dFjodVbZVz70LDtv_ih5RKtW/view"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 font-heading text-base px-7 py-3.5 rounded-full bg-brand-surface border border-brand-ink/10 text-brand-ink shadow-brand-sm hover:border-[#06D6A0] hover:text-[#06D6A0] hover:-translate-y-0.5 transition-all duration-300 group cursor-pointer tracking-[0.08em] [word-spacing:0.2em] dark:bg-white/[0.06] dark:backdrop-blur-xl dark:border-white/15 dark:text-white dark:hover:bg-white/[0.12] dark:hover:border-[#06D6A0]/60 dark:shadow-[0_4px_24px_rgba(0,0,0,0.4),inset_0_1px_1px_rgba(255,255,255,0.12)]"
+                    className="relative z-[80] inline-flex items-center justify-center gap-2 font-heading text-base px-7 py-3.5 rounded-full bg-brand-surface border border-brand-ink/10 text-brand-ink shadow-brand-sm hover:border-[#06D6A0] hover:text-[#06D6A0] hover:-translate-y-0.5 transition-all duration-300 group cursor-pointer tracking-[0.08em] [word-spacing:0.2em] dark:bg-white/[0.06] dark:backdrop-blur-xl dark:border-white/15 dark:text-white dark:hover:bg-white/[0.12] dark:hover:border-[#06D6A0]/60 dark:shadow-[0_4px_24px_rgba(0,0,0,0.4),inset_0_1px_1px_rgba(255,255,255,0.12)] pointer-events-auto touch-manipulation"
                   >
                     <span>Download Resume</span>
-                    <Download className="w-4 h-4 transition-transform duration-300 group-hover:translate-y-0.5" />
+                    <Download className="w-4 h-4 transition-transform duration-300 group-hover:translate-y-0.5 pointer-events-none" />
                   </a>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* DESKTOP BOTTOM CENTER BLOCK (Social Bar & Mouse Scroll Indicator) */}
-          <div className="w-full max-w-[1600px] mx-auto px-6 sm:px-10 lg:px-16 relative z-10 flex flex-col items-center gap-3 pb-2 pt-2">
-            {/* Social Icons Pill Card */}
-            <div className="inline-flex items-center gap-2.5 p-2 px-3.5 rounded-2xl bg-brand-surface/90 backdrop-blur-md border border-brand-ink/10 shadow-brand-sm dark:bg-[#0C2B24]/80 dark:backdrop-blur-2xl dark:border-emerald-400/20 dark:shadow-[0_8px_32px_rgba(0,0,0,0.4),inset_0_1px_1px_rgba(255,255,255,0.1)]">
+          {/* DESKTOP BOTTOM CENTER BLOCK (Social Bar & Mouse Scroll Indicator): pointer-events-none on 1600px wrapper so it never blocks buttons above/behind it! */}
+          <div className="w-full max-w-[1600px] mx-auto px-6 sm:px-10 lg:px-16 relative z-30 flex flex-col items-center gap-3 pb-2 pt-2 pointer-events-none">
+            {/* Social Icons Pill Card: pointer-events-auto only on the actual pill */}
+            <div className="inline-flex items-center gap-2.5 p-2 px-3.5 rounded-2xl bg-brand-surface/90 backdrop-blur-md border border-brand-ink/10 shadow-brand-sm dark:bg-[#0C2B24]/80 dark:backdrop-blur-2xl dark:border-emerald-400/20 dark:shadow-[0_8px_32px_rgba(0,0,0,0.4),inset_0_1px_1px_rgba(255,255,255,0.1)] pointer-events-auto relative z-40">
               <a
                 href={SITE_CONFIG.socials.github}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub"
-                className="w-10 h-10 rounded-xl border border-brand-ink/10 bg-brand-surface shadow-xs flex items-center justify-center text-brand-muted hover:text-[#06D6A0] hover:border-[#06D6A0] hover:-translate-y-0.5 transition-all duration-200 dark:bg-white/[0.06] dark:backdrop-blur-md dark:border-white/10 dark:text-zinc-200 dark:hover:text-[#06D6A0] dark:hover:border-[#06D6A0]/50 dark:hover:bg-white/[0.12]"
+                className="w-10 h-10 rounded-xl border border-brand-ink/10 bg-brand-surface shadow-xs flex items-center justify-center text-brand-muted hover:text-[#06D6A0] hover:border-[#06D6A0] hover:-translate-y-0.5 transition-all duration-200 dark:bg-white/[0.06] dark:backdrop-blur-md dark:border-white/10 dark:text-zinc-200 dark:hover:text-[#06D6A0] dark:hover:border-[#06D6A0]/50 dark:hover:bg-white/[0.12] cursor-pointer pointer-events-auto"
               >
                 <Github className="w-4 h-4" />
               </a>
@@ -153,7 +157,7 @@ export function HeroSection() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
-                className="w-10 h-10 rounded-xl border border-brand-ink/10 bg-brand-surface shadow-xs flex items-center justify-center text-brand-muted hover:text-[#06D6A0] hover:border-[#06D6A0] hover:-translate-y-0.5 transition-all duration-200 dark:bg-white/[0.06] dark:backdrop-blur-md dark:border-white/10 dark:text-zinc-200 dark:hover:text-[#06D6A0] dark:hover:border-[#06D6A0]/50 dark:hover:bg-white/[0.12]"
+                className="w-10 h-10 rounded-xl border border-brand-ink/10 bg-brand-surface shadow-xs flex items-center justify-center text-brand-muted hover:text-[#06D6A0] hover:border-[#06D6A0] hover:-translate-y-0.5 transition-all duration-200 dark:bg-white/[0.06] dark:backdrop-blur-md dark:border-white/10 dark:text-zinc-200 dark:hover:text-[#06D6A0] dark:hover:border-[#06D6A0]/50 dark:hover:bg-white/[0.12] cursor-pointer pointer-events-auto"
               >
                 <Linkedin className="w-4 h-4" />
               </a>
@@ -162,21 +166,21 @@ export function HeroSection() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="X (Twitter)"
-                className="w-10 h-10 rounded-xl border border-brand-ink/10 bg-brand-surface shadow-xs flex items-center justify-center text-brand-muted hover:text-[#06D6A0] hover:border-[#06D6A0] hover:-translate-y-0.5 transition-all duration-200 dark:bg-white/[0.06] dark:backdrop-blur-md dark:border-white/10 dark:text-zinc-200 dark:hover:text-[#06D6A0] dark:hover:border-[#06D6A0]/50 dark:hover:bg-white/[0.12]"
+                className="w-10 h-10 rounded-xl border border-brand-ink/10 bg-brand-surface shadow-xs flex items-center justify-center text-brand-muted hover:text-[#06D6A0] hover:border-[#06D6A0] hover:-translate-y-0.5 transition-all duration-200 dark:bg-white/[0.06] dark:backdrop-blur-md dark:border-white/10 dark:text-zinc-200 dark:hover:text-[#06D6A0] dark:hover:border-[#06D6A0]/50 dark:hover:bg-white/[0.12] cursor-pointer pointer-events-auto"
               >
                 <Twitter className="w-4 h-4" />
               </a>
               <a
                 href={`mailto:${SITE_CONFIG.email}`}
                 aria-label="Email"
-                className="w-10 h-10 rounded-xl border border-brand-ink/10 bg-brand-surface shadow-xs flex items-center justify-center text-brand-muted hover:text-[#06D6A0] hover:border-[#06D6A0] hover:-translate-y-0.5 transition-all duration-200 dark:bg-white/[0.06] dark:backdrop-blur-md dark:border-white/10 dark:text-zinc-200 dark:hover:text-[#06D6A0] dark:hover:border-[#06D6A0]/50 dark:hover:bg-white/[0.12]"
+                className="w-10 h-10 rounded-xl border border-brand-ink/10 bg-brand-surface shadow-xs flex items-center justify-center text-brand-muted hover:text-[#06D6A0] hover:border-[#06D6A0] hover:-translate-y-0.5 transition-all duration-200 dark:bg-white/[0.06] dark:backdrop-blur-md dark:border-white/10 dark:text-zinc-200 dark:hover:text-[#06D6A0] dark:hover:border-[#06D6A0]/50 dark:hover:bg-white/[0.12] cursor-pointer pointer-events-auto"
               >
                 <Mail className="w-4 h-4" />
               </a>
             </div>
 
             {/* Mouse Scroll Indicator */}
-            <div className="flex flex-col items-center gap-1">
+            <div className="flex flex-col items-center gap-1 pointer-events-auto">
               <div className="w-4 h-7 rounded-full border-[1.5px] border-brand-ink/25 relative flex justify-center pt-1">
                 <span className="w-1 h-1.5 rounded-full bg-[#06D6A0] animate-bounce" />
               </div>
@@ -190,9 +194,9 @@ export function HeroSection() {
         {/* ========================================================================= */}
         {/* MOBILE VERSION (lg:hidden) - EXACT 3-STEP USER REQUESTED LAYOUT            */}
         {/* ========================================================================= */}
-        <div className="flex lg:hidden flex-col items-center justify-between flex-1 w-full px-4 sm:px-8 py-2 z-10 gap-5">
+        <div className="flex lg:hidden flex-col items-center justify-between flex-1 w-full px-4 sm:px-8 py-2 z-10 gap-5 pointer-events-none">
           {/* 1ST: Availability, Headline, Role */}
-          <div className="flex flex-col items-center text-center w-full pt-2">
+          <div className="flex flex-col items-center text-center w-full pt-2 pointer-events-auto relative z-20">
             {/* Availability Status Pill */}
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-brand-ink/10 bg-brand-surface/90 backdrop-blur-sm shadow-brand-sm mb-3 hover:border-brand-emerald/40 transition-colors">
               <span className="w-2 h-2 rounded-full bg-[#06D6A0] ring-4 ring-[#06D6A0]/25" />
@@ -221,7 +225,7 @@ export function HeroSection() {
           </div>
 
           {/* 2ND: Tree & Hanging Social Cards */}
-          <div className="relative w-full max-w-[340px] sm:max-w-[400px] h-[310px] sm:h-[350px] flex items-center justify-center pointer-events-none select-none my-1">
+          <div className="relative w-full max-w-[340px] sm:max-w-[400px] h-[310px] sm:h-[350px] flex items-center justify-center pointer-events-none select-none my-1 z-20 overflow-visible">
             <GenerativeTree
               transparent={true}
               size={1.06}
@@ -230,45 +234,46 @@ export function HeroSection() {
               opacity={0.96}
               className="w-full h-full relative pointer-events-none"
             />
+            {/* Hanging cards placed with pointer-events-auto cards */}
             <TreeHangingSocials />
           </div>
 
-          {/* 3RD: Description, Buttons, Social Icons */}
-          <div className="flex flex-col items-center text-center space-y-4 w-full pb-2">
+          {/* 3RD: Description, Buttons, Social Icons: relative z-30 pointer-events-none */}
+          <div className="flex flex-col items-center text-center space-y-4 w-full pb-2 relative z-30 pointer-events-none">
             {/* Description */}
-            <p className="font-sans text-xs sm:text-sm text-brand-ink/85 max-w-[380px] leading-relaxed tracking-[0.02em]">
+            <p className="font-sans text-xs sm:text-sm text-brand-ink/85 max-w-[380px] leading-relaxed tracking-[0.02em] pointer-events-auto">
               Crafting beautiful, functional, and user-centered digital experiences with modern technologies, clean UI/UX, and a relentless focus on performance.
             </p>
 
-            {/* Action Buttons */}
-            <div className="flex flex-wrap items-center gap-2.5 justify-center">
+            {/* Action Buttons: z-[80] pointer-events-auto */}
+            <div className="flex flex-wrap items-center gap-2.5 justify-center relative z-[80] pointer-events-auto">
               <Link
                 href="/portfolio"
-                className="relative inline-flex items-center justify-center gap-2 font-heading text-xs sm:text-sm px-5 py-3 rounded-full bg-brand-gradient text-white shadow-brand-glow hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[#06D6A0]/40 transition-all duration-300 group cursor-pointer tracking-[0.06em]"
+                className="relative z-[80] inline-flex items-center justify-center gap-2 font-heading text-xs sm:text-sm px-5 py-3 rounded-full bg-brand-gradient text-white shadow-brand-glow hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[#06D6A0]/40 transition-all duration-300 group cursor-pointer tracking-[0.06em] pointer-events-auto touch-manipulation"
               >
                 <span>View My Work</span>
-                <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+                <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1 pointer-events-none" />
               </Link>
 
               <a
                 href="https://drive.google.com/file/d/1E2pbJ454dFjodVbZVz70LDtv_ih5RKtW/view"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 font-heading text-xs sm:text-sm px-5 py-3 rounded-full bg-brand-surface border border-brand-ink/10 text-brand-ink shadow-brand-sm hover:border-[#06D6A0] hover:text-[#06D6A0] hover:-translate-y-0.5 transition-all duration-300 group cursor-pointer tracking-[0.06em] dark:bg-white/[0.06] dark:backdrop-blur-xl dark:border-white/15 dark:text-white dark:hover:bg-white/[0.12] dark:hover:border-[#06D6A0]/60"
+                className="relative z-[80] inline-flex items-center justify-center gap-2 font-heading text-xs sm:text-sm px-5 py-3 rounded-full bg-brand-surface border border-brand-ink/10 text-brand-ink shadow-brand-sm hover:border-[#06D6A0] hover:text-[#06D6A0] hover:-translate-y-0.5 transition-all duration-300 group cursor-pointer tracking-[0.06em] dark:bg-white/[0.06] dark:backdrop-blur-xl dark:border-white/15 dark:text-white dark:hover:bg-white/[0.12] dark:hover:border-[#06D6A0]/60 pointer-events-auto touch-manipulation"
               >
                 <span>Download Resume</span>
-                <Download className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-y-0.5" />
+                <Download className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-y-0.5 pointer-events-none" />
               </a>
             </div>
 
             {/* Mobile Social Icons Pill */}
-            <div className="inline-flex items-center gap-2 p-1.5 px-3 rounded-2xl bg-brand-surface/90 backdrop-blur-md border border-brand-ink/10 shadow-brand-sm dark:bg-[#0C2B24]/80 dark:backdrop-blur-2xl dark:border-emerald-400/20">
+            <div className="inline-flex items-center gap-2 p-1.5 px-3 rounded-2xl bg-brand-surface/90 backdrop-blur-md border border-brand-ink/10 shadow-brand-sm dark:bg-[#0C2B24]/80 dark:backdrop-blur-2xl dark:border-emerald-400/20 relative z-[80] pointer-events-auto">
               <a
                 href={SITE_CONFIG.socials.github}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub"
-                className="w-8 h-8 rounded-xl border border-brand-ink/10 bg-brand-surface shadow-xs flex items-center justify-center text-brand-muted hover:text-[#06D6A0] hover:border-[#06D6A0] transition-all duration-200 dark:bg-white/[0.06] dark:border-white/10 dark:text-zinc-200 dark:hover:text-[#06D6A0] dark:hover:border-[#06D6A0]/50"
+                className="w-8 h-8 rounded-xl border border-brand-ink/10 bg-brand-surface shadow-xs flex items-center justify-center text-brand-muted hover:text-[#06D6A0] hover:border-[#06D6A0] transition-all duration-200 dark:bg-white/[0.06] dark:border-white/10 dark:text-zinc-200 dark:hover:text-[#06D6A0] dark:hover:border-[#06D6A0]/50 cursor-pointer pointer-events-auto"
               >
                 <Github className="w-3.5 h-3.5" />
               </a>
@@ -277,7 +282,7 @@ export function HeroSection() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
-                className="w-8 h-8 rounded-xl border border-brand-ink/10 bg-brand-surface shadow-xs flex items-center justify-center text-brand-muted hover:text-[#06D6A0] hover:border-[#06D6A0] transition-all duration-200 dark:bg-white/[0.06] dark:border-white/10 dark:text-zinc-200 dark:hover:text-[#06D6A0] dark:hover:border-[#06D6A0]/50"
+                className="w-8 h-8 rounded-xl border border-brand-ink/10 bg-brand-surface shadow-xs flex items-center justify-center text-brand-muted hover:text-[#06D6A0] hover:border-[#06D6A0] transition-all duration-200 dark:bg-white/[0.06] dark:border-white/10 dark:text-zinc-200 dark:hover:text-[#06D6A0] dark:hover:border-[#06D6A0]/50 cursor-pointer pointer-events-auto"
               >
                 <Linkedin className="w-3.5 h-3.5" />
               </a>
@@ -286,14 +291,14 @@ export function HeroSection() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="X (Twitter)"
-                className="w-8 h-8 rounded-xl border border-brand-ink/10 bg-brand-surface shadow-xs flex items-center justify-center text-brand-muted hover:text-[#06D6A0] hover:border-[#06D6A0] transition-all duration-200 dark:bg-white/[0.06] dark:border-white/10 dark:text-zinc-200 dark:hover:text-[#06D6A0] dark:hover:border-[#06D6A0]/50"
+                className="w-8 h-8 rounded-xl border border-brand-ink/10 bg-brand-surface shadow-xs flex items-center justify-center text-brand-muted hover:text-[#06D6A0] hover:border-[#06D6A0] transition-all duration-200 dark:bg-white/[0.06] dark:border-white/10 dark:text-zinc-200 dark:hover:text-[#06D6A0] dark:hover:border-[#06D6A0]/50 cursor-pointer pointer-events-auto"
               >
                 <Twitter className="w-3.5 h-3.5" />
               </a>
               <a
                 href={`mailto:${SITE_CONFIG.email}`}
                 aria-label="Email"
-                className="w-8 h-8 rounded-xl border border-brand-ink/10 bg-brand-surface shadow-xs flex items-center justify-center text-brand-muted hover:text-[#06D6A0] hover:border-[#06D6A0] transition-all duration-200 dark:bg-white/[0.06] dark:border-white/10 dark:text-zinc-200 dark:hover:text-[#06D6A0] dark:hover:border-[#06D6A0]/50"
+                className="w-8 h-8 rounded-xl border border-brand-ink/10 bg-brand-surface shadow-xs flex items-center justify-center text-brand-muted hover:text-[#06D6A0] hover:border-[#06D6A0] transition-all duration-200 dark:bg-white/[0.06] dark:border-white/10 dark:text-zinc-200 dark:hover:text-[#06D6A0] dark:hover:border-[#06D6A0]/50 cursor-pointer pointer-events-auto"
               >
                 <Mail className="w-3.5 h-3.5" />
               </a>

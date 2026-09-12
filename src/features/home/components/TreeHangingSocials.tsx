@@ -212,7 +212,10 @@ export function TreeHangingSocials() {
                 transition: { duration: 0.2 },
               }}
               whileTap={{ scale: 0.95 }}
-              className={`pointer-events-auto cursor-pointer group relative inline-flex items-center gap-1 sm:gap-2 px-2 sm:px-3.5 py-1 sm:py-1.5 rounded-xl sm:rounded-2xl bg-white/90 dark:bg-[#0C2B24]/95 backdrop-blur-xl border border-brand-ink/15 dark:border-emerald-400/25 shadow-[0_4px_16px_rgba(0,0,0,0.12),inset_0_1px_1px_rgba(255,255,255,0.4)] transition-all duration-300 ${item.borderColor} ${item.badgeBg}`}
+              onClick={(e) => {
+                e.stopPropagation();
+              }}
+              className={`pointer-events-auto cursor-pointer group relative z-50 touch-manipulation inline-flex items-center gap-1 sm:gap-2 px-2 sm:px-3.5 py-1 sm:py-1.5 rounded-xl sm:rounded-2xl bg-white/90 dark:bg-[#0C2B24]/95 backdrop-blur-xl border border-brand-ink/15 dark:border-emerald-400/25 shadow-[0_4px_16px_rgba(0,0,0,0.12),inset_0_1px_1px_rgba(255,255,255,0.4)] transition-all duration-300 ${item.borderColor} ${item.badgeBg}`}
             >
               {/* Hole punch graphic at top center of card */}
               <span className="absolute -top-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-brand-surface dark:bg-[#061A16] border border-brand-ink/20" />
