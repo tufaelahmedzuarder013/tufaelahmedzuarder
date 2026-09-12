@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowRight, Download, Github, Linkedin, Twitter, Mail } from "lucide-react";
 import { SITE_CONFIG } from "@/lib/constants";
 import { GenerativeTree } from "@/components/ui/generative-tree";
+import { TreeHangingSocials } from "./TreeHangingSocials";
 
 const ROLES = [
   "Performance Specialist",
@@ -64,6 +65,11 @@ export function HeroSection() {
             opacity={0.96}
             className="w-full h-full relative pointer-events-none"
           />
+        </div>
+
+        {/* Social cards hanging like threads from tree branches (z-20 ensures cards are completely clickable above hero grid) */}
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[720px] sm:max-w-[820px] lg:max-w-[900px] h-[540px] sm:h-[600px] lg:h-[660px] pointer-events-none z-20 overflow-visible">
+          <TreeHangingSocials />
         </div>
 
         {/* Hero Content: 1600px Max-Width Asymmetric Split matching exact red arrow placements */}

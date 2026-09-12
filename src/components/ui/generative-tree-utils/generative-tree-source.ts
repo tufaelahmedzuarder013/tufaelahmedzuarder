@@ -270,10 +270,7 @@ export const generativeTreeSource = `<!DOCTYPE html>
         state = 'HOLDING';
       }
     } else if (state === 'HOLDING') {
-      holdTimer++;
-      if (holdTimer >= HOLD_DURATION) {
-        state = 'FADING';
-      }
+      // Tree stays permanently fully-formed with natural wind sway (infinity loop off)
     } else if (state === 'FADING') {
       fadeTimer++;
       globalAlpha = Math.max(0, 1 - (fadeTimer / 60));

@@ -14,6 +14,9 @@ export const SITE_CONFIG = {
     github: "https://github.com/tufaelahemdzuarder013/",
     linkedin: "https://www.linkedin.com/in/tufael-ahmedzuarder/",
     x: "https://x.com/TazAhmed4711",
+    twitter: "https://x.com/TazAhmed4711",
+    facebook: "https://www.facebook.com/tufaelahmedzuarder",
+    instagram: "https://www.instagram.com/tufaelahmedzuarder/",
   },
   stats: {
     projects: "400+",
