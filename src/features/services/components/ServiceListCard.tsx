@@ -1,62 +1,138 @@
 import React from "react";
+import Image from "next/image";
 import Link from "next/link";
-import { Code, Palette, Zap, Sparkles, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, CheckCircle2 } from "lucide-react";
 import { ServiceItem } from "../types/service.types";
-import { TiltCard } from "@/components/animation/TiltCard";
 
 interface ServiceListCardProps {
   service: ServiceItem;
+  priority?: boolean;
 }
 
-const ICONS = {
-  code: Code,
-  palette: Palette,
-  zap: Zap,
-  sparkles: Sparkles,
-};
-
-export function ServiceListCard({ service }: ServiceListCardProps) {
-  const IconComponent =
-    ICONS[service.icon as keyof typeof ICONS] || Code;
-
+export function ServiceListCard({ service, priority = false }: ServiceListCardProps) {
   return (
-    <TiltCard>
-      <Link
-        href={`/services/${service.slug}`}
-        className="group block h-full p-8 rounded-3xl border border-brand-ink/10 bg-brand-surface shadow-brand-sm hover:shadow-brand transition-all duration-300 relative overflow-hidden"
-      >
-        {/* Top Icon Badge */}
-        <div className="w-12 h-12 rounded-2xl bg-brand-violet/10 text-brand-violet flex items-center justify-center mb-6 group-hover:bg-brand-gradient group-hover:text-white transition-colors duration-300">
-          <IconComponent className="w-6 h-6" />
+    <div className="relative rounded-[30px] sm:rounded-[36px] bg-white dark:bg-[#11211C] border border-brand-ink/10 dark:border-white/10 shadow-[0_24px_60px_-15px_rgba(0,0,0,0.12)] dark:shadow-[0_25px_70px_-15px_rgba(0,0,0,0.75)] overflow-hidden transition-all duration-500 hover:shadow-[0_30px_80px_-20px_rgba(6,214,160,0.24)] hover:border-[#61CED9]/50 group">
+      <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch">
+        {/* ========================================================================= */}
+        {/* LEFT COLUMN: Content, Metrics & Action Link                                */}
+        {/* ========================================================================= */}
+        <div className="lg:col-span-6 p-7 sm:p-10 lg:p-12 flex flex-col justify-between z-10">
+          <div>
+            {/* Category Pill Tag & Breadcrumb */}
+            <div className="flex items-center gap-2.5 mb-4 sm:mb-5">
+              <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-mono font-bold tracking-wider text-[#06D6A0] bg-[#06D6A0]/10 border border-[#06D6A0]/25 uppercase">
+                {service.tag || "SERVICE"}
+              </span>
+              <span className="font-mono text-xs text-brand-muted2 tracking-wider uppercase font-medium">
+                / {service.category || "EXPERTISE"}
+              </span>
+            </div>
+
+            {/* Service Title */}
+            <h3 className="font-heading font-extrabold text-2xl sm:text-3xl lg:text-[34px] text-brand-ink tracking-[0.03em] [word-spacing:0.15em] leading-[1.2] mb-3 sm:mb-4 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[#0C4137] group-hover:via-[#06D6A0] group-hover:to-[#61CED9] dark:group-hover:from-white dark:group-hover:via-[#5EEAD4] dark:group-hover:to-[#61CED9] transition-all duration-300">
+              {service.title}
+            </h3>
+
+            {/* Overview / Problem-Solution Description */}
+            <p className="font-sans text-sm sm:text-base text-brand-muted leading-relaxed mb-6">
+              {service.overview}
+            </p>
+
+            {/* Deliverables / Tech Stack Badges */}
+            <div className="flex flex-wrap gap-2 mb-6 sm:mb-8">
+              {service.techStack.map((tech, tIdx) => (
+                <span
+                  key={tIdx}
+                  className="px-2.5 py-1 rounded-lg bg-brand-soft border border-brand-ink/5 dark:border-white/10 font-mono text-[11px] text-brand-muted font-medium"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Bottom Metrics Ribbon + Action Link */}
+          <div className="border-t border-brand-ink/10 dark:border-white/10 pt-6">
+            {/* 3 Metric Columns (Exact match with reference image) */}
+            {service.metrics && service.metrics.length > 0 && (
+              <div className="grid grid-cols-3 gap-3 sm:gap-5 mb-6">
+                {service.metrics.map((m, mIdx) => (
+                  <div key={mIdx}>
+                    <span className="font-heading font-extrabold text-xl sm:text-2xl lg:text-[28px] text-[#06D6A0] dark:text-[#5EEAD4] block leading-none mb-1.5">
+                      {m.value}
+                    </span>
+                    <span className="font-mono text-[9px] sm:text-[10px] text-brand-muted2 uppercase tracking-wider block font-semibold leading-tight">
+                      {m.label}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* Action Link: View Service Details with Circle Arrow */}
+            <div className="pt-1 flex items-center justify-between">
+              <Link
+                href={`/services/${service.slug}`}
+                className="inline-flex items-center gap-2.5 font-heading text-sm font-bold text-brand-ink group/btn hover:text-[#06D6A0] transition-colors"
+              >
+                <span>View Service Details</span>
+                <span className="w-8 h-8 rounded-full border border-brand-ink/15 dark:border-white/20 flex items-center justify-center group-hover/btn:border-[#06D6A0] group-hover/btn:bg-[#06D6A0]/10 transition-all">
+                  <ArrowUpRight className="w-4 h-4 text-brand-ink group-hover/btn:text-[#06D6A0] group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
+                </span>
+              </Link>
+            </div>
+          </div>
         </div>
 
-        {/* Title & Short Description */}
-        <h3 className="font-heading text-xl font-bold text-brand-ink mb-3 group-hover:text-brand-violet transition-colors">
-          {service.title}
-        </h3>
-        <p className="text-sm text-brand-muted leading-relaxed mb-6">
-          {service.shortDesc}
-        </p>
+        {/* ========================================================================= */}
+        {/* RIGHT COLUMN: 3D Tablet Showcase Area matching Reference Image           */}
+        {/* ========================================================================= */}
+        <div className="lg:col-span-6 relative bg-gradient-to-br from-[#1C3831] via-[#112923] to-[#0A1A16] dark:from-[#0B1E19] dark:via-[#071713] dark:to-[#040C0A] p-6 sm:p-10 lg:p-12 flex items-center justify-center overflow-hidden min-h-[340px] sm:min-h-[420px]">
+          {/* Subtle Vertical Ribbed / Pinstripes Texture matching reference */}
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:22px_100%] pointer-events-none" />
 
-        {/* Deliverables snippet */}
-        <ul className="space-y-2 mb-6 border-t border-brand-ink/5 pt-4">
-          {service.included.slice(0, 3).map((item, idx) => (
-            <li
-              key={idx}
-              className="text-xs text-brand-ink2 flex items-center gap-2"
-            >
-              <span className="w-1.5 h-1.5 rounded-full bg-brand-violet" />
-              <span>{item}</span>
-            </li>
-          ))}
-        </ul>
+          {/* Ambient Glow Orb */}
+          <div className="absolute w-72 h-72 rounded-full bg-gradient-to-tr from-[#61CED9]/25 to-[#06D6A0]/25 blur-3xl pointer-events-none" />
 
-        {/* Bottom Link Action */}
-        <div className="flex items-center gap-1 font-heading text-xs font-semibold text-brand-violet group-hover:translate-x-1 transition-transform">
-          <span>Learn more</span>
-          <ArrowUpRight className="w-4 h-4" />
+          {/* Floating Top-Left Tag Badge */}
+          <div className="absolute top-5 left-5 z-20 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-white font-mono text-[10px] uppercase tracking-wider font-semibold shadow-xs">
+            {service.tag || "SERVICE"}
+          </div>
+
+          {/* Floating Top-Right Category Label */}
+          <div className="absolute top-5 right-5 z-20 text-white/70 font-mono text-[11px] uppercase tracking-wider font-medium">
+            {service.category || "FEATURED"}
+          </div>
+
+          {/* Floating Bottom-Right Circular Arrow Button */}
+          <Link
+            href={`/services/${service.slug}`}
+            aria-label={`View ${service.title}`}
+            className="absolute bottom-5 right-5 z-20 w-11 h-11 rounded-full bg-white/15 hover:bg-[#61CED9] hover:text-[#04241E] text-white backdrop-blur-xl border border-white/20 flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110 cursor-pointer"
+          >
+            <ArrowUpRight className="w-5 h-5" />
+          </Link>
+
+          {/* 3D Tilted Tablet Mockup Image */}
+          {service.showcaseImage ? (
+            <div className="relative w-full max-w-[440px] aspect-[4/3] rounded-2xl overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.6)] transition-transform duration-700 ease-out group-hover:scale-[1.03] group-hover:rotate-1">
+              <Image
+                src={service.showcaseImage}
+                alt={`${service.title} Showcase`}
+                fill
+                priority={priority}
+                sizes="(max-width: 1024px) 100vw, 440px"
+                className="object-cover"
+              />
+            </div>
+          ) : (
+            <div className="relative w-full max-w-[440px] aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl bg-zinc-900 border border-white/10 p-6 flex flex-col justify-center items-center text-center">
+              <span className="font-heading font-bold text-xl text-white mb-2">{service.title}</span>
+              <span className="font-mono text-xs text-[#61CED9]">{service.shortDesc}</span>
+            </div>
+          )}
         </div>
-      </Link>
-    </TiltCard>
+      </div>
+    </div>
   );
 }

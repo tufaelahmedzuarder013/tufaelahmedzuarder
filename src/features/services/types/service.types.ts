@@ -6,6 +6,10 @@ export interface ServiceItem {
   bestFor: string;
   overview: string;
   heroImage: string;
+  showcaseImage?: string;
+  tag?: string;
+  category?: string;
+  metrics?: { value: string; label: string }[];
   included: string[];
   deliverables: string[];
   techStack: string[];

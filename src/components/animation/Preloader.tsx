@@ -35,6 +35,16 @@ export function Preloader() {
     return count;
   }, [phraseWords]);
 
+  // Precomputed character offset for each word
+  const wordOffsets = useMemo(() => {
+    let running = 0;
+    return phraseWords.map((w) => {
+      const offset = running;
+      running += w.text.length + 1;
+      return offset;
+    });
+  }, [phraseWords]);
+
   // Cleanup helper for preloader exit
   const finishPreloader = useCallback(() => {
     setIsFinished(true);
@@ -335,8 +345,6 @@ export function Preloader() {
 
   if (!shouldRender) return null;
 
-  let globalCharIndex = 0;
-
   // Door transition animation easing curve (heavy luxury cinematic feel)
   const doorTransition = {
     duration: 1.1,
@@ -361,7 +369,7 @@ export function Preloader() {
             </div>
 
             {/* Ambient Glow */}
-            <div className="absolute -top-32 -left-32 w-96 h-96 rounded-full bg-violet-400/20 dark:bg-violet-600/15 blur-[120px] pointer-events-none" />
+            <div className="absolute -top-32 -left-32 w-96 h-96 rounded-full bg-emerald-400/20 dark:bg-emerald-600/15 blur-[120px] pointer-events-none" />
             <div className="absolute top-1/2 right-0 translate-x-1/2 -translate-y-1/2 w-80 aspect-square rounded-full bg-cyan-400/10 dark:bg-cyan-600/10 blur-[110px] pointer-events-none" />
           </motion.div>
 
@@ -379,8 +387,8 @@ export function Preloader() {
             </div>
 
             {/* Ambient Glow */}
-            <div className="absolute -bottom-32 -right-32 w-96 h-96 rounded-full bg-pink-400/15 dark:bg-pink-600/15 blur-[120px] pointer-events-none" />
-            <div className="absolute top-1/2 left-0 -translate-x-1/2 -translate-y-1/2 w-80 aspect-square rounded-full bg-cyan-400/10 dark:bg-cyan-600/10 blur-[110px] pointer-events-none" />
+            <div className="absolute -bottom-32 -right-32 w-96 h-96 rounded-full bg-cyan-400/15 dark:bg-cyan-600/15 blur-[120px] pointer-events-none" />
+            <div className="absolute top-1/2 left-0 -translate-x-1/2 -translate-y-1/2 w-80 aspect-square rounded-full bg-emerald-400/10 dark:bg-emerald-600/10 blur-[110px] pointer-events-none" />
           </motion.div>
 
           {/* ================= PRELOADER CONTENT (Center) ================= */}
@@ -399,7 +407,7 @@ export function Preloader() {
               <button
                 onClick={finishPreloader}
                 type="button"
-                className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full border border-brand-ink/10 bg-brand-surface/80 backdrop-blur-md hover:border-brand-violet hover:text-brand-violet transition-all cursor-pointer group shadow-sm"
+                className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full border border-brand-ink/10 bg-brand-surface/80 backdrop-blur-md hover:border-[#06D6A0] hover:text-[#06D6A0] transition-all cursor-pointer group shadow-sm"
               >
                 <span>Skip</span>
                 <ArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-0.5" />
@@ -425,6 +433,7 @@ export function Preloader() {
                 <h1 className="font-heading font-extrabold text-4xl sm:text-6xl md:text-7xl lg:text-[88px] tracking-[0.02em] text-brand-ink text-center leading-[1.1] select-none flex flex-wrap items-center justify-center">
                   {phraseWords.map((wordObj, wIdx) => {
                     const letters = wordObj.text.split("");
+                    const wordOffset = wordOffsets[wIdx] || 0;
                     return (
                       <span
                         key={`word-${wIdx}`}
@@ -442,7 +451,7 @@ export function Preloader() {
                         }
                       >
                         {letters.map((char, cIdx) => {
-                          const charIdx = globalCharIndex++;
+                          const charIdx = wordOffset + cIdx;
                           const isVisible = charIdx < typedCount;
                           const isCurrentActive = charIdx === typedCount - 1;
 
@@ -467,7 +476,7 @@ export function Preloader() {
                         })}
                         {/* Space between words */}
                         {wIdx < phraseWords.length - 1 && (() => {
-                          const spaceIdx = globalCharIndex++;
+                          const spaceIdx = wordOffset + wordObj.text.length;
                           const isSpaceVisible = spaceIdx < typedCount;
                           return (
                             <span

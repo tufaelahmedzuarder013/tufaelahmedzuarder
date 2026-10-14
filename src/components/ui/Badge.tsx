@@ -12,7 +12,7 @@ export function Badge({ children, variant = "violet", className }: BadgeProps) {
     violet: "bg-brand-violet/10 text-brand-violet border-brand-violet/20",
     gray: "bg-brand-soft text-brand-muted border-brand-ink/10",
     green: "bg-emerald-500/10 text-emerald-600 border-emerald-500/20",
-    gradient: "bg-brand-gradient text-white border-transparent",
+    gradient: "bg-brand-gradient text-[#04241E] font-bold border-transparent",
   };
 
   return (

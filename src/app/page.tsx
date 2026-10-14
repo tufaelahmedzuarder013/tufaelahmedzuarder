@@ -3,18 +3,24 @@ import { HeroSection } from "@/features/home/components/HeroSection";
 import { MetricsTicker } from "@/features/home/components/MetricsTicker";
 import { HomeAboutTeaser } from "@/features/home/components/HomeAboutTeaser";
 import { ServicesOverview } from "@/features/home/components/ServicesOverview";
+import { MissionVisionSection } from "@/features/home/components/MissionVisionSection";
 import { FeaturedWork } from "@/features/home/components/FeaturedWork";
+import { ProcessBlueprintSection } from "@/features/home/components/ProcessBlueprintSection";
 import { ClientReviews } from "@/features/home/components/ClientReviews";
 import { CtaBanner } from "@/features/home/components/CtaBanner";
+import { SmoothScroll } from "@/components/providers/SmoothScroll";
 
 export default function HomePage() {
   return (
     <>
+      <SmoothScroll />
       <HeroSection />
       <MetricsTicker />
       <HomeAboutTeaser />
       <ServicesOverview />
+      <MissionVisionSection />
       <FeaturedWork />
+      <ProcessBlueprintSection />
       <ClientReviews />
       <CtaBanner
         title="Ready to bring your vision to life?"

@@ -59,7 +59,7 @@ export function CustomCursor() {
     <>
       {/* Central Cursor Dot */}
       <motion.div
-        className="fixed top-0 left-0 w-2 h-2 rounded-full bg-brand-violet pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2"
+        className="fixed top-0 left-0 w-2 h-2 rounded-full bg-[#06D6A0] pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2"
         style={{
           x: mouseX,
           y: mouseY,
@@ -68,7 +68,7 @@ export function CustomCursor() {
 
       {/* Smooth Trailing Ring */}
       <motion.div
-        className="fixed top-0 left-0 rounded-full border border-brand-violet/40 pointer-events-none z-[9998] -translate-x-1/2 -translate-y-1/2"
+        className="fixed top-0 left-0 rounded-full border border-[#61CED9]/50 pointer-events-none z-[9998] -translate-x-1/2 -translate-y-1/2"
         style={{
           x: smoothX,
           y: smoothY,
@@ -77,11 +77,11 @@ export function CustomCursor() {
           width: isHovered ? 56 : 32,
           height: isHovered ? 56 : 32,
           backgroundColor: isHovered
-            ? "rgba(124, 58, 237, 0.12)"
-            : "rgba(124, 58, 237, 0)",
+            ? "rgba(6, 214, 160, 0.12)"
+            : "rgba(6, 214, 160, 0)",
           borderColor: isHovered
-            ? "rgba(124, 58, 237, 0.6)"
-            : "rgba(124, 58, 237, 0.35)",
+            ? "rgba(6, 214, 160, 0.65)"
+            : "rgba(97, 206, 217, 0.4)",
         }}
         transition={{ type: "spring", stiffness: 400, damping: 25 }}
       />

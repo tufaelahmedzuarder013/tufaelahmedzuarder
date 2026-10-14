@@ -140,7 +140,6 @@ html.dark .shadow-brand,
 }
 
 html {
-  scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
 }
 
@@ -151,7 +150,7 @@ body {
   letter-spacing: 0.035em;
   word-spacing: 0.15em;
   line-height: 1.75;
-  overflow-x: hidden;
+  overflow-x: clip;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   transition: background-color 0.25s ease, color 0.25s ease;
@@ -189,8 +188,8 @@ button,
 }
 
 ::selection {
-  background: #7C3AED;
-  color: #ffffff;
+  background: #61CED9;
+  color: #04241E;
 }
 
 /* Custom Scrollbar */
@@ -201,11 +200,11 @@ button,
   background: rgb(var(--brand-bg));
 }
 ::-webkit-scrollbar-thumb {
-  background: #C4B5FD;
+  background: rgba(97, 206, 217, 0.4);
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #7C3AED;
+  background: #06D6A0;
 }
 
 .dark ::-webkit-scrollbar-track {

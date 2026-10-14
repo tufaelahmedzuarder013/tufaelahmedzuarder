@@ -28,7 +28,7 @@ export default function ServicesPage() {
         ]}
       />
 
-      <Section>
+      <Section className="overflow-visible">
         <Container>
           <div className="text-center max-w-2xl mx-auto mb-14">
             <Eyebrow align="center">{"// What I Deliver"}</Eyebrow>
@@ -37,9 +37,18 @@ export default function ServicesPage() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {SERVICES.map((service) => (
-              <ServiceListCard key={service.id} service={service} />
+          <div className="relative pb-16 sm:pb-24">
+            {SERVICES.map((service, idx) => (
+              <div
+                key={service.id}
+                className="sticky transition-all duration-300 mb-[130px] sm:mb-[190px] last:mb-0"
+                style={{
+                  top: `calc(84px + ${idx * 24}px)`,
+                  zIndex: 10 + idx,
+                }}
+              >
+                <ServiceListCard service={service} priority={idx === 0} />
+              </div>
             ))}
           </div>
         </Container>

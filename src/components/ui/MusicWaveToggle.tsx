@@ -14,7 +14,7 @@ export function MusicWaveToggle() {
     audio
       .play()
       .then(() => setIsPlaying(true))
-      .catch((err) => console.warn("Play blocked:", err));
+      .catch(() => {});
   }, []);
 
   const pauseAudio = useCallback(() => {

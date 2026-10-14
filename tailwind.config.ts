@@ -53,19 +53,21 @@ const config: Config = {
         widest: "0.18em",
       },
       backgroundImage: {
-        "brand-gradient": "linear-gradient(120deg, #7C3AED 0%, #4F46E5 42%, #EC4899 100%)",
-        "radial-glow": "radial-gradient(circle at 50% 50%, rgba(124, 58, 237, 0.15), transparent 70%)",
+        "brand-gradient": "linear-gradient(135deg, #61CED9 0%, #06D6A0 100%)",
+        "radial-glow": "radial-gradient(circle at 50% 50%, rgba(97, 206, 217, 0.18), transparent 70%)",
       },
       boxShadow: {
-        "brand-sm": "0 4px 18px -8px rgba(60, 40, 120, 0.18)",
-        brand: "0 24px 60px -24px rgba(60, 40, 120, 0.28)",
-        "brand-glow": "0 10px 30px -10px rgba(124, 58, 237, 0.55)",
+        "brand-sm": "0 4px 18px -8px rgba(6, 214, 160, 0.18)",
+        brand: "0 24px 60px -24px rgba(12, 65, 55, 0.28)",
+        "brand-glow": "0 10px 30px -10px rgba(97, 206, 217, 0.55)",
       },
       animation: {
         shimmer: "shimmer 7s linear infinite",
         "pulse-slow": "pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite",
         float: "float 6s ease-in-out infinite",
         marquee: "marquee 25s linear infinite",
+        "marquee-left": "marquee-left 32s linear infinite",
+        "marquee-right": "marquee-right 35s linear infinite",
       },
       keyframes: {
         shimmer: {
@@ -79,6 +81,14 @@ const config: Config = {
         marquee: {
           "0%": { transform: "translateX(0%)" },
           "100%": { transform: "translateX(-50%)" },
+        },
+        "marquee-left": {
+          "0%": { transform: "translateX(0%)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
+        "marquee-right": {
+          "0%": { transform: "translateX(-50%)" },
+          "100%": { transform: "translateX(0%)" },
         },
       },
     },

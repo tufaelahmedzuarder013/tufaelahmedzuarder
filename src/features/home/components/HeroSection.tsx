@@ -119,7 +119,7 @@ export function HeroSection() {
                 <div className="flex flex-wrap items-center gap-3.5 justify-end relative z-[80] pointer-events-auto">
                   <Link
                     href="/portfolio"
-                    className="relative z-[80] inline-flex items-center justify-center gap-2 font-heading text-base px-7 py-3.5 rounded-full bg-brand-gradient text-white shadow-brand-glow hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[#06D6A0]/40 transition-all duration-300 group cursor-pointer tracking-[0.08em] [word-spacing:0.2em] pointer-events-auto touch-manipulation"
+                    className="relative z-[80] inline-flex items-center justify-center gap-2 font-heading font-bold text-base px-7 py-3.5 rounded-full bg-gradient-to-r from-[#61CED9] to-[#06D6A0] text-[#04241E] shadow-brand-glow hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[#61CED9]/40 transition-all duration-300 group cursor-pointer tracking-[0.08em] [word-spacing:0.2em] pointer-events-auto touch-manipulation"
                   >
                     <span>View My Work</span>
                     <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1 pointer-events-none" />
@@ -249,7 +249,7 @@ export function HeroSection() {
             <div className="flex flex-wrap items-center gap-2.5 justify-center relative z-[80] pointer-events-auto">
               <Link
                 href="/portfolio"
-                className="relative z-[80] inline-flex items-center justify-center gap-2 font-heading text-xs sm:text-sm px-5 py-3 rounded-full bg-brand-gradient text-white shadow-brand-glow hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[#06D6A0]/40 transition-all duration-300 group cursor-pointer tracking-[0.06em] pointer-events-auto touch-manipulation"
+                className="relative z-[80] inline-flex items-center justify-center gap-2 font-heading font-bold text-xs sm:text-sm px-5 py-3 rounded-full bg-gradient-to-r from-[#61CED9] to-[#06D6A0] text-[#04241E] shadow-brand-glow hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[#61CED9]/40 transition-all duration-300 group cursor-pointer tracking-[0.06em] pointer-events-auto touch-manipulation"
               >
                 <span>View My Work</span>
                 <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1 pointer-events-none" />

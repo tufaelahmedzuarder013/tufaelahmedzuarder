@@ -24,9 +24,14 @@ export default function GlobalError({
         <h2 className="font-heading text-3xl font-bold text-brand-ink mb-4">
           Something went wrong
         </h2>
-        <p className="text-brand-muted text-sm mb-8">
+        <p className="text-brand-muted text-sm mb-4">
           An unexpected error occurred. Please try again or return to the home page.
         </p>
+        {error?.message && (
+          <pre className="font-mono text-xs text-rose-500 bg-rose-500/10 p-3 rounded-lg mb-6 max-w-lg mx-auto text-left overflow-auto whitespace-pre-wrap">
+            {error.message}
+          </pre>
+        )}
         <div className="flex items-center justify-center gap-4">
           <Button onClick={() => reset()} variant="primary">
             Try again

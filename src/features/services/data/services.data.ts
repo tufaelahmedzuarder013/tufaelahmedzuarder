@@ -4,11 +4,19 @@ export const SERVICES: ServiceItem[] = [
   {
     id: "web",
     slug: "web-development",
-    title: "Web Development",
-    shortDesc: "Production-grade websites & web apps, built to scale.",
-    bestFor: "Production-grade websites & web apps, built to scale.",
+    title: "Full-Stack Web Development",
+    shortDesc: "Production-grade websites & scalable web applications.",
+    bestFor: "Startups and enterprises needing fast, reliable, and scalable web apps.",
+    tag: "WEB DEVELOPMENT",
+    category: "FULL STACK & SAAS",
+    showcaseImage: "/images/services/web-dev-showcase.jpg",
+    metrics: [
+      { value: "+300%", label: "SPEED GAIN" },
+      { value: "99.9%", label: "SYSTEM UPTIME" },
+      { value: "100%", label: "RESPONSIVE" },
+    ],
     overview:
-      "I build fast, reliable websites and web applications with modern frameworks. Clean architecture, responsive on every device, and structured so your product can grow without friction.",
+      "I build fast, reliable websites and web applications with modern frameworks. Clean architecture, responsive across every device, and structured so your product can grow without friction.",
     heroImage:
       "https://images.pexels.com/photos/1181319/pexels-photo-1181319.jpeg?auto=compress&cs=tinysrgb&w=1000",
     included: [
@@ -30,11 +38,19 @@ export const SERVICES: ServiceItem[] = [
   {
     id: "uiux",
     slug: "ui-ux-design",
-    title: "UI / UX Design",
-    shortDesc: "Intuitive interfaces and cohesive design systems.",
+    title: "UI / UX & Product Design",
+    shortDesc: "Intuitive interfaces, design systems, and delightful UX.",
     bestFor: "Products needing modern aesthetic clarity and seamless usability.",
+    tag: "UI / UX DESIGN",
+    category: "DESIGN SYSTEMS",
+    showcaseImage: "/images/services/uiux-design-showcase.jpg",
+    metrics: [
+      { value: "+180%", label: "CONVERSION RATE" },
+      { value: "4.9★", label: "USER RATING" },
+      { value: "120+", label: "DESIGN TOKENS" },
+    ],
     overview:
-      "User-centered design that translates product requirements into clean visual hierarchies, intuitive flows, and delightful micro-interactions.",
+      "User-centered design that translates complex product requirements into clean visual hierarchies, intuitive user journeys, and pixel-perfect micro-interactions.",
     heroImage:
       "https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=1000",
     included: [
@@ -56,11 +72,19 @@ export const SERVICES: ServiceItem[] = [
   {
     id: "performance",
     slug: "performance-optimization",
-    title: "Performance Optimization",
-    shortDesc: "Sub-second load times and 95+ Core Web Vitals.",
-    bestFor: "Existing sites suffering from sluggish loads, poor SEO or bounce rates.",
+    title: "Performance & Core Web Vitals",
+    shortDesc: "Sub-second load times and 100/100 Lighthouse benchmarks.",
+    bestFor: "Existing sites suffering from sluggish loads, poor SEO, or bounce rates.",
+    tag: "PERFORMANCE",
+    category: "CORE WEB VITALS",
+    showcaseImage: "/images/services/performance-showcase.jpg",
+    metrics: [
+      { value: "100", label: "LIGHTHOUSE SCORE" },
+      { value: "0.4s", label: "LCP LOAD TIME" },
+      { value: "-65%", label: "BOUNCE RATE" },
+    ],
     overview:
-      "I audit, diagnose, and refactor slow websites to achieve blazing speeds, perfect Lighthouse scores, and optimal conversion rates.",
+      "I audit, diagnose, and refactor slow web applications to achieve lightning speeds, near-perfect Lighthouse scores, and significant boosts in search rankings and conversions.",
     heroImage:
       "https://images.pexels.com/photos/590022/pexels-photo-590022.jpeg?auto=compress&cs=tinysrgb&w=1000",
     included: [
@@ -82,11 +106,19 @@ export const SERVICES: ServiceItem[] = [
   {
     id: "motion",
     slug: "motion-interaction",
-    title: "Motion & Interaction",
-    shortDesc: "Subtle physics-based animations that delight users.",
+    title: "Motion & Interactive Experiences",
+    shortDesc: "Fluid 60fps physics-based animations that captivate visitors.",
     bestFor: "Brands seeking premium, memorable, award-level web presence.",
+    tag: "MOTION & 3D",
+    category: "INTERACTIVE CRAFT",
+    showcaseImage: "/images/services/motion-showcase.jpg",
+    metrics: [
+      { value: "60 FPS", label: "FLUID MOTION" },
+      { value: "+240%", label: "ENGAGEMENT" },
+      { value: "0ms", label: "RENDER JANK" },
+    ],
     overview:
-      "Transform static layouts into responsive, dynamic experiences with smooth scroll effects, magnetic elements, and interactive gestures that elevate perception.",
+      "Transform static layouts into living, responsive experiences with smooth scroll narratives, physics-based micro-interactions, and hardware-accelerated animations that leave a lasting impression.",
     heroImage:
       "https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1000",
     included: [
