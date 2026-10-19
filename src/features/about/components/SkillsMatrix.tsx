@@ -14,13 +14,13 @@ export function SkillsMatrix() {
           <TiltCard key={cat.title}>
             <div className="p-8 rounded-3xl border border-brand-ink/10 bg-brand-surface shadow-brand-sm h-full flex flex-col justify-between">
               <div>
-                <div className="w-12 h-12 rounded-2xl bg-brand-violet/10 text-brand-violet flex items-center justify-center mb-6">
+                <div className="w-12 h-12 rounded-2xl bg-[#F75B00]/10 text-[#F75B00] flex items-center justify-center mb-6">
                   <Icon className="w-6 h-6" />
                 </div>
                 <h3 className="font-heading text-xl font-bold text-brand-ink mb-1">
                   {cat.title}
                 </h3>
-                <p className="font-mono text-xs text-brand-violet mb-6">
+                <p className="font-mono text-xs text-[#F75B00] mb-6">
                   {cat.subtitle}
                 </p>
 
@@ -28,7 +28,7 @@ export function SkillsMatrix() {
                   {cat.skills.map((skill) => (
                     <span
                       key={skill}
-                      className="text-xs font-mono px-3 py-1.5 rounded-full border border-brand-ink/10 bg-brand-bg text-brand-ink hover:border-brand-violet hover:text-brand-violet transition-colors"
+                      className="text-xs font-mono px-3 py-1.5 rounded-full border border-brand-ink/10 bg-brand-bg text-brand-ink hover:border-[#F75B00] hover:text-[#F75B00] transition-colors"
                     >
                       {skill}
                     </span>

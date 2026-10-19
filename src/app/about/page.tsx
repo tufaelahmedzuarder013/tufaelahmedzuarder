@@ -1,72 +1,43 @@
 import React from "react";
 import type { Metadata } from "next";
-import { Container } from "@/components/layout/Container";
-import { Section } from "@/components/layout/Section";
-import { PageBanner } from "@/components/layout/PageBanner";
-import { Eyebrow } from "@/components/ui/Eyebrow";
-import { BioSplit } from "@/features/about/components/BioSplit";
-import { SkillsMatrix } from "@/features/about/components/SkillsMatrix";
-import { CareerTimeline } from "@/features/about/components/CareerTimeline";
-import { MetricsTicker } from "@/features/home/components/MetricsTicker";
-import { CtaBanner } from "@/features/home/components/CtaBanner";
 import { constructMetadata } from "@/lib/seo";
+import { AboutHeroSection } from "@/features/about/components/AboutHeroSection";
+import { AboutBrandPartners } from "@/features/about/components/AboutBrandPartners";
+import { AboutCollaborationSection } from "@/features/about/components/AboutCollaborationSection";
+import { AboutDarkImpactSection } from "@/features/about/components/AboutDarkImpactSection";
+import { AboutDeepDiveTabs } from "@/features/about/components/AboutDeepDiveTabs";
+import { CtaBanner } from "@/features/home/components/CtaBanner";
 
 export const metadata: Metadata = constructMetadata({
-  title: "About Me",
+  title: "About Me — Tufael Ahmed Zuarder",
   description:
-    "Learn more about Tufael Ahmed Zuarder, his background in full-stack web development, and the tech stack he uses.",
+    "Learn more about Tufael Ahmed Zuarder, a professional full-stack web developer and UI/UX designer crafting high-performance, user-centered digital products.",
 });
 
 export default function AboutPage() {
   return (
-    <>
-      <PageBanner
-        title="About"
-        highlightText="Me"
-        description="Full-stack engineer crafting fast, accessible, user-centered web applications."
-        breadcrumbs={[
-          { label: "Home", href: "/" },
-          { label: "About", href: "/about" },
-        ]}
-      />
+    <div className="min-h-screen bg-brand-bg transition-colors duration-500">
+      {/* 1. Main 3-Column Hero Banner (Reference Image Top) */}
+      <AboutHeroSection />
 
-      <Section>
-        <Container>
-          <BioSplit />
-        </Container>
-      </Section>
+      {/* 2. Trusted By Brands Logo Bar (Reference Image Middle Bar) */}
+      <AboutBrandPartners />
 
-      <MetricsTicker />
+      {/* 3. Collaboration & Dual Mockup Showcase (Reference Image Middle Section) */}
+      <AboutCollaborationSection />
 
-      <Section>
-        <Container>
-          <div className="text-center max-w-2xl mx-auto mb-14">
-            <Eyebrow align="center">{"// Technical Stack"}</Eyebrow>
-            <h2 className="font-heading text-3xl sm:text-4xl font-bold text-brand-ink">
-              Tools & frameworks I master.
-            </h2>
-          </div>
-          <SkillsMatrix />
-        </Container>
-      </Section>
+      {/* 4. Dark Mission Statement & Stats Bar (Reference Image Bottom Dark Card) */}
+      <AboutDarkImpactSection />
 
-      <Section softBg>
-        <Container>
-          <div className="text-center max-w-2xl mx-auto mb-14">
-            <Eyebrow align="center">{"// Career Path"}</Eyebrow>
-            <h2 className="font-heading text-3xl sm:text-4xl font-bold text-brand-ink">
-              Milestones & experience.
-            </h2>
-          </div>
-          <CareerTimeline />
-        </Container>
-      </Section>
+      {/* 5. Deep-Dive Skills Matrix & Career Milestones */}
+      <AboutDeepDiveTabs />
 
+      {/* 6. High-Conversion Final CTA */}
       <CtaBanner
-        title="Let's build something exceptional."
-        subtitle="Looking for an experienced full-stack developer? I'd love to chat about your next big project."
+        title="Let's build something exceptional together."
+        subtitle="Have an ambitious web application or UI/UX project in mind? Let's connect and make it a reality."
         buttonText="Get in touch"
       />
-    </>
+    </div>
   );
 }

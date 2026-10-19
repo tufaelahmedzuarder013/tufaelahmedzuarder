@@ -45,14 +45,14 @@ export function HeroSection() {
           {/* Subtle Grid lines */}
           <div className="absolute inset-0 bg-[linear-gradient(to_right,#1414280d_1px,transparent_1px),linear-gradient(to_bottom,#1414280d_1px,transparent_1px)] bg-[size:58px_58px] [mask-image:radial-gradient(ellipse_85%_70%_at_50%_45%,#000_20%,transparent_75%)]" />
 
-          {/* Left Top Emerald Orb */}
-          <div className="absolute top-[8%] left-[6%] w-80 h-80 rounded-full bg-[#06D6A0]/20 blur-[90px] animate-pulse-slow" />
+          {/* Left Top Brand Orb */}
+          <div className="absolute top-[8%] left-[6%] w-80 h-80 rounded-full bg-[#F75B00]/15 blur-[90px] animate-pulse-slow" />
 
-          {/* Right Top Brunswick Green Orb */}
-          <div className="absolute top-[10%] right-[6%] w-72 h-72 rounded-full bg-[#0C4137]/35 blur-[85px] animate-pulse-slow" />
+          {/* Right Top Gold Orb */}
+          <div className="absolute top-[10%] right-[6%] w-72 h-72 rounded-full bg-[#EFC320]/15 blur-[85px] animate-pulse-slow" />
 
           {/* Center Glowing Soft Orb */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[min(640px,92vw)] aspect-square rounded-full bg-gradient-to-tr from-[#06D6A0]/18 via-[#0C4137]/25 to-[#E6FBF6]/15 blur-[100px] opacity-70" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[min(640px,92vw)] aspect-square rounded-full bg-gradient-to-tr from-[#F75B00]/12 via-[#EFC320]/10 to-transparent blur-[100px] opacity-70" />
         </div>
 
         {/* ========================================================================= */}
@@ -82,8 +82,8 @@ export function HeroSection() {
               {/* LEFT BLOCK (Shifted UP) */}
               <div className="col-span-6 flex flex-col items-start text-left -translate-y-12 xl:-translate-y-16 pointer-events-auto">
                 {/* Availability Status Pill */}
-                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-brand-ink/10 bg-brand-surface/90 backdrop-blur-sm shadow-brand-sm mb-6 hover:border-brand-emerald/40 transition-colors pointer-events-auto">
-                  <span className="w-2 h-2 rounded-full bg-[#06D6A0] ring-4 ring-[#06D6A0]/25" />
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-brand-ink/10 bg-brand-surface/90 backdrop-blur-sm shadow-brand-sm mb-6 hover:border-[#F75B00]/60 transition-colors pointer-events-auto">
+                  <span className="w-2 h-2 rounded-full bg-[#F75B00] ring-4 ring-[#F75B00]/30" />
                   <span className="font-mono text-xs text-brand-ink2 font-medium tracking-wider [word-spacing:0.15em]">
                     Available for freelance · Sylhet, BD
                   </span>
@@ -92,7 +92,7 @@ export function HeroSection() {
                 {/* Main Headline */}
                 <h1 className="font-heading text-5xl lg:text-6xl tracking-[0.05em] [word-spacing:0.25em] leading-[1.15] text-brand-ink mb-4 sm:mb-5">
                   <span className="block">Tufael Ahmed</span>
-                  <span className="block mt-1 bg-gradient-to-r from-[#06D6A0] via-[#10B981] to-[#0C4137] dark:from-[#06D6A0] dark:via-[#5EEAD4] dark:to-[#E6FBF6] bg-clip-text text-transparent">
+                  <span className="block mt-1 bg-gradient-to-r from-[#F75B00] to-[#EFC320] bg-clip-text text-transparent">
                     Zuarder
                   </span>
                 </h1>
@@ -101,7 +101,7 @@ export function HeroSection() {
                 <div className="h-9 flex items-center">
                   <p className="font-heading text-xl lg:text-2xl text-brand-ink tracking-[0.05em] [word-spacing:0.2em]">
                     I&apos;m a{" "}
-                    <span className="bg-gradient-to-r from-[#06D6A0] via-[#10B981] to-[#0C4137] dark:from-[#06D6A0] dark:via-[#5EEAD4] dark:to-[#E6FBF6] bg-clip-text text-transparent transition-all duration-300">
+                    <span className="bg-gradient-to-r from-[#F75B00] to-[#EFC320] bg-clip-text text-transparent transition-all duration-300">
                       {ROLES[roleIndex]}
                     </span>
                   </p>
@@ -119,20 +119,22 @@ export function HeroSection() {
                 <div className="flex flex-wrap items-center gap-3.5 justify-end relative z-[80] pointer-events-auto">
                   <Link
                     href="/portfolio"
-                    className="relative z-[80] inline-flex items-center justify-center gap-2 font-heading font-bold text-base px-7 py-3.5 rounded-full bg-gradient-to-r from-[#61CED9] to-[#06D6A0] text-[#04241E] shadow-brand-glow hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[#61CED9]/40 transition-all duration-300 group cursor-pointer tracking-[0.08em] [word-spacing:0.2em] pointer-events-auto touch-manipulation"
+                    className="relative z-[80] inline-flex items-center justify-center gap-2.5 font-heading font-bold text-sm sm:text-base px-[20px] py-[10px] rounded-full bg-gradient-to-r from-[#F75B00] to-[#EFC320] hover:from-[#e05200] hover:to-[#dfb51c] text-white shadow-md hover:shadow-xl hover:shadow-[#F75B00]/30 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 group cursor-pointer tracking-tight pointer-events-auto touch-manipulation"
                   >
                     <span>View My Work</span>
-                    <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1 pointer-events-none" />
+                    <span className="w-6 h-6 rounded-full bg-white text-[#F75B00] shadow-xs flex items-center justify-center transition-transform duration-300 group-hover:scale-110 group-hover:rotate-45 shrink-0">
+                      <ArrowRight className="w-3.5 h-3.5 stroke-[2.5]" />
+                    </span>
                   </Link>
 
                   <a
                     href="https://drive.google.com/file/d/1E2pbJ454dFjodVbZVz70LDtv_ih5RKtW/view"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="relative z-[80] inline-flex items-center justify-center gap-2 font-heading text-base px-7 py-3.5 rounded-full bg-brand-surface border border-brand-ink/10 text-brand-ink shadow-brand-sm hover:border-[#06D6A0] hover:text-[#06D6A0] hover:-translate-y-0.5 transition-all duration-300 group cursor-pointer tracking-[0.08em] [word-spacing:0.2em] dark:bg-white/[0.06] dark:backdrop-blur-xl dark:border-white/15 dark:text-white dark:hover:bg-white/[0.12] dark:hover:border-[#06D6A0]/60 dark:shadow-[0_4px_24px_rgba(0,0,0,0.4),inset_0_1px_1px_rgba(255,255,255,0.12)] pointer-events-auto touch-manipulation"
+                    className="relative z-[80] inline-flex items-center justify-center gap-2 font-heading text-sm sm:text-base px-[20px] py-[10px] rounded-full bg-brand-surface border border-brand-ink/10 text-brand-ink shadow-brand-sm hover:border-[#F75B00] hover:text-[#F75B00] hover:-translate-y-0.5 transition-all duration-300 group cursor-pointer tracking-[0.08em] [word-spacing:0.2em] dark:bg-white/[0.06] dark:backdrop-blur-xl dark:border-white/15 dark:text-white dark:hover:bg-white/[0.12] dark:hover:border-[#F75B00]/70 dark:shadow-[0_4px_24px_rgba(0,0,0,0.4),inset_0_1px_1px_rgba(255,255,255,0.12)] pointer-events-auto touch-manipulation"
                   >
                     <span>Download Resume</span>
-                    <Download className="w-4 h-4 transition-transform duration-300 group-hover:translate-y-0.5 pointer-events-none" />
+                    <Download className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-y-0.5 pointer-events-none" />
                   </a>
                 </div>
               </div>
@@ -142,13 +144,13 @@ export function HeroSection() {
           {/* DESKTOP BOTTOM CENTER BLOCK (Social Bar & Mouse Scroll Indicator): pointer-events-none on 1600px wrapper so it never blocks buttons above/behind it! */}
           <div className="w-full max-w-[1600px] mx-auto px-6 sm:px-10 lg:px-16 relative z-30 flex flex-col items-center gap-3 pb-2 pt-2 pointer-events-none">
             {/* Social Icons Pill Card: pointer-events-auto only on the actual pill */}
-            <div className="inline-flex items-center gap-2.5 p-2 px-3.5 rounded-2xl bg-brand-surface/90 backdrop-blur-md border border-brand-ink/10 shadow-brand-sm dark:bg-[#0C2B24]/80 dark:backdrop-blur-2xl dark:border-emerald-400/20 dark:shadow-[0_8px_32px_rgba(0,0,0,0.4),inset_0_1px_1px_rgba(255,255,255,0.1)] pointer-events-auto relative z-40">
+            <div className="inline-flex items-center gap-2.5 p-2 px-3.5 rounded-2xl bg-brand-surface/90 backdrop-blur-md border border-brand-ink/10 shadow-brand-sm dark:bg-[#1a1208]/80 dark:backdrop-blur-2xl dark:border-[#F75B00]/20 dark:shadow-[0_8px_32px_rgba(0,0,0,0.4),inset_0_1px_1px_rgba(255,255,255,0.1)] pointer-events-auto relative z-40">
               <a
                 href={SITE_CONFIG.socials.github}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub"
-                className="w-10 h-10 rounded-xl border border-brand-ink/10 bg-brand-surface shadow-xs flex items-center justify-center text-brand-muted hover:text-[#06D6A0] hover:border-[#06D6A0] hover:-translate-y-0.5 transition-all duration-200 dark:bg-white/[0.06] dark:backdrop-blur-md dark:border-white/10 dark:text-zinc-200 dark:hover:text-[#06D6A0] dark:hover:border-[#06D6A0]/50 dark:hover:bg-white/[0.12] cursor-pointer pointer-events-auto"
+                className="w-10 h-10 rounded-xl border border-brand-ink/10 bg-brand-surface shadow-xs flex items-center justify-center text-brand-muted hover:text-[#F75B00] hover:border-[#F75B00] hover:-translate-y-0.5 transition-all duration-200 dark:bg-white/[0.06] dark:backdrop-blur-md dark:border-white/10 dark:text-zinc-200 dark:hover:text-[#F75B00] dark:hover:border-[#F75B00]/50 dark:hover:bg-white/[0.12] cursor-pointer pointer-events-auto"
               >
                 <Github className="w-4 h-4" />
               </a>
@@ -157,7 +159,7 @@ export function HeroSection() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
-                className="w-10 h-10 rounded-xl border border-brand-ink/10 bg-brand-surface shadow-xs flex items-center justify-center text-brand-muted hover:text-[#06D6A0] hover:border-[#06D6A0] hover:-translate-y-0.5 transition-all duration-200 dark:bg-white/[0.06] dark:backdrop-blur-md dark:border-white/10 dark:text-zinc-200 dark:hover:text-[#06D6A0] dark:hover:border-[#06D6A0]/50 dark:hover:bg-white/[0.12] cursor-pointer pointer-events-auto"
+                className="w-10 h-10 rounded-xl border border-brand-ink/10 bg-brand-surface shadow-xs flex items-center justify-center text-brand-muted hover:text-[#F75B00] hover:border-[#F75B00] hover:-translate-y-0.5 transition-all duration-200 dark:bg-white/[0.06] dark:backdrop-blur-md dark:border-white/10 dark:text-zinc-200 dark:hover:text-[#F75B00] dark:hover:border-[#F75B00]/50 dark:hover:bg-white/[0.12] cursor-pointer pointer-events-auto"
               >
                 <Linkedin className="w-4 h-4" />
               </a>
@@ -166,14 +168,14 @@ export function HeroSection() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="X (Twitter)"
-                className="w-10 h-10 rounded-xl border border-brand-ink/10 bg-brand-surface shadow-xs flex items-center justify-center text-brand-muted hover:text-[#06D6A0] hover:border-[#06D6A0] hover:-translate-y-0.5 transition-all duration-200 dark:bg-white/[0.06] dark:backdrop-blur-md dark:border-white/10 dark:text-zinc-200 dark:hover:text-[#06D6A0] dark:hover:border-[#06D6A0]/50 dark:hover:bg-white/[0.12] cursor-pointer pointer-events-auto"
+                className="w-10 h-10 rounded-xl border border-brand-ink/10 bg-brand-surface shadow-xs flex items-center justify-center text-brand-muted hover:text-[#F75B00] hover:border-[#F75B00] hover:-translate-y-0.5 transition-all duration-200 dark:bg-white/[0.06] dark:backdrop-blur-md dark:border-white/10 dark:text-zinc-200 dark:hover:text-[#F75B00] dark:hover:border-[#F75B00]/50 dark:hover:bg-white/[0.12] cursor-pointer pointer-events-auto"
               >
                 <Twitter className="w-4 h-4" />
               </a>
               <a
                 href={`mailto:${SITE_CONFIG.email}`}
                 aria-label="Email"
-                className="w-10 h-10 rounded-xl border border-brand-ink/10 bg-brand-surface shadow-xs flex items-center justify-center text-brand-muted hover:text-[#06D6A0] hover:border-[#06D6A0] hover:-translate-y-0.5 transition-all duration-200 dark:bg-white/[0.06] dark:backdrop-blur-md dark:border-white/10 dark:text-zinc-200 dark:hover:text-[#06D6A0] dark:hover:border-[#06D6A0]/50 dark:hover:bg-white/[0.12] cursor-pointer pointer-events-auto"
+                className="w-10 h-10 rounded-xl border border-brand-ink/10 bg-brand-surface shadow-xs flex items-center justify-center text-brand-muted hover:text-[#F75B00] hover:border-[#F75B00] hover:-translate-y-0.5 transition-all duration-200 dark:bg-white/[0.06] dark:backdrop-blur-md dark:border-white/10 dark:text-zinc-200 dark:hover:text-[#F75B00] dark:hover:border-[#F75B00]/50 dark:hover:bg-white/[0.12] cursor-pointer pointer-events-auto"
               >
                 <Mail className="w-4 h-4" />
               </a>
@@ -182,7 +184,7 @@ export function HeroSection() {
             {/* Mouse Scroll Indicator */}
             <div className="flex flex-col items-center gap-1 pointer-events-auto">
               <div className="w-4 h-7 rounded-full border-[1.5px] border-brand-ink/25 relative flex justify-center pt-1">
-                <span className="w-1 h-1.5 rounded-full bg-[#06D6A0] animate-bounce" />
+                <span className="w-1 h-1.5 rounded-full bg-[#F75B00] animate-bounce" />
               </div>
               <span className="font-mono text-[9px] text-brand-muted2 uppercase tracking-[0.25em]">
                 SCROLL
@@ -198,8 +200,8 @@ export function HeroSection() {
           {/* 1ST: Availability, Headline, Role */}
           <div className="flex flex-col items-center text-center w-full pt-1 pointer-events-auto relative z-20">
             {/* Availability Status Pill */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-brand-ink/10 bg-brand-surface/90 backdrop-blur-sm shadow-brand-sm mb-2.5 hover:border-brand-emerald/40 transition-colors">
-              <span className="w-2 h-2 rounded-full bg-[#06D6A0] ring-4 ring-[#06D6A0]/25" />
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-brand-ink/10 bg-brand-surface/90 backdrop-blur-sm shadow-brand-sm mb-2.5 hover:border-[#F75B00]/60 transition-colors">
+              <span className="w-2 h-2 rounded-full bg-[#F75B00] ring-4 ring-[#F75B00]/30" />
               <span className="font-mono text-[10px] sm:text-xs text-brand-ink2 font-medium tracking-wider [word-spacing:0.12em]">
                 Available for freelance · Sylhet, BD
               </span>
@@ -208,7 +210,7 @@ export function HeroSection() {
             {/* Main Headline */}
             <h1 className="font-heading text-3xl sm:text-4xl tracking-[0.04em] [word-spacing:0.18em] leading-[1.18] text-brand-ink mb-2">
               <span className="block">Tufael Ahmed</span>
-              <span className="block mt-0.5 bg-gradient-to-r from-[#06D6A0] via-[#10B981] to-[#0C4137] dark:from-[#06D6A0] dark:via-[#5EEAD4] dark:to-[#E6FBF6] bg-clip-text text-transparent">
+              <span className="block mt-0.5 bg-gradient-to-r from-[#F75B00] to-[#EFC320] bg-clip-text text-transparent">
                 Zuarder
               </span>
             </h1>
@@ -217,7 +219,7 @@ export function HeroSection() {
             <div className="h-7 flex items-center justify-center">
               <p className="font-heading text-sm sm:text-base text-brand-ink tracking-[0.04em] [word-spacing:0.18em]">
                 I&apos;m a{" "}
-                <span className="bg-gradient-to-r from-[#06D6A0] via-[#10B981] to-[#0C4137] dark:from-[#06D6A0] dark:via-[#5EEAD4] dark:to-[#E6FBF6] bg-clip-text text-transparent transition-all duration-300">
+                <span className="bg-gradient-to-r from-[#F75B00] to-[#EFC320] bg-clip-text text-transparent transition-all duration-300">
                   {ROLES[roleIndex]}
                 </span>
               </p>
@@ -249,31 +251,33 @@ export function HeroSection() {
             <div className="flex flex-wrap items-center gap-2.5 justify-center relative z-[80] pointer-events-auto">
               <Link
                 href="/portfolio"
-                className="relative z-[80] inline-flex items-center justify-center gap-2 font-heading font-bold text-xs sm:text-sm px-5 py-3 rounded-full bg-gradient-to-r from-[#61CED9] to-[#06D6A0] text-[#04241E] shadow-brand-glow hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[#61CED9]/40 transition-all duration-300 group cursor-pointer tracking-[0.06em] pointer-events-auto touch-manipulation"
+                className="relative z-[80] inline-flex items-center justify-center gap-2 font-heading font-bold text-xs sm:text-sm px-[20px] py-[10px] rounded-full bg-gradient-to-r from-[#F75B00] to-[#EFC320] hover:from-[#e05200] hover:to-[#dfb51c] text-white shadow-md hover:shadow-xl hover:shadow-[#F75B00]/30 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 group cursor-pointer tracking-tight pointer-events-auto touch-manipulation"
               >
                 <span>View My Work</span>
-                <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1 pointer-events-none" />
+                <span className="w-5 h-5 rounded-full bg-white text-[#F75B00] shadow-xs flex items-center justify-center transition-transform duration-300 group-hover:scale-110 group-hover:rotate-45 shrink-0">
+                  <ArrowRight className="w-3 h-3 stroke-[2.5]" />
+                </span>
               </Link>
 
               <a
                 href="https://drive.google.com/file/d/1E2pbJ454dFjodVbZVz70LDtv_ih5RKtW/view"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="relative z-[80] inline-flex items-center justify-center gap-2 font-heading text-xs sm:text-sm px-5 py-3 rounded-full bg-brand-surface border border-brand-ink/10 text-brand-ink shadow-brand-sm hover:border-[#06D6A0] hover:text-[#06D6A0] hover:-translate-y-0.5 transition-all duration-300 group cursor-pointer tracking-[0.06em] dark:bg-white/[0.06] dark:backdrop-blur-xl dark:border-white/15 dark:text-white dark:hover:bg-white/[0.12] dark:hover:border-[#06D6A0]/60 pointer-events-auto touch-manipulation"
+                className="relative z-[80] inline-flex items-center justify-center gap-1.5 font-heading text-xs sm:text-sm px-[20px] py-[10px] rounded-full bg-brand-surface border border-brand-ink/10 text-brand-ink shadow-brand-sm hover:border-[#F75B00] hover:text-[#F75B00] hover:-translate-y-0.5 transition-all duration-300 group cursor-pointer tracking-[0.06em] dark:bg-white/[0.06] dark:backdrop-blur-xl dark:border-white/15 dark:text-white dark:hover:bg-white/[0.12] dark:hover:border-[#F75B00]/60 pointer-events-auto touch-manipulation"
               >
                 <span>Download Resume</span>
-                <Download className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-y-0.5 pointer-events-none" />
+                <Download className="w-3 h-3 transition-transform duration-300 group-hover:translate-y-0.5 pointer-events-none" />
               </a>
             </div>
 
             {/* Mobile Social Icons Pill */}
-            <div className="inline-flex items-center gap-2 p-1.5 px-3 rounded-2xl bg-brand-surface/90 backdrop-blur-md border border-brand-ink/10 shadow-brand-sm dark:bg-[#0C2B24]/80 dark:backdrop-blur-2xl dark:border-emerald-400/20 relative z-[80] pointer-events-auto">
+            <div className="inline-flex items-center gap-2 p-1.5 px-3 rounded-2xl bg-brand-surface/90 backdrop-blur-md border border-brand-ink/10 shadow-brand-sm dark:bg-[#1a1208]/80 dark:backdrop-blur-2xl dark:border-[#F75B00]/20 relative z-[80] pointer-events-auto">
               <a
                 href={SITE_CONFIG.socials.github}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub"
-                className="w-8 h-8 rounded-xl border border-brand-ink/10 bg-brand-surface shadow-xs flex items-center justify-center text-brand-muted hover:text-[#06D6A0] hover:border-[#06D6A0] transition-all duration-200 dark:bg-white/[0.06] dark:border-white/10 dark:text-zinc-200 dark:hover:text-[#06D6A0] dark:hover:border-[#06D6A0]/50 cursor-pointer pointer-events-auto"
+                className="w-8 h-8 rounded-xl border border-brand-ink/10 bg-brand-surface shadow-xs flex items-center justify-center text-brand-muted hover:text-[#F75B00] hover:border-[#F75B00] transition-all duration-200 dark:bg-white/[0.06] dark:border-white/10 dark:text-zinc-200 dark:hover:text-[#F75B00] dark:hover:border-[#F75B00]/50 cursor-pointer pointer-events-auto"
               >
                 <Github className="w-3.5 h-3.5" />
               </a>
@@ -282,7 +286,7 @@ export function HeroSection() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
-                className="w-8 h-8 rounded-xl border border-brand-ink/10 bg-brand-surface shadow-xs flex items-center justify-center text-brand-muted hover:text-[#06D6A0] hover:border-[#06D6A0] transition-all duration-200 dark:bg-white/[0.06] dark:border-white/10 dark:text-zinc-200 dark:hover:text-[#06D6A0] dark:hover:border-[#06D6A0]/50 cursor-pointer pointer-events-auto"
+                className="w-8 h-8 rounded-xl border border-brand-ink/10 bg-brand-surface shadow-xs flex items-center justify-center text-brand-muted hover:text-[#F75B00] hover:border-[#F75B00] transition-all duration-200 dark:bg-white/[0.06] dark:border-white/10 dark:text-zinc-200 dark:hover:text-[#F75B00] dark:hover:border-[#F75B00]/50 cursor-pointer pointer-events-auto"
               >
                 <Linkedin className="w-3.5 h-3.5" />
               </a>
@@ -291,14 +295,14 @@ export function HeroSection() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="X (Twitter)"
-                className="w-8 h-8 rounded-xl border border-brand-ink/10 bg-brand-surface shadow-xs flex items-center justify-center text-brand-muted hover:text-[#06D6A0] hover:border-[#06D6A0] transition-all duration-200 dark:bg-white/[0.06] dark:border-white/10 dark:text-zinc-200 dark:hover:text-[#06D6A0] dark:hover:border-[#06D6A0]/50 cursor-pointer pointer-events-auto"
+                className="w-8 h-8 rounded-xl border border-brand-ink/10 bg-brand-surface shadow-xs flex items-center justify-center text-brand-muted hover:text-[#F75B00] hover:border-[#F75B00] transition-all duration-200 dark:bg-white/[0.06] dark:border-white/10 dark:text-zinc-200 dark:hover:text-[#F75B00] dark:hover:border-[#F75B00]/50 cursor-pointer pointer-events-auto"
               >
                 <Twitter className="w-3.5 h-3.5" />
               </a>
               <a
                 href={`mailto:${SITE_CONFIG.email}`}
                 aria-label="Email"
-                className="w-8 h-8 rounded-xl border border-brand-ink/10 bg-brand-surface shadow-xs flex items-center justify-center text-brand-muted hover:text-[#06D6A0] hover:border-[#06D6A0] transition-all duration-200 dark:bg-white/[0.06] dark:border-white/10 dark:text-zinc-200 dark:hover:text-[#06D6A0] dark:hover:border-[#06D6A0]/50 cursor-pointer pointer-events-auto"
+                className="w-8 h-8 rounded-xl border border-brand-ink/10 bg-brand-surface shadow-xs flex items-center justify-center text-brand-muted hover:text-[#F75B00] hover:border-[#F75B00] transition-all duration-200 dark:bg-white/[0.06] dark:border-white/10 dark:text-zinc-200 dark:hover:text-[#F75B00] dark:hover:border-[#F75B00]/50 cursor-pointer pointer-events-auto"
               >
                 <Mail className="w-3.5 h-3.5" />
               </a>

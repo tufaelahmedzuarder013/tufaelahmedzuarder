@@ -19,10 +19,10 @@ export function CtaBanner({
   return (
     <section className="py-16 md:py-24">
       <Container>
-        <div className="relative rounded-3xl overflow-hidden p-10 sm:p-16 text-center bg-gradient-to-br from-[#082821] via-[#0C4137] to-[#06241D] border border-[#06D6A0]/25 text-white shadow-brand">
+        <div className="relative rounded-3xl overflow-hidden p-10 sm:p-16 text-center bg-gradient-to-br from-[#1c1208] via-[#2a1708] to-[#120a03] border border-[#F75B00]/25 text-white shadow-brand">
           {/* Subtle Decorative Rings */}
-          <div className="absolute -top-32 -left-32 w-80 h-80 rounded-full border border-[#61CED9]/20 pointer-events-none" />
-          <div className="absolute -bottom-32 -right-32 w-80 h-80 rounded-full border border-[#06D6A0]/20 pointer-events-none" />
+          <div className="absolute -top-32 -left-32 w-80 h-80 rounded-full border border-[#F75B00]/20 pointer-events-none" />
+          <div className="absolute -bottom-32 -right-32 w-80 h-80 rounded-full border border-[#EFC320]/20 pointer-events-none" />
 
           <div className="relative z-10 max-w-xl mx-auto space-y-4">
             <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl tracking-[0.06em] [word-spacing:0.25em] leading-[1.25] text-white">

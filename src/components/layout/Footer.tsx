@@ -43,7 +43,7 @@ export function Footer() {
               className="font-heading text-xl tracking-[0.03em] flex items-center gap-2.5 mb-3 group"
             >
               <span className="w-2.5 h-2.5 rounded-full bg-brand-gradient group-hover:scale-125 transition-transform duration-300" />
-              <span className="font-semibold text-brand-ink group-hover:text-brand-violet transition-colors">
+              <span className="font-semibold text-brand-ink group-hover:text-[#F75B00] transition-colors">
                 Tufael Ahmed Zuarder
               </span>
             </Link>
@@ -58,7 +58,7 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub"
-                className="w-10 h-10 rounded-xl border border-brand-ink/10 bg-brand-bg flex items-center justify-center text-brand-muted hover:text-brand-violet hover:border-brand-violet hover:-translate-y-0.5 transition-all duration-200"
+                className="w-10 h-10 rounded-xl border border-brand-ink/10 bg-brand-bg flex items-center justify-center text-brand-muted hover:text-[#F75B00] hover:border-[#F75B00] hover:-translate-y-0.5 transition-all duration-200"
               >
                 <Github className="w-4 h-4" />
               </a>
@@ -67,7 +67,7 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
-                className="w-10 h-10 rounded-xl border border-brand-ink/10 bg-brand-bg flex items-center justify-center text-brand-muted hover:text-brand-violet hover:border-brand-violet hover:-translate-y-0.5 transition-all duration-200"
+                className="w-10 h-10 rounded-xl border border-brand-ink/10 bg-brand-bg flex items-center justify-center text-brand-muted hover:text-[#F75B00] hover:border-[#F75B00] hover:-translate-y-0.5 transition-all duration-200"
               >
                 <Linkedin className="w-4 h-4" />
               </a>
@@ -76,14 +76,14 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="X / Twitter"
-                className="w-10 h-10 rounded-xl border border-brand-ink/10 bg-brand-bg flex items-center justify-center text-brand-muted hover:text-brand-violet hover:border-brand-violet hover:-translate-y-0.5 transition-all duration-200"
+                className="w-10 h-10 rounded-xl border border-brand-ink/10 bg-brand-bg flex items-center justify-center text-brand-muted hover:text-[#F75B00] hover:border-[#F75B00] hover:-translate-y-0.5 transition-all duration-200"
               >
                 <Twitter className="w-4 h-4" />
               </a>
               <a
                 href={`mailto:${SITE_CONFIG.email}`}
                 aria-label="Email"
-                className="w-10 h-10 rounded-xl border border-brand-ink/10 bg-brand-bg flex items-center justify-center text-brand-muted hover:text-brand-violet hover:border-brand-violet hover:-translate-y-0.5 transition-all duration-200"
+                className="w-10 h-10 rounded-xl border border-brand-ink/10 bg-brand-bg flex items-center justify-center text-brand-muted hover:text-[#F75B00] hover:border-[#F75B00] hover:-translate-y-0.5 transition-all duration-200"
               >
                 <Mail className="w-4 h-4" />
               </a>
@@ -100,7 +100,7 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-brand-muted hover:text-brand-violet transition-colors"
+                    className="text-brand-muted hover:text-[#F75B00] transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -119,7 +119,7 @@ export function Footer() {
                 <li key={service.href}>
                   <Link
                     href={service.href}
-                    className="text-brand-muted hover:text-brand-violet transition-colors"
+                    className="text-brand-muted hover:text-[#F75B00] transition-colors"
                   >
                     {service.label}
                   </Link>
@@ -139,7 +139,7 @@ export function Footer() {
                   href={SITE_CONFIG.socials.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-brand-muted hover:text-brand-violet transition-colors"
+                  className="text-brand-muted hover:text-[#F75B00] transition-colors"
                 >
                   GitHub
                 </a>
@@ -149,7 +149,7 @@ export function Footer() {
                   href={SITE_CONFIG.socials.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-brand-muted hover:text-brand-violet transition-colors"
+                  className="text-brand-muted hover:text-[#F75B00] transition-colors"
                 >
                   LinkedIn
                 </a>
@@ -159,7 +159,7 @@ export function Footer() {
                   href={SITE_CONFIG.socials.x}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-brand-muted hover:text-brand-violet transition-colors"
+                  className="text-brand-muted hover:text-[#F75B00] transition-colors"
                 >
                   X (Twitter)
                 </a>
@@ -167,7 +167,7 @@ export function Footer() {
               <li>
                 <a
                   href={`mailto:${SITE_CONFIG.email}`}
-                  className="text-brand-muted hover:text-brand-violet transition-colors"
+                  className="text-brand-muted hover:text-[#F75B00] transition-colors"
                 >
                   {SITE_CONFIG.email}
                 </a>
@@ -181,7 +181,7 @@ export function Footer() {
           <p>© {new Date().getFullYear()} {SITE_CONFIG.name}. All rights reserved.</p>
           <button
             onClick={scrollToTop}
-            className="inline-flex items-center gap-1.5 text-brand-muted hover:text-brand-violet transition-colors cursor-pointer"
+            className="inline-flex items-center gap-1.5 text-brand-muted hover:text-[#F75B00] transition-colors cursor-pointer"
           >
             Back to top <ArrowUp className="w-3.5 h-3.5" />
           </button>

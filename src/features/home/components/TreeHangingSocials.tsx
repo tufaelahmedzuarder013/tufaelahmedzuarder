@@ -115,9 +115,9 @@ const HANGING_SOCIALS: HangingSocialItem[] = [
     stringHeightDesktop: 85,
     swingDuration: 5.0,
     swingAngle: 3.2,
-    hoverGlow: "rgba(6, 214, 160, 0.45)",
-    borderColor: "group-hover:border-[#06D6A0]/70",
-    badgeBg: "group-hover:bg-[#06D6A0]/10",
+    hoverGlow: "rgba(247, 91, 0, 0.45)",
+    borderColor: "group-hover:border-[#F75B00]/70",
+    badgeBg: "group-hover:bg-[#F75B00]/15",
     icon: (
       <svg className="w-3 h-3 sm:w-3.5 sm:h-3.5 fill-current text-brand-ink" viewBox="0 0 24 24">
         <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />

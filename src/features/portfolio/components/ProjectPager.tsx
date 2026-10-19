@@ -14,7 +14,7 @@ export function ProjectPager({ prevProject, nextProject }: ProjectPagerProps) {
       {prevProject ? (
         <Link
           href={`/portfolio/${prevProject.slug}`}
-          className="inline-flex items-center gap-2 text-sm font-heading font-semibold text-brand-muted hover:text-brand-violet transition-colors group"
+          className="inline-flex items-center gap-2 text-sm font-heading font-semibold text-brand-muted hover:text-[#F75B00] transition-colors group"
         >
           <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
           <span>{prevProject.title}</span>
@@ -33,7 +33,7 @@ export function ProjectPager({ prevProject, nextProject }: ProjectPagerProps) {
       {nextProject ? (
         <Link
           href={`/portfolio/${nextProject.slug}`}
-          className="inline-flex items-center gap-2 text-sm font-heading font-semibold text-brand-muted hover:text-brand-violet transition-colors group"
+          className="inline-flex items-center gap-2 text-sm font-heading font-semibold text-brand-muted hover:text-[#F75B00] transition-colors group"
         >
           <span>{nextProject.title}</span>
           <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />

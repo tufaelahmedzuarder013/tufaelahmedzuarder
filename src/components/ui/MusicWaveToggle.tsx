@@ -162,7 +162,7 @@ export function MusicWaveToggle() {
             "w-3.5 h-3.5 transition-all duration-300",
             isPlaying
               ? "text-emerald-600 dark:text-emerald-400 animate-pulse scale-110"
-              : "text-brand-ink/75 dark:text-zinc-300 group-hover:text-brand-violet dark:group-hover:text-white"
+              : "text-brand-ink/75 dark:text-zinc-300 group-hover:text-[#F75B00] dark:group-hover:text-white"
           )}
         >
           <path d="M4 12c2.5-4.5 5.5-4.5 8 0s5.5 4.5 8 0" />

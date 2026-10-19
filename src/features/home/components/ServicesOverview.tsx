@@ -11,16 +11,16 @@ export function ServicesOverview() {
     <section className="py-20 sm:py-28 lg:py-32 relative bg-gradient-to-b from-brand-bg via-brand-soft/40 to-brand-bg">
       {/* Ambient background glow orbs safely clipped */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10">
-        <div className="absolute top-1/4 right-5 w-96 h-96 bg-[#61CED9]/8 rounded-full blur-[130px]" />
-        <div className="absolute bottom-1/4 left-5 w-96 h-96 bg-[#06D6A0]/8 rounded-full blur-[130px]" />
+        <div className="absolute top-1/4 right-5 w-96 h-96 bg-[#EFC320]/8 rounded-full blur-[130px]" />
+        <div className="absolute bottom-1/4 left-5 w-96 h-96 bg-[#F75B00]/8 rounded-full blur-[130px]" />
       </div>
 
       <Container>
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 sm:mb-16 gap-6">
           <div>
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#06D6A0]/30 bg-[#06D6A0]/10 text-[#06D6A0] dark:text-[#5EEAD4] font-mono text-xs font-semibold uppercase tracking-[0.16em] mb-4">
-              <Sparkles className="w-3.5 h-3.5 text-[#61CED9]" />
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#F75B00]/40 bg-[#F75B00]/10 text-neutral-900 dark:text-[#F75B00] font-mono text-xs font-semibold uppercase tracking-[0.16em] mb-4">
+              <Sparkles className="w-3.5 h-3.5 text-[#F75B00]" />
               <span>// What I Offer</span>
             </div>
 
@@ -65,8 +65,8 @@ export function ServicesOverview() {
         {/* Bottom Exploration Banner CTA */}
         <div className="mt-8 sm:mt-12 pt-8 border-t border-brand-ink/10 dark:border-white/10 flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#61CED9]/15 to-[#06D6A0]/10 border border-[#06D6A0]/25 flex items-center justify-center text-[#06D6A0] shrink-0">
-              <Layers className="w-5 h-5" />
+            <div className="w-10 h-10 rounded-xl bg-[#F75B00]/15 border border-[#F75B00]/40 flex items-center justify-center text-neutral-900 dark:text-[#F75B00] shrink-0">
+              <Layers className="w-5 h-5 text-[#F75B00]" />
             </div>
             <div>
               <span className="font-heading font-bold text-sm text-brand-ink block">

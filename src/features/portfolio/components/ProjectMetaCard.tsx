@@ -46,7 +46,7 @@ export function ProjectMetaCard({ project }: ProjectMetaCardProps) {
             {project.stack.map((item) => (
               <span
                 key={item}
-                className="font-mono text-xs px-2.5 py-1 rounded-md bg-brand-violet/10 text-brand-violet font-medium"
+                className="font-mono text-xs px-2.5 py-1 rounded-md bg-[#F75B00]/10 text-[#F75B00] font-medium"
               >
                 {item}
               </span>

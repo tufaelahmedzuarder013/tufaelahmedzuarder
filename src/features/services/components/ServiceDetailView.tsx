@@ -49,7 +49,7 @@ export function ServiceDetailView({ service }: ServiceDetailViewProps) {
                   key={i}
                   className="flex items-start gap-2.5 text-sm text-brand-ink2"
                 >
-                  <CheckCircle2 className="w-5 h-5 text-brand-violet shrink-0 mt-0.5" />
+                  <CheckCircle2 className="w-5 h-5 text-[#F75B00] shrink-0 mt-0.5" />
                   <span>{inc}</span>
                 </li>
               ))}
@@ -83,7 +83,7 @@ export function ServiceDetailView({ service }: ServiceDetailViewProps) {
                 <Link
                   key={other.id}
                   href={`/services/${other.slug}`}
-                  className="px-4 py-2 rounded-full border border-brand-ink/10 bg-brand-surface text-xs font-heading font-semibold text-brand-muted hover:text-brand-violet hover:border-brand-violet transition-colors"
+                  className="px-4 py-2 rounded-full border border-brand-ink/10 bg-brand-surface text-xs font-heading font-semibold text-brand-muted hover:text-[#F75B00] hover:border-[#F75B00] transition-colors"
                 >
                   {other.title}
                 </Link>
@@ -120,7 +120,7 @@ export function ServiceDetailView({ service }: ServiceDetailViewProps) {
               {service.techStack.map((tech) => (
                 <span
                   key={tech}
-                  className="font-mono text-xs px-2.5 py-1 rounded-md bg-brand-violet/10 text-brand-violet font-medium"
+                  className="font-mono text-xs px-2.5 py-1 rounded-md bg-[#F75B00]/10 text-[#F75B00] font-medium"
                 >
                   {tech}
                 </span>

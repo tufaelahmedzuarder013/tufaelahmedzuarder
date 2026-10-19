@@ -29,7 +29,7 @@ export function FaqAccordion() {
               <span>{faq.question}</span>
               <ChevronDown
                 className={cn(
-                  "w-5 h-5 text-brand-violet transition-transform duration-300 shrink-0",
+                  "w-5 h-5 text-[#F75B00] transition-transform duration-300 shrink-0",
                   isOpen && "rotate-180"
                 )}
               />

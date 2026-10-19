@@ -407,7 +407,7 @@ export function Preloader() {
               <button
                 onClick={finishPreloader}
                 type="button"
-                className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full border border-brand-ink/10 bg-brand-surface/80 backdrop-blur-md hover:border-[#06D6A0] hover:text-[#06D6A0] transition-all cursor-pointer group shadow-sm"
+                className="inline-flex items-center gap-1.5 px-[20px] py-[10px] rounded-full border border-brand-ink/10 bg-brand-surface/80 backdrop-blur-md hover:border-[#F75B00] hover:bg-gradient-to-r hover:from-[#F75B00] hover:to-[#EFC320] hover:text-white transition-all cursor-pointer group shadow-sm font-semibold"
               >
                 <span>Skip</span>
                 <ArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-0.5" />

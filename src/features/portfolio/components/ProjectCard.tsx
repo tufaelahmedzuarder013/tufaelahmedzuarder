@@ -35,14 +35,14 @@ export function ProjectCard({ project }: ProjectCardProps) {
       {/* Meta Information */}
       <div className="p-5 flex items-center justify-between gap-4">
         <div>
-          <h3 className="font-heading font-bold text-lg text-brand-ink group-hover:text-brand-violet transition-colors">
+          <h3 className="font-heading font-bold text-lg text-brand-ink group-hover:text-[#F75B00] transition-colors">
             {project.title}
           </h3>
           <p className="font-mono text-xs text-brand-muted mt-1">
             {project.categoryLabel}
           </p>
         </div>
-        <div className="w-9 h-9 rounded-full border border-brand-ink/10 flex items-center justify-center text-brand-muted group-hover:border-brand-violet group-hover:text-brand-violet group-hover:bg-brand-violet/5 transition-all">
+        <div className="w-9 h-9 rounded-full border border-brand-ink/10 flex items-center justify-center text-brand-muted group-hover:border-[#F75B00] group-hover:text-[#F75B00] group-hover:bg-[#F75B00]/10 transition-all">
           <ArrowUpRight className="w-4 h-4" />
         </div>
       </div>

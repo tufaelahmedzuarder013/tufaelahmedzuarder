@@ -33,7 +33,7 @@ export function MobileNav() {
             <ThemeToggle />
             <button
               onClick={closeMenu}
-              className="p-2 rounded-xl border border-brand-ink/10 text-brand-ink hover:border-brand-violet transition-colors"
+              className="p-2 rounded-xl border border-brand-ink/10 text-brand-ink hover:border-[#F75B00] transition-colors"
               aria-label="Close menu"
             >
               <X className="w-5 h-5" />
@@ -56,10 +56,10 @@ export function MobileNav() {
                   className="font-heading font-bold text-3xl sm:text-4xl text-brand-ink py-2 border-b border-brand-ink/5 flex items-center justify-between group"
                 >
                   <span className="flex items-center gap-4">
-                    <span className="font-mono text-xs text-brand-violet">
+                    <span className="font-mono text-xs text-[#F75B00]">
                       0{index + 1}
                     </span>
-                    <span className={isActive ? "text-brand-violet" : ""}>
+                    <span className={isActive ? "text-[#F75B00]" : ""}>
                       {link.label}
                     </span>
                   </span>

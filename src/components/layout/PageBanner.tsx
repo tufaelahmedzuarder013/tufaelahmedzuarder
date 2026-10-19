@@ -34,7 +34,7 @@ export function PageBanner({
                 {idx > 0 && <span>/</span>}
                 <Link
                   href={crumb.href}
-                  className="hover:text-brand-violet transition-colors"
+                  className="hover:text-[#F75B00] transition-colors"
                 >
                   {crumb.label}
                 </Link>

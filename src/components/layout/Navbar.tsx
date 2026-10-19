@@ -42,7 +42,7 @@ export function Navbar() {
 
           <Link
             href="/"
-            className="font-heading text-lg sm:text-xl tracking-[0.03em] flex items-center group text-brand-ink hover:text-brand-violet transition-colors"
+            className="font-heading text-lg sm:text-xl tracking-[0.03em] flex items-center group text-brand-ink hover:text-[#F75B00] transition-colors"
           >
             <span className="font-semibold">
               Tufael Ahmed Zuarder

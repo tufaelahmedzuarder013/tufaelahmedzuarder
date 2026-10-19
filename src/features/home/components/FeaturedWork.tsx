@@ -101,8 +101,8 @@ export function FeaturedWork() {
 
       {/* Ambient background glowing orbs */}
       <div className="absolute inset-0 pointer-events-none -z-10 overflow-hidden">
-        <div className="absolute top-1/4 -left-20 w-[550px] h-[550px] bg-[#61CED9]/8 rounded-full blur-[140px]" />
-        <div className="absolute bottom-1/3 -right-20 w-[550px] h-[550px] bg-[#06D6A0]/8 rounded-full blur-[140px]" />
+        <div className="absolute top-1/4 -left-20 w-[550px] h-[550px] bg-[#EFC320]/8 rounded-full blur-[140px]" />
+        <div className="absolute bottom-1/3 -right-20 w-[550px] h-[550px] bg-[#F75B00]/8 rounded-full blur-[140px]" />
       </div>
 
       <Container>
@@ -142,9 +142,9 @@ export function FeaturedWork() {
           >
             <defs>
               <linearGradient id="roadmapThreadGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="#61CED9" stopOpacity="0.75" />
-                <stop offset="50%" stopColor="#06D6A0" stopOpacity="0.75" />
-                <stop offset="100%" stopColor="#61CED9" stopOpacity="0.75" />
+                <stop offset="0%" stopColor="#F75B00" stopOpacity="0.75" />
+                <stop offset="50%" stopColor="#EFC320" stopOpacity="0.75" />
+                <stop offset="100%" stopColor="#F75B00" stopOpacity="0.75" />
               </linearGradient>
             </defs>
             <path
@@ -153,7 +153,7 @@ export function FeaturedWork() {
               strokeWidth="2.8"
               strokeDasharray="8 8"
               strokeLinecap="round"
-              className="filter drop-shadow-[0_2px_6px_rgba(97,206,217,0.25)]"
+              className="filter drop-shadow-[0_2px_6px_rgba(247,91,0,0.25)]"
             />
           </svg>
 
@@ -190,13 +190,13 @@ export function FeaturedWork() {
                     {/* Pinned Paper/Glassmorphic Project Card */}
                     <Link
                       href={`/portfolio/${project.slug}`}
-                      className="group block rounded-[28px] sm:rounded-[32px] bg-white dark:bg-[#11211C] border border-brand-ink/10 dark:border-white/10 p-5 sm:p-7 shadow-[0_22px_60px_-15px_rgba(0,0,0,0.12)] dark:shadow-[0_25px_70px_-15px_rgba(0,0,0,0.75)] hover:shadow-[0_32px_80px_-20px_rgba(97,206,217,0.3)] hover:border-[#61CED9]/50 transition-all duration-300"
+                      className="group block rounded-[28px] sm:rounded-[32px] bg-white dark:bg-[#11211C] border border-brand-ink/10 dark:border-white/10 p-5 sm:p-7 shadow-[0_22px_60px_-15px_rgba(0,0,0,0.12)] dark:shadow-[0_25px_70px_-15px_rgba(0,0,0,0.75)] hover:shadow-[0_32px_80px_-20px_rgba(247,91,0,0.3)] hover:border-[#F75B00]/50 transition-all duration-300"
                     >
                       {/* Top Meta Bar inside Card */}
                       <div className="flex items-center justify-between gap-3 mb-4">
                         {/* Serial Number with Ink / Handwritten feel */}
                         <div className="flex items-center gap-2">
-                          <span className="font-heading font-extrabold text-2xl sm:text-3xl text-[#06D6A0] dark:text-[#5EEAD4] leading-none">
+                          <span className="font-heading font-extrabold text-2xl sm:text-3xl text-neutral-900 dark:text-[#F75B00] leading-none">
                             {serialNumber}
                           </span>
                           <span className="w-1.5 h-1.5 rounded-full bg-brand-ink/20 dark:bg-white/20" />
@@ -225,7 +225,7 @@ export function FeaturedWork() {
                         <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-between p-4 sm:p-5">
                           <span className="font-heading text-xs font-bold text-white flex items-center gap-1.5 tracking-wider uppercase">
                             <span>Open Case Study</span>
-                            <ArrowUpRight className="w-4 h-4 text-[#61CED9]" />
+                            <ArrowUpRight className="w-4 h-4 text-[#EFC320]" />
                           </span>
                           <span className="px-2.5 py-1 rounded-lg bg-white/20 backdrop-blur-md text-white font-mono text-[10px]">
                             {project.role}
@@ -236,12 +236,12 @@ export function FeaturedWork() {
                       {/* Project Title & Summary */}
                       <div className="mb-4">
                         <div className="flex items-center justify-between gap-2 mb-2">
-                          <h3 className="font-heading font-extrabold text-xl sm:text-2xl text-brand-ink group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[#06D6A0] group-hover:to-[#61CED9] transition-all duration-300">
+                          <h3 className="font-heading font-extrabold text-xl sm:text-2xl text-brand-ink group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[#F75B00] group-hover:to-[#EFC320] transition-all duration-300">
                             {project.title}
                           </h3>
 
                           {/* Circular Arrow Action Button */}
-                          <div className="w-8 h-8 rounded-full border border-brand-ink/15 dark:border-white/20 flex items-center justify-center text-brand-ink dark:text-white group-hover:border-[#06D6A0] group-hover:bg-[#06D6A0]/10 group-hover:text-[#06D6A0] transition-all">
+                          <div className="w-8 h-8 rounded-full border border-brand-ink/15 dark:border-white/20 flex items-center justify-center text-brand-ink dark:text-white group-hover:border-[#F75B00] group-hover:bg-gradient-to-r group-hover:from-[#F75B00] group-hover:to-[#EFC320] group-hover:text-white transition-all shadow-xs">
                             <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                           </div>
                         </div>
@@ -280,7 +280,7 @@ export function FeaturedWork() {
           <div className="mt-20 sm:mt-28 pt-10 border-t border-brand-ink/10 dark:border-white/10 flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
             <div className="flex items-center gap-4">
               {/* Creator Avatar with green pulsing status */}
-              <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-[#06D6A0] shadow-md shrink-0 bg-brand-soft">
+              <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-[#F75B00] shadow-md shrink-0 bg-brand-soft">
                 <Image
                   src="/images/Tufael (3).png"
                   alt="Tufael Ahmed Zuarder"
@@ -288,12 +288,12 @@ export function FeaturedWork() {
                   sizes="48px"
                   className="object-cover"
                 />
-                <span className="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-[#06D6A0] border-2 border-white dark:border-[#11211C]" />
+                <span className="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-[#F75B00] border-2 border-white dark:border-[#11211C]" />
               </div>
 
               <div>
                 <p className="font-sans text-sm sm:text-base text-brand-ink font-semibold">
-                  Your <span className="text-[#06D6A0] font-bold">all-in-one</span> digital architecture & design partner.
+                  Your <span className="text-[#F75B00] font-bold">all-in-one</span> digital architecture & design partner.
                 </p>
                 <p className="font-mono text-xs text-brand-muted">
                   Open for new full-stack contracts & product sprints in 2026.

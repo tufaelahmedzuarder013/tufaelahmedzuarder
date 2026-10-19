@@ -53,13 +53,13 @@ const config: Config = {
         widest: "0.18em",
       },
       backgroundImage: {
-        "brand-gradient": "linear-gradient(135deg, #61CED9 0%, #06D6A0 100%)",
-        "radial-glow": "radial-gradient(circle at 50% 50%, rgba(97, 206, 217, 0.18), transparent 70%)",
+        "brand-gradient": "linear-gradient(135deg, #F75B00 0%, #EFC320 100%)",
+        "radial-glow": "radial-gradient(circle at 50% 50%, rgba(247, 91, 0, 0.18), transparent 70%)",
       },
       boxShadow: {
-        "brand-sm": "0 4px 18px -8px rgba(6, 214, 160, 0.18)",
-        brand: "0 24px 60px -24px rgba(12, 65, 55, 0.28)",
-        "brand-glow": "0 10px 30px -10px rgba(97, 206, 217, 0.55)",
+        "brand-sm": "0 4px 18px -8px rgba(247, 91, 0, 0.25)",
+        brand: "0 24px 60px -24px rgba(247, 91, 0, 0.28)",
+        "brand-glow": "0 10px 30px -10px rgba(247, 91, 0, 0.55)",
       },
       animation: {
         shimmer: "shimmer 7s linear infinite",

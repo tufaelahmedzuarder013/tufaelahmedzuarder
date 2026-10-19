@@ -9,10 +9,10 @@ interface BadgeProps {
 
 export function Badge({ children, variant = "violet", className }: BadgeProps) {
   const variantStyles = {
-    violet: "bg-brand-violet/10 text-brand-violet border-brand-violet/20",
+    violet: "bg-[#F75B00]/10 text-[#F75B00] border-[#F75B00]/25",
     gray: "bg-brand-soft text-brand-muted border-brand-ink/10",
     green: "bg-emerald-500/10 text-emerald-600 border-emerald-500/20",
-    gradient: "bg-brand-gradient text-[#04241E] font-bold border-transparent",
+    gradient: "bg-gradient-to-r from-[#F75B00] to-[#EFC320] text-white font-bold border-transparent shadow-xs",
   };
 
   return (
