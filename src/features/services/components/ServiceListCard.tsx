@@ -85,35 +85,10 @@ export function ServiceListCard({ service, priority = false }: ServiceListCardPr
         </div>
 
         {/* ========================================================================= */}
-        {/* RIGHT COLUMN: 3D Tablet Showcase Area matching Reference Image           */}
+        {/* RIGHT COLUMN: 100% Live Interactive Showcase (100% Transparent Background) */}
         {/* ========================================================================= */}
-        <div className="lg:col-span-6 relative bg-gradient-to-br from-[#1C3831] via-[#112923] to-[#0A1A16] dark:from-[#0B1E19] dark:via-[#071713] dark:to-[#040C0A] p-6 sm:p-10 lg:p-12 flex items-center justify-center overflow-hidden min-h-[340px] sm:min-h-[420px]">
-          {/* Subtle Vertical Ribbed / Pinstripes Texture matching reference */}
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:22px_100%] pointer-events-none" />
-
-          {/* Ambient Glow Orb */}
-          <div className="absolute w-72 h-72 rounded-full bg-gradient-to-tr from-[#F75B00]/20 to-[#EFC320]/20 blur-3xl pointer-events-none" />
-
-          {/* Floating Top-Left Tag Badge */}
-          <div className="absolute top-5 left-5 z-20 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-white font-mono text-[10px] uppercase tracking-wider font-semibold shadow-xs">
-            {service.tag || "SERVICE"}
-          </div>
-
-          {/* Floating Top-Right Category Label */}
-          <div className="absolute top-5 right-5 z-20 text-white/70 font-mono text-[11px] uppercase tracking-wider font-medium">
-            {service.category || "FEATURED"}
-          </div>
-
-          {/* Floating Bottom-Right Circular Arrow Button */}
-          <Link
-            href={`/services/${service.slug}`}
-            aria-label={`View ${service.title}`}
-            className="absolute bottom-5 right-5 z-20 w-11 h-11 rounded-full bg-white/15 hover:bg-gradient-to-r hover:from-[#F75B00] hover:to-[#EFC320] hover:text-white text-white backdrop-blur-xl border border-white/20 flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110 cursor-pointer"
-          >
-            <ArrowUpRight className="w-5 h-5" />
-          </Link>
-
-          {/* 100% Code-Rendered Live Interactive Dashboard Showcase with Live Text (Zero Static Images) */}
+        <div className="lg:col-span-6 relative p-3 sm:p-6 lg:p-8 flex items-center justify-center overflow-hidden bg-transparent">
+          {/* 100% Code-Rendered Live Interactive Dashboard Showcase (Zero Static Images) */}
           <ServiceLiveShowcase slug={service.slug} title={service.title} />
         </div>
       </div>
