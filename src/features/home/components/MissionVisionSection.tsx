@@ -216,10 +216,8 @@ export function MissionVisionSection() {
 
             {/* ================= RIGHT COLUMN: 100% Code-Rendered Artwork with Live Text ================= */}
             <div className="lg:col-span-5 relative bg-white dark:bg-[#0B1411] p-6 sm:p-10 flex flex-col items-center justify-center overflow-hidden min-h-[380px] sm:min-h-[460px] border-t lg:border-t-0 lg:border-l border-brand-ink/10 dark:border-white/10">
-              {/* Subtle Concentric Rings & Radial Glow */}
-              <div className="absolute w-[440px] h-[440px] rounded-full border border-[#F75B00]/15 pointer-events-none" />
-              <div className="absolute w-[320px] h-[320px] rounded-full border border-[#F75B00]/20 pointer-events-none" />
-              <div className="absolute w-72 h-72 rounded-full bg-gradient-to-tr from-[#F75B00]/20 to-[#EFC320]/20 blur-3xl pointer-events-none" />
+              {/* Ambient Radial Glow centered behind artwork */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 rounded-full bg-gradient-to-tr from-[#F75B00]/15 to-[#EFC320]/15 blur-3xl pointer-events-none" />
 
               {/* Floating Top Badge */}
               <div className="absolute top-5 left-5 z-20 px-3.5 py-1.5 rounded-full bg-white/80 dark:bg-black/40 backdrop-blur-md border border-[#F75B00]/20 dark:border-white/15 text-brand-ink dark:text-white font-mono text-[10px] uppercase tracking-wider font-semibold shadow-xs flex items-center gap-1.5">

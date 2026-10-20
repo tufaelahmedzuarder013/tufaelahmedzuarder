@@ -3,7 +3,11 @@
 import React, { useEffect, useRef, useState, useCallback } from "react";
 import { cn } from "@/lib/utils";
 
-export function MusicWaveToggle() {
+interface MusicWaveToggleProps {
+  className?: string;
+}
+
+export function MusicWaveToggle({ className }: MusicWaveToggleProps = {}) {
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
@@ -147,7 +151,8 @@ export function MusicWaveToggle() {
           "dark:border-white/30 dark:hover:border-white/60 dark:hover:bg-white/10",
           isPlaying
             ? "border-emerald-500/70 dark:border-emerald-400/80 shadow-[0_0_12px_rgba(16,185,129,0.35)] bg-emerald-500/5 dark:bg-emerald-400/10"
-            : "bg-transparent"
+            : "bg-transparent",
+          className
         )}
       >
         {/* Sine wave icon matching reference image */}
