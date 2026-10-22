@@ -28,20 +28,21 @@ const config: Config = {
       },
       fontFamily: {
         sans: [
-          "var(--font-casko-luxury)",
-          "'Casko Luxury'",
+          "var(--font-aventa)",
+          "'Aventa'",
           "var(--font-plus-jakarta-sans)",
           "system-ui",
+          "-apple-system",
           "sans-serif",
         ],
         heading: [
-          "var(--font-ncl-gasdrifo)",
-          "'NCL Gasdrifo'",
+          "var(--font-orlean)",
+          "'Orlean'",
           "var(--font-space-grotesk)",
           "sans-serif",
         ],
-        casko: ["var(--font-casko-luxury)", "'Casko Luxury'", "serif"],
-        gasdrifo: ["var(--font-ncl-gasdrifo)", "'NCL Gasdrifo'", "sans-serif"],
+        orlean: ["var(--font-orlean)", "'Orlean'", "sans-serif"],
+        aventa: ["var(--font-aventa)", "'Aventa'", "sans-serif"],
         mono: ["var(--font-jetbrains-mono)", "monospace"],
       },
       letterSpacing: {

@@ -2,20 +2,105 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ========================================================================== */
+/* FONT DEFINITIONS: Orlean (Headings) & Aventa (Paragraphs)                 */
+/* ========================================================================== */
+/* ========================================================================== */
+/* FONT DEFINITIONS: Orlean (Headings) & Aventa (Paragraphs)                 */
+/* ========================================================================== */
 @font-face {
-  font-family: 'Casko Luxury';
-  src: url('/fonts/CaskoLuxuryDemo-Regular.otf') format('opentype');
-  font-weight: normal;
+  font-family: 'Orlean';
+  src: url('/fonts/orlean-regular.otf') format('opentype');
+  font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'NCL Gasdrifo';
-  src: url('/fonts/NCLGasdrifo-Demo.otf') format('opentype');
-  font-weight: normal;
+  font-family: 'Orlean';
+  src: url('/fonts/orlean-regularitalic.otf') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Orlean';
+  src: url('/fonts/orlean-medium.otf') format('opentype');
+  font-weight: 500;
   font-style: normal;
   font-display: swap;
+}
+
+@font-face {
+  font-family: 'Orlean';
+  src: url('/fonts/orlean-mediumitalic.otf') format('opentype');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Orlean';
+  src: url('/fonts/orlean-semibold.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Orlean';
+  src: url('/fonts/orlean-semibolditalic.otf') format('opentype');
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Orlean';
+  src: url('/fonts/orlean-bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Orlean';
+  src: url('/fonts/orlean-bolditalic.otf') format('opentype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Aventa';
+  src: url('/fonts/Aventa-LightPERSONALUSEONLY.otf') format('opentype');
+  font-weight: 300 400 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Aventa';
+  src: url('/fonts/Aventa-LightItallicPERSONALUSEONLY.otf') format('opentype');
+  font-weight: 300 400 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* ========================================================================== */
+/* GLOBAL TYPOGRAPHY ENFORCEMENT                                             */
+/* ========================================================================== */
+html, body {
+  font-family: var(--font-aventa), 'Aventa', var(--font-plus-jakarta-sans), system-ui, -apple-system, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, .font-heading {
+  font-family: var(--font-orlean), 'Orlean', var(--font-space-grotesk), sans-serif !important;
+}
+
+p, span, li, a, label, .font-sans {
+  font-family: var(--font-aventa), 'Aventa', var(--font-plus-jakarta-sans), system-ui, sans-serif;
 }
 
 :root {

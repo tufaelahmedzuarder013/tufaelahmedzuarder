@@ -45,7 +45,10 @@ export function ServicesOverview() {
 
         {/* Sticky Stacking Cards Deck (Smooth scroll layer effect) */}
         <div className="relative pb-16 sm:pb-24">
-          {SERVICES.map((service, idx) => (
+          {(SERVICES.filter((s) => s.featured).length > 0
+            ? SERVICES.filter((s) => s.featured)
+            : SERVICES.slice(0, 4)
+          ).map((service, idx) => (
             <div
               key={service.id}
               className="sticky transition-all duration-300 mb-[130px] sm:mb-[190px] last:mb-0"

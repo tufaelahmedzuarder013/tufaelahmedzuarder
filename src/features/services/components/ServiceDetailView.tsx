@@ -5,6 +5,7 @@ import { CheckCircle2, ArrowUpRight } from "lucide-react";
 import { ServiceItem } from "../types/service.types";
 import { Button } from "@/components/ui/Button";
 import { SERVICES } from "../data/services.data";
+import { ServiceLiveShowcase } from "./ServiceLiveShowcase";
 
 interface ServiceDetailViewProps {
   service: ServiceItem;
@@ -27,6 +28,22 @@ export function ServiceDetailView({ service }: ServiceDetailViewProps) {
         />
       </div>
 
+      {/* Metrics Ribbon */}
+      {service.metrics && service.metrics.length > 0 && (
+        <div className="grid grid-cols-3 gap-4 p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-brand-surface border border-brand-ink/10 shadow-brand-sm mb-12">
+          {service.metrics.map((m, mIdx) => (
+            <div key={mIdx} className="text-center">
+              <span className="font-heading font-extrabold text-2xl sm:text-4xl text-[#F75B00] block leading-none mb-1.5">
+                {m.value}
+              </span>
+              <span className="font-mono text-[10px] sm:text-xs text-brand-muted2 uppercase tracking-wider block font-semibold">
+                {m.label}
+              </span>
+            </div>
+          ))}
+        </div>
+      )}
+
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
         {/* Main Content (2 cols) */}
         <div className="lg:col-span-2 space-y-10">
@@ -37,6 +54,19 @@ export function ServiceDetailView({ service }: ServiceDetailViewProps) {
             <p className="text-base text-brand-muted leading-relaxed">
               {service.overview}
             </p>
+          </div>
+
+          {/* Live Interactive Architecture / Showcase Preview */}
+          <div>
+            <h3 className="font-heading text-xl font-bold text-brand-ink mb-4 flex items-center gap-2">
+              <span>Interactive Architecture Preview</span>
+              <span className="text-xs font-mono font-normal px-2.5 py-0.5 rounded-full bg-[#F75B00]/15 text-[#F75B00] border border-[#F75B00]/30">
+                Live Simulation
+              </span>
+            </h3>
+            <div className="flex items-center justify-center p-2 sm:p-6 rounded-3xl bg-brand-soft/40 dark:bg-white/[0.02] border border-brand-ink/10 dark:border-white/10">
+              <ServiceLiveShowcase slug={service.slug} title={service.title} />
+            </div>
           </div>
 
           <div>

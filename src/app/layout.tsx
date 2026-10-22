@@ -12,6 +12,85 @@ import { SplashCursor } from "@/components/animation/SplashCursor";
 import { Preloader } from "@/components/animation/Preloader";
 import { constructMetadata } from "@/lib/seo";
 
+const orleanFont = localFont({
+  src: [
+    {
+      path: "./fonts/orlean-regular.otf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "./fonts/orlean-regularitalic.otf",
+      weight: "400",
+      style: "italic",
+    },
+    {
+      path: "./fonts/orlean-medium.otf",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "./fonts/orlean-mediumitalic.otf",
+      weight: "500",
+      style: "italic",
+    },
+    {
+      path: "./fonts/orlean-semibold.otf",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "./fonts/orlean-semibolditalic.otf",
+      weight: "600",
+      style: "italic",
+    },
+    {
+      path: "./fonts/orlean-bold.otf",
+      weight: "700",
+      style: "normal",
+    },
+    {
+      path: "./fonts/orlean-bolditalic.otf",
+      weight: "700",
+      style: "italic",
+    },
+  ],
+  variable: "--font-orlean",
+  display: "swap",
+});
+
+const aventaFont = localFont({
+  src: [
+    {
+      path: "./fonts/Aventa-LightPERSONALUSEONLY.otf",
+      weight: "300",
+      style: "normal",
+    },
+    {
+      path: "./fonts/Aventa-LightPERSONALUSEONLY.otf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "./fonts/Aventa-LightPERSONALUSEONLY.otf",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "./fonts/Aventa-LightItallicPERSONALUSEONLY.otf",
+      weight: "300",
+      style: "italic",
+    },
+    {
+      path: "./fonts/Aventa-LightItallicPERSONALUSEONLY.otf",
+      weight: "400",
+      style: "italic",
+    },
+  ],
+  variable: "--font-aventa",
+  display: "swap",
+});
+
 const caskoLuxury = localFont({
   src: "./fonts/CaskoLuxuryDemo-Regular.otf",
   variable: "--font-casko-luxury",
@@ -59,7 +138,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${caskoLuxury.variable} ${nclGasdrifo.variable} ${plusJakartaSans.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}
+      className={`${orleanFont.variable} ${aventaFont.variable} ${caskoLuxury.variable} ${nclGasdrifo.variable} ${plusJakartaSans.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}
     >
       <head>
         <script

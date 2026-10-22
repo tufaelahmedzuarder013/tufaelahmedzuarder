@@ -9,6 +9,7 @@ export interface ServiceItem {
   showcaseImage?: string;
   tag?: string;
   category?: string;
+  featured?: boolean;
   metrics?: { value: string; label: string }[];
   included: string[];
   deliverables: string[];

@@ -36,7 +36,17 @@ export const NAV_LINKS = [
 
 export const SERVICE_LINKS = [
   { label: "Web Development", href: "/services/web-development" },
+  { label: "Custom Development", href: "/services/custom-development" },
+  { label: "Mobile App Development", href: "/services/mobile-app-development" },
+  { label: "Software Development", href: "/services/software-development" },
+  { label: "SAAS Products Development", href: "/services/saas-products-development" },
+  { label: "HR Management System", href: "/services/hr-management-system" },
+  { label: "CRM System", href: "/services/crm-system" },
+  { label: "CMS Development", href: "/services/cms-development" },
   { label: "UI / UX Design", href: "/services/ui-ux-design" },
+  { label: "Branding", href: "/services/branding" },
+  { label: "Digital Marketing", href: "/services/digital-marketing" },
+  { label: "Graphic Design", href: "/services/graphic-design" },
   { label: "Performance Optimization", href: "/services/performance-optimization" },
   { label: "Motion & Interaction", href: "/services/motion-interaction" },
 ];

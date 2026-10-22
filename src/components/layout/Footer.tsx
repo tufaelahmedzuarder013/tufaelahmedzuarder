@@ -6,6 +6,7 @@ import { ArrowUpRight, ArrowUp, Github, Linkedin, Twitter, Mail } from "lucide-r
 import { Container } from "./Container";
 import { Button } from "../ui/Button";
 import { SITE_CONFIG, NAV_LINKS, SERVICE_LINKS } from "@/lib/constants";
+import { TazLogo } from "../ui/TazLogo";
 
 export function Footer() {
   const scrollToTop = () => {
@@ -40,10 +41,11 @@ export function Footer() {
           <div className="lg:col-span-2">
             <Link
               href="/"
-              className="font-heading text-xl tracking-[0.03em] flex items-center gap-2.5 mb-3 group"
+              aria-label="Tufael Ahmed Zuarder"
+              className="flex items-center gap-3 mb-3 group"
             >
-              <span className="w-2.5 h-2.5 rounded-full bg-brand-gradient group-hover:scale-125 transition-transform duration-300" />
-              <span className="font-semibold text-brand-ink group-hover:text-[#F75B00] transition-colors">
+              <TazLogo size="sm" className="h-5 text-brand-ink dark:text-white group-hover:text-[#F75B00] transition-colors" />
+              <span className="font-heading font-bold text-lg text-brand-ink dark:text-white group-hover:text-[#F75B00] transition-colors tracking-wide">
                 Tufael Ahmed Zuarder
               </span>
             </Link>
@@ -115,7 +117,7 @@ export function Footer() {
               Services
             </h4>
             <ul className="space-y-2.5 text-sm">
-              {SERVICE_LINKS.map((service) => (
+              {SERVICE_LINKS.slice(0, 7).map((service) => (
                 <li key={service.href}>
                   <Link
                     href={service.href}
@@ -125,6 +127,15 @@ export function Footer() {
                   </Link>
                 </li>
               ))}
+              <li>
+                <Link
+                  href="/services"
+                  className="inline-flex items-center gap-1 text-xs font-semibold text-[#F75B00] hover:underline pt-1"
+                >
+                  <span>All Services ({SERVICE_LINKS.length})</span>
+                  <ArrowUpRight className="w-3.5 h-3.5" />
+                </Link>
+              </li>
             </ul>
           </div>
 
