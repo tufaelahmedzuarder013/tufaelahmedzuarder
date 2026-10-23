@@ -35,10 +35,11 @@ export function MissionVisionSection() {
             <button
               type="button"
               onClick={() => setActiveTab("vision")}
-              className={`relative px-5 py-2.5 rounded-full text-xs sm:text-sm font-heading font-bold transition-all duration-300 flex items-center gap-2 cursor-pointer ${isVision
-                  ? "text-white shadow-sm"
+              className={`relative px-5 py-2.5 rounded-full text-[16px] font-sans font-normal transition-all duration-300 flex items-center gap-2 cursor-pointer btn-aventa ${
+                isVision
+                  ? "!text-white text-white shadow-sm btn-white-text"
                   : "text-brand-muted hover:text-brand-ink"
-                }`}
+              }`}
             >
               {isVision && (
                 <motion.div
@@ -47,19 +48,23 @@ export function MissionVisionSection() {
                   transition={{ type: "spring", stiffness: 380, damping: 30 }}
                 />
               )}
-              <span className="relative z-10 flex items-center gap-1.5">
-                <Eye className="w-3.5 h-3.5" />
-                My Vision
+              <span
+                style={isVision ? { color: "#ffffff", fontFamily: "var(--font-aventa), 'Aventa', sans-serif", fontSize: "16px", fontWeight: 400 } : undefined}
+                className={`relative z-10 flex items-center gap-1.5 font-sans font-normal text-[16px] ${isVision ? "!text-white text-white" : ""}`}
+              >
+                <Eye className={`w-4 h-4 ${isVision ? "!text-white text-white stroke-white" : ""}`} />
+                <span className={isVision ? "!text-white text-white" : ""}>My Vision</span>
               </span>
             </button>
 
             <button
               type="button"
               onClick={() => setActiveTab("mission")}
-              className={`relative px-5 py-2.5 rounded-full text-xs sm:text-sm font-heading font-bold transition-all duration-300 flex items-center gap-2 cursor-pointer ${!isVision
-                  ? "text-white shadow-sm"
+              className={`relative px-5 py-2.5 rounded-full text-[16px] font-sans font-normal transition-all duration-300 flex items-center gap-2 cursor-pointer btn-aventa ${
+                !isVision
+                  ? "!text-white text-white shadow-sm btn-white-text"
                   : "text-brand-muted hover:text-brand-ink"
-                }`}
+              }`}
             >
               {!isVision && (
                 <motion.div
@@ -68,9 +73,12 @@ export function MissionVisionSection() {
                   transition={{ type: "spring", stiffness: 380, damping: 30 }}
                 />
               )}
-              <span className="relative z-10 flex items-center gap-1.5">
-                <Target className="w-3.5 h-3.5" />
-                My Mission
+              <span
+                style={!isVision ? { color: "#ffffff", fontFamily: "var(--font-aventa), 'Aventa', sans-serif", fontSize: "16px", fontWeight: 400 } : undefined}
+                className={`relative z-10 flex items-center gap-1.5 font-sans font-normal text-[16px] ${!isVision ? "!text-white text-white" : ""}`}
+              >
+                <Target className={`w-4 h-4 ${!isVision ? "!text-white text-white stroke-white" : ""}`} />
+                <span className={!isVision ? "!text-white text-white" : ""}>My Mission</span>
               </span>
             </button>
           </div>
@@ -183,11 +191,26 @@ export function MissionVisionSection() {
                 <button
                   type="button"
                   onClick={() => setActiveTab(isVision ? "mission" : "vision")}
-                  className="inline-flex items-center gap-2 px-[20px] py-[10px] rounded-full bg-gradient-to-r from-[#F75B00] to-[#EFC320] hover:from-[#e05200] hover:to-[#dfb51c] text-white font-heading font-extrabold text-xs uppercase tracking-widest shadow-md hover:shadow-xl hover:shadow-[#F75B00]/30 hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer self-start sm:self-auto group"
+                  style={{ fontFamily: "var(--font-aventa), 'Aventa', sans-serif", fontSize: "16px", fontWeight: 400 }}
+                  className="inline-flex items-center gap-2 px-[20px] py-[10px] rounded-full bg-gradient-to-r from-[#F75B00] to-[#EFC320] hover:from-[#e05200] hover:to-[#dfb51c] font-sans font-normal text-[16px] shadow-md hover:shadow-xl hover:shadow-[#F75B00]/30 hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer self-start sm:self-auto group btn-aventa"
                 >
-                  <span>{isVision ? "SWIPE TO MY MISSION" : "SWIPE TO MY VISION"}</span>
-                  <span className="w-5 h-5 rounded-full bg-white text-[#F75B00] shadow-xs flex items-center justify-center transition-transform duration-300 group-hover:scale-110 group-hover:rotate-45 shrink-0">
-                    <ArrowRight className="w-3 h-3 stroke-[2.5]" />
+                  <span
+                    style={{ color: "#ffffff", fontFamily: "var(--font-aventa), 'Aventa', sans-serif", fontSize: "16px", fontWeight: 400 }}
+                    className="!text-white text-white font-sans font-normal text-[16px] btn-label-text btn-label-white"
+                  >
+                    {isVision ? "SWIPE TO MY MISSION" : "SWIPE TO MY VISION"}
+                  </span>
+                  <span
+                    style={{ backgroundColor: "#ffffff", color: "#101820" }}
+                    className="w-5 h-5 rounded-full bg-white shadow-xs flex items-center justify-center transition-transform duration-300 group-hover:scale-110 group-hover:rotate-45 shrink-0 btn-circle-icon text-[#101820]"
+                  >
+                    <ArrowRight
+                      color="#101820"
+                      stroke="#101820"
+                      strokeWidth={2.5}
+                      className="w-3 h-3 stroke-[2.5] !text-[#101820] !stroke-[#101820]"
+                      style={{ color: "#101820", stroke: "#101820" }}
+                    />
                   </span>
                 </button>
               </div>

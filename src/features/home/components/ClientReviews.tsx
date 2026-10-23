@@ -20,7 +20,7 @@ export function ClientReviews() {
   const marqueeRow2 = [...row2, ...row2, ...row2];
 
   return (
-    <section className="py-20 sm:py-28 lg:py-32 relative bg-white dark:bg-[#0A0F0D] overflow-hidden border-t border-brand-ink/5 dark:border-white/5">
+    <section className="client-reviews-section py-20 sm:py-28 lg:py-32 relative bg-white dark:bg-[#0A0F0D] overflow-hidden border-t border-brand-ink/5 dark:border-white/5">
       {/* Ambient background glow */}
       <div className="absolute inset-0 pointer-events-none -z-10 overflow-hidden">
         <div className="absolute top-1/3 left-1/3 w-[500px] h-[500px] bg-[#F75B00]/5 rounded-full blur-[140px]" />
@@ -122,7 +122,11 @@ export function ClientReviews() {
               </span>
 
               {/* Full Quote */}
-              <p className="font-sans text-base text-brand-ink leading-relaxed mb-6">
+              <p
+                data-no-gsap="true"
+                className="review-quote-text font-sans text-brand-ink dark:text-[#E2E8F0] leading-relaxed mb-6"
+                style={{ fontSize: "16px", lineHeight: "24px" }}
+              >
                 &ldquo;{selectedReview.quote}&rdquo;
               </p>
 
@@ -145,7 +149,7 @@ export function ClientReviews() {
                     {selectedReview.name}
                     <CheckCircle2 className="w-4 h-4 text-[#F75B00]" />
                   </h4>
-                  <p className="font-sans text-xs text-brand-muted">
+                  <p className="review-author-meta font-sans text-xs text-brand-muted">
                     {selectedReview.role} • {selectedReview.company} ({selectedReview.location})
                   </p>
                 </div>
@@ -186,8 +190,12 @@ function ReviewCard({
           </span>
         </div>
 
-        {/* Review Quote text with quotes */}
-        <p className="font-sans text-xs sm:text-sm text-[#101820] dark:text-[#E2E8F0] leading-relaxed line-clamp-3">
+        {/* Review Quote text with quotes - strictly 16px */}
+        <p
+          data-no-gsap="true"
+          className="review-quote-text font-sans text-[#101820] dark:text-[#E2E8F0] leading-relaxed line-clamp-3"
+          style={{ fontSize: "16px", lineHeight: "24px" }}
+        >
           &ldquo; {item.quote} &rdquo;
         </p>
 
@@ -221,7 +229,7 @@ function ReviewCard({
             <h4 className="font-heading font-bold text-xs sm:text-sm text-brand-ink truncate">
               {item.name}
             </h4>
-            <p className="font-sans text-[11px] text-brand-muted truncate">
+            <p className="review-author-meta font-sans text-[11px] text-brand-muted truncate">
               {item.location}
             </p>
           </div>

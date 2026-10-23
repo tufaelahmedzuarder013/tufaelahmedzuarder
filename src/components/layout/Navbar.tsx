@@ -71,14 +71,29 @@ export function Navbar() {
 
           {/* Right Section: Let's talk + Divider + ThemeToggle + Divider + Menu Toggle (Exact match to mdx.so) */}
           <div className="flex items-center gap-2 sm:gap-3">
-            {/* Let's talk CTA Button (Always present on desktop, just like mdx.so) */}
+            {/* Let's talk CTA Button (Exact match to mdx.so design) */}
             <Link
               href="/contact"
-              className="hidden sm:inline-flex items-center gap-2 pl-4 sm:pl-5 pr-1.5 sm:pr-2 py-1.5 rounded-full bg-gradient-to-r from-[#F75B00] to-[#FF6B00] hover:from-[#e05200] hover:to-[#df5c00] text-white font-heading font-extrabold text-xs uppercase tracking-wider shadow-[0_4px_20px_rgba(247,91,0,0.35)] hover:shadow-[0_6px_25px_rgba(247,91,0,0.55)] hover:scale-105 active:scale-95 transition-all duration-300 group cursor-pointer shrink-0"
+              style={{ fontFamily: "var(--font-aventa), 'Aventa', sans-serif", fontSize: "16px", fontWeight: 400 }}
+              className="hidden sm:inline-flex items-center gap-2 pl-4 sm:pl-5 pr-1.5 sm:pr-2 py-1.5 rounded-full bg-gradient-to-r from-[#F75B00] to-[#FF6B00] hover:from-[#e05200] hover:to-[#df5c00] font-sans font-normal text-[16px] tracking-normal shadow-[0_4px_20px_rgba(247,91,0,0.35)] hover:shadow-[0_6px_25px_rgba(247,91,0,0.55)] hover:scale-105 active:scale-95 transition-all duration-300 group cursor-pointer shrink-0 btn-aventa"
             >
-              <span>Let&apos;s talk</span>
-              <span className="w-5 h-5 rounded-full bg-white text-[#F75B00] shadow-xs flex items-center justify-center transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 shrink-0">
-                <ArrowUpRight className="w-3 h-3 stroke-[2.5]" />
+              <span
+                style={{ color: "#ffffff", fontFamily: "var(--font-aventa), 'Aventa', sans-serif", fontSize: "16px", fontWeight: 400 }}
+                className="!text-white text-white font-sans font-normal text-[16px] btn-label-text btn-label-white"
+              >
+                Let&apos;s talk
+              </span>
+              <span
+                style={{ backgroundColor: "#ffffff", color: "#101820" }}
+                className="w-5 h-5 rounded-full bg-white shadow-xs flex items-center justify-center transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 shrink-0 btn-circle-icon text-[#101820]"
+              >
+                <ArrowUpRight
+                  color="#101820"
+                  stroke="#101820"
+                  strokeWidth={2.5}
+                  className="w-3 h-3 stroke-[2.5] !text-[#101820] !stroke-[#101820]"
+                  style={{ color: "#101820", stroke: "#101820" }}
+                />
               </span>
             </Link>
 

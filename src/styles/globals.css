@@ -90,33 +90,78 @@
 
 /* ========================================================================== */
 /* GLOBAL TYPOGRAPHY ENFORCEMENT                                             */
-/* Paragraph: Aventa, 20px, line-height 25px, 400, #101820                   */
-/* Heading: Orlean, 59px, line-height 47px, 400, #101820                     */
+/* Heading: Orlean, 59px, line-height 47px, 400 & 500 combined, #101820       */
+/* Paragraph: Aventa, 20px, line-height 27px, 400, #101820                   */
 /* ========================================================================== */
 html, body {
   font-family: var(--font-aventa), 'Aventa', var(--font-plus-jakarta-sans), system-ui, -apple-system, sans-serif;
   color: #101820;
 }
 
-h1, h2, h3, h4, h5, h6, .font-heading {
+h1, .heading-orlean, .heading-hero {
   font-family: var(--font-orlean), 'Orlean', var(--font-space-grotesk), sans-serif !important;
-  color: #101820;
-  font-weight: 400;
-}
-
-p, .font-paragraph, .paragraph-aventa {
-  font-family: var(--font-aventa), 'Aventa', var(--font-plus-jakarta-sans), system-ui, sans-serif;
-  font-size: 20px;
-  line-height: 25px;
-  font-weight: 400;
+  font-size: 59px !important;
+  line-height: 47px !important;
+  font-weight: 400 !important;
   color: #101820 !important;
 }
 
-.gsap-word {
-  color: #101820;
+h2, .heading-h2 {
+  font-family: var(--font-orlean), 'Orlean', var(--font-space-grotesk), sans-serif !important;
+  font-size: 47px !important;
+  line-height: 43px !important;
+  font-weight: 500 !important;
+  color: #101820 !important;
 }
 
-/* Explicit white text ONLY in dedicated dark containers / CTA banners */
+h3, h4, h5, h6 {
+  font-family: var(--font-orlean), 'Orlean', var(--font-space-grotesk), sans-serif !important;
+  color: #101820;
+  font-weight: 500 !important;
+}
+
+.font-heading {
+  font-family: var(--font-orlean), 'Orlean', var(--font-space-grotesk), sans-serif !important;
+}
+
+p, .font-paragraph, .paragraph-aventa {
+  font-family: var(--font-aventa), 'Aventa', var(--font-plus-jakarta-sans), system-ui, sans-serif !important;
+  font-size: 20px !important;
+  line-height: 27px !important;
+  font-weight: 400 !important;
+  color: #101820 !important;
+}
+
+.font-sans {
+  font-family: var(--font-aventa), 'Aventa', var(--font-plus-jakarta-sans), system-ui, sans-serif !important;
+}
+
+/* ========================================================================== */
+/* GLOBAL BUTTON TYPOGRAPHY: Aventa, 16px, font-weight 400                    */
+/* ========================================================================== */
+button,
+.btn-aventa,
+a.btn,
+/* Button typography and label styling (Aventa 16px 400) */
+button,
+a.btn,
+.btn-aventa {
+  font-family: var(--font-aventa), 'Aventa', var(--font-plus-jakarta-sans), system-ui, sans-serif !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+}
+
+/* Target ONLY the text label inside buttons, exclude the icon circle badge */
+button span:not(.btn-circle-icon):not(.btn-circle-icon *),
+.btn-aventa span:not(.btn-circle-icon):not(.btn-circle-icon *),
+.btn-label-text {
+  font-family: var(--font-aventa), 'Aventa', var(--font-plus-jakarta-sans), system-ui, sans-serif !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+}
+
+/* Explicit white text on dark containers and button labels */
+.btn-label-white,
 .cta-banner-dark p,
 .dark-container p,
 .bg-neutral-950 p,
@@ -125,33 +170,75 @@ p, .font-paragraph, .paragraph-aventa {
   color: #ffffff !important;
 }
 
-.heading-orlean {
-  font-family: var(--font-orlean), 'Orlean', sans-serif !important;
-  font-size: 59px !important;
-  line-height: 47px !important;
-  font-weight: 400 !important;
+/* Icons inside white badge circles on buttons MUST strictly be deep black (#101820) */
+.btn-circle-icon,
+span.btn-circle-icon,
+div.btn-circle-icon {
+  background-color: #ffffff !important;
   color: #101820 !important;
 }
 
+.btn-circle-icon svg,
+.btn-circle-icon svg path,
+.btn-circle-icon svg polyline,
+.btn-circle-icon svg line,
+.btn-circle-icon svg circle,
+.btn-circle-icon svg rect,
+.btn-circle-icon * {
+  color: #101820 !important;
+  stroke: #101820 !important;
+  fill: none !important;
+}
+
+/* Section directly below reviews: CTA Banner Heading MUST be pure white ONLY */
+.cta-banner-dark h2,
+.cta-banner-heading,
+.cta-banner-heading span,
+.cta-banner-heading * {
+  color: #ffffff !important;
+}
+
+/* Sodu Client reviews gula te font size strictly 16px hobe */
+.client-reviews-section p,
+.client-reviews-section .review-quote-text,
+.client-reviews-section blockquote,
+.client-reviews-section [data-review-quote],
+.client-reviews-section .font-sans {
+  font-size: 16px !important;
+  line-height: 24px !important;
+}
+
+.client-reviews-section .review-author-meta {
+  font-size: 12px !important;
+  line-height: 16px !important;
+}
+
 @media (max-width: 768px) {
-  .heading-orlean {
+  h1, .heading-orlean, .heading-hero {
     font-size: 38px !important;
-    line-height: 42px !important;
+    line-height: 38px !important;
   }
-  p, .font-paragraph, .paragraph-aventa {
+  h2, .heading-h2 {
+    font-size: 32px !important;
+    line-height: 34px !important;
+  }
+  p, .font-paragraph, .paragraph-aventa, .font-sans {
     font-size: 17px !important;
-    line-height: 23px !important;
+    line-height: 24px !important;
   }
 }
 
 /* ========================================================================== */
-/* GSAP SCROLL-DRIVEN PROGRESSIVE TEXT REVEAL                                */
+/* GSAP SCROLL-DRIVEN PROGRESSIVE TEXT REVEAL & SCROLL HIGHLIGHT             */
 /* ========================================================================== */
 .gsap-scroll-word,
 .gsap-word {
   display: inline-block;
-  will-change: color, opacity;
-  transition: color 0.1s ease;
+  will-change: opacity, transform;
+}
+
+.gsap-scroll-highlight-container {
+  overflow: visible;
 }
 
 .gsap-scrub-word {
@@ -280,18 +367,17 @@ html {
 
 body {
   background-color: rgb(var(--brand-bg));
-  color: rgb(var(--brand-ink));
-  font-family: var(--font-casko-luxury), 'Casko Luxury', var(--font-plus-jakarta-sans), system-ui, sans-serif;
-  letter-spacing: 0.035em;
-  word-spacing: 0.15em;
-  line-height: 1.75;
+  color: #101820;
+  font-family: var(--font-aventa), 'Aventa', var(--font-plus-jakarta-sans), system-ui, sans-serif;
+  letter-spacing: 0.02em;
+  line-height: 27px;
   overflow-x: clip;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   transition: background-color 0.25s ease, color 0.25s ease;
 }
 
-/* Headings with NCL Gasdrifo - spaced and legible */
+/* Headings with Orlean - 59px / 47px / 400 & 500 combined */
 h1,
 h2,
 h3,
@@ -299,19 +385,50 @@ h4,
 h5,
 h6,
 .font-heading {
-  font-family: var(--font-ncl-gasdrifo), 'NCL Gasdrifo', var(--font-space-grotesk), sans-serif;
-  letter-spacing: 0.06em;
-  word-spacing: 0.25em;
-  line-height: 1.25;
+  font-family: var(--font-orlean), 'Orlean', var(--font-space-grotesk), sans-serif !important;
+  color: #101820;
+  letter-spacing: 0.03em;
 }
 
-/* Paragraphs and body text with Casko Luxury */
+/* Tech Marquee Strip: Orlean, 23px, 400 */
+.hero-marquee-item,
+.hero-marquee-item span {
+  font-family: var(--font-orlean), 'Orlean', var(--font-space-grotesk), sans-serif !important;
+  font-size: 23px !important;
+  font-weight: 400 !important;
+  line-height: 1.3 !important;
+}
+
+@keyframes marquee-ultra-smooth {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+.animate-marquee-slow {
+  display: flex;
+  flex-shrink: 0;
+  will-change: transform;
+  animation: marquee-ultra-smooth 65s linear infinite;
+}
+
+.marquee-container:hover .animate-marquee-slow {
+  animation-play-state: paused;
+}
+
+/* Paragraphs and body text with Aventa - 20px / 27px / 400 */
 p,
-.font-sans {
-  font-family: var(--font-casko-luxury), 'Casko Luxury', var(--font-plus-jakarta-sans), system-ui, sans-serif;
-  letter-spacing: 0.035em;
-  word-spacing: 0.15em;
-  line-height: 1.75;
+.font-paragraph,
+.paragraph-aventa {
+  font-family: var(--font-aventa), 'Aventa', var(--font-plus-jakarta-sans), system-ui, sans-serif !important;
+  font-size: 20px !important;
+  line-height: 27px !important;
+  font-weight: 400 !important;
+  color: #101820 !important;
+  letter-spacing: 0.02em;
 }
 
 /* Buttons and nav links */

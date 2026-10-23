@@ -29,26 +29,28 @@ export function AboutDeepDiveTabs() {
           <div className="inline-flex p-1.5 rounded-2xl bg-neutral-100 dark:bg-white/5 border border-neutral-200/80 dark:border-white/10 self-start md:self-auto">
             <button
               onClick={() => setActiveTab("skills")}
-              className={`flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-sm transition-all duration-300 ${
+              style={activeTab === "skills" ? { color: "#ffffff", fontFamily: "var(--font-aventa), 'Aventa', sans-serif", fontSize: "16px", fontWeight: 400 } : undefined}
+              className={`flex items-center gap-2 px-5 py-2.5 rounded-xl font-normal text-[16px] font-sans btn-aventa transition-all duration-300 ${
                 activeTab === "skills"
-                  ? "bg-gradient-to-r from-[#F75B00] to-[#EFC320] text-white shadow-md shadow-[#F75B00]/25"
+                  ? "bg-gradient-to-r from-[#F75B00] to-[#EFC320] !text-white text-white shadow-md shadow-[#F75B00]/25 btn-white-text"
                   : "text-brand-muted hover:text-brand-ink"
               }`}
             >
-              <Code2 className="w-4 h-4" />
-              <span>Technical Stack</span>
+              <Code2 className={`w-4 h-4 ${activeTab === "skills" ? "!text-white text-white stroke-white" : ""}`} />
+              <span style={activeTab === "skills" ? { color: "#ffffff", fontFamily: "var(--font-aventa), 'Aventa', sans-serif", fontSize: "16px", fontWeight: 400 } : undefined} className={activeTab === "skills" ? "!text-white text-white font-sans font-normal text-[16px]" : "font-sans font-normal text-[16px]"}>Technical Stack</span>
             </button>
 
             <button
               onClick={() => setActiveTab("experience")}
-              className={`flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-sm transition-all duration-300 ${
+              style={activeTab === "experience" ? { color: "#ffffff", fontFamily: "var(--font-aventa), 'Aventa', sans-serif", fontSize: "16px", fontWeight: 400 } : undefined}
+              className={`flex items-center gap-2 px-5 py-2.5 rounded-xl font-normal text-[16px] font-sans btn-aventa transition-all duration-300 ${
                 activeTab === "experience"
-                  ? "bg-gradient-to-r from-[#F75B00] to-[#EFC320] text-white shadow-md shadow-[#F75B00]/25"
+                  ? "bg-gradient-to-r from-[#F75B00] to-[#EFC320] !text-white text-white shadow-md shadow-[#F75B00]/25 btn-white-text"
                   : "text-brand-muted hover:text-brand-ink"
               }`}
             >
-              <Briefcase className="w-4 h-4" />
-              <span>Career Timeline</span>
+              <Briefcase className={`w-4 h-4 ${activeTab === "experience" ? "!text-white text-white stroke-white" : ""}`} />
+              <span style={activeTab === "experience" ? { color: "#ffffff", fontFamily: "var(--font-aventa), 'Aventa', sans-serif", fontSize: "16px", fontWeight: 400 } : undefined} className={activeTab === "experience" ? "!text-white text-white font-sans font-normal text-[16px]" : "font-sans font-normal text-[16px]"}>Career Timeline</span>
             </button>
           </div>
         </div>

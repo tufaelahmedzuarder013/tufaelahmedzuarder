@@ -28,10 +28,11 @@ export function CategoryFilters() {
           <button
             key={cat.value}
             onClick={() => dispatch(setCategory(cat.value))}
+            style={isActive ? { color: "#ffffff", fontFamily: "var(--font-aventa), 'Aventa', sans-serif", fontSize: "16px", fontWeight: 400 } : undefined}
             className={cn(
-              "px-5 py-2 rounded-full text-xs font-heading font-semibold transition-all duration-300 cursor-pointer",
+              "px-5 py-2 rounded-full text-[16px] font-sans font-normal transition-all duration-300 cursor-pointer btn-aventa",
               isActive
-                ? "bg-gradient-to-r from-[#F75B00] to-[#EFC320] text-white font-bold shadow-md shadow-[#F75B00]/30"
+                ? "bg-gradient-to-r from-[#F75B00] to-[#EFC320] !text-white text-white font-normal shadow-md shadow-[#F75B00]/30 btn-white-text"
                 : "bg-brand-surface border border-brand-ink/10 text-brand-muted hover:text-brand-ink hover:border-[#F75B00]/60 dark:bg-white/[0.06] dark:backdrop-blur-xl dark:border-white/10 dark:text-zinc-300 dark:hover:bg-white/[0.12] dark:hover:text-white dark:hover:border-[#F75B00]/50 dark:shadow-[0_4px_16px_rgba(0,0,0,0.25)]"
             )}
           >

@@ -25,7 +25,7 @@ export function CtaBanner({
           <div className="absolute -bottom-32 -right-32 w-80 h-80 rounded-full border border-[#EFC320]/20 pointer-events-none" />
 
           <div className="relative z-10 max-w-xl mx-auto space-y-4">
-            <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl tracking-[0.06em] [word-spacing:0.25em] leading-[1.25] text-white">
+            <h2 className="cta-banner-heading font-heading text-3xl sm:text-4xl md:text-5xl tracking-[0.06em] [word-spacing:0.25em] leading-[1.25] !text-white text-white" style={{ color: "#ffffff" }}>
               {title}
             </h2>
             <p

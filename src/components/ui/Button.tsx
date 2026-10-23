@@ -25,23 +25,23 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     ref
   ) => {
     const baseStyles =
-      "relative inline-flex items-center justify-center font-heading font-normal tracking-[0.05em] [word-spacing:0.15em] rounded-full transition-all duration-300 overflow-hidden group cursor-pointer";
+      "relative inline-flex items-center justify-center font-sans font-normal text-[16px] tracking-normal rounded-full transition-all duration-300 overflow-hidden group cursor-pointer btn-aventa";
 
     const variantStyles = {
       primary:
-        "bg-gradient-to-r from-[#F75B00] to-[#EFC320] hover:from-[#e05200] hover:to-[#dfb51c] text-white font-bold shadow-md hover:shadow-xl hover:shadow-[#F75B00]/30 hover:-translate-y-0.5 active:translate-y-0",
+        "bg-gradient-to-r from-[#F75B00] to-[#EFC320] hover:from-[#e05200] hover:to-[#dfb51c] shadow-md hover:shadow-xl hover:shadow-[#F75B00]/30 hover:-translate-y-0.5 active:translate-y-0",
       ghost:
-        "bg-[#121719] border border-white/15 text-white hover:border-[#F75B00] hover:text-[#F75B00] hover:-translate-y-0.5 shadow-md",
+        "bg-[#121719] border border-white/15 hover:border-[#F75B00] hover:text-[#F75B00] hover:-translate-y-0.5 shadow-md",
       outline:
-        "bg-[#121719] border border-white/15 text-white hover:border-[#F75B00] hover:text-[#F75B00] hover:-translate-y-0.5 shadow-sm",
+        "bg-[#121719] border border-white/15 hover:border-[#F75B00] hover:text-[#F75B00] hover:-translate-y-0.5 shadow-sm",
       white:
-        "bg-[#121719] border border-white/20 text-white hover:bg-gradient-to-r hover:from-[#F75B00] hover:to-[#EFC320] hover:text-white hover:-translate-y-0.5 shadow-lg",
+        "bg-[#121719] border border-white/20 hover:bg-gradient-to-r hover:from-[#F75B00] hover:to-[#EFC320] hover:-translate-y-0.5 shadow-lg",
     };
 
     const sizeStyles = {
-      sm: "text-xs px-[20px] py-[10px] gap-2",
-      md: "text-sm px-[20px] py-[10px] gap-2.5",
-      lg: "text-sm sm:text-base px-[20px] py-[10px] gap-3",
+      sm: "text-[16px] font-normal px-[20px] py-[10px] gap-2",
+      md: "text-[16px] font-normal px-[20px] py-[10px] gap-2.5",
+      lg: "text-[16px] font-normal px-[20px] py-[10px] gap-3",
     };
 
     const combinedClasses = cn(
@@ -58,17 +58,38 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {/* Shine Sweep Highlight */}
         <span className="absolute inset-0 w-1/2 h-full bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-[300%] transition-transform duration-1000 ease-in-out pointer-events-none" />
         <span className="relative z-10 flex items-center gap-2.5">
-          <span className="font-bold tracking-tight">{children}</span>
+          <span
+            style={{ color: "#ffffff", fontFamily: "var(--font-aventa), 'Aventa', sans-serif", fontSize: "16px", fontWeight: 400 }}
+            className="font-normal font-sans text-[16px] tracking-normal !text-white text-white btn-label-text btn-label-white"
+          >
+            {children}
+          </span>
           {activeIcon && (
             <span
+              style={variant === "primary" ? { backgroundColor: "#ffffff", color: "#101820" } : undefined}
               className={cn(
-                "w-6 h-6 rounded-full flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:rotate-45 shrink-0 shadow-xs",
+                "w-6 h-6 rounded-full flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:rotate-45 shrink-0 shadow-xs btn-circle-icon",
                 variant === "primary"
-                  ? "bg-white text-[#F75B00]"
+                  ? "bg-white text-[#101820]"
                   : "bg-neutral-950 text-white dark:bg-white dark:text-neutral-950"
               )}
             >
-              {activeIcon}
+              {React.isValidElement(activeIcon) && variant === "primary"
+                ? React.cloneElement(activeIcon as React.ReactElement<any>, {
+                    color: "#101820",
+                    stroke: "#101820",
+                    strokeWidth: 2.5,
+                    className: cn(
+                      (activeIcon as React.ReactElement<any>).props?.className,
+                      "!text-[#101820] !stroke-[#101820]"
+                    ),
+                    style: {
+                      ...((activeIcon as React.ReactElement<any>).props?.style || {}),
+                      color: "#101820",
+                      stroke: "#101820",
+                    },
+                  })
+                : activeIcon}
             </span>
           )}
         </span>

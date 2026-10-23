@@ -162,7 +162,7 @@ export function HeroSection() {
               {/* RIGHT BLOCK (Shifted DOWN): pointer-events-none on container so empty area doesn't block, children have pointer-events-auto */}
               <div className="col-span-6 flex flex-col items-end text-right translate-y-[260px] xl:translate-y-[300px] space-y-5 pointer-events-none relative z-40">
                 {/* Lead Description with GSAP Reveal */}
-                <p className="gsap-hero-lead font-sans text-base lg:text-[17px] text-[#101820] dark:text-[#E2E8F0] font-medium max-w-[460px] leading-relaxed tracking-[0.025em] text-right pointer-events-auto">
+                <p data-no-gsap="true" className="gsap-hero-lead font-sans text-base lg:text-[17px] text-[#101820] dark:text-[#E2E8F0] font-medium max-w-[460px] leading-relaxed tracking-[0.025em] text-right pointer-events-auto">
                   Crafting beautiful, functional, and user-centered digital experiences with modern technologies, clean UI/UX, and a relentless focus on performance.
                 </p>
 
@@ -170,11 +170,26 @@ export function HeroSection() {
                 <div className="flex flex-wrap items-center gap-3.5 justify-end relative z-[80] pointer-events-auto">
                   <Link
                     href="/portfolio"
-                    className="relative z-[80] inline-flex items-center justify-center gap-2.5 font-heading font-bold text-sm sm:text-base px-[20px] py-[10px] rounded-full bg-gradient-to-r from-[#F75B00] to-[#EFC320] hover:from-[#e05200] hover:to-[#dfb51c] text-white shadow-md hover:shadow-xl hover:shadow-[#F75B00]/30 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 group cursor-pointer tracking-tight pointer-events-auto touch-manipulation"
+                    style={{ fontFamily: "var(--font-aventa), 'Aventa', sans-serif", fontSize: "16px", fontWeight: 400 }}
+                    className="relative z-[80] inline-flex items-center justify-center gap-2.5 font-sans font-normal text-[16px] px-[20px] py-[10px] rounded-full bg-gradient-to-r from-[#F75B00] to-[#EFC320] hover:from-[#e05200] hover:to-[#dfb51c] shadow-md hover:shadow-xl hover:shadow-[#F75B00]/30 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 group cursor-pointer tracking-normal pointer-events-auto touch-manipulation btn-aventa"
                   >
-                    <span>View My Work</span>
-                    <span className="w-6 h-6 rounded-full bg-white text-[#F75B00] shadow-xs flex items-center justify-center transition-transform duration-300 group-hover:scale-110 group-hover:rotate-45 shrink-0">
-                      <ArrowRight className="w-3.5 h-3.5 stroke-[2.5]" />
+                    <span
+                      style={{ color: "#ffffff", fontFamily: "var(--font-aventa), 'Aventa', sans-serif", fontSize: "16px", fontWeight: 400 }}
+                      className="!text-white text-white font-sans font-normal text-[16px] btn-label-text btn-label-white"
+                    >
+                      View My Work
+                    </span>
+                    <span
+                      style={{ backgroundColor: "#ffffff", color: "#101820" }}
+                      className="w-6 h-6 rounded-full bg-white shadow-xs flex items-center justify-center transition-transform duration-300 group-hover:scale-110 group-hover:rotate-45 shrink-0 btn-circle-icon text-[#101820]"
+                    >
+                      <ArrowRight
+                        color="#101820"
+                        stroke="#101820"
+                        strokeWidth={2.5}
+                        className="w-3.5 h-3.5 stroke-[2.5] !text-[#101820] !stroke-[#101820]"
+                        style={{ color: "#101820", stroke: "#101820" }}
+                      />
                     </span>
                   </Link>
 
@@ -182,9 +197,9 @@ export function HeroSection() {
                     href="https://drive.google.com/file/d/1E2pbJ454dFjodVbZVz70LDtv_ih5RKtW/view"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="relative z-[80] inline-flex items-center justify-center gap-2 font-heading text-sm sm:text-base px-[20px] py-[10px] rounded-full bg-brand-surface border border-brand-ink/10 text-brand-ink shadow-brand-sm hover:border-[#F75B00] hover:text-[#F75B00] hover:-translate-y-0.5 transition-all duration-300 group cursor-pointer tracking-[0.08em] [word-spacing:0.2em] dark:bg-white/[0.06] dark:backdrop-blur-xl dark:border-white/15 dark:text-white dark:hover:bg-white/[0.12] dark:hover:border-[#F75B00]/70 dark:shadow-[0_4px_24px_rgba(0,0,0,0.4),inset_0_1px_1px_rgba(255,255,255,0.12)] pointer-events-auto touch-manipulation"
+                    className="relative z-[80] inline-flex items-center justify-center gap-2 font-sans font-normal text-[16px] px-[20px] py-[10px] rounded-full bg-brand-surface border border-brand-ink/10 text-brand-ink shadow-brand-sm hover:border-[#F75B00] hover:text-[#F75B00] hover:-translate-y-0.5 transition-all duration-300 group cursor-pointer tracking-normal dark:bg-white/[0.06] dark:backdrop-blur-xl dark:border-white/15 dark:text-white dark:hover:bg-white/[0.12] dark:hover:border-[#F75B00]/70 dark:shadow-[0_4px_24px_rgba(0,0,0,0.4),inset_0_1px_1px_rgba(255,255,255,0.12)] pointer-events-auto touch-manipulation btn-aventa"
                   >
-                    <span>Download Resume</span>
+                    <span className="font-sans font-normal text-[16px]">Download Resume</span>
                     <Download className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-y-0.5 pointer-events-none" />
                   </a>
                 </div>
@@ -306,11 +321,26 @@ export function HeroSection() {
             <div className="flex flex-wrap items-center gap-2.5 justify-center relative z-[80] pointer-events-auto">
               <Link
                 href="/portfolio"
-                className="relative z-[80] inline-flex items-center justify-center gap-2 font-heading font-bold text-xs sm:text-sm px-[20px] py-[10px] rounded-full bg-gradient-to-r from-[#F75B00] to-[#EFC320] hover:from-[#e05200] hover:to-[#dfb51c] text-white shadow-md hover:shadow-xl hover:shadow-[#F75B00]/30 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 group cursor-pointer tracking-tight pointer-events-auto touch-manipulation"
+                style={{ fontFamily: "var(--font-aventa), 'Aventa', sans-serif", fontSize: "16px", fontWeight: 400 }}
+                className="relative z-[80] inline-flex items-center justify-center gap-2.5 font-sans font-normal text-[16px] px-[20px] py-[10px] rounded-full bg-gradient-to-r from-[#F75B00] to-[#EFC320] hover:from-[#e05200] hover:to-[#dfb51c] shadow-md hover:shadow-xl hover:shadow-[#F75B00]/30 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 group cursor-pointer tracking-normal pointer-events-auto touch-manipulation btn-aventa"
               >
-                <span>View My Work</span>
-                <span className="w-5 h-5 rounded-full bg-white text-[#F75B00] shadow-xs flex items-center justify-center transition-transform duration-300 group-hover:scale-110 group-hover:rotate-45 shrink-0">
-                  <ArrowRight className="w-3 h-3 stroke-[2.5]" />
+                <span
+                  style={{ color: "#ffffff", fontFamily: "var(--font-aventa), 'Aventa', sans-serif", fontSize: "16px", fontWeight: 400 }}
+                  className="!text-white text-white font-sans font-normal text-[16px] btn-label-text btn-label-white"
+                >
+                  View My Work
+                </span>
+                <span
+                  style={{ backgroundColor: "#ffffff", color: "#101820" }}
+                  className="w-5 h-5 rounded-full bg-white shadow-xs flex items-center justify-center transition-transform duration-300 group-hover:scale-110 group-hover:rotate-45 shrink-0 btn-circle-icon text-[#101820]"
+                >
+                  <ArrowRight
+                    color="#101820"
+                    stroke="#101820"
+                    strokeWidth={2.5}
+                    className="w-3 h-3 stroke-[2.5] !text-[#101820] !stroke-[#101820]"
+                    style={{ color: "#101820", stroke: "#101820" }}
+                  />
                 </span>
               </Link>
 
@@ -318,10 +348,11 @@ export function HeroSection() {
                 href="https://drive.google.com/file/d/1E2pbJ454dFjodVbZVz70LDtv_ih5RKtW/view"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="relative z-[80] inline-flex items-center justify-center gap-1.5 font-heading text-xs sm:text-sm px-[20px] py-[10px] rounded-full bg-brand-surface border border-brand-ink/10 text-brand-ink shadow-brand-sm hover:border-[#F75B00] hover:text-[#F75B00] hover:-translate-y-0.5 transition-all duration-300 group cursor-pointer tracking-[0.06em] dark:bg-white/[0.06] dark:backdrop-blur-xl dark:border-white/15 dark:text-white dark:hover:bg-white/[0.12] dark:hover:border-[#F75B00]/60 pointer-events-auto touch-manipulation"
+                style={{ fontFamily: "var(--font-aventa), 'Aventa', sans-serif", fontSize: "16px", fontWeight: 400 }}
+                className="relative z-[80] inline-flex items-center justify-center gap-2 font-sans font-normal text-[16px] px-[20px] py-[10px] rounded-full bg-brand-surface border border-brand-ink/10 text-brand-ink shadow-brand-sm hover:border-[#F75B00] hover:text-[#F75B00] hover:-translate-y-0.5 transition-all duration-300 group cursor-pointer tracking-normal dark:bg-white/[0.06] dark:backdrop-blur-xl dark:border-white/15 dark:text-white dark:hover:bg-white/[0.12] dark:hover:border-[#F75B00]/60 pointer-events-auto touch-manipulation btn-aventa"
               >
-                <span>Download Resume</span>
-                <Download className="w-3 h-3 transition-transform duration-300 group-hover:translate-y-0.5 pointer-events-none" />
+                <span className="font-sans font-normal text-[16px]">Download Resume</span>
+                <Download className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-y-0.5 pointer-events-none" />
               </a>
             </div>
 
@@ -366,16 +397,42 @@ export function HeroSection() {
         </div>
       </section>
 
-      {/* Infinite Marquee Strip */}
-      <div className="w-full border-y border-brand-ink/10 py-4 overflow-hidden bg-brand-surface whitespace-nowrap">
-        <div className="inline-flex items-center gap-12 animate-marquee">
+      {/* Infinite Ultra-Smooth Marquee Strip */}
+      <div className="marquee-container w-full border-y border-brand-ink/10 dark:border-white/10 py-4 sm:py-5 overflow-hidden bg-brand-surface dark:bg-[#0B0B12] whitespace-nowrap flex select-none">
+        {/* Track 1 */}
+        <div className="animate-marquee-slow flex shrink-0 items-center">
           {[...MARQUEE_ITEMS, ...MARQUEE_ITEMS].map((item, idx) => (
             <span
-              key={idx}
-              className="font-heading font-semibold text-lg text-brand-muted2 flex items-center gap-12"
+              key={`m1-${idx}`}
+              style={{
+                fontFamily: "var(--font-orlean), 'Orlean', sans-serif",
+                fontSize: "23px",
+                fontWeight: 400,
+              }}
+              className="hero-marquee-item font-heading font-normal text-[23px] text-brand-ink dark:text-white inline-flex items-center tracking-[0.03em]"
             >
-              <span>{item}</span>
-              <span className="text-xs bg-brand-gradient bg-clip-text text-transparent">
+              <span className="px-5 sm:px-7">{item}</span>
+              <span className="text-xs sm:text-sm bg-gradient-to-r from-[#F75B00] to-[#EFC320] bg-clip-text text-transparent select-none">
+                ✦
+              </span>
+            </span>
+          ))}
+        </div>
+
+        {/* Track 2 (Seamless continuous loop) */}
+        <div className="animate-marquee-slow flex shrink-0 items-center" aria-hidden="true">
+          {[...MARQUEE_ITEMS, ...MARQUEE_ITEMS].map((item, idx) => (
+            <span
+              key={`m2-${idx}`}
+              style={{
+                fontFamily: "var(--font-orlean), 'Orlean', sans-serif",
+                fontSize: "23px",
+                fontWeight: 400,
+              }}
+              className="hero-marquee-item font-heading font-normal text-[23px] text-brand-ink dark:text-white inline-flex items-center tracking-[0.03em]"
+            >
+              <span className="px-5 sm:px-7">{item}</span>
+              <span className="text-xs sm:text-sm bg-gradient-to-r from-[#F75B00] to-[#EFC320] bg-clip-text text-transparent select-none">
                 ✦
               </span>
             </span>

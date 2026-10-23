@@ -460,11 +460,26 @@ export function ProcessBlueprintSection() {
                       setActiveStageIdx((prev) => (prev + 1) % STAGES.length);
                       setActiveItemIdx(0);
                     }}
-                    className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-[20px] py-[10px] rounded-full bg-gradient-to-r from-[#F75B00] to-[#EFC320] hover:from-[#e05200] hover:to-[#dfb51c] text-white font-heading font-extrabold text-xs uppercase tracking-wider shadow-md hover:shadow-xl hover:shadow-[#F75B00]/30 hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer group"
+                    style={{ fontFamily: "var(--font-aventa), 'Aventa', sans-serif", fontSize: "16px", fontWeight: 400 }}
+                    className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2.5 px-[20px] py-[10px] rounded-full bg-gradient-to-r from-[#F75B00] to-[#EFC320] hover:from-[#e05200] hover:to-[#dfb51c] font-sans font-normal text-[16px] shadow-md hover:shadow-xl hover:shadow-[#F75B00]/30 hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer group btn-aventa"
                   >
-                    <span>Next Stage</span>
-                    <span className="w-5 h-5 rounded-full bg-white text-[#F75B00] shadow-xs flex items-center justify-center transition-transform duration-300 group-hover:scale-110 group-hover:rotate-45 shrink-0">
-                      <ArrowRight className="w-3 h-3 stroke-[2.5]" />
+                    <span
+                      style={{ color: "#ffffff", fontFamily: "var(--font-aventa), 'Aventa', sans-serif", fontSize: "16px", fontWeight: 400 }}
+                      className="!text-white text-white font-sans font-normal text-[16px] btn-label-text btn-label-white"
+                    >
+                      Next Stage
+                    </span>
+                    <span
+                      style={{ backgroundColor: "#ffffff", color: "#101820" }}
+                      className="w-5 h-5 rounded-full bg-white shadow-xs flex items-center justify-center transition-transform duration-300 group-hover:scale-110 group-hover:rotate-45 shrink-0 btn-circle-icon text-[#101820]"
+                    >
+                      <ArrowRight
+                        color="#101820"
+                        stroke="#101820"
+                        strokeWidth={2.5}
+                        className="w-3 h-3 stroke-[2.5] !text-[#101820] !stroke-[#101820]"
+                        style={{ color: "#101820", stroke: "#101820" }}
+                      />
                     </span>
                   </button>
 

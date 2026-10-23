@@ -46,13 +46,26 @@ export function AboutHeroSection() {
             <div className="pt-2">
               <Link
                 href="/contact"
-                className="group inline-flex items-center gap-2.5 bg-gradient-to-r from-[#F75B00] to-[#EFC320] hover:from-[#e05200] hover:to-[#dfb51c] text-white font-bold px-[20px] py-[10px] rounded-full transition-all duration-300 shadow-lg shadow-[#F75B00]/25 hover:shadow-xl hover:shadow-[#F75B00]/40 hover:-translate-y-0.5 active:translate-y-0"
+                style={{ fontFamily: "var(--font-aventa), 'Aventa', sans-serif", fontSize: "16px", fontWeight: 400 }}
+                className="group inline-flex items-center gap-2.5 bg-gradient-to-r from-[#F75B00] to-[#EFC320] hover:from-[#e05200] hover:to-[#dfb51c] font-sans font-normal text-[16px] px-[20px] py-[10px] rounded-full transition-all duration-300 shadow-lg shadow-[#F75B00]/25 hover:shadow-xl hover:shadow-[#F75B00]/40 hover:-translate-y-0.5 active:translate-y-0 btn-aventa"
               >
-                <span className="text-sm sm:text-base font-bold tracking-tight">
+                <span
+                  style={{ color: "#ffffff", fontFamily: "var(--font-aventa), 'Aventa', sans-serif", fontSize: "16px", fontWeight: 400 }}
+                  className="text-[16px] font-sans font-normal tracking-tight !text-white text-white btn-label-text btn-label-white"
+                >
                   Lets Talk Brief
                 </span>
-                <span className="w-6 h-6 rounded-full bg-white text-[#F75B00] shadow-xs flex items-center justify-center transition-transform duration-300 group-hover:scale-110 group-hover:rotate-45 shrink-0">
-                  <ArrowUpRight className="w-3.5 h-3.5 stroke-[2.5]" />
+                <span
+                  style={{ backgroundColor: "#ffffff", color: "#101820" }}
+                  className="w-6 h-6 rounded-full bg-white shadow-xs flex items-center justify-center transition-transform duration-300 group-hover:scale-110 group-hover:rotate-45 shrink-0 btn-circle-icon text-[#101820]"
+                >
+                  <ArrowUpRight
+                    color="#101820"
+                    stroke="#101820"
+                    strokeWidth={2.5}
+                    className="w-3.5 h-3.5 stroke-[2.5] !text-[#101820] !stroke-[#101820]"
+                    style={{ color: "#101820", stroke: "#101820" }}
+                  />
                 </span>
               </Link>
             </div>

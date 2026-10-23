@@ -288,9 +288,15 @@ export function FullMenuOverlay({ isOpen, onClose }: FullMenuOverlayProps) {
                   <Link
                     href="/contact"
                     onClick={onClose}
-                    className="inline-flex items-center gap-3 px-6 sm:px-7 py-3 sm:py-3.5 rounded-full bg-[#121719] text-white font-heading font-normal text-xs uppercase tracking-wider hover:scale-105 active:scale-95 transition-all shadow-xl group cursor-pointer pointer-events-auto"
+                    style={{ fontFamily: "var(--font-aventa), 'Aventa', sans-serif", fontSize: "16px", fontWeight: 400 }}
+                    className="inline-flex items-center gap-3 px-6 sm:px-7 py-3 sm:py-3.5 rounded-full bg-[#121719] font-sans font-normal text-[16px] tracking-normal hover:scale-105 active:scale-95 transition-all shadow-xl group cursor-pointer pointer-events-auto btn-aventa"
                   >
-                    <span>LET&apos;S TALK</span>
+                    <span
+                      style={{ color: "#ffffff", fontFamily: "var(--font-aventa), 'Aventa', sans-serif", fontSize: "16px", fontWeight: 400 }}
+                      className="!text-white text-white font-sans font-normal text-[16px] btn-label-text btn-label-white"
+                    >
+                      LET&apos;S TALK
+                    </span>
                     <ArrowUpRight className="w-4 h-4 text-[#F75B00] stroke-[2.5] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </Link>
                 </div>
