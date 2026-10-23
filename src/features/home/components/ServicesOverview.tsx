@@ -52,14 +52,22 @@ export function ServicesOverview() {
         </div>
 
         {/* Sticky Stacking Cards Deck (Smooth scroll layer effect) */}
-        <div className="relative pb-16 sm:pb-24">
+        <div className="relative pb-12 sm:pb-16">
           {(SERVICES.filter((s) => s.featured).length > 0
             ? SERVICES.filter((s) => s.featured)
             : SERVICES.slice(0, 4)
           ).map((service, idx) => (
             <div
               key={service.id}
-              className="sticky transition-all duration-300 mb-[130px] sm:mb-[190px] last:mb-0"
+              className={`sticky transition-all duration-300 ${
+                idx === 0
+                  ? "mb-[202px] sm:mb-[262px]"
+                  : idx === 1
+                  ? "mb-[178px] sm:mb-[238px]"
+                  : idx === 2
+                  ? "mb-[154px] sm:mb-[214px]"
+                  : "mb-[130px] sm:mb-[190px]"
+              }`}
               style={{
                 top: `calc(84px + ${idx * 24}px)`,
                 zIndex: 10 + idx,
