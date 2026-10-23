@@ -201,7 +201,7 @@ export function FullMenuOverlay({ isOpen, onClose }: FullMenuOverlayProps) {
                 <Link
                   href="/contact"
                   onClick={onClose}
-                  className="inline-flex items-center gap-1.5 font-heading text-sm sm:text-base font-semibold group transition-colors cursor-pointer pointer-events-auto text-[#121516] hover:text-[#F75B00]"
+                  className="inline-flex items-center gap-1.5 font-heading text-sm sm:text-base font-normal group transition-colors cursor-pointer pointer-events-auto text-[#101820] hover:text-[#F75B00]"
                 >
                   <span className="underline underline-offset-4 decoration-current/40 group-hover:decoration-[#F75B00]">
                     Let&apos;s talk
@@ -238,7 +238,7 @@ export function FullMenuOverlay({ isOpen, onClose }: FullMenuOverlayProps) {
                       width="45.6946"
                       height="2.24728"
                       transform="rotate(45 1.58984 0.0998535)"
-                      className="fill-[#121516] dark:fill-white"
+                      className="fill-[#101820]"
                     />
                     <rect
                       x="0.0898438"
@@ -246,7 +246,7 @@ export function FullMenuOverlay({ isOpen, onClose }: FullMenuOverlayProps) {
                       width="45.6946"
                       height="2.24728"
                       transform="rotate(-45 0.0898438 32.311)"
-                      className="fill-[#121516] dark:fill-white"
+                      className="fill-[#101820]"
                     />
                   </svg>
                 </button>
@@ -267,7 +267,7 @@ export function FullMenuOverlay({ isOpen, onClose }: FullMenuOverlayProps) {
                   <span>Connect with us!</span>
                 </div>
 
-                <h2 className="font-heading font-extrabold text-3xl sm:text-4xl lg:text-[42px] leading-[1.12] text-[#121516] tracking-tight">
+                <h2 className="heading-orlean text-3xl sm:text-4xl lg:text-[59px] leading-tight lg:leading-[47px] font-normal text-[#101820] tracking-tight">
                   Turn Your Vision Into an Experience That Lasts
                 </h2>
 
@@ -276,7 +276,7 @@ export function FullMenuOverlay({ isOpen, onClose }: FullMenuOverlayProps) {
                 <div>
                   <a
                     href={`mailto:${SITE_CONFIG.email}`}
-                    className="inline-flex items-center gap-2.5 font-mono text-sm sm:text-base text-[#45494B] hover:text-[#F75B00] transition-colors underline underline-offset-4 decoration-black/15 hover:decoration-[#F75B00] cursor-pointer pointer-events-auto"
+                    className="inline-flex items-center gap-2.5 font-mono text-sm sm:text-base text-[#101820]/80 hover:text-[#F75B00] transition-colors underline underline-offset-4 decoration-black/15 hover:decoration-[#F75B00] cursor-pointer pointer-events-auto"
                   >
                     <Mail className="w-4 h-4 text-[#55595B]" />
                     <span>{SITE_CONFIG.email}</span>
@@ -288,7 +288,7 @@ export function FullMenuOverlay({ isOpen, onClose }: FullMenuOverlayProps) {
                   <Link
                     href="/contact"
                     onClick={onClose}
-                    className="inline-flex items-center gap-3 px-6 sm:px-7 py-3 sm:py-3.5 rounded-full bg-[#121719] text-white font-heading font-bold text-xs uppercase tracking-wider hover:scale-105 active:scale-95 transition-all shadow-xl group cursor-pointer pointer-events-auto"
+                    className="inline-flex items-center gap-3 px-6 sm:px-7 py-3 sm:py-3.5 rounded-full bg-[#121719] text-white font-heading font-normal text-xs uppercase tracking-wider hover:scale-105 active:scale-95 transition-all shadow-xl group cursor-pointer pointer-events-auto"
                   >
                     <span>LET&apos;S TALK</span>
                     <ArrowUpRight className="w-4 h-4 text-[#F75B00] stroke-[2.5] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -326,10 +326,10 @@ export function FullMenuOverlay({ isOpen, onClose }: FullMenuOverlayProps) {
                           href={item.href}
                           onClick={() => handleNavigate(item.href)}
                           className={cn(
-                            "font-heading text-2xl sm:text-[26px] transition-all flex items-center gap-2.5 group cursor-pointer pointer-events-auto py-0.5",
+                            "paragraph-aventa font-normal text-lg sm:text-[20px] sm:leading-[25px] transition-all flex items-center gap-2.5 group cursor-pointer pointer-events-auto py-0.5",
                             isActive
-                              ? "text-[#121516] font-extrabold"
-                              : "text-[#55595B] font-medium hover:text-[#121516]"
+                              ? "text-[#101820] font-normal"
+                              : "text-[#101820]/75 hover:text-[#101820]"
                           )}
                         >
                           {isActive && (
@@ -377,7 +377,7 @@ export function FullMenuOverlay({ isOpen, onClose }: FullMenuOverlayProps) {
                         <Link
                           href={service.href}
                           onClick={() => handleNavigate(service.href)}
-                          className="font-heading font-medium text-sm sm:text-[15px] text-[#3E4244] hover:text-[#F75B00] transition-colors flex items-center justify-between group py-1 cursor-pointer pointer-events-auto"
+                          className="paragraph-aventa font-normal text-sm sm:text-base text-[#101820]/80 hover:text-[#F75B00] transition-colors flex items-center justify-between group py-1 cursor-pointer pointer-events-auto"
                         >
                           <span className="group-hover:translate-x-1 transition-transform duration-200">
                             {service.label}
@@ -402,10 +402,10 @@ export function FullMenuOverlay({ isOpen, onClose }: FullMenuOverlayProps) {
                     </span>
                   </div>
 
-                  <p className="font-heading font-bold text-lg sm:text-xl text-[#121516] pt-1">
+                  <p className="font-heading font-normal text-xl sm:text-2xl text-[#101820] pt-1">
                     Available For Projects
                   </p>
-                  <p className="font-sans text-xs text-[#55595B] mt-0.5">
+                  <p className="paragraph-aventa font-normal text-sm sm:text-base text-[#101820]/80 mt-1">
                     Open for Custom Development, SaaS Architecture &amp; Dedicated Contracts
                   </p>
                 </motion.div>

@@ -90,17 +90,45 @@
 
 /* ========================================================================== */
 /* GLOBAL TYPOGRAPHY ENFORCEMENT                                             */
+/* Paragraph: Aventa, 20px, line-height 25px, 400, #101820                   */
+/* Heading: Orlean, 59px, line-height 47px, 400, #101820                     */
 /* ========================================================================== */
 html, body {
   font-family: var(--font-aventa), 'Aventa', var(--font-plus-jakarta-sans), system-ui, -apple-system, sans-serif;
+  color: #101820;
 }
 
 h1, h2, h3, h4, h5, h6, .font-heading {
   font-family: var(--font-orlean), 'Orlean', var(--font-space-grotesk), sans-serif !important;
+  color: #101820;
+  font-weight: 400;
 }
 
-p, span, li, a, label, .font-sans {
-  font-family: var(--font-aventa), 'Aventa', var(--font-plus-jakarta-sans), system-ui, sans-serif;
+p, .font-paragraph, .paragraph-aventa {
+  font-family: var(--font-aventa), 'Aventa', var(--font-plus-jakarta-sans), system-ui, sans-serif !important;
+  font-size: 20px !important;
+  line-height: 25px !important;
+  font-weight: 400 !important;
+  color: #101820 !important;
+}
+
+.heading-orlean {
+  font-family: var(--font-orlean), 'Orlean', sans-serif !important;
+  font-size: 59px !important;
+  line-height: 47px !important;
+  font-weight: 400 !important;
+  color: #101820 !important;
+}
+
+@media (max-width: 768px) {
+  .heading-orlean {
+    font-size: 38px !important;
+    line-height: 42px !important;
+  }
+  p, .font-paragraph, .paragraph-aventa {
+    font-size: 17px !important;
+    line-height: 23px !important;
+  }
 }
 
 :root {

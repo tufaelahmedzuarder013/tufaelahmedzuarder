@@ -96,9 +96,9 @@ export function Navbar() {
               className="w-8 sm:w-9 h-8 sm:h-9 flex flex-col justify-center items-center gap-[5.5px] group cursor-pointer shrink-0 pointer-events-auto bg-transparent border-0 p-0 focus:outline-hidden"
             >
               {/* Top Bar (--is-top): Slides right on hover */}
-              <span className="w-6 h-[2px] rounded-full bg-[#121516] dark:bg-white -translate-x-1 group-hover:translate-x-1 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] pointer-events-none" />
+              <span className="w-6 h-[2px] rounded-full bg-[#101820] dark:bg-white -translate-x-1 group-hover:translate-x-1 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] pointer-events-none" />
               {/* Bottom Bar (--is-bottom): Slides left on hover */}
-              <span className="w-6 h-[2px] rounded-full bg-[#121516] dark:bg-white translate-x-1 group-hover:-translate-x-1 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] pointer-events-none" />
+              <span className="w-6 h-[2px] rounded-full bg-[#101820] dark:bg-white translate-x-1 group-hover:-translate-x-1 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] pointer-events-none" />
             </button>
           </div>
         </div>
