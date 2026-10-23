@@ -19,9 +19,17 @@ export function ServicesOverview() {
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 sm:mb-16 gap-6">
           <div>
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#F75B00]/40 bg-[#F75B00]/10 text-neutral-900 dark:text-[#F75B00] font-mono text-xs font-semibold uppercase tracking-[0.16em] mb-4">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#F75B00]/40 bg-[#F75B00]/10 text-neutral-900 dark:text-[#F75B00] uppercase tracking-[0.12em] mb-4">
               <Sparkles className="w-3.5 h-3.5 text-[#F75B00]" />
-              <span>// What I Offer</span>
+              <span
+                style={{
+                  fontFamily: "var(--font-orlean), 'Orlean', sans-serif",
+                  fontSize: "16px",
+                  fontWeight: 300,
+                }}
+              >
+                What I Offer
+              </span>
             </div>
 
             <h2 className="font-heading font-extrabold text-3xl sm:text-4xl md:text-5xl text-brand-ink tracking-[0.04em] [word-spacing:0.18em] leading-[1.2]">

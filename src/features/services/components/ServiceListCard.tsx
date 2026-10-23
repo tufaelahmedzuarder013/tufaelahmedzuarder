@@ -11,7 +11,7 @@ interface ServiceListCardProps {
 
 export function ServiceListCard({ service, priority = false }: ServiceListCardProps) {
   return (
-    <div className="relative rounded-[30px] sm:rounded-[36px] bg-white dark:bg-[#11211C] border border-brand-ink/10 dark:border-white/10 shadow-[0_24px_60px_-15px_rgba(0,0,0,0.12)] dark:shadow-[0_25px_70px_-15px_rgba(0,0,0,0.75)] overflow-hidden transition-all duration-500 hover:shadow-[0_30px_80px_-20px_rgba(247,91,0,0.24)] hover:border-[#F75B00]/50 group">
+    <div className="relative rounded-[30px] sm:rounded-[36px] bg-white dark:bg-[#11211C] border border-brand-ink/10 dark:border-white/10 shadow-[0_24px_60px_-15px_rgba(0,0,0,0.12)] dark:shadow-[0_25px_70px_-15px_rgba(0,0,0,0.75)] overflow-hidden transition-all duration-500 hover:border-[#F75B00]/50 group">
       <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch">
         {/* ========================================================================= */}
         {/* LEFT COLUMN: Content, Metrics & Action Link                                */}
@@ -48,10 +48,24 @@ export function ServiceListCard({ service, priority = false }: ServiceListCardPr
               <div className="grid grid-cols-3 gap-3 sm:gap-5 mb-6">
                 {service.metrics.map((m, mIdx) => (
                   <div key={mIdx}>
-                    <span className="font-heading font-extrabold text-xl sm:text-2xl lg:text-[28px] text-brand-ink dark:text-[#F75B00] block leading-none mb-1.5">
+                    <span
+                      className="text-brand-ink dark:text-[#F75B00] block leading-none mb-1.5"
+                      style={{
+                        fontFamily: "var(--font-orlean), 'Orlean', sans-serif",
+                        fontSize: "25px",
+                        fontWeight: 400,
+                      }}
+                    >
                       {m.value}
                     </span>
-                    <span className="font-mono text-[9px] sm:text-[10px] text-brand-muted2 uppercase tracking-wider block font-semibold leading-tight">
+                    <span
+                      className="text-brand-muted2 uppercase tracking-wider block leading-tight"
+                      style={{
+                        fontFamily: "var(--font-aventa), 'Aventa', sans-serif",
+                        fontSize: "15px",
+                        fontWeight: 300,
+                      }}
+                    >
                       {m.label}
                     </span>
                   </div>
@@ -63,9 +77,17 @@ export function ServiceListCard({ service, priority = false }: ServiceListCardPr
             <div className="pt-1 flex items-center justify-between">
               <Link
                 href={`/services/${service.slug}`}
-                className="inline-flex items-center gap-2.5 font-heading text-sm font-bold text-brand-ink group/btn hover:text-[#F75B00] transition-colors"
+                className="inline-flex items-center gap-2.5 text-brand-ink group/btn hover:text-[#F75B00] transition-colors"
               >
-                <span>View Service Details</span>
+                <span
+                  style={{
+                    fontFamily: "var(--font-orlean), 'Orlean', sans-serif",
+                    fontSize: "20px",
+                    fontWeight: 300,
+                  }}
+                >
+                  View Service Details
+                </span>
                 <span className="w-8 h-8 rounded-full border border-brand-ink/15 dark:border-white/20 flex items-center justify-center group-hover/btn:border-[#F75B00] group-hover/btn:bg-gradient-to-r group-hover/btn:from-[#F75B00] group-hover/btn:to-[#EFC320] group-hover/btn:text-white transition-all shadow-xs">
                   <ArrowUpRight className="w-4 h-4 text-brand-ink group-hover/btn:text-white group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
                 </span>

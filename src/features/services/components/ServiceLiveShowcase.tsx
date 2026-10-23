@@ -387,7 +387,10 @@ function WebDevLiveCodingShowcase() {
       </div>
 
       {/* Footer */}
-      <div className="pt-2 mt-2 border-t border-brand-ink/10 dark:border-white/10 flex items-center justify-between text-[10px] font-mono text-brand-muted dark:text-white/60">
+      <div
+        className="pt-2 mt-2 border-t border-brand-ink/10 dark:border-white/10 flex items-center justify-between text-[11px] text-brand-muted dark:text-white/60"
+        style={{ fontFamily: "var(--font-aventa), 'Aventa', sans-serif" }}
+      >
         <span>Clean Architecture &amp; Scalable SaaS</span>
         <span className="text-emerald-600 dark:text-emerald-400 font-bold">PRODUCTION READY</span>
       </div>
@@ -542,7 +545,10 @@ function UiUxLiveCanvasShowcase() {
       </div>
 
       {/* Footer */}
-      <div className="pt-2 mt-2 border-t border-brand-ink/10 dark:border-white/10 flex items-center justify-between text-[10px] font-mono text-brand-muted dark:text-white/60">
+      <div
+        className="pt-2 mt-2 border-t border-brand-ink/10 dark:border-white/10 flex items-center justify-between text-[11px] text-brand-muted dark:text-white/60"
+        style={{ fontFamily: "var(--font-aventa), 'Aventa', sans-serif" }}
+      >
         <span>Figma to Tailwind Tokens</span>
         <span className="text-emerald-600 dark:text-emerald-400 font-bold">100% DESIGN SYSTEM</span>
       </div>
@@ -717,7 +723,10 @@ function PerformanceLiveAuditShowcase() {
       </div>
 
       {/* Footer */}
-      <div className="pt-2 mt-2 border-t border-brand-ink/10 dark:border-white/10 flex items-center justify-between text-[10px] font-mono text-brand-muted dark:text-white/60">
+      <div
+        className="pt-2 mt-2 border-t border-brand-ink/10 dark:border-white/10 flex items-center justify-between text-[11px] text-brand-muted dark:text-white/60"
+        style={{ fontFamily: "var(--font-aventa), 'Aventa', sans-serif" }}
+      >
         <span>Core Web Vitals Pass</span>
         <span className="text-emerald-600 dark:text-emerald-400 font-bold">TOP 1% WORLDWIDE</span>
       </div>
@@ -818,7 +827,10 @@ function MotionLivePhysicsShowcase() {
       </div>
 
       {/* Footer */}
-      <div className="pt-2 mt-2 border-t border-brand-ink/10 dark:border-white/10 flex items-center justify-between text-[10px] font-mono text-brand-muted dark:text-white/60">
+      <div
+        className="pt-2 mt-2 border-t border-brand-ink/10 dark:border-white/10 flex items-center justify-between text-[11px] text-brand-muted dark:text-white/60"
+        style={{ fontFamily: "var(--font-aventa), 'Aventa', sans-serif" }}
+      >
         <span>Hardware Accelerated Transitions</span>
         <span className="text-amber-500 font-bold">SILKY 60 FPS</span>
       </div>
@@ -948,7 +960,10 @@ function MobileAppLiveShowcase() {
         </div>
       </div>
 
-      <div className="pt-2 mt-2 border-t border-brand-ink/10 dark:border-white/10 flex items-center justify-between text-[10px] font-mono text-brand-muted dark:text-white/60">
+      <div
+        className="pt-2 mt-2 border-t border-brand-ink/10 dark:border-white/10 flex items-center justify-between text-[11px] text-brand-muted dark:text-white/60"
+        style={{ fontFamily: "var(--font-aventa), 'Aventa', sans-serif" }}
+      >
         <span>Cross-Platform Native Experience</span>
         <span className="text-emerald-600 dark:text-emerald-400 font-bold">STORE READY</span>
       </div>
@@ -1039,7 +1054,10 @@ function SoftwareArchLiveShowcase() {
         </div>
       </div>
 
-      <div className="pt-2 mt-2 border-t border-brand-ink/10 dark:border-white/10 flex items-center justify-between text-[10px] font-mono text-brand-muted dark:text-white/60">
+      <div
+        className="pt-2 mt-2 border-t border-brand-ink/10 dark:border-white/10 flex items-center justify-between text-[11px] text-brand-muted dark:text-white/60"
+        style={{ fontFamily: "var(--font-aventa), 'Aventa', sans-serif" }}
+      >
         <span>High-Throughput Enterprise Backend</span>
         <span className="text-emerald-600 dark:text-emerald-400 font-bold">ZERO DOWNTIME</span>
       </div>
@@ -1126,7 +1144,10 @@ function SaasProductsLiveShowcase() {
         </div>
       </div>
 
-      <div className="pt-2 mt-2 border-t border-brand-ink/10 dark:border-white/10 flex items-center justify-between text-[10px] font-mono text-brand-muted dark:text-white/60">
+      <div
+        className="pt-2 mt-2 border-t border-brand-ink/10 dark:border-white/10 flex items-center justify-between text-[11px] text-brand-muted dark:text-white/60"
+        style={{ fontFamily: "var(--font-aventa), 'Aventa', sans-serif" }}
+      >
         <span>Turnkey Recurring Revenue Engine</span>
         <span className="text-emerald-600 dark:text-emerald-400 font-bold">READY TO SCALE</span>
       </div>
@@ -1213,7 +1234,10 @@ function HrSystemLiveShowcase() {
         </div>
       </div>
 
-      <div className="pt-2 mt-2 border-t border-brand-ink/10 dark:border-white/10 flex items-center justify-between text-[10px] font-mono text-brand-muted dark:text-white/60">
+      <div
+        className="pt-2 mt-2 border-t border-brand-ink/10 dark:border-white/10 flex items-center justify-between text-[11px] text-brand-muted dark:text-white/60"
+        style={{ fontFamily: "var(--font-aventa), 'Aventa', sans-serif" }}
+      >
         <span>Modern Enterprise Workforce Portal</span>
         <span className="text-emerald-600 dark:text-emerald-400 font-bold">100% COMPLIANCE</span>
       </div>
@@ -1303,7 +1327,10 @@ function CrmSystemLiveShowcase() {
         </div>
       </div>
 
-      <div className="pt-2 mt-2 border-t border-brand-ink/10 dark:border-white/10 flex items-center justify-between text-[10px] font-mono text-brand-muted dark:text-white/60">
+      <div
+        className="pt-2 mt-2 border-t border-brand-ink/10 dark:border-white/10 flex items-center justify-between text-[11px] text-brand-muted dark:text-white/60"
+        style={{ fontFamily: "var(--font-aventa), 'Aventa', sans-serif" }}
+      >
         <span>Custom Sales Flow &amp; Lead Engine</span>
         <span className="text-emerald-600 dark:text-emerald-400 font-bold">MAXIMUM CONVERSION</span>
       </div>
@@ -1378,7 +1405,10 @@ function CmsLiveShowcase() {
         </div>
       </div>
 
-      <div className="pt-2 mt-2 border-t border-brand-ink/10 dark:border-white/10 flex items-center justify-between text-[10px] font-mono text-brand-muted dark:text-white/60">
+      <div
+        className="pt-2 mt-2 border-t border-brand-ink/10 dark:border-white/10 flex items-center justify-between text-[11px] text-brand-muted dark:text-white/60"
+        style={{ fontFamily: "var(--font-aventa), 'Aventa', sans-serif" }}
+      >
         <span>Empower Marketing &amp; Editorial Teams</span>
         <span className="text-emerald-600 dark:text-emerald-400 font-bold">INSTANT PREVIEWS</span>
       </div>
@@ -1452,7 +1482,10 @@ function BrandingLiveShowcase() {
         </div>
       </div>
 
-      <div className="pt-2 mt-2 border-t border-brand-ink/10 dark:border-white/10 flex items-center justify-between text-[10px] font-mono text-brand-muted dark:text-white/60">
+      <div
+        className="pt-2 mt-2 border-t border-brand-ink/10 dark:border-white/10 flex items-center justify-between text-[11px] text-brand-muted dark:text-white/60"
+        style={{ fontFamily: "var(--font-aventa), 'Aventa', sans-serif" }}
+      >
         <span>Strategic Brand Architecture</span>
         <span className="text-emerald-600 dark:text-emerald-400 font-bold">TIMELESS IDENTITY</span>
       </div>
@@ -1527,7 +1560,10 @@ function DigitalMarketingLiveShowcase() {
         </div>
       </div>
 
-      <div className="pt-2 mt-2 border-t border-brand-ink/10 dark:border-white/10 flex items-center justify-between text-[10px] font-mono text-brand-muted dark:text-white/60">
+      <div
+        className="pt-2 mt-2 border-t border-brand-ink/10 dark:border-white/10 flex items-center justify-between text-[11px] text-brand-muted dark:text-white/60"
+        style={{ fontFamily: "var(--font-aventa), 'Aventa', sans-serif" }}
+      >
         <span>Data-Driven Client Acquisition</span>
         <span className="text-emerald-600 dark:text-emerald-400 font-bold">PROVEN ROI</span>
       </div>
@@ -1621,7 +1657,10 @@ function GraphicDesignLiveShowcase() {
         </div>
       </div>
 
-      <div className="pt-2 mt-2 border-t border-brand-ink/10 dark:border-white/10 flex items-center justify-between text-[10px] font-mono text-brand-muted dark:text-white/60">
+      <div
+        className="pt-2 mt-2 border-t border-brand-ink/10 dark:border-white/10 flex items-center justify-between text-[11px] text-brand-muted dark:text-white/60"
+        style={{ fontFamily: "var(--font-aventa), 'Aventa', sans-serif" }}
+      >
         <span>High-Impact Visual Assets</span>
         <span className="text-emerald-600 dark:text-emerald-400 font-bold">PRESS &amp; WEB READY</span>
       </div>
