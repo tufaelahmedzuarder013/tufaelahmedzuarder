@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
-import { Sparkles, Zap, Layout, Code2, ArrowRight, ShieldCheck } from "lucide-react";
+import Link from "next/link";
+import { Sparkles, Zap, Layout, Code2, ArrowRight } from "lucide-react";
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/Button";
 
@@ -35,31 +36,22 @@ export function HomeAboutTeaser() {
               <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
             </div>
 
-            {/* Top-Right Floating Live Status Pill */}
+            {/* Top-Right Floating Status Pill: Think , Plan , Execute (Orlean, 16px, 400) */}
             <div className="absolute top-2 -right-2 sm:top-2 sm:-right-4 bg-brand-surface/95 dark:bg-[#1a1208]/90 backdrop-blur-xl border border-brand-ink/10 dark:border-[#F75B00]/30 rounded-full px-4 py-2 shadow-xl flex items-center gap-2.5 z-20 transition-transform duration-300 hover:scale-105">
               <span className="relative flex h-2.5 w-2.5">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#F75B00] opacity-75" />
                 <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#F75B00]" />
               </span>
-              <span className="font-mono text-xs font-semibold text-brand-ink tracking-wide">
-                Available for Freelance
+              <span
+                style={{
+                  fontFamily: "var(--font-orlean), 'Orlean', sans-serif",
+                  fontSize: "16px",
+                  fontWeight: 400,
+                }}
+                className="font-heading font-normal text-[16px] text-brand-ink dark:text-white tracking-wide"
+              >
+                Think , Plan , Execute
               </span>
-            </div>
-
-            {/* Bottom-Left Floating Experience Badge - Zero Clipping Guarantee */}
-            <div className="absolute -bottom-4 sm:-bottom-6 -left-3 sm:-left-6 bg-brand-surface/95 dark:bg-[#1a1208]/95 backdrop-blur-2xl border border-brand-ink/10 dark:border-[#F75B00]/35 rounded-2xl sm:rounded-3xl p-4 sm:p-5 shadow-[0_20px_50px_-10px_rgba(0,0,0,0.18)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.7)] flex items-center gap-3.5 sm:gap-4 z-20 transition-transform duration-300 hover:scale-105">
-              {/* Vibrant Badge Icon with 5+ */}
-              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-gradient-to-br from-[#F75B00] to-[#EFC320] flex items-center justify-center text-white font-heading font-black text-2xl sm:text-3xl shadow-[0_6px_20px_rgba(247,91,0,0.4)] shrink-0">
-                5+
-              </div>
-              <div>
-                <span className="block font-heading font-bold text-sm sm:text-base text-brand-ink leading-tight">
-                  Years Experience
-                </span>
-                <span className="block font-mono text-[11px] sm:text-xs text-brand-muted mt-0.5 tracking-tight">
-                  Web & UI/UX Specialist
-                </span>
-              </div>
             </div>
           </div>
 
@@ -92,45 +84,69 @@ export function HomeAboutTeaser() {
               </p>
             </div>
 
-            {/* 3 Bento Feature Highlight Pills */}
+            {/* 3 Bento Feature Highlight Cards (Titles: Orlean, 18px, 400) */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
-              <div className="p-3.5 rounded-2xl bg-brand-surface/75 dark:bg-white/[0.03] border border-brand-ink/10 dark:border-white/10 shadow-xs flex items-start gap-3 transition-all duration-300 hover:border-[#F75B00]/40">
+              <div className="p-4 rounded-2xl bg-brand-surface/75 dark:bg-white/[0.03] border border-brand-ink/10 dark:border-white/10 shadow-xs flex items-start gap-3 transition-all duration-300 hover:border-[#F75B00]/40">
                 <div className="w-8 h-8 rounded-xl bg-[#F75B00]/15 flex items-center justify-center text-[#F75B00] shrink-0 mt-0.5">
                   <Zap className="w-4 h-4" />
                 </div>
                 <div>
-                  <span className="block font-heading font-bold text-xs sm:text-sm text-brand-ink leading-tight">
+                  <span
+                    style={{
+                      fontFamily: "var(--font-orlean), 'Orlean', sans-serif",
+                      fontSize: "18px",
+                      fontWeight: 400,
+                      lineHeight: "1.2",
+                    }}
+                    className="block font-heading font-normal text-[18px] text-brand-ink dark:text-white leading-tight"
+                  >
                     Sub-second Speed
                   </span>
-                  <span className="block font-sans text-[11px] text-brand-muted mt-0.5">
+                  <span className="block font-sans text-xs text-brand-muted mt-1">
                     99+ Lighthouse score
                   </span>
                 </div>
               </div>
 
-              <div className="p-3.5 rounded-2xl bg-brand-surface/75 dark:bg-white/[0.03] border border-brand-ink/10 dark:border-white/10 shadow-xs flex items-start gap-3 transition-all duration-300 hover:border-[#F75B00]/40">
+              <div className="p-4 rounded-2xl bg-brand-surface/75 dark:bg-white/[0.03] border border-brand-ink/10 dark:border-white/10 shadow-xs flex items-start gap-3 transition-all duration-300 hover:border-[#F75B00]/40">
                 <div className="w-8 h-8 rounded-xl bg-[#F75B00]/15 flex items-center justify-center text-[#F75B00] shrink-0 mt-0.5">
                   <Code2 className="w-4 h-4" />
                 </div>
                 <div>
-                  <span className="block font-heading font-bold text-xs sm:text-sm text-brand-ink leading-tight">
+                  <span
+                    style={{
+                      fontFamily: "var(--font-orlean), 'Orlean', sans-serif",
+                      fontSize: "18px",
+                      fontWeight: 400,
+                      lineHeight: "1.2",
+                    }}
+                    className="block font-heading font-normal text-[18px] text-brand-ink dark:text-white leading-tight"
+                  >
                     Modern Stack
                   </span>
-                  <span className="block font-sans text-[11px] text-brand-muted mt-0.5">
+                  <span className="block font-sans text-xs text-brand-muted mt-1">
                     Next.js 14, React & TS
                   </span>
                 </div>
               </div>
 
-              <div className="p-3.5 rounded-2xl bg-brand-surface/75 dark:bg-white/[0.03] border border-brand-ink/10 dark:border-white/10 shadow-xs flex items-start gap-3 transition-all duration-300 hover:border-[#F75B00]/40">
+              <div className="p-4 rounded-2xl bg-brand-surface/75 dark:bg-white/[0.03] border border-brand-ink/10 dark:border-white/10 shadow-xs flex items-start gap-3 transition-all duration-300 hover:border-[#F75B00]/40">
                 <div className="w-8 h-8 rounded-xl bg-[#EFC320]/20 flex items-center justify-center text-[#F75B00] shrink-0 mt-0.5">
                   <Layout className="w-4 h-4" />
                 </div>
                 <div>
-                  <span className="block font-heading font-bold text-xs sm:text-sm text-brand-ink leading-tight">
+                  <span
+                    style={{
+                      fontFamily: "var(--font-orlean), 'Orlean', sans-serif",
+                      fontSize: "18px",
+                      fontWeight: 400,
+                      lineHeight: "1.2",
+                    }}
+                    className="block font-heading font-normal text-[18px] text-brand-ink dark:text-white leading-tight"
+                  >
                     UI/UX Precision
                   </span>
-                  <span className="block font-sans text-[11px] text-brand-muted mt-0.5">
+                  <span className="block font-sans text-xs text-brand-muted mt-1">
                     Pixel-perfect finish
                   </span>
                 </div>
@@ -148,13 +164,18 @@ export function HomeAboutTeaser() {
                 More about me
               </Button>
 
-              <Button
+              {/* Explore projects: No background color */}
+              <Link
                 href="/portfolio"
-                variant="ghost"
-                size="md"
+                style={{
+                  fontFamily: "var(--font-aventa), 'Aventa', sans-serif",
+                  fontSize: "16px",
+                  fontWeight: 400,
+                }}
+                className="inline-flex items-center justify-center font-sans font-normal text-[16px] px-6 py-2.5 rounded-full bg-transparent border border-brand-ink/20 dark:border-white/25 text-[#101820] dark:text-white hover:border-[#F75B00] hover:text-[#F75B00] dark:hover:border-[#F75B00] dark:hover:text-[#F75B00] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 group cursor-pointer shadow-none"
               >
-                Explore projects
-              </Button>
+                <span>Explore projects</span>
+              </Link>
             </div>
           </div>
         </div>

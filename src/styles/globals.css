@@ -170,6 +170,12 @@ button span:not(.btn-circle-icon):not(.btn-circle-icon *),
   color: #ffffff !important;
 }
 
+.cta-banner-dark p,
+.cta-banner-subtitle {
+  font-size: 18px !important;
+  line-height: 28px !important;
+}
+
 /* Icons inside white badge circles on buttons MUST strictly be deep black (#101820) */
 .btn-circle-icon,
 span.btn-circle-icon,
