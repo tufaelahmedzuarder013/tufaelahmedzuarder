@@ -213,25 +213,55 @@ export function FullMenuOverlay({ isOpen, onClose }: FullMenuOverlayProps) {
                   |
                 </span>
 
-                {/* Sleek Minimal Close Button (Exact match to mdx.so Image 2) */}
+                {/* Sleek Minimal Close Button (Exact mdx.so Image 2 geometry) */}
                 <button
                   type="button"
                   onClick={(e) => {
                     e.stopPropagation();
                     onClose();
                   }}
-                  aria-label="Close menu"
-                  className="w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center hover:bg-black/[0.06] transition-all cursor-pointer group pointer-events-auto text-[#121516]"
+                  aria-label="Close navigation menu"
+                  title="Close navigation menu"
+                  className="w-8 sm:w-9 h-8 sm:h-9 flex items-center justify-center cursor-pointer group pointer-events-auto bg-transparent border-0 p-0 focus:outline-hidden"
                 >
-                  <X className="w-5 h-5 sm:w-6 sm:h-6 stroke-[1.8] group-hover:rotate-90 transition-transform duration-300 pointer-events-none" />
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="32"
+                    height="32"
+                    viewBox="0 0 34 34"
+                    fill="none"
+                    className="w-6 h-6 sm:w-7 sm:h-7 group-hover:rotate-90 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] pointer-events-none"
+                  >
+                    <rect
+                      x="1.58984"
+                      y="0.0998535"
+                      width="45.6946"
+                      height="2.24728"
+                      transform="rotate(45 1.58984 0.0998535)"
+                      className="fill-[#121516] dark:fill-white"
+                    />
+                    <rect
+                      x="0.0898438"
+                      y="32.311"
+                      width="45.6946"
+                      height="2.24728"
+                      transform="rotate(-45 0.0898438 32.311)"
+                      className="fill-[#121516] dark:fill-white"
+                    />
+                  </svg>
                 </button>
               </div>
             </div>
 
-            {/* Body Grid: 3 Clean Columns */}
+            {/* Body Grid: 3 Clean Columns with Dynamic Staggered Reveal */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 my-auto py-4 sm:py-6 items-start relative z-20">
               {/* LEFT COLUMN: Hero Callout & Direct Contact */}
-              <div className="lg:col-span-4 space-y-6 pr-0 lg:pr-4">
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.42, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
+                className="lg:col-span-4 space-y-6 pr-0 lg:pr-4"
+              >
                 <div className="flex items-center gap-2 text-xs font-mono font-bold text-[#F75B00]">
                   <span className="w-2 h-2 rounded-full bg-[#F75B00]" />
                   <span>Connect with us!</span>
@@ -264,9 +294,9 @@ export function FullMenuOverlay({ isOpen, onClose }: FullMenuOverlayProps) {
                     <ArrowUpRight className="w-4 h-4 text-[#F75B00] stroke-[2.5] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </Link>
                 </div>
-              </div>
+              </motion.div>
 
-              {/* MIDDLE COLUMN: NAVIGATION (User's actual pages) */}
+              {/* MIDDLE COLUMN: NAVIGATION (User's actual pages with cascading reveal) */}
               <div className="lg:col-span-3 space-y-4">
                 <div className="pb-2 border-b border-black/10">
                   <span className="font-mono text-xs uppercase tracking-widest text-[#6C7072] font-semibold">
@@ -275,14 +305,23 @@ export function FullMenuOverlay({ isOpen, onClose }: FullMenuOverlayProps) {
                 </div>
 
                 <ul className="space-y-2 pt-1">
-                  {navItems.map((item) => {
+                  {navItems.map((item, index) => {
                     const isActive =
                       item.href === "/"
                         ? pathname === "/"
                         : pathname.startsWith(item.href);
 
                     return (
-                      <li key={item.label}>
+                      <motion.li
+                        key={item.label}
+                        initial={{ opacity: 0, x: -14 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{
+                          duration: 0.38,
+                          delay: 0.12 + index * 0.045,
+                          ease: [0.16, 1, 0.3, 1],
+                        }}
+                      >
                         <Link
                           href={item.href}
                           onClick={() => handleNavigate(item.href)}
@@ -300,7 +339,7 @@ export function FullMenuOverlay({ isOpen, onClose }: FullMenuOverlayProps) {
                             {item.label}
                           </span>
                         </Link>
-                      </li>
+                      </motion.li>
                     );
                   })}
                 </ul>
@@ -324,8 +363,17 @@ export function FullMenuOverlay({ isOpen, onClose }: FullMenuOverlayProps) {
                   </div>
 
                   <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2">
-                    {serviceItems.map((service) => (
-                      <li key={service.label}>
+                    {serviceItems.map((service, index) => (
+                      <motion.li
+                        key={service.label}
+                        initial={{ opacity: 0, y: 12 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{
+                          duration: 0.35,
+                          delay: 0.15 + index * 0.03,
+                          ease: [0.16, 1, 0.3, 1],
+                        }}
+                      >
                         <Link
                           href={service.href}
                           onClick={() => handleNavigate(service.href)}
@@ -336,13 +384,18 @@ export function FullMenuOverlay({ isOpen, onClose }: FullMenuOverlayProps) {
                           </span>
                           <ArrowUpRight className="w-3.5 h-3.5 text-[#F75B00] opacity-0 group-hover:opacity-100 transition-opacity shrink-0 ml-1" />
                         </Link>
-                      </li>
+                      </motion.li>
                     ))}
                   </ul>
                 </div>
 
                 {/* COLLABORATION Subsection */}
-                <div className="pt-2">
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.38, delay: 0.32, ease: [0.16, 1, 0.3, 1] }}
+                  className="pt-2"
+                >
                   <div className="pb-2 border-b border-black/10 mb-2">
                     <span className="font-mono text-xs uppercase tracking-widest text-[#6C7072] font-semibold">
                       COLLABORATION
@@ -355,7 +408,7 @@ export function FullMenuOverlay({ isOpen, onClose }: FullMenuOverlayProps) {
                   <p className="font-sans text-xs text-[#55595B] mt-0.5">
                     Open for Custom Development, SaaS Architecture &amp; Dedicated Contracts
                   </p>
-                </div>
+                </motion.div>
               </div>
             </div>
 

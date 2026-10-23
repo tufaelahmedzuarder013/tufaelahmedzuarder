@@ -87,23 +87,18 @@ export function Navbar() {
               |
             </span>
 
-            {/* Staggered 2-Bar Menu Toggle Button (Exact mdx.so behavior & animation) */}
+            {/* Staggered 2-Bar Menu Toggle Button (Exact borderless mdx.so Image 1 design) */}
             <button
               type="button"
               onClick={() => setFullMenuOpen(true)}
               aria-label="Open navigation menu"
               title="Open navigation menu"
-              className={cn(
-                "w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-brand-ink/15 dark:border-white/20 flex flex-col justify-center items-center gap-[5px] transition-all duration-300 group cursor-pointer shadow-xs shrink-0 hover:scale-105 active:scale-95 pointer-events-auto",
-                isScrolled
-                  ? "bg-black/[0.04] dark:bg-white/[0.08] hover:border-[#F75B00] dark:hover:border-[#F75B00] hover:bg-[#F75B00]/10"
-                  : "bg-brand-surface dark:bg-white/[0.07] hover:border-[#F75B00] dark:hover:border-[#F75B00]"
-              )}
+              className="w-8 sm:w-9 h-8 sm:h-9 flex flex-col justify-center items-center gap-[5.5px] group cursor-pointer shrink-0 pointer-events-auto bg-transparent border-0 p-0 focus:outline-hidden"
             >
               {/* Top Bar (--is-top): Slides right on hover */}
-              <span className="w-4.5 sm:w-5 h-[1.8px] rounded-full bg-brand-ink dark:bg-white -translate-x-1 group-hover:translate-x-1 transition-transform duration-300 ease-out pointer-events-none" />
+              <span className="w-6 h-[2px] rounded-full bg-[#121516] dark:bg-white -translate-x-1 group-hover:translate-x-1 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] pointer-events-none" />
               {/* Bottom Bar (--is-bottom): Slides left on hover */}
-              <span className="w-4.5 sm:w-5 h-[1.8px] rounded-full bg-brand-ink dark:bg-white translate-x-1 group-hover:-translate-x-1 transition-transform duration-300 ease-out pointer-events-none" />
+              <span className="w-6 h-[2px] rounded-full bg-[#121516] dark:bg-white translate-x-1 group-hover:-translate-x-1 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] pointer-events-none" />
             </button>
           </div>
         </div>
