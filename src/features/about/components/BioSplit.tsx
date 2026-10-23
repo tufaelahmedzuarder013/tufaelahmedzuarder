@@ -39,11 +39,11 @@ export function BioSplit() {
           Obsessed with code quality, user experience, and fast delivery.
         </h2>
 
-        <p className="text-base text-brand-muted leading-relaxed">
+        <p className="text-base text-[#101820] dark:text-[#E2E8F0] leading-relaxed">
           I am <strong>Tufael Ahmed Zuarder</strong>, a Full-Stack Web Developer based in Sylhet, Bangladesh. Over the past 4+ years, I have helped founders, startups, and agencies turn ambitious ideas into high-performance web products.
         </p>
 
-        <p className="text-base text-brand-muted leading-relaxed">
+        <p className="text-base text-[#101820] dark:text-[#E2E8F0] leading-relaxed">
           My development philosophy is simple: clean code, accessible design, and zero bloat. Every project I build is engineered with modern frameworks like <strong>Next.js</strong>, <strong>React</strong>, and <strong>Tailwind CSS</strong> to ensure lightning-fast page loads and intuitive usability across every device.
         </p>
 

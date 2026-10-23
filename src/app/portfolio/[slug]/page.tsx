@@ -75,7 +75,7 @@ export default function ProjectDetailPage({ params }: ProjectPageProps) {
                 <h3 className="font-heading text-2xl font-bold text-brand-ink mb-3">
                   Overview
                 </h3>
-                <p className="text-base text-brand-muted leading-relaxed">
+                <p className="text-base text-[#101820] dark:text-[#E2E8F0] leading-relaxed">
                   {project.overview}
                 </p>
               </div>
@@ -84,7 +84,7 @@ export default function ProjectDetailPage({ params }: ProjectPageProps) {
                 <h3 className="font-heading text-xl font-bold text-brand-ink mb-3">
                   The Challenge
                 </h3>
-                <p className="text-base text-brand-muted leading-relaxed">
+                <p className="text-base text-[#101820] dark:text-[#E2E8F0] leading-relaxed">
                   {project.challenge}
                 </p>
               </div>
@@ -93,7 +93,7 @@ export default function ProjectDetailPage({ params }: ProjectPageProps) {
                 <h3 className="font-heading text-xl font-bold text-brand-ink mb-3">
                   The Solution
                 </h3>
-                <p className="text-base text-brand-muted leading-relaxed">
+                <p className="text-base text-[#101820] dark:text-[#E2E8F0] leading-relaxed">
                   {project.solution}
                 </p>
               </div>

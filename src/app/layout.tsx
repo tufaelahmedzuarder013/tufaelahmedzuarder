@@ -10,6 +10,7 @@ import { Footer } from "@/components/layout/Footer";
 import { CustomCursor } from "@/components/animation/CustomCursor";
 import { SplashCursor } from "@/components/animation/SplashCursor";
 import { Preloader } from "@/components/animation/Preloader";
+import { GsapAnimationProvider } from "@/components/providers/GsapAnimationProvider";
 import { constructMetadata } from "@/lib/seo";
 
 const orleanFont = localFont({
@@ -166,15 +167,17 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen flex flex-col bg-brand-bg text-brand-ink antialiased selection:bg-brand-violet selection:text-white">
         <StoreProvider>
-          <SplashCursor />
-          <CustomCursor />
-          <Preloader />
-          <div id="website-content" className="flex-1 flex flex-col transition-opacity duration-700">
-            <Navbar />
-            <MobileNav />
-            <main className="flex-1">{children}</main>
-            <Footer />
-          </div>
+          <GsapAnimationProvider>
+            <SplashCursor />
+            <CustomCursor />
+            <Preloader />
+            <div id="website-content" className="flex-1 flex flex-col transition-opacity duration-700">
+              <Navbar />
+              <MobileNav />
+              <main className="flex-1">{children}</main>
+              <Footer />
+            </div>
+          </GsapAnimationProvider>
         </StoreProvider>
       </body>
     </html>

@@ -83,11 +83,11 @@ export function HomeAboutTeaser() {
 
             {/* Body Copy Paragraphs */}
             <div className="space-y-4">
-              <p className="font-sans text-base sm:text-lg text-brand-muted leading-relaxed tracking-[0.035em] [word-spacing:0.15em]">
+              <p className="font-sans text-base sm:text-lg text-[#101820] dark:text-[#E2E8F0] leading-relaxed tracking-[0.035em] [word-spacing:0.15em]">
                 I&apos;m <strong className="text-brand-ink font-semibold">Tufael Ahmed Zuarder</strong>, a full-stack web developer who turns ideas into fast, polished products. I care about the details most people never notice — the milliseconds, the spacing, the way a page feels as it loads.
               </p>
 
-              <p className="font-sans text-base sm:text-lg text-brand-muted leading-relaxed tracking-[0.035em] [word-spacing:0.15em]">
+              <p className="font-sans text-base sm:text-lg text-[#101820] dark:text-[#E2E8F0] leading-relaxed tracking-[0.035em] [word-spacing:0.15em]">
                 My work lives at the intersection of clean engineering and thoughtful design — premium-looking experiences that run smoothly on every device.
               </p>
             </div>

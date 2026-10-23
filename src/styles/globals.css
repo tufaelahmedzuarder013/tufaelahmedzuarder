@@ -105,11 +105,24 @@ h1, h2, h3, h4, h5, h6, .font-heading {
 }
 
 p, .font-paragraph, .paragraph-aventa {
-  font-family: var(--font-aventa), 'Aventa', var(--font-plus-jakarta-sans), system-ui, sans-serif !important;
-  font-size: 20px !important;
-  line-height: 25px !important;
-  font-weight: 400 !important;
+  font-family: var(--font-aventa), 'Aventa', var(--font-plus-jakarta-sans), system-ui, sans-serif;
+  font-size: 20px;
+  line-height: 25px;
+  font-weight: 400;
   color: #101820 !important;
+}
+
+.gsap-word {
+  color: #101820;
+}
+
+/* Explicit white text ONLY in dedicated dark containers / CTA banners */
+.cta-banner-dark p,
+.dark-container p,
+.bg-neutral-950 p,
+[data-theme-inverted="true"] p,
+.text-white-forced {
+  color: #ffffff !important;
 }
 
 .heading-orlean {
@@ -129,6 +142,21 @@ p, .font-paragraph, .paragraph-aventa {
     font-size: 17px !important;
     line-height: 23px !important;
   }
+}
+
+/* ========================================================================== */
+/* GSAP SCROLL-DRIVEN PROGRESSIVE TEXT REVEAL                                */
+/* ========================================================================== */
+.gsap-scroll-word,
+.gsap-word {
+  display: inline-block;
+  will-change: color, opacity;
+  transition: color 0.1s ease;
+}
+
+.gsap-scrub-word {
+  display: inline-block;
+  will-change: opacity, transform;
 }
 
 :root {

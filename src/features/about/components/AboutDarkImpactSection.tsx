@@ -11,7 +11,7 @@ export function AboutDarkImpactSection() {
   return (
     <section className="py-12 md:py-20">
       <div className="w-full max-w-[1520px] px-4 sm:px-6 lg:px-10 mx-auto">
-        <div className="relative rounded-[2.5rem] bg-[#121316] text-white p-8 sm:p-14 lg:p-20 overflow-hidden shadow-2xl border border-white/5">
+        <div className="cta-banner-dark relative rounded-[2.5rem] bg-[#121316] text-white p-8 sm:p-14 lg:p-20 overflow-hidden shadow-2xl border border-white/5">
           
           {/* Subtle Ambient Glow */}
           <div className="absolute top-0 right-1/4 w-[500px] h-[300px] bg-emerald-500/10 rounded-full blur-[120px] pointer-events-none" />

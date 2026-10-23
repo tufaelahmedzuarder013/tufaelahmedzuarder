@@ -18,23 +18,13 @@ export function ServiceListCard({ service, priority = false }: ServiceListCardPr
         {/* ========================================================================= */}
         <div className="lg:col-span-6 p-7 sm:p-10 lg:p-12 flex flex-col justify-between z-10">
           <div>
-            {/* Category Pill Tag & Breadcrumb */}
-            <div className="flex items-center gap-2.5 mb-4 sm:mb-5">
-              <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-mono font-bold tracking-wider text-neutral-900 dark:text-[#F75B00] bg-[#F75B00]/15 border border-[#F75B00]/40 uppercase">
-                {service.tag || "SERVICE"}
-              </span>
-              <span className="font-mono text-xs text-brand-muted2 tracking-wider uppercase font-medium">
-                / {service.category || "EXPERTISE"}
-              </span>
-            </div>
-
             {/* Service Title */}
             <h3 className="font-heading font-extrabold text-2xl sm:text-3xl lg:text-[34px] text-brand-ink tracking-[0.03em] [word-spacing:0.15em] leading-[1.2] mb-3 sm:mb-4 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[#F75B00] group-hover:via-[#EFC320] group-hover:to-[#F75B00] dark:group-hover:from-white dark:group-hover:via-[#F75B00] dark:group-hover:to-[#EFC320] transition-all duration-300">
               {service.title}
             </h3>
 
             {/* Overview / Problem-Solution Description */}
-            <p className="font-sans text-sm sm:text-base text-brand-muted leading-relaxed mb-6">
+            <p className="font-sans text-sm sm:text-base text-[#101820] dark:text-[#E2E8F0] leading-relaxed mb-6">
               {service.overview}
             </p>
 

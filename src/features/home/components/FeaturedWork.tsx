@@ -246,7 +246,7 @@ export function FeaturedWork() {
                           </div>
                         </div>
 
-                        <p className="font-sans text-xs sm:text-sm text-brand-muted leading-relaxed line-clamp-2">
+                        <p className="font-sans text-xs sm:text-sm text-[#101820] dark:text-[#E2E8F0] leading-relaxed line-clamp-2">
                           {project.summary || project.overview}
                         </p>
                       </div>

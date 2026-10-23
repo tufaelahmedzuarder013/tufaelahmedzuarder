@@ -54,7 +54,7 @@ export function PageBanner({
         </h1>
 
         {/* Description */}
-        <p className="text-base sm:text-lg text-brand-muted max-w-xl mx-auto leading-relaxed">
+        <p className="text-base sm:text-lg text-[#101820] dark:text-[#E2E8F0] max-w-xl mx-auto leading-relaxed">
           {description}
         </p>
       </Container>

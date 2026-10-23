@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Sparkles, CheckCircle2, ArrowRight, Target, Eye } from "lucide-react";
+import { CheckCircle2, ArrowRight, Target, Eye } from "lucide-react";
 import { Container } from "@/components/layout/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { MissionVisionCodeArtwork } from "./MissionVisionCodeArtwork";
@@ -84,41 +84,23 @@ export function MissionVisionSection() {
             {/* ================= LEFT COLUMN: Statement & Core Pillars ================= */}
             <div className="lg:col-span-7 p-7 sm:p-12 lg:p-14 flex flex-col justify-between z-10">
               <div>
-                {/* Figma-style Selection Bounding Box around Title */}
-                <div className="inline-block relative mb-8">
-                  {/* The 8 Figma Anchor Transform Handles */}
-                  <span className="absolute -top-1.5 -left-1.5 w-2.5 h-2.5 bg-[#F75B00] border border-white dark:border-black rounded-[1px] shadow-xs pointer-events-none" />
-                  <span className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-2.5 h-2.5 bg-[#F75B00] border border-white dark:border-black rounded-[1px] shadow-xs pointer-events-none" />
-                  <span className="absolute -top-1.5 -right-1.5 w-2.5 h-2.5 bg-[#F75B00] border border-white dark:border-black rounded-[1px] shadow-xs pointer-events-none" />
-                  <span className="absolute top-1/2 -translate-y-1/2 -left-1.5 w-2.5 h-2.5 bg-[#F75B00] border border-white dark:border-black rounded-[1px] shadow-xs pointer-events-none" />
-                  <span className="absolute top-1/2 -translate-y-1/2 -right-1.5 w-2.5 h-2.5 bg-[#F75B00] border border-white dark:border-black rounded-[1px] shadow-xs pointer-events-none" />
-                  <span className="absolute -bottom-1.5 -left-1.5 w-2.5 h-2.5 bg-[#F75B00] border border-white dark:border-black rounded-[1px] shadow-xs pointer-events-none" />
-                  <span className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-2.5 h-2.5 bg-[#F75B00] border border-white dark:border-black rounded-[1px] shadow-xs pointer-events-none" />
-                  <span className="absolute -bottom-1.5 -right-1.5 w-2.5 h-2.5 bg-[#F75B00] border border-white dark:border-black rounded-[1px] shadow-xs pointer-events-none" />
+                {/* Clean Headline: "My Vision" / "My Mission" */}
+                <div className="relative mb-6 select-none">
+                  <AnimatePresence mode="wait">
+                    <motion.h3
+                      key={activeTab}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      transition={{ duration: 0.3 }}
+                      className="font-heading font-normal text-3xl sm:text-5xl lg:text-6xl text-brand-ink tracking-tight leading-tight"
+                    >
+                      {isVision ? "My Vision" : "My Mission"}
+                    </motion.h3>
+                  </AnimatePresence>
 
-                  {/* Bounding Box Border */}
-                  <div className="border border-dashed border-[#F75B00]/40 dark:border-white/35 px-6 py-3 rounded-lg relative">
-                    {/* Dimension Tag */}
-                    <span className="absolute -top-5 right-2 font-mono text-[9px] uppercase tracking-wider text-brand-muted2">
-                      w: 100% • artboard
-                    </span>
-
-                    <AnimatePresence mode="wait">
-                      <motion.h3
-                        key={activeTab}
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -10 }}
-                        transition={{ duration: 0.3 }}
-                        className="font-heading font-extrabold text-3xl sm:text-5xl lg:text-6xl text-brand-ink tracking-[0.02em] leading-tight"
-                      >
-                        {isVision ? "My Vision" : "My Mission"}
-                      </motion.h3>
-                    </AnimatePresence>
-
-                    {/* Warm Artistic Underline Sketch */}
-                    <div className="w-24 sm:w-36 h-1.5 mt-1 rounded-full bg-gradient-to-r from-[#F75B00] via-[#EFC320] to-[#F75B00]" />
-                  </div>
+                  {/* Warm Artistic Underline Sketch */}
+                  <div className="w-24 sm:w-36 h-1.5 mt-2 rounded-full bg-gradient-to-r from-[#F75B00] via-[#EFC320] to-[#F75B00]" />
                 </div>
 
                 {/* Main Narrative Paragraph */}
@@ -130,7 +112,7 @@ export function MissionVisionSection() {
                     exit={{ opacity: 0, y: -12 }}
                     transition={{ duration: 0.35, delay: 0.05 }}
                   >
-                    <p className="font-sans text-base sm:text-lg lg:text-xl text-brand-muted leading-relaxed mb-8 max-w-xl">
+                    <p className="font-sans text-base sm:text-lg lg:text-xl text-[#101820] dark:text-[#E2E8F0] leading-relaxed mb-8 max-w-xl">
                       {isVision
                         ? "To establish an international benchmark in digital product engineering—empowering forward-thinking brands by crafting bespoke, impactful web architectures and cohesive design systems that build lasting market authority and scale effortlessly."
                         : "To bridge the gap between creative visual artistry and complex full-stack engineering—delivering sub-second speed, thoughtful UI/UX precision, and resilient codebases tailored for real-world conversion and high-velocity business growth."}
@@ -178,7 +160,7 @@ export function MissionVisionSection() {
                               {item.title}
                             </span>
                           </div>
-                          <p className="font-sans text-[11px] text-brand-muted leading-snug">
+                          <p className="font-sans text-[11px] text-[#101820]/80 dark:text-neutral-300 leading-snug">
                             {item.desc}
                           </p>
                         </div>
@@ -192,15 +174,12 @@ export function MissionVisionSection() {
               <div className="border-t border-brand-ink/10 dark:border-white/10 pt-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 {/* Brand Signature */}
                 <div>
-                  <span className="font-mono text-xs font-bold text-brand-ink block uppercase tracking-wider">
+                  <span className="font-heading font-medium text-sm text-brand-ink block tracking-wider">
                     TUFAEL AHMED ZUARDER
-                  </span>
-                  <span className="font-mono text-[11px] text-brand-muted2 block uppercase tracking-wider">
-                    STUDIO ARCHITECTURE • 2026
                   </span>
                 </div>
 
-                {/* Interactive Toggle Pill Button with White Circle Badge matching Image 2 */}
+                {/* Interactive Toggle Pill Button with White Circle Badge */}
                 <button
                   type="button"
                   onClick={() => setActiveTab(isVision ? "mission" : "vision")}
@@ -214,33 +193,16 @@ export function MissionVisionSection() {
               </div>
             </div>
 
-            {/* ================= RIGHT COLUMN: 100% Code-Rendered Artwork with Live Text ================= */}
+            {/* ================= RIGHT COLUMN: 100% Code-Rendered Artwork ================= */}
             <div className="lg:col-span-5 relative bg-white dark:bg-[#0B1411] p-6 sm:p-10 flex flex-col items-center justify-center overflow-hidden min-h-[380px] sm:min-h-[460px] border-t lg:border-t-0 lg:border-l border-brand-ink/10 dark:border-white/10">
               {/* Ambient Radial Glow centered behind artwork */}
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 rounded-full bg-gradient-to-tr from-[#F75B00]/15 to-[#EFC320]/15 blur-3xl pointer-events-none" />
 
-              {/* Floating Top Badge */}
-              <div className="absolute top-5 left-5 z-20 px-3.5 py-1.5 rounded-full bg-white/80 dark:bg-black/40 backdrop-blur-md border border-[#F75B00]/20 dark:border-white/15 text-brand-ink dark:text-white font-mono text-[10px] uppercase tracking-wider font-semibold shadow-xs flex items-center gap-1.5">
-                <Sparkles className="w-3.5 h-3.5 text-[#F75B00]" />
-                <span>{isVision ? "ENDLESS PRODUCT LIFECYCLE" : "STRATEGIC TARGET ARCHITECTURE"}</span>
-              </div>
-
-              {/* Floating Top-Right Year */}
-              <div className="absolute top-5 right-5 z-20 text-brand-muted dark:text-white/70 font-mono text-[11px] uppercase tracking-wider font-semibold">
-                EST. 2020
-              </div>
-
-              {/* Pure Code 3D Artwork (Live SVG, HTML, Badges & Text) */}
+              {/* Pure Code 3D Artwork */}
               <MissionVisionCodeArtwork
                 isVision={isVision}
                 onToggle={() => setActiveTab(isVision ? "mission" : "vision")}
               />
-
-              {/* Floating Bottom-Right Pulse Indicator */}
-              <div className="absolute bottom-5 right-5 z-20 flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/80 dark:bg-black/40 backdrop-blur-md border border-[#F75B00]/20 text-brand-ink dark:text-white font-mono text-[10px]">
-                <span className="w-2 h-2 rounded-full bg-[#F75B00] animate-pulse" />
-                <span className="uppercase tracking-wider">ACTIVE SYSTEM</span>
-              </div>
             </div>
           </div>
         </div>

@@ -25,7 +25,7 @@ export function CareerTimeline() {
             <span className="font-mono text-xs text-brand-muted2 block mb-3">
               {item.organization}
             </span>
-            <p className="text-sm text-brand-muted leading-relaxed">
+            <p className="text-sm text-[#101820] dark:text-[#E2E8F0] leading-relaxed">
               {item.description}
             </p>
           </div>

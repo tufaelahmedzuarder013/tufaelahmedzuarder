@@ -31,11 +31,11 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       primary:
         "bg-gradient-to-r from-[#F75B00] to-[#EFC320] hover:from-[#e05200] hover:to-[#dfb51c] text-white font-bold shadow-md hover:shadow-xl hover:shadow-[#F75B00]/30 hover:-translate-y-0.5 active:translate-y-0",
       ghost:
-        "bg-brand-surface border border-brand-ink/10 text-brand-ink hover:border-[#F75B00] hover:text-[#F75B00] hover:-translate-y-0.5 shadow-brand-sm dark:bg-white/[0.06] dark:backdrop-blur-xl dark:border-white/15 dark:text-white dark:hover:bg-white/[0.12] dark:hover:border-[#F75B00]/70 dark:shadow-[0_4px_24px_rgba(0,0,0,0.4),inset_0_1px_1px_rgba(255,255,255,0.12)]",
+        "bg-[#121719] border border-white/15 text-white hover:border-[#F75B00] hover:text-[#F75B00] hover:-translate-y-0.5 shadow-md",
       outline:
-        "border border-brand-ink/15 text-brand-ink hover:border-[#F75B00] hover:text-[#F75B00] hover:-translate-y-0.5 dark:bg-white/[0.04] dark:backdrop-blur-lg dark:border-white/15 dark:text-white dark:hover:bg-white/[0.09] dark:hover:border-[#F75B00]/70 dark:shadow-[0_4px_20px_rgba(0,0,0,0.35),inset_0_1px_1px_rgba(255,255,255,0.1)]",
+        "bg-[#121719] border border-white/15 text-white hover:border-[#F75B00] hover:text-[#F75B00] hover:-translate-y-0.5 shadow-sm",
       white:
-        "bg-white text-neutral-950 hover:bg-gradient-to-r hover:from-[#F75B00] hover:to-[#EFC320] hover:text-white hover:-translate-y-0.5 shadow-lg shadow-black/10 hover:shadow-xl dark:bg-white/[0.12] dark:backdrop-blur-2xl dark:border dark:border-white/20 dark:text-white dark:hover:bg-gradient-to-r dark:hover:from-[#F75B00] dark:hover:to-[#EFC320] dark:shadow-[0_8px_32px_rgba(0,0,0,0.4),inset_0_1px_1px_rgba(255,255,255,0.2)]",
+        "bg-[#121719] border border-white/20 text-white hover:bg-gradient-to-r hover:from-[#F75B00] hover:to-[#EFC320] hover:text-white hover:-translate-y-0.5 shadow-lg",
     };
 
     const sizeStyles = {

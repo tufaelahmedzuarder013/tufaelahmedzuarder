@@ -38,7 +38,7 @@ export default function ContactPage() {
                 <h2 className="font-heading text-3xl sm:text-4xl font-bold text-brand-ink mb-4">
                   Let&apos;s build something great.
                 </h2>
-                <p className="text-base text-brand-muted leading-relaxed mb-6">
+                <p className="text-base text-[#101820] dark:text-[#E2E8F0] leading-relaxed mb-6">
                   I&apos;m currently available for freelance projects, technical contract roles, and design system consulting. Send a message or reach out directly.
                 </p>
               </div>

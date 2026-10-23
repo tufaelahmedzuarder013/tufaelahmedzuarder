@@ -42,16 +42,10 @@ export function MissionVisionCodeArtwork({
             transition={{ duration: 0.35, ease: "easeOut" }}
             className="relative w-full h-full flex flex-col items-center justify-between"
           >
-            {/* Top Telemetry Header */}
-            <div className="w-full flex items-center justify-between z-20 px-1 pt-0.5">
-              <div className="flex items-center gap-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-[#F75B00] shadow-[0_0_8px_rgba(247,91,0,0.8)] animate-pulse" />
-                <span className="font-mono text-[10px] text-brand-muted2 uppercase tracking-wider font-semibold">
-                  ENDLESS LIFECYCLE
-                </span>
-              </div>
-              <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/[0.04] dark:bg-white/[0.06] border border-black/[0.06] dark:border-white/[0.1] text-[9px] font-mono text-brand-muted2 group-hover:text-[#F75B00] group-hover:border-[#F75B00]/40 transition-all duration-300">
-                <span className="tracking-wider">FLIP</span>
+            {/* Top Interactive Flip Action */}
+            <div className="w-full flex items-center justify-end z-20 px-1 pt-0.5">
+              <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/[0.04] dark:bg-white/[0.06] border border-black/[0.06] dark:border-white/[0.1] text-[10px] font-sans font-medium text-brand-muted2 group-hover:text-[#F75B00] group-hover:border-[#F75B00]/40 transition-all duration-300">
+                <span>Toggle</span>
                 <RotateCw className="w-2.5 h-2.5 transition-transform duration-500 group-hover:rotate-180" />
               </div>
             </div>
@@ -213,16 +207,10 @@ export function MissionVisionCodeArtwork({
             transition={{ duration: 0.35, ease: "easeOut" }}
             className="relative w-full h-full flex flex-col items-center justify-between"
           >
-            {/* Top Telemetry Header */}
-            <div className="w-full flex items-center justify-between z-20 px-1 pt-0.5">
-              <div className="flex items-center gap-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-[#EFC320] shadow-[0_0_8px_rgba(239,195,32,0.8)] animate-pulse" />
-                <span className="font-mono text-[10px] text-brand-muted2 uppercase tracking-wider font-semibold">
-                  PRECISION TARGET
-                </span>
-              </div>
-              <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/[0.04] dark:bg-white/[0.06] border border-black/[0.06] dark:border-white/[0.1] text-[9px] font-mono text-brand-muted2 group-hover:text-[#F75B00] group-hover:border-[#F75B00]/40 transition-all duration-300">
-                <span className="tracking-wider">FLIP</span>
+            {/* Top Interactive Flip Action */}
+            <div className="w-full flex items-center justify-end z-20 px-1 pt-0.5">
+              <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/[0.04] dark:bg-white/[0.06] border border-black/[0.06] dark:border-white/[0.1] text-[10px] font-sans font-medium text-brand-muted2 group-hover:text-[#F75B00] group-hover:border-[#F75B00]/40 transition-all duration-300">
+                <span>Toggle</span>
                 <RotateCw className="w-2.5 h-2.5 transition-transform duration-500 group-hover:rotate-180" />
               </div>
             </div>

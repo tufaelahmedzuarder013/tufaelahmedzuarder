@@ -51,7 +51,7 @@ export function ServiceDetailView({ service }: ServiceDetailViewProps) {
             <h3 className="font-heading text-2xl font-bold text-brand-ink mb-4">
               Overview
             </h3>
-            <p className="text-base text-brand-muted leading-relaxed">
+            <p className="text-base text-[#101820] dark:text-[#E2E8F0] leading-relaxed">
               {service.overview}
             </p>
           </div>

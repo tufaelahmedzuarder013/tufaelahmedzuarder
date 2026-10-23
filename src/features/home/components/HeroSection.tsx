@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import gsap from "gsap";
 import { ArrowRight, Download, Github, Linkedin, Twitter, Mail } from "lucide-react";
 import { SITE_CONFIG } from "@/lib/constants";
 import { GenerativeTree } from "@/components/ui/generative-tree";
@@ -35,6 +36,52 @@ export function HeroSection() {
       setRoleIndex((prev) => (prev + 1) % ROLES.length);
     }, 2800);
     return () => clearInterval(timer);
+  }, []);
+
+  // GSAP Kinetic Entrance Animation (mdx.so signature style)
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    if (prefersReducedMotion) return;
+
+    const titles = document.querySelectorAll(".gsap-hero-title");
+    const leads = document.querySelectorAll(".gsap-hero-lead");
+
+    gsap.set(titles, {
+      y: "115%",
+      rotateZ: 2,
+      opacity: 0,
+    });
+
+    gsap.set(leads, {
+      y: 26,
+      opacity: 0,
+    });
+
+    const tl = gsap.timeline({ delay: 0.18 });
+
+    tl.to(titles, {
+      y: "0%",
+      rotateZ: 0,
+      opacity: 1,
+      duration: 1.15,
+      stagger: 0.1,
+      ease: "power4.out",
+    }).to(
+      leads,
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.9,
+        ease: "power3.out",
+      },
+      "-=0.7"
+    );
+
+    return () => {
+      tl.kill();
+    };
   }, []);
 
   return (
@@ -89,11 +136,15 @@ export function HeroSection() {
                   </span>
                 </div>
 
-                {/* Main Headline */}
-                <h1 className="font-heading text-5xl lg:text-6xl tracking-[0.05em] [word-spacing:0.25em] leading-[1.15] text-brand-ink mb-4 sm:mb-5">
-                  <span className="block">Tufael Ahmed</span>
-                  <span className="block mt-1 bg-gradient-to-r from-[#F75B00] to-[#EFC320] bg-clip-text text-transparent">
-                    Zuarder
+                {/* Main Headline with GSAP Kinetic Mask Reveal */}
+                <h1 className="font-heading text-5xl lg:text-6xl tracking-[0.05em] [word-spacing:0.25em] leading-[1.15] text-brand-ink mb-4 sm:mb-5 select-none" data-no-gsap="true">
+                  <span className="block overflow-hidden pb-1 -mb-1">
+                    <span className="gsap-hero-title block will-change-transform">Tufael Ahmed</span>
+                  </span>
+                  <span className="block mt-1 overflow-hidden pb-1 -mb-1">
+                    <span className="gsap-hero-title block bg-gradient-to-r from-[#F75B00] to-[#EFC320] bg-clip-text text-transparent will-change-transform">
+                      Zuarder
+                    </span>
                   </span>
                 </h1>
 
@@ -110,8 +161,8 @@ export function HeroSection() {
 
               {/* RIGHT BLOCK (Shifted DOWN): pointer-events-none on container so empty area doesn't block, children have pointer-events-auto */}
               <div className="col-span-6 flex flex-col items-end text-right translate-y-[260px] xl:translate-y-[300px] space-y-5 pointer-events-none relative z-40">
-                {/* Lead Description */}
-                <p className="font-sans text-base lg:text-[17px] text-brand-ink/85 max-w-[460px] leading-relaxed tracking-[0.025em] text-right pointer-events-auto">
+                {/* Lead Description with GSAP Reveal */}
+                <p className="gsap-hero-lead font-sans text-base lg:text-[17px] text-[#101820] dark:text-[#E2E8F0] font-medium max-w-[460px] leading-relaxed tracking-[0.025em] text-right pointer-events-auto">
                   Crafting beautiful, functional, and user-centered digital experiences with modern technologies, clean UI/UX, and a relentless focus on performance.
                 </p>
 
@@ -208,10 +259,14 @@ export function HeroSection() {
             </div>
 
             {/* Main Headline */}
-            <h1 className="font-heading text-3xl sm:text-4xl tracking-[0.04em] [word-spacing:0.18em] leading-[1.18] text-brand-ink mb-2">
-              <span className="block">Tufael Ahmed</span>
-              <span className="block mt-0.5 bg-gradient-to-r from-[#F75B00] to-[#EFC320] bg-clip-text text-transparent">
-                Zuarder
+            <h1 className="font-heading text-3xl sm:text-4xl tracking-[0.04em] [word-spacing:0.18em] leading-[1.18] text-brand-ink mb-2 select-none" data-no-gsap="true">
+              <span className="block overflow-hidden pb-1 -mb-1">
+                <span className="gsap-hero-title block will-change-transform">Tufael Ahmed</span>
+              </span>
+              <span className="block mt-0.5 overflow-hidden pb-1 -mb-1">
+                <span className="gsap-hero-title block bg-gradient-to-r from-[#F75B00] to-[#EFC320] bg-clip-text text-transparent will-change-transform">
+                  Zuarder
+                </span>
               </span>
             </h1>
 
@@ -243,7 +298,7 @@ export function HeroSection() {
           {/* 3RD: Description, Buttons, Social Icons: relative z-30 pointer-events-none */}
           <div className="flex flex-col items-center text-center space-y-3.5 sm:space-y-4 w-full pb-1 relative z-30 pointer-events-none">
             {/* Description */}
-            <p className="font-sans text-xs sm:text-sm text-brand-ink/85 max-w-[380px] leading-relaxed tracking-[0.02em] pointer-events-auto">
+            <p className="font-sans text-xs sm:text-sm text-[#101820] dark:text-[#E2E8F0] font-medium max-w-[380px] leading-relaxed tracking-[0.02em] pointer-events-auto">
               Crafting beautiful, functional, and user-centered digital experiences with modern technologies, clean UI/UX, and a relentless focus on performance.
             </p>
 

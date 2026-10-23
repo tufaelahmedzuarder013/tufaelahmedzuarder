@@ -38,7 +38,7 @@ export default function PortfolioPage() {
             <h2 className="font-heading text-3xl sm:text-4xl font-bold text-brand-ink mb-3">
               Work I&apos;m proud of.
             </h2>
-            <p className="text-sm text-brand-muted">
+            <p className="text-sm text-[#101820] dark:text-[#E2E8F0]">
               Filter by category or click on any project card to inspect the full technical case study.
             </p>
           </div>

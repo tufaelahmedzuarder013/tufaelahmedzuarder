@@ -420,7 +420,7 @@ export function ProcessBlueprintSection() {
                   </p>
 
                   {/* Concise summary without clutter */}
-                  <p className="font-sans text-sm sm:text-base text-brand-muted leading-relaxed mb-6">
+                  <p className="font-sans text-sm sm:text-base text-[#101820] dark:text-[#E2E8F0] leading-relaxed mb-6">
                     {stage.summary}
                   </p>
 
@@ -485,12 +485,6 @@ export function ProcessBlueprintSection() {
               <div className="absolute w-[440px] h-[440px] rounded-full border border-brand-ink/5 dark:border-white/5 pointer-events-none" />
               <div className="absolute w-[320px] h-[320px] rounded-full border border-brand-ink/10 dark:border-white/10 pointer-events-none" />
               <div className="absolute w-80 h-80 rounded-full bg-gradient-to-tr from-[#F75B00]/10 to-[#EFC320]/10 blur-3xl pointer-events-none" />
-
-              {/* Floating Top Badge */}
-              <div className="absolute top-5 left-5 z-20 px-3.5 py-1.5 rounded-full bg-white/90 dark:bg-black/60 backdrop-blur-md border border-brand-ink/10 dark:border-white/15 text-brand-ink dark:text-white font-mono text-[10px] uppercase tracking-wider font-semibold shadow-xs flex items-center gap-1.5">
-                <Sparkles className="w-3 h-3 text-[#F75B00]" />
-                <span>INTERACTIVE ARCHITECTURE STACK</span>
-              </div>
 
               {/* Stack Cascade Container */}
               <div className="relative z-10 w-full max-w-[360px] sm:max-w-[420px] py-4">
@@ -578,12 +572,6 @@ export function ProcessBlueprintSection() {
                     })}
                   </motion.div>
                 </AnimatePresence>
-              </div>
-
-              {/* Bottom Instruction Note with live progress indicator */}
-              <div className="relative z-10 mt-3 flex items-center justify-center gap-2 font-mono text-[10px] text-brand-muted2 uppercase tracking-widest text-center">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#F75B00] animate-pulse" />
-                <span>Auto-switching layers • Click any layer to focus</span>
               </div>
             </div>
 

@@ -27,7 +27,7 @@ export function ServicesOverview() {
             <h2 className="font-heading font-extrabold text-3xl sm:text-4xl md:text-5xl text-brand-ink tracking-[0.04em] [word-spacing:0.18em] leading-[1.2]">
               End-to-end web engineering.
             </h2>
-            <p className="font-sans text-sm sm:text-base text-brand-muted mt-3 max-w-xl">
+            <p className="font-sans text-sm sm:text-base text-[#101820] dark:text-[#E2E8F0] mt-3 max-w-xl">
               Scalable codebases, thoughtful UI/UX systems, and lightning-fast web architectures engineered for real business growth.
             </p>
           </div>

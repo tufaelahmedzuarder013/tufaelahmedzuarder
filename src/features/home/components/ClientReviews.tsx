@@ -35,7 +35,7 @@ export function ClientReviews() {
             <h2 className="font-heading font-extrabold text-3xl sm:text-4xl md:text-5xl text-brand-ink tracking-[0.03em] [word-spacing:0.18em] leading-[1.2]">
               What clients say.
             </h2>
-            <p className="font-sans text-sm sm:text-base text-brand-muted mt-3">
+            <p className="font-sans text-sm sm:text-base text-[#101820] dark:text-[#E2E8F0] mt-3">
               Real testimonials from founders, product leaders, and engineering teams across 7 countries.
             </p>
           </div>
@@ -187,7 +187,7 @@ function ReviewCard({
         </div>
 
         {/* Review Quote text with quotes */}
-        <p className="font-sans text-xs sm:text-sm text-brand-ink/90 leading-relaxed line-clamp-3">
+        <p className="font-sans text-xs sm:text-sm text-[#101820] dark:text-[#E2E8F0] leading-relaxed line-clamp-3">
           &ldquo; {item.quote} &rdquo;
         </p>
 

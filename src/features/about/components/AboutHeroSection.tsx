@@ -38,7 +38,7 @@ export function AboutHeroSection() {
             </div>
 
             {/* Short Bio Description */}
-            <p className="text-base text-brand-muted leading-relaxed max-w-md">
+            <p className="text-base text-[#101820] dark:text-[#E2E8F0] leading-relaxed max-w-md">
               Helping brands stand out with thoughtful and compelling design solutions. Helping visionary founders transform ambitious ideas into modern, lightning-fast digital experiences.
             </p>
 

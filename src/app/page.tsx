@@ -8,12 +8,10 @@ import { FeaturedWork } from "@/features/home/components/FeaturedWork";
 import { ProcessBlueprintSection } from "@/features/home/components/ProcessBlueprintSection";
 import { ClientReviews } from "@/features/home/components/ClientReviews";
 import { CtaBanner } from "@/features/home/components/CtaBanner";
-import { SmoothScroll } from "@/components/providers/SmoothScroll";
 
 export default function HomePage() {
   return (
     <>
-      <SmoothScroll />
       <HeroSection />
       <MetricsTicker />
       <HomeAboutTeaser />
