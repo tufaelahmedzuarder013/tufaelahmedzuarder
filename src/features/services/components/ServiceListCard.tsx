@@ -33,7 +33,12 @@ export function ServiceListCard({ service, priority = false }: ServiceListCardPr
               {service.techStack.map((tech, tIdx) => (
                 <span
                   key={tIdx}
-                  className="px-2.5 py-1 rounded-lg bg-brand-soft border border-brand-ink/5 dark:border-white/10 font-mono text-[11px] text-brand-muted font-medium"
+                  className="px-3 py-1 rounded-lg bg-brand-soft border border-brand-ink/5 dark:border-white/10 text-brand-muted"
+                  style={{
+                    fontFamily: "var(--font-aventa), 'Aventa', sans-serif",
+                    fontSize: "12px",
+                    fontWeight: 300,
+                  }}
                 >
                   {tech}
                 </span>

@@ -6,7 +6,27 @@ import { Button } from "@/components/ui/Button";
 import { SERVICES } from "@/features/services/data/services.data";
 import { ServiceListCard } from "@/features/services/components/ServiceListCard";
 
+const FEATURED_OVERVIEW_SLUGS = [
+  "custom-development",
+  "mobile-app-development",
+  "digital-marketing",
+  "cms-development",
+  "ui-ux-design",
+];
+
+const STACK_MARGIN_CLASSES = [
+  "mb-[226px] sm:mb-[286px]", // Card 0: Custom Development (top: 84px)
+  "mb-[202px] sm:mb-[262px]", // Card 1: Mobile App Development (top: 108px)
+  "mb-[178px] sm:mb-[238px]", // Card 2: Digital Marketing (top: 132px)
+  "mb-[154px] sm:mb-[214px]", // Card 3: CMS Development (top: 156px)
+  "mb-[130px] sm:mb-[190px]", // Card 4: UI / UX & Product Design (top: 180px)
+];
+
 export function ServicesOverview() {
+  const featuredServices = FEATURED_OVERVIEW_SLUGS.map((slug) =>
+    SERVICES.find((s) => s.slug === slug)
+  ).filter((s): s is (typeof SERVICES)[number] => Boolean(s));
+
   return (
     <section className="py-20 sm:py-28 lg:py-32 relative bg-gradient-to-b from-brand-bg via-brand-soft/40 to-brand-bg">
       {/* Ambient background glow orbs safely clipped */}
@@ -53,20 +73,11 @@ export function ServicesOverview() {
 
         {/* Sticky Stacking Cards Deck (Smooth scroll layer effect) */}
         <div className="relative pb-12 sm:pb-16">
-          {(SERVICES.filter((s) => s.featured).length > 0
-            ? SERVICES.filter((s) => s.featured)
-            : SERVICES.slice(0, 4)
-          ).map((service, idx) => (
+          {featuredServices.map((service, idx) => (
             <div
               key={service.id}
               className={`sticky transition-all duration-300 ${
-                idx === 0
-                  ? "mb-[202px] sm:mb-[262px]"
-                  : idx === 1
-                  ? "mb-[178px] sm:mb-[238px]"
-                  : idx === 2
-                  ? "mb-[154px] sm:mb-[214px]"
-                  : "mb-[130px] sm:mb-[190px]"
+                STACK_MARGIN_CLASSES[idx] || "mb-[130px] sm:mb-[190px]"
               }`}
               style={{
                 top: `calc(84px + ${idx * 24}px)`,

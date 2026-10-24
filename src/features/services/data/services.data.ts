@@ -9,7 +9,6 @@ export const SERVICES: ServiceItem[] = [
     bestFor: "Startups and enterprises needing fast, reliable, and scalable web apps.",
     tag: "WEB DEVELOPMENT",
     category: "FULL STACK & SAAS",
-    featured: true,
     showcaseImage: "/images/services/web-dev-showcase.jpg",
     metrics: [
       { value: "+300%", label: "SPEED GAIN" },
@@ -79,7 +78,6 @@ export const SERVICES: ServiceItem[] = [
     bestFor: "Existing sites suffering from sluggish loads, poor SEO, or bounce rates.",
     tag: "PERFORMANCE",
     category: "CORE WEB VITALS",
-    featured: true,
     showcaseImage: "/images/services/performance-showcase.jpg",
     metrics: [
       { value: "100", label: "LIGHTHOUSE SCORE" },
@@ -114,7 +112,6 @@ export const SERVICES: ServiceItem[] = [
     bestFor: "Brands seeking premium, memorable, award-level web presence.",
     tag: "MOTION & 3D",
     category: "INTERACTIVE CRAFT",
-    featured: true,
     showcaseImage: "/images/services/motion-showcase.jpg",
     metrics: [
       { value: "60 FPS", label: "FLUID MOTION" },
@@ -149,6 +146,7 @@ export const SERVICES: ServiceItem[] = [
     bestFor: "Organizations with specialized operational models requiring tailored software.",
     tag: "CUSTOM ENGINEERING",
     category: "TAILORED WEB & APPS",
+    featured: true,
     metrics: [
       { value: "100%", label: "TAILORED LOGIC" },
       { value: "Zero", label: "VENDOR LOCK-IN" },
@@ -182,6 +180,7 @@ export const SERVICES: ServiceItem[] = [
     bestFor: "Founders and businesses needing fast, beautiful, and native-feeling mobile products.",
     tag: "MOBILE APPS",
     category: "IOS & ANDROID",
+    featured: true,
     metrics: [
       { value: "60 FPS", label: "NATIVE FEEL" },
       { value: "1 Codebase", label: "IOS & ANDROID" },
@@ -347,6 +346,7 @@ export const SERVICES: ServiceItem[] = [
     bestFor: "Content creators and marketing teams who need rapid publishing without breaking code.",
     tag: "HEADLESS CMS",
     category: "CONTENT ARCHITECTURE",
+    featured: true,
     metrics: [
       { value: "0 Code", label: "MARKETING EDITS" },
       { value: "Instant", label: "EDGE REVALIDATION" },
@@ -413,6 +413,7 @@ export const SERVICES: ServiceItem[] = [
     bestFor: "Businesses seeking predictable client acquisition, higher rankings, and revenue growth.",
     tag: "GROWTH MARKETING",
     category: "SEO & CONVERSION",
+    featured: true,
     metrics: [
       { value: "+350%", label: "ORGANIC REACH" },
       { value: "4.8x", label: "AVERAGE ROAS" },
