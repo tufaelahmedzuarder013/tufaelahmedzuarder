@@ -45,12 +45,34 @@ export function MusicWaveToggle({ className }: MusicWaveToggleProps = {}) {
     audio.addEventListener("play", onPlay);
     audio.addEventListener("pause", onPause);
 
-    // Fallback if filename variant is requested
-    audio.onerror = () => {
-      if (audio.src.includes("naturemuic.mp3")) {
-        audio.src = "/naturemusic.mp3";
-        audio.play().catch(() => {});
+    const unlockEvents = [
+      "pointerdown",
+      "mousedown",
+      "mousemove",
+      "pointermove",
+      "touchstart",
+      "touchmove",
+      "scroll",
+      "wheel",
+      "keydown",
+      "click",
+    ];
+
+    let hasCleanedUpUnlock = false;
+    const unlockAudio = () => {
+      if (hasCleanedUpUnlock) return;
+      hasCleanedUpUnlock = true;
+      if (audio) {
+        audio.muted = false;
+        audio
+          .play()
+          .then(() => setIsPlaying(true))
+          .catch(() => {});
       }
+      unlockEvents.forEach((evt) => {
+        window.removeEventListener(evt, unlockAudio);
+        document.removeEventListener(evt, unlockAudio);
+      });
     };
 
     // 1. First attempt: Direct unmuted play
@@ -69,33 +91,6 @@ export function MusicWaveToggle({ className }: MusicWaveToggleProps = {}) {
           audio.play().catch(() => {});
 
           // 3. Unmute the moment user interacts (moves mouse, scrolls, touches, or clicks)
-          const unlockEvents = [
-            "pointerdown",
-            "mousedown",
-            "mousemove",
-            "pointermove",
-            "touchstart",
-            "touchmove",
-            "scroll",
-            "wheel",
-            "keydown",
-            "click",
-          ];
-
-          const unlockAudio = () => {
-            if (audio) {
-              audio.muted = false;
-              audio
-                .play()
-                .then(() => setIsPlaying(true))
-                .catch(() => {});
-            }
-            unlockEvents.forEach((evt) => {
-              window.removeEventListener(evt, unlockAudio);
-              document.removeEventListener(evt, unlockAudio);
-            });
-          };
-
           unlockEvents.forEach((evt) => {
             window.addEventListener(evt, unlockAudio, { once: true, passive: true });
             document.addEventListener(evt, unlockAudio, { once: true, passive: true });
@@ -104,8 +99,13 @@ export function MusicWaveToggle({ className }: MusicWaveToggleProps = {}) {
     }
 
     return () => {
+      hasCleanedUpUnlock = true;
       audio.removeEventListener("play", onPlay);
       audio.removeEventListener("pause", onPause);
+      unlockEvents.forEach((evt) => {
+        window.removeEventListener(evt, unlockAudio);
+        document.removeEventListener(evt, unlockAudio);
+      });
     };
   }, []);
 
@@ -125,7 +125,7 @@ export function MusicWaveToggle({ className }: MusicWaveToggleProps = {}) {
       {/* Hidden audio element with autoplay and loop */}
       <audio
         ref={audioRef}
-        src="/naturemuic.mp3"
+        src="/naturemusic.mp3"
         loop
         preload="auto"
         playsInline

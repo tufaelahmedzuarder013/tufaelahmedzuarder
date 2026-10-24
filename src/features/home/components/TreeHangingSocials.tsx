@@ -184,10 +184,9 @@ export function TreeHangingSocials() {
             <div
               className="w-[1.5px] bg-gradient-to-b from-emerald-400 via-emerald-300/60 to-zinc-400 dark:to-zinc-300 relative h-[var(--str-mobile)] sm:h-[var(--str-desktop)]"
               style={{
-                // @ts-expect-error CSS variable
                 "--str-mobile": `${item.stringHeightMobile}px`,
                 "--str-desktop": `${item.stringHeightDesktop}px`,
-              }}
+              } as React.CSSProperties}
             >
               {/* Tiny knot in the thread */}
               <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1 h-1 rounded-full bg-emerald-300/70" />

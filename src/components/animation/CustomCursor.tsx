@@ -15,13 +15,18 @@ export function CustomCursor() {
   const smoothX = useSpring(mouseX, { stiffness: 500, damping: 28 });
   const smoothY = useSpring(mouseY, { stiffness: 500, damping: 28 });
 
+  const isVisibleRef = React.useRef(false);
+
   useEffect(() => {
     if (!isFinePointer) return;
 
     const handleMouseMove = (e: MouseEvent) => {
       mouseX.set(e.clientX);
       mouseY.set(e.clientY);
-      if (!isVisible) setIsVisible(true);
+      if (!isVisibleRef.current) {
+        isVisibleRef.current = true;
+        setIsVisible(true);
+      }
     };
 
     const handleMouseOver = (e: MouseEvent) => {
@@ -37,8 +42,14 @@ export function CustomCursor() {
       }
     };
 
-    const handleMouseLeave = () => setIsVisible(false);
-    const handleMouseEnter = () => setIsVisible(true);
+    const handleMouseLeave = () => {
+      isVisibleRef.current = false;
+      setIsVisible(false);
+    };
+    const handleMouseEnter = () => {
+      isVisibleRef.current = true;
+      setIsVisible(true);
+    };
 
     window.addEventListener("mousemove", handleMouseMove, { passive: true });
     document.addEventListener("mouseover", handleMouseOver, { passive: true });
@@ -51,7 +62,7 @@ export function CustomCursor() {
       document.removeEventListener("mouseleave", handleMouseLeave);
       document.removeEventListener("mouseenter", handleMouseEnter);
     };
-  }, [isFinePointer, isVisible, mouseX, mouseY]);
+  }, [isFinePointer, mouseX, mouseY]);
 
   if (!isFinePointer || !isVisible) return null;
 

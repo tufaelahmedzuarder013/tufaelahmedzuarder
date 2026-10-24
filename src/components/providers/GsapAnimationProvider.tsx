@@ -69,7 +69,7 @@ function processParagraphHighlight(
 
   // Skip excluded elements: navigation, footer, buttons, client reviews, or elements with data-no-gsap
   if (
-    p.closest("footer, nav, button, [data-no-gsap], .client-reviews-section") ||
+    p.closest("footer, nav, button, form, [aria-live], [data-no-gsap], .client-reviews-section") ||
     p.hasAttribute("data-no-gsap")
   ) {
     return;

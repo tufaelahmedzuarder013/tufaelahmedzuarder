@@ -12,6 +12,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/services`, lastModified: new Date() },
     { url: `${baseUrl}/portfolio`, lastModified: new Date() },
     { url: `${baseUrl}/contact`, lastModified: new Date() },
+    { url: `${baseUrl}/privacy-policy`, lastModified: new Date() },
+    { url: `${baseUrl}/terms-of-use`, lastModified: new Date() },
   ];
 
   const projectRoutes: MetadataRoute.Sitemap = PROJECTS.map((project) => ({

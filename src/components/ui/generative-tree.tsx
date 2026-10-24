@@ -210,8 +210,6 @@ export default function GenerativeTree({
         title="Generative Tree background"
         srcDoc={source}
         sandbox="allow-scripts"
-        // @ts-expect-error legacy iframe attribute
-        allowtransparency="true"
         onLoad={postControls}
         aria-hidden="true"
         tabIndex={-1}

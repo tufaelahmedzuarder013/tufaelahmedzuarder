@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 import { ArrowRight, ArrowUpRight, Mail } from "lucide-react";
 import { MusicWaveToggle } from "../ui/MusicWaveToggle";
 import { TazLogo } from "../ui/TazLogo";
+import { SITE_CONFIG } from "@/lib/constants";
 
 type FullMenuOverlayProps = { isOpen: boolean; onClose: () => void };
 
@@ -16,7 +17,7 @@ const NAVIGATION = [
   { label: "About Us", href: "/about" },
   { label: "Services", href: "/services" },
   { label: "Portfolio", href: "/portfolio" },
-  { label: "Experience", href: "/experience" },
+  { label: "Experience", href: "/about#experience" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -35,12 +36,11 @@ const SERVICES = [
 
 // Add your real profile URLs. Empty entries display an icon without a fake link.
 const SOCIALS = [
-  { name: "TikTok", href: "", paths: ["M14 3v12a4 4 0 1 1-4-4", "M14 3c0 4 3 6 6 6"] },
-  { name: "Instagram", href: "", paths: ["M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4Z", "M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z", "M17.5 6.5h.01"] },
-  { name: "X", href: "", paths: ["M4 3h4l12 18h-4L4 3Z", "M20 3 4 21"] },
-  { name: "Facebook", href: "", paths: ["M15 21v-8h3l.5-4H15V7c0-1 .3-2 2-2h2V2h-3c-3 0-5 2-5 5v2H8v4h3v8"] },
-  { name: "YouTube", href: "", paths: ["M21 7a3 3 0 0 0-2-2c-4-.5-10-.5-14 0a3 3 0 0 0-2 2c-.5 3-.5 7 0 10a3 3 0 0 0 2 2c4 .5 10 .5 14 0a3 3 0 0 0 2-2c.5-3 .5-7 0-10Z", "m10 9 5 3-5 3V9Z"] },
-  { name: "LinkedIn", href: "", paths: ["M5 9v12", "M5 4v.01", "M10 21V9h4v2c1-3 7-3 7 3v7", "M14 21v-7"] },
+  { name: "GitHub", href: SITE_CONFIG.socials.github, paths: ["M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"] },
+  { name: "Instagram", href: SITE_CONFIG.socials.instagram, paths: ["M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4Z", "M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z", "M17.5 6.5h.01"] },
+  { name: "X", href: SITE_CONFIG.socials.x, paths: ["M4 3h4l12 18h-4L4 3Z", "M20 3 4 21"] },
+  { name: "Facebook", href: SITE_CONFIG.socials.facebook, paths: ["M15 21v-8h3l.5-4H15V7c0-1 .3-2 2-2h2V2h-3c-3 0-5 2-5 5v2H8v4h3v8"] },
+  { name: "LinkedIn", href: SITE_CONFIG.socials.linkedin, paths: ["M5 9v12", "M5 4v.01", "M10 21V9h4v2c1-3 7-3 7 3v7", "M14 21v-7"] },
 ];
 
 // The display face on the reference is Orlean Medium; the body face is Aventa.

@@ -10,7 +10,7 @@ export function AboutDeepDiveTabs() {
   const [activeTab, setActiveTab] = useState<"skills" | "experience">("skills");
 
   return (
-    <section className="py-16 md:py-24 border-t border-neutral-200/60 dark:border-white/10 relative overflow-hidden">
+    <section id="experience" className="py-16 md:py-24 border-t border-neutral-200/60 dark:border-white/10 relative overflow-hidden scroll-mt-24">
       <div className="w-full max-w-[1520px] px-4 sm:px-6 lg:px-10 mx-auto">
         
         {/* Header */}
