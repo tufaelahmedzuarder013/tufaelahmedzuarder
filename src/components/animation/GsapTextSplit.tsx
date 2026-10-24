@@ -121,13 +121,14 @@ export function GsapTextSplit({
     return node;
   };
 
+  const Comp = Component as any;
+
   return (
-    // @ts-expect-error dynamic component type
-    <Component
+    <Comp
       ref={containerRef}
       className={cn("overflow-visible select-none", className)}
     >
       {renderChildren(children)}
-    </Component>
+    </Comp>
   );
 }

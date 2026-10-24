@@ -189,7 +189,7 @@ export function Footer() {
 
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-brand-ink/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-brand-muted2">
-          <p>© {new Date().getFullYear()} {SITE_CONFIG.name}. All rights reserved.</p>
+          <p suppressHydrationWarning>© {new Date().getFullYear()} {SITE_CONFIG.name}. All rights reserved.</p>
           <button
             onClick={scrollToTop}
             className="inline-flex items-center gap-1.5 text-brand-muted hover:text-[#F75B00] transition-colors cursor-pointer"

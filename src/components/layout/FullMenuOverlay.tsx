@@ -1,514 +1,899 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import { useEffect, useId, useRef, useState, type CSSProperties } from "react";
 import { createPortal } from "react-dom";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
-import {
-  X,
-  ArrowUpRight,
-  Mail,
-  Linkedin,
-  Facebook,
-  Instagram,
-  Youtube,
-} from "lucide-react";
-import { SITE_CONFIG } from "@/lib/constants";
-import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import { setTheme } from "@/store/slices/uiSlice";
+import { usePathname } from "next/navigation";
+import { ArrowRight, ArrowUpRight, Mail } from "lucide-react";
+import { MusicWaveToggle } from "../ui/MusicWaveToggle";
 import { TazLogo } from "../ui/TazLogo";
-import { cn } from "@/lib/utils";
 
-interface FullMenuOverlayProps {
-  isOpen: boolean;
-  onClose: () => void;
-}
+type FullMenuOverlayProps = { isOpen: boolean; onClose: () => void };
 
-function TikTokIcon({ className }: { className?: string }) {
+// Match these URLs to the routes and section IDs in your project.
+const NAVIGATION = [
+  { label: "Home", href: "/" },
+  { label: "About Us", href: "/about" },
+  { label: "Services", href: "/services" },
+  { label: "Portfolio", href: "/portfolio" },
+  { label: "Experience", href: "/experience" },
+  { label: "Contact", href: "/contact" },
+];
+
+const SERVICES = [
+  { label: "Custom Development", href: "/services#custom-development" },
+  { label: "Mobile App Development", href: "/services#mobile-app-development" },
+  { label: "Software Development", href: "/services#software-development" },
+  { label: "SAAS Products Development", href: "/services#saas-development" },
+  { label: "HR Management System", href: "/services#hr-management" },
+  { label: "CRM System", href: "/services#crm" },
+  { label: "CMS Development", href: "/services#cms-development" },
+  { label: "Branding", href: "/services#branding" },
+  { label: "Digital Marketing", href: "/services#digital-marketing" },
+  { label: "Graphic Design", href: "/services#graphic-design" },
+];
+
+// Add your real profile URLs. Empty entries display an icon without a fake link.
+const SOCIALS = [
+  { name: "TikTok", href: "", paths: ["M14 3v12a4 4 0 1 1-4-4", "M14 3c0 4 3 6 6 6"] },
+  { name: "Instagram", href: "", paths: ["M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4Z", "M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z", "M17.5 6.5h.01"] },
+  { name: "X", href: "", paths: ["M4 3h4l12 18h-4L4 3Z", "M20 3 4 21"] },
+  { name: "Facebook", href: "", paths: ["M15 21v-8h3l.5-4H15V7c0-1 .3-2 2-2h2V2h-3c-3 0-5 2-5 5v2H8v4h3v8"] },
+  { name: "YouTube", href: "", paths: ["M21 7a3 3 0 0 0-2-2c-4-.5-10-.5-14 0a3 3 0 0 0-2 2c-.5 3-.5 7 0 10a3 3 0 0 0 2 2c4 .5 10 .5 14 0a3 3 0 0 0 2-2c.5-3 .5-7 0-10Z", "m10 9 5 3-5 3V9Z"] },
+  { name: "LinkedIn", href: "", paths: ["M5 9v12", "M5 4v.01", "M10 21V9h4v2c1-3 7-3 7 3v7", "M14 21v-7"] },
+];
+
+// The display face on the reference is Orlean Medium; the body face is Aventa.
+// Load your local fonts through next/font/local and expose --font-orlean and
+// --font-aventa on <body>. Existing Aventa is used if Orlean is not loaded.
+const delay = (milliseconds: number) => ({ "--reveal-delay": `${milliseconds}ms` } as CSSProperties);
+
+function AnimatedLabel({ text }: { text: string }) {
   return (
-    <svg className={className} viewBox="0 0 24 24" fill="currentColor">
-      <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.29 0 .58.04.86.11V9.4a6.33 6.33 0 0 0-.86-.06A6.34 6.34 0 0 0 3 15.68a6.34 6.34 0 0 0 10.82 4.48c1.69-1.58 1.9-4.14 1.9-6.37v-4.88a8.16 8.16 0 0 0 4.87 1.62V7.07c-.34-.04-.68-.17-1-.38z" />
-    </svg>
-  );
-}
-
-function XIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="currentColor">
-      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-    </svg>
+    <span className="taz-menu-letter-window" suppressHydrationWarning>
+      {Array.from(text).map((letter, index) => (
+        <span key={index} style={{ transitionDelay: `${index * 10}ms`, whiteSpace: "pre" }}>
+          {letter === " " ? "\u00A0" : letter}
+        </span>
+      ))}
+    </span>
   );
 }
 
 export function FullMenuOverlay({ isOpen, onClose }: FullMenuOverlayProps) {
-  const pathname = usePathname();
-  const router = useRouter();
-  const dispatch = useAppDispatch();
-  const theme = useAppSelector((state) => state.ui.theme);
-  const isDarkMode = theme === "dark";
-
   const [mounted, setMounted] = useState(false);
+  const pathname = usePathname() ?? "/";
+  const titleId = useId();
+  const shapeId = `taz-menu-shape-${titleId.replace(/[^a-zA-Z0-9_-]/g, "")}`;
+  const dialogRef = useRef<HTMLDialogElement>(null);
+  const closeRef = useRef<HTMLButtonElement>(null);
+  const restoreScrollRef = useRef<(() => void) | null>(null);
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  // Lock body scroll when overlay is open
   useEffect(() => {
+    const dialog = dialogRef.current;
+    if (!dialog) return;
+    let frame = 0;
+    let timer: ReturnType<typeof setTimeout> | undefined;
+
     if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
+      if (!dialog.open) {
+        const body = document.body;
+        const html = document.documentElement;
+        const saved = { bodyOverflow: body.style.overflow, htmlOverflow: html.style.overflow, padding: body.style.paddingRight };
+        const scrollbar = Math.max(0, window.innerWidth - html.clientWidth);
+        const padding = Number.parseFloat(getComputedStyle(body).paddingRight) || 0;
+        body.style.overflow = "hidden";
+        html.style.overflow = "hidden";
+        if (scrollbar) body.style.paddingRight = `${padding + scrollbar}px`;
+        restoreScrollRef.current = () => {
+          body.style.overflow = saved.bodyOverflow;
+          html.style.overflow = saved.htmlOverflow;
+          body.style.paddingRight = saved.padding;
+        };
+        dialog.showModal();
+        closeRef.current?.focus({ preventScroll: true });
+      }
+      dialog.dataset.state = "opening";
+      frame = requestAnimationFrame(() => {
+        frame = requestAnimationFrame(() => { dialog.dataset.state = "open"; });
+      });
+    } else if (dialog.open) {
+      dialog.dataset.state = "closing";
+      const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+      timer = setTimeout(() => {
+        dialog.close();
+        restoreScrollRef.current?.();
+        restoreScrollRef.current = null;
+      }, reducedMotion ? 0 : 2400);
     }
     return () => {
-      document.body.style.overflow = "";
+      cancelAnimationFrame(frame);
+      if (timer !== undefined) clearTimeout(timer);
     };
   }, [isOpen]);
 
-  // Close on Escape key press
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        onClose();
-      }
-    };
-    if (isOpen) {
-      window.addEventListener("keydown", handleKeyDown);
-    }
+    const dialog = dialogRef.current;
     return () => {
-      window.removeEventListener("keydown", handleKeyDown);
+      dialog?.close();
+      restoreScrollRef.current?.();
+      restoreScrollRef.current = null;
     };
-  }, [isOpen, onClose]);
+  }, []);
 
-
-  // Safe navigation handler that closes the overlay and transitions cleanly
-  const handleNavigate = (href: string) => {
-    onClose();
-    router.push(href);
-  };
-
-  // Navigation Items: User's actual pages
-  const navItems = [
-    { label: "Home", href: "/" },
-    { label: "About Us", href: "/about" },
-    { label: "Services", href: "/services" },
-    { label: "Portfolio", href: "/portfolio" },
-    { label: "Experience", href: "/about#experience" },
-    { label: "Contact", href: "/contact" },
-  ];
-
-  // User's 10 Actual Services
-  const serviceItems = [
-    { label: "Custom Development", href: "/services/custom-development" },
-    { label: "Mobile App Development", href: "/services/mobile-app-development" },
-    { label: "Software Development", href: "/services/software-development" },
-    { label: "SAAS Products Development", href: "/services/saas-products-development" },
-    { label: "HR Management System", href: "/services/hr-management-system" },
-    { label: "CRM System", href: "/services/crm-system" },
-    { label: "CMS Development", href: "/services/cms-development" },
-    { label: "Branding", href: "/services/branding" },
-    { label: "Digital Marketing", href: "/services/digital-marketing" },
-    { label: "Graphic Design", href: "/services/graphic-design" },
-  ];
+  const contactButton = (mobile = false) => (
+    <Link href="/contact" onClick={onClose} className={`taz-menu-cta${mobile ? " taz-menu-mobile-button" : ""}`} aria-label="Let's talk">
+      <AnimatedLabel text="LET'S TALK" /><ArrowUpRight aria-hidden="true" strokeWidth={1.5} />
+    </Link>
+  );
 
   if (!mounted) return null;
 
-  const overlayContent = (
-    <AnimatePresence>
-      {isOpen && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.28 }}
-          className={cn(
-            "fixed inset-0 z-[99999] pointer-events-auto flex flex-col justify-center items-center p-2.5 sm:p-4 md:p-6 overflow-y-auto transition-colors duration-500",
-            isDarkMode
-              ? "bg-[#130F0C] text-white"
-              : "bg-[#ECE6DD] text-[#121516]"
-          )}
-        >
-          {/* Backdrop Click to Close Area */}
-          <div
-            className="fixed inset-0 cursor-pointer pointer-events-auto -z-30"
-            onClick={onClose}
-            aria-hidden="true"
-          />
+  return createPortal(
+    <>
+      <dialog
+        ref={dialogRef} id="taz-full-menu" className="taz-menu" aria-labelledby={titleId}
+        onCancel={(event) => { event.preventDefault(); onClose(); }}
+        onClick={(event) => { if (event.target === event.currentTarget) onClose(); }}
+      >
+        <span id={titleId} className="taz-menu-sr-only">Main navigation</span>
+        <svg width="0" height="0" className="taz-menu-defs" aria-hidden="true" focusable="false">
+          <defs>
+            <clipPath id={shapeId} clipPathUnits="objectBoundingBox">
+              <path d="M0 .115C0 .0983 .00738 .0849 .01648 .0849H.92747C.93658 .0849 .94396 .0715 .94396 .05495V.02997C.94396 .01342 .95134 0 .96044 0H.98352C.99262 0 1 .01342 1 .02997V.97003C1 .98658 .99262 1 .98352 1H.01648C.00738 1 0 .98658 0 .97003Z" />
+            </clipPath>
+          </defs>
+        </svg>
 
-          {/* Ambient Corner Lighting on Full Screen (Exact match to Image 1 & Image 2) */}
-          {isDarkMode ? (
-            <>
-              <div className="fixed top-0 right-0 w-[600px] h-[500px] bg-[radial-gradient(circle_at_top_right,rgba(160,80,25,0.35)_0%,rgba(90,40,15,0.2)_40%,transparent_70%)] blur-3xl pointer-events-none -z-20" />
-              <div className="fixed bottom-0 left-0 w-[500px] h-[450px] bg-[radial-gradient(circle_at_bottom_left,rgba(110,50,20,0.25)_0%,transparent_65%)] blur-3xl pointer-events-none -z-20" />
-            </>
-          ) : (
-            <div className="fixed top-0 right-1/4 w-[700px] h-[450px] bg-[radial-gradient(circle_at_top,rgba(245,160,80,0.22)_0%,rgba(240,205,150,0.14)_45%,transparent_70%)] blur-3xl pointer-events-none -z-20" />
-          )}
+        <div className="taz-menu-ellipse" aria-hidden="true" />
 
-          {/* ============================================================= */}
-          {/* MAIN FROSTED CARD (Contains Header, 3-Col Body, Footer)       */}
-          {/* ============================================================= */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.98, y: -8 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.98, y: -8 }}
-            transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
-            onClick={(e) => e.stopPropagation()}
-            className={cn(
-              "relative isolate w-full max-w-[1380px] min-h-[calc(100vh-20px)] sm:min-h-[calc(100vh-32px)] my-auto rounded-[28px] sm:rounded-[36px] p-5 sm:p-8 lg:p-11 overflow-hidden flex flex-col justify-between transition-all duration-500 pointer-events-auto z-40 shadow-[0_25px_80px_rgba(0,0,0,0.08)]",
-              isDarkMode
-                ? "bg-[#726B63]/75 backdrop-blur-3xl border border-white/25 text-[#121516]"
-                : "bg-[#FAF7F2] backdrop-blur-2xl border border-black/[0.08] text-[#121516]"
-            )}
-          >
-            {/* Luminous Diffused Spotlight Beam in Dark Mode (Exact glow in Image 1) */}
-            {isDarkMode && (
-              <div className="absolute inset-y-0 left-[30%] w-[48%] bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.46)_0%,rgba(255,255,255,0.18)_50%,transparent_75%)] blur-2xl pointer-events-none -z-10" />
-            )}
-
-            {/* Ambient Background Glows inside the Card (Exact Match to mdx.so menu-ell) */}
-            {!isDarkMode && (
-              <>
-                {/* 1. Large Central Warm Sun Eclipse Glow (mdx.so signature warm center aura) */}
-                <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-[750px] sm:w-[920px] h-[550px] bg-[radial-gradient(ellipse_at_top,rgba(245,160,75,0.26)_0%,rgba(242,190,115,0.16)_35%,rgba(235,210,165,0.06)_60%,transparent_75%)] blur-3xl pointer-events-none -z-10" />
-
-                {/* 2. Top-Right Ambient Warm Glow (flows directly under and around the Close icon) */}
-                <div className="absolute top-0 right-0 w-[450px] h-[350px] bg-[radial-gradient(circle_at_top_right,rgba(245,175,95,0.18)_0%,rgba(240,210,160,0.08)_40%,transparent_65%)] blur-2xl pointer-events-none -z-10" />
-
-                {/* 3. Soft Luminous Diffusion Layer across Middle */}
-                <div className="absolute inset-y-0 left-[25%] w-[50%] bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.7)_0%,transparent_70%)] blur-2xl pointer-events-none -z-10" />
-
-                {/* 4. Bottom Soft Mist */}
-                <div className="absolute bottom-0 inset-x-0 h-40 bg-[radial-gradient(ellipse_at_bottom,rgba(245,238,225,0.5)_0%,transparent_70%)] pointer-events-none -z-10" />
-              </>
-            )}
-
-            {/* 1. TOP HEADER BAR INSIDE CARD (Exact match to mdx.so Image 2) */}
-            <div className="w-full flex items-center justify-between pb-3 sm:pb-5 relative z-30 pointer-events-auto">
-              {/* Left: Brand Logo */}
-              <Link
-                href="/"
-                onClick={onClose}
-                aria-label="T A Z Home"
-                className="flex items-center transition-colors select-none cursor-pointer pointer-events-auto"
-              >
-                <TazLogo size="md" className="h-6 sm:h-7" />
+        <div className="taz-menu-container">
+          <div className="taz-menu-header">
+            <div className="taz-menu-brand-group">
+              <Link href="/" onClick={onClose} aria-label="T A Z Homepage" className="taz-menu-brand">
+                <TazLogo size="sm" className="!text-[#101820] dark:!text-white" />
               </Link>
-
-              {/* Right: Let's talk ↗ Link + Separator + Minimal Close (✕) Button */}
-              <div className="flex items-center gap-3 sm:gap-4">
-                <Link
-                  href="/contact"
-                  onClick={onClose}
-                  className="inline-flex items-center gap-1.5 font-heading text-sm sm:text-base font-normal group transition-colors cursor-pointer pointer-events-auto text-[#101820] hover:text-[#F75B00]"
-                >
-                  <span className="underline underline-offset-4 decoration-current/40 group-hover:decoration-[#F75B00]">
-                    Let&apos;s talk
-                  </span>
-                  <ArrowUpRight className="w-4 h-4 text-[#F75B00] stroke-[2.5]" />
-                </Link>
-
-                <span className="text-sm select-none font-light text-black/30">
-                  |
-                </span>
-
-                {/* Sleek Minimal Close Button (Exact mdx.so Image 2 geometry) */}
-                <button
-                  type="button"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    onClose();
-                  }}
-                  aria-label="Close navigation menu"
-                  title="Close navigation menu"
-                  className="w-8 sm:w-9 h-8 sm:h-9 flex items-center justify-center cursor-pointer group pointer-events-auto bg-transparent border-0 p-0 focus:outline-hidden"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="32"
-                    height="32"
-                    viewBox="0 0 34 34"
-                    fill="none"
-                    className="w-6 h-6 sm:w-7 sm:h-7 group-hover:rotate-90 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] pointer-events-none"
-                  >
-                    <rect
-                      x="1.58984"
-                      y="0.0998535"
-                      width="45.6946"
-                      height="2.24728"
-                      transform="rotate(45 1.58984 0.0998535)"
-                      className="fill-[#101820]"
-                    />
-                    <rect
-                      x="0.0898438"
-                      y="32.311"
-                      width="45.6946"
-                      height="2.24728"
-                      transform="rotate(-45 0.0898438 32.311)"
-                      className="fill-[#101820]"
-                    />
-                  </svg>
-                </button>
-              </div>
+              <span className="taz-menu-header-divider" aria-hidden="true" />
+              <div className="taz-menu-sound"><MusicWaveToggle className="!text-[#101820] dark:!text-white !border-black/10 dark:!border-white/20" /></div>
             </div>
+            <div className="taz-menu-header-right">
+              <Link href="/contact" onClick={onClose} className="taz-menu-top-cta" aria-label="Let's talk">
+                <AnimatedLabel text="Let's talk" /><ArrowUpRight aria-hidden="true" />
+              </Link>
+              <span className="taz-menu-header-divider" aria-hidden="true" />
+            </div>
+          </div>
 
-            {/* Body Grid: 3 Clean Columns with Dynamic Staggered Reveal */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 my-auto py-4 sm:py-6 items-start relative z-20">
-              {/* LEFT COLUMN: Hero Callout & Direct Contact */}
-              <motion.div
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.42, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
-                className="lg:col-span-4 space-y-6 pr-0 lg:pr-4"
-              >
-                <div className="flex items-center gap-2 text-xs font-mono font-bold text-[#F75B00]">
-                  <span className="w-2 h-2 rounded-full bg-[#F75B00]" />
-                  <span>Connect with us!</span>
-                </div>
+          <div className="taz-menu-shell">
+            <div className="taz-menu-surface" style={{ clipPath: `url(#${shapeId})` }} aria-hidden="true" />
 
-                <h2 className="heading-orlean text-3xl sm:text-4xl lg:text-[59px] leading-tight lg:leading-[47px] font-normal text-[#101820] tracking-tight">
-                  Turn Your Vision Into an Experience That Lasts
-                </h2>
+            <button ref={closeRef} type="button" onClick={onClose} className="taz-menu-close" aria-label="Close navigation menu">
+              <span className="taz-menu-close-bar taz-menu-close-bar-one" aria-hidden="true" />
+              <span className="taz-menu-close-bar taz-menu-close-bar-two" aria-hidden="true" />
+            </button>
 
-                <div className="w-12 h-0.5 bg-black/15 rounded-full" />
+            <div className="taz-menu-main">
+              <section className="taz-menu-intro">
+                <p className="taz-menu-eyebrow taz-menu-heading-reveal" style={delay(400)}><span />Connect with us!</p>
+                <h2 className="taz-menu-title taz-menu-heading-reveal" style={delay(500)}>Turn Your Vision Into an Experience That Lasts</h2>
+                <span className="taz-menu-short-line" aria-hidden="true" />
+                <a href="mailto:support@zuarder.com" className="taz-menu-email taz-menu-heading-reveal" style={delay(600)}>
+                  <Mail strokeWidth={1.5} aria-hidden="true" /><span>support@zuarder.com</span>
+                </a>
+                <div className="taz-menu-desktop-button taz-menu-heading-reveal" style={delay(700)}>{contactButton()}</div>
+              </section>
 
-                <div>
-                  <a
-                    href={`mailto:${SITE_CONFIG.email}`}
-                    className="inline-flex items-center gap-2.5 font-mono text-sm sm:text-base text-[#101820]/80 hover:text-[#F75B00] transition-colors underline underline-offset-4 decoration-black/15 hover:decoration-[#F75B00] cursor-pointer pointer-events-auto"
-                  >
-                    <Mail className="w-4 h-4 text-[#55595B]" />
-                    <span>{SITE_CONFIG.email}</span>
-                  </a>
-                </div>
-
-                {/* Dark Pill CTA Button (Exact match with Image 1 & Image 2) */}
-                <div>
-                  <Link
-                    href="/contact"
-                    onClick={onClose}
-                    style={{ fontFamily: "var(--font-aventa), 'Aventa', sans-serif", fontSize: "16px", fontWeight: 400 }}
-                    className="inline-flex items-center gap-3 px-6 sm:px-7 py-3 sm:py-3.5 rounded-full bg-[#121719] font-sans font-normal text-[16px] tracking-normal hover:scale-105 active:scale-95 transition-all shadow-xl group cursor-pointer pointer-events-auto btn-aventa"
-                  >
-                    <span
-                      style={{ color: "#ffffff", fontFamily: "var(--font-aventa), 'Aventa', sans-serif", fontSize: "16px", fontWeight: 400 }}
-                      className="!text-white text-white font-sans font-normal text-[16px] btn-label-text btn-label-white"
-                    >
-                      LET&apos;S TALK
-                    </span>
-                    <ArrowUpRight className="w-4 h-4 text-[#F75B00] stroke-[2.5] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  </Link>
-                </div>
-              </motion.div>
-
-              {/* MIDDLE COLUMN: NAVIGATION (User's actual pages with cascading reveal) */}
-              <div className="lg:col-span-3 space-y-4">
-                <div className="pb-2 border-b border-black/10">
-                  <span className="font-mono text-xs uppercase tracking-widest text-[#6C7072] font-semibold">
-                    NAVIGATION
-                  </span>
-                </div>
-
-                <ul className="space-y-2 pt-1">
-                  {navItems.map((item, index) => {
-                    const isActive =
-                      item.href === "/"
-                        ? pathname === "/"
-                        : pathname.startsWith(item.href);
-
-                    return (
-                      <motion.li
-                        key={item.label}
-                        initial={{ opacity: 0, x: -14 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{
-                          duration: 0.38,
-                          delay: 0.12 + index * 0.045,
-                          ease: [0.16, 1, 0.3, 1],
-                        }}
-                      >
-                        <Link
-                          href={item.href}
-                          onClick={() => handleNavigate(item.href)}
-                          className={cn(
-                            "paragraph-aventa font-normal text-lg sm:text-[20px] sm:leading-[25px] transition-all flex items-center gap-2.5 group cursor-pointer pointer-events-auto py-0.5",
-                            isActive
-                              ? "text-[#101820] font-normal"
-                              : "text-[#101820]/75 hover:text-[#101820]"
-                          )}
-                        >
-                          {isActive && (
-                            <span className="w-2 h-2 rounded-full bg-[#F75B00] shrink-0" />
-                          )}
-                          <span className="group-hover:translate-x-1.5 transition-transform duration-200">
-                            {item.label}
-                          </span>
-                        </Link>
-                      </motion.li>
-                    );
-                  })}
-                </ul>
-              </div>
-
-              {/* RIGHT COLUMN: USER'S 10 SERVICES & COLLABORATION */}
-              <div className="lg:col-span-5 space-y-5">
-                {/* SERVICES Subsection */}
-                <div>
-                  <div className="pb-2 border-b border-black/10 mb-3 flex items-center justify-between">
-                    <span className="font-mono text-xs uppercase tracking-widest text-[#6C7072] font-semibold">
-                      SERVICES
-                    </span>
-                    <Link
-                      href="/services"
-                      onClick={() => handleNavigate("/services")}
-                      className="font-mono text-[11px] text-[#F75B00] font-semibold hover:underline cursor-pointer pointer-events-auto"
-                    >
-                      All Services &rarr;
-                    </Link>
-                  </div>
-
-                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2">
-                    {serviceItems.map((service, index) => (
-                      <motion.li
-                        key={service.label}
-                        initial={{ opacity: 0, y: 12 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{
-                          duration: 0.35,
-                          delay: 0.15 + index * 0.03,
-                          ease: [0.16, 1, 0.3, 1],
-                        }}
-                      >
-                        <Link
-                          href={service.href}
-                          onClick={() => handleNavigate(service.href)}
-                          className="paragraph-aventa font-normal text-sm sm:text-base text-[#101820]/80 hover:text-[#F75B00] transition-colors flex items-center justify-between group py-1 cursor-pointer pointer-events-auto"
-                        >
-                          <span className="group-hover:translate-x-1 transition-transform duration-200">
-                            {service.label}
-                          </span>
-                          <ArrowUpRight className="w-3.5 h-3.5 text-[#F75B00] opacity-0 group-hover:opacity-100 transition-opacity shrink-0 ml-1" />
-                        </Link>
-                      </motion.li>
-                    ))}
+              <div className="taz-menu-nav-wrapper">
+                <nav className="taz-menu-navigation" aria-label="Main navigation">
+                  <h3 className="taz-menu-section-title taz-menu-item-reveal" style={delay(300)}>NAVIGATION</h3>
+                  <ul className="taz-menu-nav-list">
+                    {NAVIGATION.map((item, index) => {
+                      const active = item.href === "/" ? pathname === "/" : pathname === item.href || pathname.startsWith(`${item.href}/`);
+                      return (
+                        <li key={item.href} className="taz-menu-item-reveal" style={delay(400 + index * 100)}>
+                          <Link href={item.href} onClick={onClose} aria-current={active ? "page" : undefined} className={`taz-menu-nav-link${active ? " is-active" : ""}`}>
+                            <span className="taz-menu-link-dot" aria-hidden="true" /><span className="taz-menu-link-text">{item.label}</span>
+                          </Link>
+                        </li>
+                      );
+                    })}
                   </ul>
+                </nav>
+
+                <div className="taz-menu-right-column" tabIndex={0} role="region" aria-label="Services and collaboration">
+                  <section className="taz-menu-services">
+                    <div className="taz-menu-section-heading taz-menu-item-reveal" style={delay(500)}>
+                      <h3 className="taz-menu-section-title">SERVICES</h3>
+                      <Link href="/services" onClick={onClose} className="taz-menu-all-services" aria-label="View all services">
+                        <span>All Services</span>
+                        <ArrowRight aria-hidden="true" />
+                      </Link>
+                    </div>
+                    <ul className="taz-menu-service-list">
+                      {SERVICES.map((item, index) => (
+                        <li key={item.href} className="taz-menu-item-reveal" style={delay(600 + index * 100)}>
+                          <Link href={item.href} onClick={onClose} className="taz-menu-nav-link">
+                            <span className="taz-menu-link-dot" aria-hidden="true" /><span className="taz-menu-link-text">{item.label}</span>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </section>
+                  <section className="taz-menu-collaboration">
+                    <h3 className="taz-menu-section-title taz-menu-item-reveal" style={delay(600)}>COLLABORATION</h3>
+                    <div className="taz-menu-item-reveal" style={delay(700)}>
+                      <Link href="/contact" onClick={onClose} className="taz-menu-nav-link"><span className="taz-menu-link-dot" aria-hidden="true" /><span className="taz-menu-link-text">Available For Projects</span></Link>
+                      <p>Open for Custom Development, SaaS Architecture &amp; Dedicated Contracts</p>
+                    </div>
+                  </section>
                 </div>
-
-                {/* COLLABORATION Subsection */}
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.38, delay: 0.32, ease: [0.16, 1, 0.3, 1] }}
-                  className="pt-2"
-                >
-                  <div className="pb-2 border-b border-black/10 mb-2">
-                    <span className="font-mono text-xs uppercase tracking-widest text-[#6C7072] font-semibold">
-                      COLLABORATION
-                    </span>
-                  </div>
-
-                  <p className="font-heading font-normal text-xl sm:text-2xl text-[#101820] pt-1">
-                    Available For Projects
-                  </p>
-                  <p className="paragraph-aventa font-normal text-sm sm:text-base text-[#101820]/80 mt-1">
-                    Open for Custom Development, SaaS Architecture &amp; Dedicated Contracts
-                  </p>
-                </motion.div>
               </div>
             </div>
 
-            {/* ============================================================= */}
-            {/* 3. BOTTOM FOOTER BAR (Exact Match of Image 1 & Image 2)       */}
-            {/* ============================================================= */}
-            <div className="pt-6 border-t border-black/10 flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-mono text-[#6C7072] relative z-20">
-              {/* Copyright */}
-              <span>
-                © {new Date().getFullYear()} {SITE_CONFIG.name}. All rights reserved.
-              </span>
+            <div className="taz-menu-mobile-cta">{contactButton(true)}</div>
 
-              {/* Social Media Circular Pill Buttons */}
-              <div className="flex items-center gap-2 sm:gap-2.5">
-                <a
-                  href="https://tiktok.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="TikTok"
-                  className="w-8 h-8 rounded-full border border-black/15 bg-transparent flex items-center justify-center text-[#45494B] hover:text-[#F75B00] hover:border-[#F75B00] transition-all cursor-pointer pointer-events-auto"
-                >
-                  <TikTokIcon className="w-3.5 h-3.5" />
-                </a>
-                <a
-                  href={SITE_CONFIG.socials.instagram}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Instagram"
-                  className="w-8 h-8 rounded-full border border-black/15 bg-transparent flex items-center justify-center text-[#45494B] hover:text-[#F75B00] hover:border-[#F75B00] transition-all cursor-pointer pointer-events-auto"
-                >
-                  <Instagram className="w-3.5 h-3.5" />
-                </a>
-                <a
-                  href={SITE_CONFIG.socials.x}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="X / Twitter"
-                  className="w-8 h-8 rounded-full border border-black/15 bg-transparent flex items-center justify-center text-[#45494B] hover:text-[#F75B00] hover:border-[#F75B00] transition-all cursor-pointer pointer-events-auto"
-                >
-                  <XIcon className="w-3.5 h-3.5" />
-                </a>
-                <a
-                  href={SITE_CONFIG.socials.facebook}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Facebook"
-                  className="w-8 h-8 rounded-full border border-black/15 bg-transparent flex items-center justify-center text-[#45494B] hover:text-[#F75B00] hover:border-[#F75B00] transition-all cursor-pointer pointer-events-auto"
-                >
-                  <Facebook className="w-3.5 h-3.5" />
-                </a>
-                <a
-                  href="https://youtube.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="YouTube"
-                  className="w-8 h-8 rounded-full border border-black/15 bg-transparent flex items-center justify-center text-[#45494B] hover:text-[#F75B00] hover:border-[#F75B00] transition-all cursor-pointer pointer-events-auto"
-                >
-                  <Youtube className="w-3.5 h-3.5" />
-                </a>
-                <a
-                  href={SITE_CONFIG.socials.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="LinkedIn"
-                  className="w-8 h-8 rounded-full border border-black/15 bg-transparent flex items-center justify-center text-[#45494B] hover:text-[#F75B00] hover:border-[#F75B00] transition-all cursor-pointer pointer-events-auto"
-                >
-                  <Linkedin className="w-3.5 h-3.5" />
-                </a>
+            <footer className="taz-menu-footer">
+              <span className="taz-menu-footer-line" aria-hidden="true" />
+              <div className="taz-menu-footer-row">
+                <p className="taz-menu-copyright" suppressHydrationWarning>© {new Date().getFullYear()} Tufael Ahmed Zuarder. All rights reserved.</p>
+                <div className="taz-menu-socials" aria-label="Social profiles">
+                  {SOCIALS.map((social) => {
+                    const icon = <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{social.paths.map((path) => <path key={path} d={path} />)}</svg>;
+                    return social.href ? <a key={social.name} href={social.href} target="_blank" rel="noopener noreferrer" aria-label={social.name} className="taz-menu-social">{icon}</a> : <span key={social.name} role="img" aria-label={social.name} className="taz-menu-social">{icon}</span>;
+                  })}
+                </div>
+                <div className="taz-menu-legal"><Link href="/privacy-policy" onClick={onClose}>Privacy Policy</Link><Link href="/terms-of-use" onClick={onClose}>Terms Of Use</Link></div>
               </div>
+            </footer>
+          </div>
+        </div>
+      </dialog>
 
-              {/* Policy & Terms Links */}
-              <div className="flex items-center gap-4">
-                <Link
-                  href="/contact"
-                  onClick={() => handleNavigate("/contact")}
-                  className="hover:text-[#121516] transition-colors cursor-pointer pointer-events-auto"
-                >
-                  Privacy Policy
-                </Link>
-                <span>·</span>
-                <Link
-                  href="/contact"
-                  onClick={() => handleNavigate("/contact")}
-                  className="hover:text-[#121516] transition-colors cursor-pointer pointer-events-auto"
-                >
-                  Terms Of Use
-                </Link>
-              </div>
-            </div>
-          </motion.div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+      <style>{MENU_STYLES}</style>
+    </>,
+    document.body
   );
-
-  return createPortal(overlayContent, document.body);
 }
+
+// Viewport units are scoped to the menu; the rest of your app's rem scale is untouched.
+const MENU_STYLES = `
+.taz-menu {
+  --u: clamp(6.5px, .5208333333vw, 8.3333px);
+  --menu-ink: #101820;
+  --menu-orange: #F75B00;
+  --menu-gold: #EFC320;
+  --menu-muted: #5B6871;
+  --menu-border: rgba(16, 24, 32, 0.1);
+  --menu-ease: cubic-bezier(.6,.08,.02,.99);
+  --menu-duration: 2000ms;
+  --menu-body-font: var(--font-aventa, "Aventa"), Arial, sans-serif;
+  --menu-display-font: var(--font-orlean, "Orlean"), var(--font-aventa, "Aventa"), Arial, sans-serif;
+  position: fixed; inset: 0; width: 100%; height: 100%; height: 100dvh;
+  max-width: none; max-height: none; margin: 0; border: 0;
+  padding: min(calc(2.6 * var(--u)), 2.6vh) clamp(16px, 2.5vw, 48px) min(calc(4 * var(--u)), 4vh);
+  overflow: hidden !important;
+  background:
+    radial-gradient(
+      ellipse 70% 60% at 50% 45%,
+      rgba(247, 91, 0, 0.12) 0%,
+      rgba(239, 195, 32, 0.08) 35%,
+      rgba(247, 91, 0, 0.02) 65%,
+      transparent 85%
+    ),
+    radial-gradient(
+      circle at 85% 15%,
+      rgba(239, 195, 32, 0.10) 0%,
+      transparent 45%
+    ),
+    radial-gradient(
+      circle at 12% 85%,
+      rgba(247, 91, 0, 0.08) 0%,
+      transparent 45%
+    ),
+    linear-gradient(
+      180deg,
+      #FAFAFD 0%,
+      #F4F5F9 50%,
+      #ECEEF4 100%
+    );
+  color: var(--menu-ink);
+  font-family: var(--menu-body-font);
+  color-scheme: light;
+  isolation: isolate;
+  -webkit-font-smoothing: antialiased;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+.taz-menu::-webkit-scrollbar { display: none !important; width: 0 !important; height: 0 !important; }
+.taz-menu:not([open]) { display: none; }
+.taz-menu::backdrop { background: transparent; }
+.taz-menu-container {
+  position: relative;
+  width: 100%;
+  max-width: 1600px;
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+.taz-menu *, .taz-menu *::before, .taz-menu *::after, .taz-menu { box-sizing: border-box; }
+.taz-menu a { color: inherit; text-decoration: none; }
+.taz-menu ul { list-style: none; padding: 0; margin: 0; }
+.taz-menu h2, .taz-menu h3, .taz-menu p { margin: 0; }
+.taz-menu a:focus-visible, .taz-menu button:focus-visible, .taz-menu [tabindex="0"]:focus-visible { outline: 2px solid var(--menu-orange); outline-offset: 5px; }
+.taz-menu-sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+.taz-menu-defs { position: absolute; pointer-events: none; }
+.taz-menu-ellipse {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(
+      ellipse 80% 60% at 50% 45%,
+      rgba(247, 91, 0, 0.14) 0%,
+      rgba(239, 195, 32, 0.09) 35%,
+      transparent 75%
+    );
+  opacity: 0;
+  transition: opacity var(--menu-duration) var(--menu-ease);
+  pointer-events: none;
+}
+.taz-menu-shell { position: relative; isolation: isolate; display: grid; grid-template-columns: repeat(12,minmax(0,1fr)); grid-template-rows: minmax(0,1fr) auto minmax(0,1fr) auto; width: 100%; height: 100%; padding: calc(10 * var(--u)) calc(11 * var(--u)) calc(5 * var(--u)); opacity: 0; transform: scale(1.05); transition: opacity var(--menu-duration) var(--menu-ease), transform var(--menu-duration) var(--menu-ease); }
+.taz-menu-surface {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(
+      ellipse 60% 50% at 50% 45%,
+      rgba(247, 91, 0, 0.05) 0%,
+      rgba(239, 195, 32, 0.03) 30%,
+      transparent 70%
+    ),
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.95) 0%,
+      rgba(255, 255, 255, 0.88) 50%,
+      rgba(255, 255, 255, 0.94) 100%
+    );
+  backdrop-filter: blur(40px) saturate(180%);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+  border: 1px solid rgba(16, 24, 32, 0.06);
+  box-shadow:
+    0 30px 90px -20px rgba(16, 24, 32, 0.10),
+    0 0 0 1px rgba(255, 255, 255, 0.95) inset,
+    0 2px 10px rgba(0, 0, 0, 0.03);
+}
+.taz-menu[data-state="open"] .taz-menu-shell { opacity: 1; transform: scale(1); }
+.taz-menu[data-state="open"] .taz-menu-ellipse { opacity: .7; }
+.taz-menu[data-state="closing"] .taz-menu-shell { opacity: 0; transform: scale(.9); transition-delay: 300ms; }
+.taz-menu[data-state="closing"] .taz-menu-ellipse { opacity: 0; transition-delay: 300ms; }
+.taz-menu-header { position: absolute; z-index: 3; top: calc(3 * var(--u)); left: calc(11 * var(--u)); right: calc(16 * var(--u)); display: flex; align-items: center; justify-content: space-between; pointer-events: none; }
+.taz-menu-header > * { pointer-events: auto; }
+.taz-menu-brand-group, .taz-menu-header-right { display: flex; align-items: center; gap: calc(4.2 * var(--u)); }
+.taz-menu-brand { display: flex; align-items: center; color: var(--menu-ink); }
+.taz-menu-brand svg { width: calc(13.1 * var(--u)) !important; height: calc(2.5 * var(--u)) !important; color: var(--menu-ink) !important; }
+.taz-menu-header-divider { width: 1px; height: calc(2 * var(--u)); background: rgba(16, 24, 32, 0.15); }
+.taz-menu-sound { display: flex; align-items: center; }
+.taz-menu-sound button { width: calc(5.5 * var(--u)); height: calc(5.5 * var(--u)); min-width: 26px; min-height: 26px; border: 1px solid rgba(17,24,34,.12); border-radius: 50%; background: transparent; color: #101820; }
+.taz-menu-top-cta { display: inline-flex; gap: calc(.8 * var(--u)); align-items: center; font-size: calc(2 * var(--u)); line-height: 1; letter-spacing: .1em; color: var(--menu-ink); }
+.taz-menu-top-cta .taz-menu-letter-window { text-decoration: underline; text-underline-offset: .22em; text-decoration-thickness: 1px; }
+.taz-menu-top-cta svg { width: calc(2.4 * var(--u)); height: calc(2.4 * var(--u)); color: #F75B00; }
+.taz-menu-close {
+  position: absolute;
+  z-index: 4;
+  top: calc(2.8 * var(--u));
+  right: calc(4 * var(--u));
+  width: calc(3.4 * var(--u));
+  height: calc(3.4 * var(--u));
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #111822;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 300ms ease-out, opacity 300ms ease-out;
+  outline: none;
+}
+.taz-menu-close:focus { outline: none; }
+.taz-menu-close:focus-visible { outline: 2px solid var(--menu-orange); outline-offset: 4px; }
+.taz-menu-close-bar {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: calc(3.2 * var(--u));
+  height: max(1.5px, calc(.2 * var(--u)));
+  background: currentColor;
+  transform: translate(-50%, -50%) rotate(var(--bar-angle)) scale(0);
+  transition: transform var(--menu-duration) var(--menu-ease);
+}
+.taz-menu-close-bar-one { --bar-angle: 45deg; }
+.taz-menu-close-bar-two { --bar-angle: -45deg; }
+.taz-menu[data-state="open"] .taz-menu-close-bar { transform: translate(-50%,-50%) rotate(var(--bar-angle)) scale(1); transition-delay: 300ms; }
+.taz-menu[data-state="open"] .taz-menu-close-bar-two { transition-delay: 400ms; }
+.taz-menu[data-state="closing"] .taz-menu-close-bar-two { transition-delay: 100ms; }
+.taz-menu-main {
+  grid-column: 1/-1;
+  grid-row: 2;
+  display: grid;
+  grid-template-columns: minmax(calc(36 * var(--u)), 1fr) minmax(calc(62 * var(--u)), 1.6fr);
+  column-gap: calc(5 * var(--u));
+  align-items: start;
+  min-width: 0;
+  min-height: 0;
+  max-height: calc(100dvh - 22 * var(--u));
+  padding-bottom: calc(4 * var(--u));
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.taz-menu-main::-webkit-scrollbar { display: none; }
+.taz-menu-intro {
+  display: grid;
+  gap: min(calc(2.6 * var(--u)), 2.6vh);
+  min-width: 0;
+  padding-bottom: calc(2 * var(--u));
+}
+.taz-menu-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: calc(1.5 * var(--u));
+  color: #F75B00 !important;
+  font-size: calc(2 * var(--u));
+  font-weight: 500;
+  line-height: 1.5;
+}
+.taz-menu-eyebrow > span {
+  width: calc(1 * var(--u));
+  height: calc(1 * var(--u));
+  flex-shrink: 0;
+  background: #F75B00 !important;
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(247, 91, 0, 0.45);
+}
+.taz-menu-title {
+  width: min(100%, calc(52 * var(--u)));
+  color: var(--menu-ink);
+  font-family: var(--menu-display-font);
+  font-size: min(calc(6 * var(--u)), 5.8vh);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -.015em;
+}
+.taz-menu-short-line { width: calc(7 * var(--u)); height: 1px; background: rgba(16, 24, 32, 0.15); }
+.taz-menu-email {
+  display: flex;
+  align-items: center;
+  gap: calc(1 * var(--u));
+  margin-top: calc(1.5 * var(--u));
+  margin-bottom: min(calc(3.5 * var(--u)), 3.5vh);
+  font-size: calc(2 * var(--u));
+  line-height: 1.5;
+  color: #5B6871 !important;
+  letter-spacing: .6px;
+  transition: color 250ms ease;
+}
+.taz-menu-email:hover {
+  color: #F75B00 !important;
+}
+.taz-menu-email svg { width: calc(2 * var(--u)); height: calc(2 * var(--u)); flex-shrink: 0; }
+.taz-menu-email > span { text-decoration: underline; text-underline-offset: .15em; }
+.taz-menu-desktop-button { padding-bottom: calc(3 * var(--u)); }
+.taz-menu-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: calc(.8 * var(--u));
+  width: max-content;
+  padding: calc(1.6 * var(--u)) calc(3.4 * var(--u));
+  border-radius: 100px;
+  background: #101820;
+  color: white !important;
+  font-size: calc(1.9 * var(--u));
+  line-height: 1.5;
+  letter-spacing: .08em;
+  box-shadow: 0 12px 28px -4px rgba(16, 24, 32, 0.35), 0 4px 10px -2px rgba(16, 24, 32, 0.18);
+  transition: transform 300ms ease, box-shadow 300ms ease, background-color 300ms ease;
+}
+.taz-menu-cta:hover {
+  transform: translateY(-2px);
+  background: #1E2630;
+  box-shadow: 0 16px 34px -4px rgba(16, 24, 32, 0.45), 0 6px 14px -2px rgba(247, 91, 0, 0.25);
+}
+.taz-menu-cta > svg { width: calc(2.2 * var(--u)); height: calc(2.2 * var(--u)); color: #F75B00 !important; }
+.taz-menu-letter-window { display: inline-block; height: 1.5em; overflow: hidden; vertical-align: middle; }
+.taz-menu-letter-window > span { display: inline-block; text-shadow: 0 1.5em currentColor; transition: transform 550ms var(--menu-ease); }
+.taz-menu-nav-wrapper {
+  display: grid;
+  grid-template-columns: minmax(calc(16 * var(--u)), auto) 1fr;
+  column-gap: calc(5 * var(--u));
+  align-items: start;
+  min-width: 0;
+}
+.taz-menu-navigation {
+  width: auto;
+  min-width: calc(16 * var(--u));
+}
+.taz-menu-section-title {
+  padding-bottom: min(calc(1.5 * var(--u)), 1.4vh);
+  border-bottom: 1px solid rgba(16, 24, 32, 0.12);
+  width: 100%;
+  color: #5B6871;
+  font-family: var(--menu-body-font);
+  font-size: calc(1.9 * var(--u));
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+}
+.taz-menu-nav-list {
+  display: grid;
+  gap: min(calc(2.5 * var(--u)), 2.2vh);
+  margin-top: min(calc(2.5 * var(--u)), 2.5vh) !important;
+}
+.taz-menu-nav-link { display: inline-block; position: relative; }
+.taz-menu-navigation .taz-menu-link-text {
+  display: inline-block;
+  color: var(--menu-ink);
+  font-family: var(--menu-display-font);
+  font-size: min(calc(3.8 * var(--u)), 3.2vh);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 1px;
+  opacity: .5;
+  transition: opacity 300ms ease-out, color 300ms ease-out;
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+}
+.taz-menu-link-dot {
+  position: absolute;
+  top: 50%;
+  left: calc(-2 * var(--u));
+  width: calc(1.2 * var(--u));
+  height: calc(1.2 * var(--u));
+  background: #F75B00;
+  box-shadow: 0 0 8px rgba(247, 91, 0, 0.45);
+  border-radius: 50%;
+  transform: translate(-100%,-50%) scale(0);
+  transition: transform 300ms var(--menu-ease);
+}
+.taz-menu-nav-link.is-active .taz-menu-link-text { opacity: 1; }
+.taz-menu-nav-link.is-active .taz-menu-link-dot { transform: translate(-100%,-50%) scale(1); }
+.taz-menu-right-column {
+  width: 100%;
+  max-width: none;
+  max-height: none;
+  overflow: visible;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.taz-menu-section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: min(calc(1.5 * var(--u)), 1.4vh);
+  border-bottom: 1px solid rgba(16, 24, 32, 0.12);
+  width: 100%;
+}
+.taz-menu-section-heading .taz-menu-section-title {
+  border-bottom: 0;
+  padding-bottom: 0;
+  width: auto;
+}
+.taz-menu-all-services {
+  display: inline-flex;
+  align-items: center;
+  gap: calc(.5 * var(--u));
+  color: #F75B00 !important;
+  font-size: calc(1.5 * var(--u));
+  font-family: var(--menu-body-font);
+  font-weight: 500;
+  letter-spacing: .04em;
+  text-decoration: none;
+  transition: opacity 200ms ease, transform 200ms ease;
+}
+.taz-menu-all-services:hover {
+  opacity: .85;
+  transform: translateX(3px);
+}
+.taz-menu-all-services svg {
+  width: calc(1.5 * var(--u));
+  height: calc(1.5 * var(--u));
+  color: #F75B00 !important;
+}
+.taz-menu-service-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: calc(4 * var(--u));
+  row-gap: min(calc(2.2 * var(--u)), 2.2vh);
+  margin-top: min(calc(2.5 * var(--u)), 2.5vh) !important;
+}
+.taz-menu-service-list .taz-menu-link-text {
+  display: inline-block;
+  color: var(--menu-ink);
+  font-family: var(--menu-display-font);
+  font-size: min(calc(2.3 * var(--u)), 2.2vh);
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  opacity: .65;
+  transition: opacity 300ms ease-out, color 300ms ease-out;
+}
+.taz-menu-collaboration {
+  margin-top: min(calc(4 * var(--u)), 3.8vh);
+}
+.taz-menu-collaboration .taz-menu-section-title {
+  padding-bottom: min(calc(1.5 * var(--u)), 1.4vh);
+  border-bottom: 1px solid rgba(16, 24, 32, 0.12);
+  width: 100%;
+  color: #5B6871;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+}
+.taz-menu-collaboration > div {
+  margin-top: min(calc(2 * var(--u)), 2vh);
+}
+.taz-menu-collaboration .taz-menu-link-text {
+  display: inline-block;
+  color: var(--menu-ink);
+  font-family: var(--menu-display-font);
+  font-size: min(calc(2.3 * var(--u)), 2.2vh);
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  opacity: .95;
+  transition: opacity 300ms ease-out, color 300ms ease-out;
+}
+.taz-menu-collaboration .taz-menu-nav-link:hover .taz-menu-link-text {
+  color: #F75B00 !important;
+}
+.taz-menu-collaboration p {
+  margin-top: calc(0.8 * var(--u));
+  color: #5B6871 !important;
+  font-size: calc(1.6 * var(--u));
+  line-height: 1.45;
+  max-width: calc(46 * var(--u));
+}
+.taz-menu-item-reveal, .taz-menu-heading-reveal { opacity: 0; transform: translateX(-75px); transition: opacity var(--menu-duration) var(--menu-ease), transform var(--menu-duration) var(--menu-ease); }
+.taz-menu-heading-reveal { transform: translateX(50px); }
+.taz-menu[data-state="open"] .taz-menu-item-reveal, .taz-menu[data-state="open"] .taz-menu-heading-reveal { opacity: 1; transform: translate(0); transition-delay: var(--reveal-delay,300ms); }
+.taz-menu[data-state="closing"] .taz-menu-item-reveal, .taz-menu[data-state="closing"] .taz-menu-heading-reveal { opacity: 1; transform: translate(0); transition: none; }
+.taz-menu-mobile-cta { display: none; }
+.taz-menu-footer { grid-column: 1/-1; grid-row: 4; width: 100%; min-width: 0; color: #5B6871; font-size: calc(1.6 * var(--u)); line-height: 1.2; }
+.taz-menu-footer-line { display: block; width: 100%; height: 1px; margin-bottom: min(calc(3.5 * var(--u)),3.5vh); background: rgba(16, 24, 32, 0.12); opacity: 0; transform: scaleX(0); transition: opacity var(--menu-duration) var(--menu-ease), transform var(--menu-duration) var(--menu-ease); }
+.taz-menu-footer-row { position: relative; display: flex; align-items: center; justify-content: space-between; gap: calc(2 * var(--u)); }
+.taz-menu-copyright { max-width: 43%; }
+.taz-menu-socials { position: absolute; top: 50%; left: 50%; display: flex; align-items: center; gap: calc(1 * var(--u)); opacity: 0; transform: translate(-50%,50%); transition: opacity var(--menu-duration) var(--menu-ease), transform var(--menu-duration) var(--menu-ease); }
+.taz-menu-social { display: grid; place-items: center; flex-shrink: 0; width: calc(3.5 * var(--u)); height: calc(3.5 * var(--u)); border: 1px solid rgba(16, 24, 32, 0.18); border-radius: 50%; color: #5B6871 !important; transition: color 300ms ease, border-color 300ms ease, transform 300ms ease, background-color 300ms ease; }
+.taz-menu-social svg { width: 49%; height: 49%; }
+.taz-menu-legal { display: flex; align-items: center; gap: calc(6 * var(--u)); }
+.taz-menu-legal a { color: #5B6871; transition: color 200ms ease; }
+.taz-menu-legal a:hover { color: #F75B00 !important; }
+.taz-menu[data-state="open"] .taz-menu-socials, .taz-menu[data-state="closing"] .taz-menu-socials { opacity: 1; transform: translate(-50%,-50%); transition-delay: 600ms; }
+.taz-menu[data-state="open"] .taz-menu-footer-line, .taz-menu[data-state="closing"] .taz-menu-footer-line { opacity: 1; transform: scaleX(1); transition-delay: 800ms; }
+@media (hover: hover) and (pointer: fine) {
+  .taz-menu-close:hover { transform: scale(.9); color: #F75B00; }
+  .taz-menu-navigation:hover .taz-menu-link-text, .taz-menu-services:hover .taz-menu-link-text { opacity: .5; }
+  .taz-menu-navigation:hover .taz-menu-link-dot, .taz-menu-services:hover .taz-menu-link-dot { transform: translate(-100%,-50%) scale(0); }
+  .taz-menu-nav-link:hover .taz-menu-link-text { opacity: 1; }
+  .taz-menu-nav-link:hover .taz-menu-link-dot { transform: translate(-100%,-50%) scale(1); }
+  .taz-menu-cta:hover .taz-menu-letter-window > span, .taz-menu-top-cta:hover .taz-menu-letter-window > span { transform: translateY(-1.5em); }
+  .taz-menu-social[href]:hover { border-color: #F75B00 !important; color: #F75B00 !important; background-color: rgba(247, 91, 0, 0.08); }
+  .taz-menu-legal a:hover, .taz-menu-email:hover { color: #F75B00 !important; }
+}
+@media (max-width: 991px) { .taz-menu { --u: 2.2727272727vw; } }
+@media (min-width: 482px) and (max-width: 991px) { .taz-menu { --u: 1.3020833333vw; } }
+@media (orientation: portrait), (max-width: 700px) {
+  .taz-menu {
+    padding: 0;
+    background:
+      radial-gradient(
+        circle at 50% 30%,
+        rgba(247, 91, 0, 0.12) 0%,
+        rgba(239, 195, 32, 0.08) 45%,
+        transparent 70%
+      ),
+      linear-gradient(180deg, #FAFAFD 0%, #F4F5F9 100%);
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+  }
+  .taz-menu-container { width: 100%; max-width: 100%; height: 100%; padding: 0; margin: 0; }
+  .taz-menu-ellipse { display: none; }
+  .taz-menu-header { top: calc(3.5 * var(--u)); left: calc(3.2 * var(--u)); right: calc(3.2 * var(--u)); }
+  .taz-menu-brand-group { gap: calc(1.1 * var(--u)); }
+  .taz-menu-brand svg { width: 74px !important; height: 18px !important; }
+  .taz-menu-header-divider { height: 13px; }
+  .taz-menu-sound button { width: 26px; height: 26px; }
+  .taz-menu-header-right { display: none; }
+  .taz-menu-shell { grid-template-columns: minmax(0,1fr); grid-template-rows: minmax(0,1fr) auto auto; padding: max(min(calc(10 * var(--u)),10vh),calc(7 * var(--u))) 0 max(min(calc(4 * var(--u)),3vh),env(safe-area-inset-bottom)); transform: scale(1); }
+  .taz-menu-surface { background: transparent; clip-path: none !important; backdrop-filter: none; -webkit-backdrop-filter: none; }
+  .taz-menu-close { top: calc(4 * var(--u)); right: calc(3.2 * var(--u)); width: calc(2 * var(--u)); height: calc(2 * var(--u)); }
+  .taz-menu-close-bar { width: calc(2.8 * var(--u)); height: 1.5px; }
+  .taz-menu-main { grid-column: 1; grid-row: 1; display: flex; flex-direction: column; width: 100%; height: 100%; max-height: none; overflow: hidden; }
+  .taz-menu-intro { display: grid; gap: calc(1.4 * var(--u)); width: 100%; justify-items: center; padding: 0 calc(3 * var(--u)); margin-bottom: min(calc(5 * var(--u)),2.5vh); flex-shrink: 0; }
+  .taz-menu-eyebrow { gap: calc(.5 * var(--u)); font-size: calc(1.4 * var(--u)); }
+  .taz-menu-eyebrow > span { width: calc(.8 * var(--u)); height: calc(.8 * var(--u)); }
+  .taz-menu-title { width: 100%; text-align: center; font-size: min(calc(3.8 * var(--u)),3.5vh); line-height: 1.1; letter-spacing: 0; }
+  .taz-menu-short-line, .taz-menu-email, .taz-menu-desktop-button { display: none; }
+  .taz-menu-nav-wrapper { display: block; width: 100%; padding: 0 calc(3.5 * var(--u)); overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; flex: 1; min-height: 0; }
+  .taz-menu-navigation, .taz-menu-right-column { width: 100%; max-width: none; max-height: none; overflow: visible; padding: 0; margin: 0; box-sizing: border-box; }
+  .taz-menu-navigation, .taz-menu-services { margin-bottom: min(calc(4 * var(--u)),2.5vh); }
+  .taz-menu-section-title { font-size: min(calc(1.5 * var(--u)),1.5vh); }
+  .taz-menu-nav-list, .taz-menu-service-list { gap: min(calc(2 * var(--u)),1.2vh); margin-top: min(calc(2 * var(--u)),1.2vh) !important; }
+  .taz-menu-service-list { grid-template-columns: 1fr; }
+  .taz-menu-service-list .taz-menu-link-text { white-space: normal; }
+  .taz-menu-link-text { display: block; font-size: min(calc(2.4 * var(--u)),2vh); line-height: .9; text-box-trim: none; }
+  .taz-menu-link-dot { display: none; }
+  .taz-menu-section-heading { width: 100%; }
+  .taz-menu-all-services { width: calc(1.5 * var(--u)); height: calc(1.5 * var(--u)); }
+  .taz-menu-collaboration { margin-top: min(calc(4 * var(--u)),2.5vh); padding-bottom: calc(2 * var(--u)); }
+  .taz-menu-collaboration > div { margin-top: min(calc(2 * var(--u)),1.2vh); }
+  .taz-menu-collaboration p { font-size: min(calc(1.6 * var(--u)),1.7vh); }
+  .taz-menu-item-reveal { transform: translateY(30px); }
+  .taz-menu-heading-reveal { transform: none; }
+  .taz-menu-mobile-cta { display: flex; justify-content: center; grid-column: 1; grid-row: 2; margin: min(calc(2.5 * var(--u)),1.5vh) 0; }
+  .taz-menu-mobile-button { padding: calc(1.2 * var(--u)) calc(2.2 * var(--u)); font-size: calc(1.4 * var(--u)); }
+  .taz-menu-mobile-button > svg { width: calc(1.8 * var(--u)); height: calc(1.8 * var(--u)); }
+  .taz-menu-footer { grid-column: 1; grid-row: 3; display: grid; justify-items: center; }
+  .taz-menu-footer-line { width: calc(14.5 * var(--u)); margin-bottom: min(calc(2 * var(--u)),2vh); }
+  .taz-menu-footer-row { width: 100%; justify-content: center; }
+  .taz-menu-copyright, .taz-menu-legal { display: none; }
+  .taz-menu-socials { position: static; transform: translateY(100%); }
+  .taz-menu[data-state="open"] .taz-menu-socials, .taz-menu[data-state="closing"] .taz-menu-socials { transform: translateY(0); transition-delay: 800ms; }
+  .taz-menu-social { width: min(calc(3.3 * var(--u)),3vh); height: min(calc(3.3 * var(--u)),3vh); }
+}
+@media (min-width: 992px) and (orientation: portrait) { .taz-menu { --u: 1.6666666667vw; } }
+@media (max-height: 480px) and (orientation: landscape) { .taz-menu { --u: .5208333333vw; } .taz-menu-main { max-height: calc(100dvh - 24 * var(--u)); } }
+@media (prefers-reduced-motion: reduce) {
+  .taz-menu, .taz-menu *, .taz-menu *::before { transition-duration: .001ms !important; transition-delay: 0ms !important; }
+  .taz-menu-item-reveal, .taz-menu-heading-reveal, .taz-menu-shell { transform: none; }
+}
+
+/* ========================================================================== */
+/* DARK MODE CONSISTENCY (Synchronizes with website dark theme)             */
+/* ========================================================================== */
+:root.dark .taz-menu,
+html.dark .taz-menu,
+.dark .taz-menu,
+body.dark .taz-menu {
+  --menu-ink: #F3F4FA;
+  --menu-muted: #9C9DB5;
+  --menu-border: rgba(255, 255, 255, 0.12);
+  color-scheme: dark;
+  background:
+    radial-gradient(
+      ellipse 70% 60% at 50% 45%,
+      rgba(247, 91, 0, 0.16) 0%,
+      rgba(239, 195, 32, 0.08) 35%,
+      transparent 75%
+    ),
+    radial-gradient(
+      circle at 85% 15%,
+      rgba(247, 91, 0, 0.12) 0%,
+      transparent 45%
+    ),
+    linear-gradient(
+      180deg,
+      #0B0B12 0%,
+      #11111E 50%,
+      #0B0B12 100%
+    );
+  color: #F3F4FA;
+}
+:root.dark .taz-menu-surface,
+html.dark .taz-menu-surface,
+.dark .taz-menu-surface,
+body.dark .taz-menu-surface {
+  background:
+    radial-gradient(
+      ellipse 65% 55% at 50% 45%,
+      rgba(247, 91, 0, 0.10) 0%,
+      rgba(239, 195, 32, 0.05) 40%,
+      transparent 75%
+    ),
+    linear-gradient(
+      135deg,
+      rgba(23, 23, 38, 0.90) 0%,
+      rgba(17, 17, 28, 0.85) 50%,
+      rgba(23, 23, 38, 0.90) 100%
+    );
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow:
+    0 30px 90px -20px rgba(0, 0, 0, 0.7),
+    0 0 0 1px rgba(255, 255, 255, 0.08) inset,
+    0 2px 10px rgba(0, 0, 0, 0.4);
+}
+:root.dark .taz-menu-brand svg,
+html.dark .taz-menu-brand svg {
+  color: #F3F4FA !important;
+}
+:root.dark .taz-menu-header-divider,
+html.dark .taz-menu-header-divider {
+  background: rgba(255, 255, 255, 0.2);
+}
+:root.dark .taz-menu-sound button,
+html.dark .taz-menu-sound button {
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #F3F4FA;
+}
+:root.dark .taz-menu-top-cta,
+html.dark .taz-menu-top-cta {
+  color: #F3F4FA;
+}
+:root.dark .taz-menu-close,
+html.dark .taz-menu-close {
+  color: #F3F4FA;
+}
+:root.dark .taz-menu-title,
+html.dark .taz-menu-title {
+  color: #F3F4FA !important;
+}
+:root.dark .taz-menu-short-line,
+html.dark .taz-menu-short-line,
+:root.dark .taz-menu-footer-line,
+html.dark .taz-menu-footer-line {
+  background: rgba(255, 255, 255, 0.12);
+}
+:root.dark .taz-menu-email,
+html.dark .taz-menu-email {
+  color: #9C9DB5 !important;
+}
+:root.dark .taz-menu-navigation .taz-menu-link-text,
+html.dark .taz-menu-navigation .taz-menu-link-text {
+  color: #F3F4FA;
+}
+:root.dark .taz-menu-service-list .taz-menu-link-text,
+html.dark .taz-menu-service-list .taz-menu-link-text {
+  color: #F3F4FA;
+}
+:root.dark .taz-menu-section-title,
+html.dark .taz-menu-section-title,
+:root.dark .taz-menu-section-heading,
+html.dark .taz-menu-section-heading,
+:root.dark .taz-menu-collaboration .taz-menu-section-title,
+html.dark .taz-menu-collaboration .taz-menu-section-title {
+  border-bottom-color: rgba(255, 255, 255, 0.12);
+  color: #9C9DB5;
+}
+:root.dark .taz-menu-collaboration .taz-menu-link-text,
+html.dark .taz-menu-collaboration .taz-menu-link-text {
+  color: #F3F4FA;
+}
+:root.dark .taz-menu-collaboration p,
+html.dark .taz-menu-collaboration p {
+  color: #9C9DB5 !important;
+}
+:root.dark .taz-menu-footer,
+html.dark .taz-menu-footer,
+:root.dark .taz-menu-legal a,
+html.dark .taz-menu-legal a {
+  color: #9C9DB5;
+}
+:root.dark .taz-menu-social,
+html.dark .taz-menu-social {
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #9C9DB5 !important;
+}
+:root.dark .taz-menu-cta,
+html.dark .taz-menu-cta {
+  background: #F3F4FA;
+  color: #101820 !important;
+  box-shadow: 0 12px 28px -4px rgba(0, 0, 0, 0.5), 0 4px 10px -2px rgba(247, 91, 0, 0.25);
+}
+:root.dark .taz-menu-cta:hover,
+html.dark .taz-menu-cta:hover {
+  background: #FFFFFF;
+  box-shadow: 0 16px 36px -4px rgba(0, 0, 0, 0.6), 0 6px 14px -2px rgba(247, 91, 0, 0.35);
+}
+:root.dark .taz-menu-cta > svg,
+html.dark .taz-menu-cta > svg {
+  color: #F75B00 !important;
+}
+`;

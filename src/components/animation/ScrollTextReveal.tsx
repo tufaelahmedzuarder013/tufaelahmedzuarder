@@ -110,13 +110,14 @@ export function ScrollTextReveal({
     return node;
   };
 
+  const Comp = Component as any;
+
   return (
-    // @ts-expect-error dynamic component type
-    <Component
+    <Comp
       ref={containerRef}
       className={cn("select-none", className)}
     >
       {renderChildren(children)}
-    </Component>
+    </Comp>
   );
 }
