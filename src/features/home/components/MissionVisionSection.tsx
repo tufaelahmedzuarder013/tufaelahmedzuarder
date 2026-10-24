@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { CheckCircle2, ArrowRight, Target, Eye } from "lucide-react";
+import { CheckCircle2, ArrowRight } from "lucide-react";
 import { Container } from "@/components/layout/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { MissionVisionCodeArtwork } from "./MissionVisionCodeArtwork";
@@ -21,67 +21,29 @@ export function MissionVisionSection() {
       </div>
 
       <Container>
-        {/* Section Header & Mode Switcher */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 sm:mb-16 gap-6">
-          <div>
-            <Eyebrow>{"// PHILOSOPHY & DIRECTION"}</Eyebrow>
-            <h2 className="font-heading font-extrabold text-3xl sm:text-4xl md:text-5xl text-brand-ink tracking-[0.03em] [word-spacing:0.18em] leading-[1.2]">
-              Purpose-driven engineering.
-            </h2>
-          </div>
-
-          {/* Interactive My Vision / My Mission Toggle Tabs */}
-          <div className="flex items-center gap-2 p-1.5 rounded-full bg-brand-soft border border-brand-ink/10 dark:border-white/10 self-start md:self-auto backdrop-blur-md">
-            <button
-              type="button"
-              onClick={() => setActiveTab("vision")}
-              className={`relative px-5 py-2.5 rounded-full text-[16px] font-sans font-normal transition-all duration-300 flex items-center gap-2 cursor-pointer btn-aventa ${
-                isVision
-                  ? "!text-white text-white shadow-sm btn-white-text"
-                  : "text-brand-muted hover:text-brand-ink"
-              }`}
-            >
-              {isVision && (
-                <motion.div
-                  layoutId="activeTabPill"
-                  className="absolute inset-0 rounded-full bg-gradient-to-r from-[#F75B00] to-[#EFC320]"
-                  transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                />
-              )}
-              <span
-                style={isVision ? { color: "#ffffff", fontFamily: "var(--font-aventa), 'Aventa', sans-serif", fontSize: "16px", fontWeight: 400 } : undefined}
-                className={`relative z-10 flex items-center gap-1.5 font-sans font-normal text-[16px] ${isVision ? "!text-white text-white" : ""}`}
-              >
-                <Eye className={`w-4 h-4 ${isVision ? "!text-white text-white stroke-white" : ""}`} />
-                <span className={isVision ? "!text-white text-white" : ""}>My Vision</span>
-              </span>
-            </button>
-
-            <button
-              type="button"
-              onClick={() => setActiveTab("mission")}
-              className={`relative px-5 py-2.5 rounded-full text-[16px] font-sans font-normal transition-all duration-300 flex items-center gap-2 cursor-pointer btn-aventa ${
-                !isVision
-                  ? "!text-white text-white shadow-sm btn-white-text"
-                  : "text-brand-muted hover:text-brand-ink"
-              }`}
-            >
-              {!isVision && (
-                <motion.div
-                  layoutId="activeTabPill"
-                  className="absolute inset-0 rounded-full bg-gradient-to-r from-[#F75B00] to-[#EFC320]"
-                  transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                />
-              )}
-              <span
-                style={!isVision ? { color: "#ffffff", fontFamily: "var(--font-aventa), 'Aventa', sans-serif", fontSize: "16px", fontWeight: 400 } : undefined}
-                className={`relative z-10 flex items-center gap-1.5 font-sans font-normal text-[16px] ${!isVision ? "!text-white text-white" : ""}`}
-              >
-                <Target className={`w-4 h-4 ${!isVision ? "!text-white text-white stroke-white" : ""}`} />
-                <span className={!isVision ? "!text-white text-white" : ""}>My Mission</span>
-              </span>
-            </button>
-          </div>
+        {/* Section Header */}
+        <div className="mb-12 sm:mb-16">
+          <Eyebrow
+            style={{
+              fontFamily: "var(--font-orlean), 'Orlean', sans-serif",
+              fontSize: "16px",
+              lineHeight: "27px",
+              fontWeight: 400,
+            }}
+          >
+            PHILOSOPHY & DIRECTION
+          </Eyebrow>
+          <h2
+            style={{
+              fontFamily: "var(--font-orlean), 'Orlean', sans-serif",
+              fontSize: "47px",
+              lineHeight: "43px",
+              fontWeight: 500,
+            }}
+            className="text-brand-ink tracking-[0.03em] [word-spacing:0.18em]"
+          >
+            Purpose-driven engineering.
+          </h2>
         </div>
 
         {/* ========================================================================= */}
@@ -164,11 +126,24 @@ export function MissionVisionSection() {
                         >
                           <div className="flex items-center gap-1.5 text-neutral-900 dark:text-[#F75B00] mb-1">
                             <CheckCircle2 className="w-3.5 h-3.5 shrink-0 text-[#F75B00]" />
-                            <span className="font-heading font-bold text-xs text-brand-ink">
+                            <span
+                              style={{
+                                fontFamily: "var(--font-orlean), 'Orlean', sans-serif",
+                                fontSize: "18px",
+                                lineHeight: "27px",
+                                fontWeight: 300,
+                              }}
+                              className="mission-vision-pillar-title text-brand-ink"
+                            >
                               {item.title}
                             </span>
                           </div>
-                          <p className="font-sans text-[11px] text-[#101820]/80 dark:text-neutral-300 leading-snug">
+                          <p
+                            style={{
+                              fontSize: "16px",
+                            }}
+                            className="mission-vision-pillar-desc font-sans text-[#101820]/80 dark:text-neutral-300 leading-snug !text-[16px]"
+                          >
                             {item.desc}
                           </p>
                         </div>

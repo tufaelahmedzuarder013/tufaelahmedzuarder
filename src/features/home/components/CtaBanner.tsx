@@ -30,8 +30,8 @@ export function CtaBanner({
             </h2>
             <p
               data-no-gsap="true"
-              style={{ fontSize: "18px" }}
-              className="cta-banner-subtitle text-white-forced text-white/90 text-[18px] leading-relaxed mb-8"
+              style={{ fontSize: "16px" }}
+              className="cta-banner-subtitle text-white-forced text-white/90 text-[16px] leading-relaxed mb-8"
             >
               {subtitle}
             </p>

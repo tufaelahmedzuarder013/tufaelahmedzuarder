@@ -93,12 +93,15 @@
 /* Heading: Orlean, 59px, line-height 47px, 400 & 500 combined, #101820       */
 /* Paragraph: Aventa, 20px, line-height 27px, 400, #101820                   */
 /* ========================================================================== */
-html, body {
+html,
+body {
   font-family: var(--font-aventa), 'Aventa', var(--font-plus-jakarta-sans), system-ui, -apple-system, sans-serif;
   color: #101820;
 }
 
-h1, .heading-orlean, .heading-hero {
+h1,
+.heading-orlean,
+.heading-hero {
   font-family: var(--font-orlean), 'Orlean', var(--font-space-grotesk), sans-serif !important;
   font-size: 59px !important;
   line-height: 47px !important;
@@ -106,7 +109,8 @@ h1, .heading-orlean, .heading-hero {
   color: #101820 !important;
 }
 
-h2, .heading-h2 {
+h2,
+.heading-h2 {
   font-family: var(--font-orlean), 'Orlean', var(--font-space-grotesk), sans-serif !important;
   font-size: 47px !important;
   line-height: 43px !important;
@@ -114,7 +118,10 @@ h2, .heading-h2 {
   color: #101820 !important;
 }
 
-h3, h4, h5, h6 {
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-orlean), 'Orlean', var(--font-space-grotesk), sans-serif !important;
   color: #101820;
   font-weight: 500 !important;
@@ -124,7 +131,9 @@ h3, h4, h5, h6 {
   font-family: var(--font-orlean), 'Orlean', var(--font-space-grotesk), sans-serif !important;
 }
 
-p, .font-paragraph, .paragraph-aventa {
+p,
+.font-paragraph,
+.paragraph-aventa {
   font-family: var(--font-aventa), 'Aventa', var(--font-plus-jakarta-sans), system-ui, sans-serif !important;
   font-size: 20px !important;
   line-height: 27px !important;
@@ -172,8 +181,22 @@ button span:not(.btn-circle-icon):not(.btn-circle-icon *),
 
 .cta-banner-dark p,
 .cta-banner-subtitle {
-  font-size: 18px !important;
+  font-size: 16px !important;
   line-height: 28px !important;
+}
+
+/* Mission & Vision Value Pillar Typography */
+p.mission-vision-pillar-desc,
+.mission-vision-pillar-desc {
+  font-size: 16px !important;
+  line-height: 24px !important;
+}
+
+.mission-vision-pillar-title {
+  font-family: var(--font-orlean), 'Orlean', sans-serif !important;
+  font-size: 18px !important;
+  line-height: 27px !important;
+  font-weight: 300 !important;
 }
 
 /* Icons inside white badge circles on buttons MUST strictly be deep black (#101820) */
@@ -220,15 +243,24 @@ div.btn-circle-icon {
 }
 
 @media (max-width: 768px) {
-  h1, .heading-orlean, .heading-hero {
+
+  h1,
+  .heading-orlean,
+  .heading-hero {
     font-size: 38px !important;
     line-height: 38px !important;
   }
-  h2, .heading-h2 {
+
+  h2,
+  .heading-h2 {
     font-size: 32px !important;
     line-height: 34px !important;
   }
-  p, .font-paragraph, .paragraph-aventa, .font-sans {
+
+  p:not(.mission-vision-pillar-desc):not(.cta-banner-subtitle),
+  .font-paragraph,
+  .paragraph-aventa,
+  .font-sans:not(.mission-vision-pillar-desc):not(.cta-banner-subtitle) {
     font-size: 17px !important;
     line-height: 24px !important;
   }
@@ -409,6 +441,7 @@ h6,
   0% {
     transform: translate3d(0, 0, 0);
   }
+
   100% {
     transform: translate3d(-100%, 0, 0);
   }
@@ -454,13 +487,16 @@ button,
 ::-webkit-scrollbar {
   width: 8px;
 }
+
 ::-webkit-scrollbar-track {
   background: rgb(var(--brand-bg));
 }
+
 ::-webkit-scrollbar-thumb {
   background: rgba(247, 91, 0, 0.4);
   border-radius: 9999px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: #F75B00;
 }
@@ -468,9 +504,11 @@ button,
 .dark ::-webkit-scrollbar-track {
   background: rgb(var(--brand-bg));
 }
+
 .dark ::-webkit-scrollbar-thumb {
   background: #4C1D95;
 }
+
 .dark ::-webkit-scrollbar-thumb:hover {
   background: #6D28D9;
 }

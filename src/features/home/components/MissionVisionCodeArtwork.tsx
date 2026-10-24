@@ -14,7 +14,6 @@ import {
   Infinity as InfinityIcon,
   Crosshair,
   Zap,
-  RotateCw,
 } from "lucide-react";
 
 interface MissionVisionCodeArtworkProps {
@@ -40,16 +39,8 @@ export function MissionVisionCodeArtwork({
             animate={{ opacity: 1, scale: 1, rotate: 0 }}
             exit={{ opacity: 0, scale: 0.94, rotate: 2 }}
             transition={{ duration: 0.35, ease: "easeOut" }}
-            className="relative w-full h-full flex flex-col items-center justify-between"
+            className="relative w-full h-full flex items-center justify-center"
           >
-            {/* Top Interactive Flip Action */}
-            <div className="w-full flex items-center justify-end z-20 px-1 pt-0.5">
-              <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/[0.04] dark:bg-white/[0.06] border border-black/[0.06] dark:border-white/[0.1] text-[10px] font-sans font-medium text-brand-muted2 group-hover:text-[#F75B00] group-hover:border-[#F75B00]/40 transition-all duration-300">
-                <span>Toggle</span>
-                <RotateCw className="w-2.5 h-2.5 transition-transform duration-500 group-hover:rotate-180" />
-              </div>
-            </div>
-
             {/* Center Orbital Graphic with SVG Paths & Live Badges */}
             <div className="relative w-full aspect-square max-w-[320px] sm:max-w-[350px] flex items-center justify-center my-auto">
               {/* Concentric Orbital Circles with Directional SVG Arrows */}
@@ -205,16 +196,8 @@ export function MissionVisionCodeArtwork({
             animate={{ opacity: 1, scale: 1, rotate: 0 }}
             exit={{ opacity: 0, scale: 0.94, rotate: -2 }}
             transition={{ duration: 0.35, ease: "easeOut" }}
-            className="relative w-full h-full flex flex-col items-center justify-between"
+            className="relative w-full h-full flex items-center justify-center"
           >
-            {/* Top Interactive Flip Action */}
-            <div className="w-full flex items-center justify-end z-20 px-1 pt-0.5">
-              <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/[0.04] dark:bg-white/[0.06] border border-black/[0.06] dark:border-white/[0.1] text-[10px] font-sans font-medium text-brand-muted2 group-hover:text-[#F75B00] group-hover:border-[#F75B00]/40 transition-all duration-300">
-                <span>Toggle</span>
-                <RotateCw className="w-2.5 h-2.5 transition-transform duration-500 group-hover:rotate-180" />
-              </div>
-            </div>
-
             {/* Center Target Graphic with Radar Concentric Rings */}
             <div className="relative w-full aspect-square max-w-[320px] sm:max-w-[350px] flex items-center justify-center my-auto">
               {/* Radar Rotating Beam Sweep Effect - Contained within outer radar perimeter */}

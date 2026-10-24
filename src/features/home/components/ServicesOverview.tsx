@@ -94,15 +94,29 @@ export function ServicesOverview() {
 
         {/* Bottom Exploration Banner CTA */}
         <div className="mt-8 sm:mt-12 pt-8 border-t border-brand-ink/10 dark:border-white/10 flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-[#F75B00]/15 border border-[#F75B00]/40 flex items-center justify-center text-neutral-900 dark:text-[#F75B00] shrink-0">
-              <Layers className="w-5 h-5 text-[#F75B00]" />
+          <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-5">
+            <div className="w-12 h-12 rounded-2xl bg-[#F75B00]/15 border border-[#F75B00]/40 flex items-center justify-center text-neutral-900 dark:text-[#F75B00] shrink-0">
+              <Layers className="w-6 h-6 text-[#F75B00]" />
             </div>
             <div>
-              <span className="font-heading font-bold text-sm text-brand-ink block">
+              <span
+                className="text-brand-ink block leading-tight mb-1.5"
+                style={{
+                  fontFamily: "var(--font-orlean), 'Orlean', sans-serif",
+                  fontSize: "35px",
+                  fontWeight: 400,
+                }}
+              >
                 Looking for a tailored architecture?
               </span>
-              <span className="font-sans text-xs text-brand-muted block">
+              <span
+                className="text-brand-muted block leading-relaxed"
+                style={{
+                  fontFamily: "var(--font-aventa), 'Aventa', sans-serif",
+                  fontSize: "20px",
+                  fontWeight: 400,
+                }}
+              >
                 Custom scopes, design systems, and dedicated full-stack sprints available.
               </span>
             </div>

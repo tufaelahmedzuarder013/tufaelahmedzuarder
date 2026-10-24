@@ -5,22 +5,25 @@ interface EyebrowProps {
   children: React.ReactNode;
   align?: "left" | "center" | "right";
   className?: string;
+  style?: React.CSSProperties;
 }
 
 export function Eyebrow({
   children,
   align = "left",
   className,
+  style,
 }: EyebrowProps) {
   return (
     <p
+      style={style}
       className={cn(
         "font-mono text-xs tracking-wider uppercase text-[#F75B00] font-semibold inline-flex items-center gap-2 mb-3",
         align === "center" && "justify-center w-full",
         className
       )}
     >
-      <span className="w-5 h-px bg-[#F75B00]/60 inline-block" />
+      <span className="w-5 h-px bg-[#F75B00]/60 inline-block shrink-0" />
       {children}
     </p>
   );
