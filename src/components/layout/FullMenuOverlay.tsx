@@ -68,6 +68,8 @@ export function FullMenuOverlay({ isOpen, onClose }: FullMenuOverlayProps) {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
   const restoreScrollRef = useRef<(() => void) | null>(null);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [openKey, setOpenKey] = useState(0);
 
   useEffect(() => {
     setMounted(true);
@@ -77,9 +79,14 @@ export function FullMenuOverlay({ isOpen, onClose }: FullMenuOverlayProps) {
     const dialog = dialogRef.current;
     if (!dialog) return;
     let frame = 0;
-    let timer: ReturnType<typeof setTimeout> | undefined;
 
     if (isOpen) {
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+        timerRef.current = null;
+      }
+      setOpenKey((prev) => prev + 1);
+
       if (!dialog.open) {
         const body = document.body;
         const html = document.documentElement;
@@ -95,26 +102,42 @@ export function FullMenuOverlay({ isOpen, onClose }: FullMenuOverlayProps) {
           body.style.paddingRight = saved.padding;
         };
         dialog.showModal();
-        closeRef.current?.focus({ preventScroll: true });
       }
+
       dialog.dataset.state = "opening";
+      void dialog.offsetHeight;
       frame = requestAnimationFrame(() => {
-        frame = requestAnimationFrame(() => { dialog.dataset.state = "open"; });
+        frame = requestAnimationFrame(() => {
+          dialog.dataset.state = "open";
+        });
       });
     } else if (dialog.open) {
       dialog.dataset.state = "closing";
       const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
-      timer = setTimeout(() => {
+      timerRef.current = setTimeout(() => {
         dialog.close();
+        dialog.dataset.state = "closed";
         restoreScrollRef.current?.();
         restoreScrollRef.current = null;
-      }, reducedMotion ? 0 : 2400);
+      }, reducedMotion ? 0 : 420);
     }
     return () => {
       cancelAnimationFrame(frame);
-      if (timer !== undefined) clearTimeout(timer);
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+        timerRef.current = null;
+      }
     };
   }, [isOpen]);
+
+  useEffect(() => {
+    if (isOpen) {
+      const timer = setTimeout(() => {
+        closeRef.current?.focus({ preventScroll: true });
+      }, 50);
+      return () => clearTimeout(timer);
+    }
+  }, [isOpen, openKey]);
 
   useEffect(() => {
     const dialog = dialogRef.current;
@@ -151,7 +174,7 @@ export function FullMenuOverlay({ isOpen, onClose }: FullMenuOverlayProps) {
 
         <div className="taz-menu-ellipse" aria-hidden="true" />
 
-        <div className="taz-menu-container">
+        <div key={openKey} className="taz-menu-container">
           <div className="taz-menu-header">
             <div className="taz-menu-brand-group">
               <Link href="/" onClick={onClose} aria-label="T A Z Homepage" className="taz-menu-brand">
@@ -178,7 +201,7 @@ export function FullMenuOverlay({ isOpen, onClose }: FullMenuOverlayProps) {
 
             <div className="taz-menu-main">
               <section className="taz-menu-intro">
-                <p className="taz-menu-eyebrow taz-menu-heading-reveal" style={delay(400)}><span />Connect with us!</p>
+                <p className="taz-menu-eyebrow taz-menu-heading-reveal" style={delay(140)}><span />Connect with me</p>
                 <h2 className="taz-menu-title taz-menu-heading-reveal" style={delay(500)}>Turn Your Vision Into an Experience That Lasts</h2>
                 <span className="taz-menu-short-line" aria-hidden="true" />
                 <a href="mailto:support@zuarder.com" className="taz-menu-email taz-menu-heading-reveal" style={delay(600)}>
@@ -268,14 +291,18 @@ const MENU_STYLES = `
   --menu-gold: #EFC320;
   --menu-muted: #5B6871;
   --menu-border: rgba(16, 24, 32, 0.1);
-  --menu-ease: cubic-bezier(.6,.08,.02,.99);
-  --menu-duration: 2000ms;
+  --menu-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --menu-duration: 550ms;
   --menu-body-font: var(--font-aventa, "Aventa"), Arial, sans-serif;
   --menu-display-font: var(--font-orlean, "Orlean"), var(--font-aventa, "Aventa"), Arial, sans-serif;
   position: fixed; inset: 0; width: 100%; height: 100%; height: 100dvh;
   max-width: none; max-height: none; margin: 0; border: 0;
   padding: min(calc(2.6 * var(--u)), 2.6vh) clamp(16px, 2.5vw, 48px) min(calc(4 * var(--u)), 4vh);
   overflow: hidden !important;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 450ms var(--menu-ease);
+  will-change: opacity;
   background:
     radial-gradient(
       ellipse 70% 60% at 50% 45%,
@@ -308,6 +335,15 @@ const MENU_STYLES = `
   scrollbar-width: none !important;
   -ms-overflow-style: none !important;
 }
+.taz-menu[data-state="open"] {
+  opacity: 1;
+  pointer-events: auto;
+}
+.taz-menu[data-state="closing"] {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 420ms var(--menu-ease);
+}
 .taz-menu::-webkit-scrollbar { display: none !important; width: 0 !important; height: 0 !important; }
 .taz-menu:not([open]) { display: none; }
 .taz-menu::backdrop { background: transparent; }
@@ -319,6 +355,11 @@ const MENU_STYLES = `
   margin: 0 auto;
   display: flex;
   flex-direction: column;
+  transition: opacity 300ms var(--menu-ease), transform 300ms var(--menu-ease);
+}
+.taz-menu[data-state="closing"] .taz-menu-container {
+  opacity: 0;
+  transform: translateY(-8px);
 }
 .taz-menu *, .taz-menu *::before, .taz-menu *::after, .taz-menu { box-sizing: border-box; }
 .taz-menu a { color: inherit; text-decoration: none; }
@@ -339,10 +380,23 @@ const MENU_STYLES = `
       transparent 75%
     );
   opacity: 0;
-  transition: opacity var(--menu-duration) var(--menu-ease);
+  transition: opacity 550ms var(--menu-ease);
   pointer-events: none;
 }
-.taz-menu-shell { position: relative; isolation: isolate; display: grid; grid-template-columns: repeat(12,minmax(0,1fr)); grid-template-rows: minmax(0,1fr) auto minmax(0,1fr) auto; width: 100%; height: 100%; padding: calc(10 * var(--u)) calc(11 * var(--u)) calc(5 * var(--u)); opacity: 0; transform: scale(1.05); transition: opacity var(--menu-duration) var(--menu-ease), transform var(--menu-duration) var(--menu-ease); }
+.taz-menu-shell {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: repeat(12,minmax(0,1fr));
+  grid-template-rows: minmax(0,1fr) auto minmax(0,1fr) auto;
+  width: 100%;
+  height: 100%;
+  padding: calc(10 * var(--u)) calc(11 * var(--u)) calc(5 * var(--u));
+  opacity: 0;
+  transform: scale(0.96) translateY(12px);
+  transition: opacity 550ms var(--menu-ease), transform 550ms var(--menu-ease);
+  will-change: opacity, transform;
+}
 .taz-menu-surface {
   position: absolute;
   inset: 0;
@@ -368,10 +422,10 @@ const MENU_STYLES = `
     0 0 0 1px rgba(255, 255, 255, 0.95) inset,
     0 2px 10px rgba(0, 0, 0, 0.03);
 }
-.taz-menu[data-state="open"] .taz-menu-shell { opacity: 1; transform: scale(1); }
+.taz-menu[data-state="open"] .taz-menu-shell { opacity: 1; transform: scale(1) translateY(0); }
 .taz-menu[data-state="open"] .taz-menu-ellipse { opacity: .7; }
-.taz-menu[data-state="closing"] .taz-menu-shell { opacity: 0; transform: scale(.9); transition-delay: 300ms; }
-.taz-menu[data-state="closing"] .taz-menu-ellipse { opacity: 0; transition-delay: 300ms; }
+.taz-menu[data-state="closing"] .taz-menu-shell { opacity: 0; transform: scale(.96) translateY(10px); transition: opacity 350ms var(--menu-ease), transform 350ms var(--menu-ease); }
+.taz-menu[data-state="closing"] .taz-menu-ellipse { opacity: 0; transition: opacity 350ms var(--menu-ease); }
 .taz-menu-header { position: absolute; z-index: 3; top: calc(3 * var(--u)); left: calc(11 * var(--u)); right: calc(16 * var(--u)); display: flex; align-items: center; justify-content: space-between; pointer-events: none; }
 .taz-menu-header > * { pointer-events: auto; }
 .taz-menu-brand-group, .taz-menu-header-right { display: flex; align-items: center; gap: calc(4.2 * var(--u)); }
@@ -398,11 +452,12 @@ const MENU_STYLES = `
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 300ms ease-out, opacity 300ms ease-out;
+  transition: transform 300ms var(--menu-ease), opacity 300ms var(--menu-ease);
   outline: none;
 }
 .taz-menu-close:focus { outline: none; }
 .taz-menu-close:focus-visible { outline: 2px solid var(--menu-orange); outline-offset: 4px; }
+.taz-menu-close:hover { transform: rotate(90deg) scale(1.08); color: #F75B00; }
 .taz-menu-close-bar {
   position: absolute;
   top: 50%;
@@ -411,13 +466,13 @@ const MENU_STYLES = `
   height: max(1.5px, calc(.2 * var(--u)));
   background: currentColor;
   transform: translate(-50%, -50%) rotate(var(--bar-angle)) scale(0);
-  transition: transform var(--menu-duration) var(--menu-ease);
+  transition: transform 450ms var(--menu-ease);
 }
 .taz-menu-close-bar-one { --bar-angle: 45deg; }
 .taz-menu-close-bar-two { --bar-angle: -45deg; }
-.taz-menu[data-state="open"] .taz-menu-close-bar { transform: translate(-50%,-50%) rotate(var(--bar-angle)) scale(1); transition-delay: 300ms; }
-.taz-menu[data-state="open"] .taz-menu-close-bar-two { transition-delay: 400ms; }
-.taz-menu[data-state="closing"] .taz-menu-close-bar-two { transition-delay: 100ms; }
+.taz-menu[data-state="open"] .taz-menu-close-bar { transform: translate(-50%,-50%) rotate(var(--bar-angle)) scale(1); transition-delay: 180ms; }
+.taz-menu[data-state="open"] .taz-menu-close-bar-two { transition-delay: 240ms; }
+.taz-menu[data-state="closing"] .taz-menu-close-bar { transform: translate(-50%,-50%) rotate(0deg) scale(0); transition: transform 250ms var(--menu-ease); }
 .taz-menu-main {
   grid-column: 1/-1;
   grid-row: 2;

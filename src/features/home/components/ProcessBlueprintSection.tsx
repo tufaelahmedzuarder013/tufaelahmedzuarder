@@ -1,443 +1,316 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Sparkles,
-  Layers,
   ArrowRight,
-  Database,
-  Cloud,
-  ShieldCheck,
-  CreditCard,
-  Lock,
-  Palette,
-  Zap,
-  Smartphone,
-  Code2,
-  Cpu,
-  Globe2,
-  Gauge,
-  Rocket,
+  ChevronDown,
+  Layers,
+  Building,
   CheckCircle2,
+  Compass,
+  ArrowUpRight,
 } from "lucide-react";
 import { Container } from "@/components/layout/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Button } from "@/components/ui/Button";
 
-interface StackItem {
-  id: string;
-  icon: React.ElementType;
-  iconBg: string;
-  iconColor: string;
-  title: string;
-  subtitle: string;
-  tag?: string;
-  activeByDefault?: boolean;
-}
-
-interface ProcessStage {
-  id: string;
-  stepNumber: string;
-  badge: string;
-  title: string;
-  tagline: string;
-  summary: string;
-  keyDeliverables: { title: string; tag: string }[];
-  metricLabel: string;
-  metricValue: string;
-  stackItems: StackItem[];
-}
-
-const STAGES: ProcessStage[] = [
+/**
+ * 7 Architectural Stages (from Ground Floor to Master Penthouse)
+ * Matching the exact visual layout and SVG masks of the architectural drawing
+ */
+export const ARCHITECTURE_STEPS = [
   {
-    id: "discovery",
-    stepNumber: "01",
-    badge: "STAGE 01 • STRATEGY & ARCHITECTURE",
-    title: "Discovery & Blueprint Mapping",
-    tagline: "Planning before coding to eliminate 100% of technical debt.",
-    summary:
-      "Deep forensic dive into your product vision, target audience, and business KPIs. I map database schemas and low-latency cloud infrastructure before writing a single line of production code.",
-    keyDeliverables: [
-      { title: "Architecture & Data Schema", tag: "PostgreSQL" },
-      { title: "Full-Funnel Wireframing", tag: "UX Flow" },
-      { title: "Milestones & Scope Lock", tag: "48h SLA" },
+    number: 7,
+    floorLabel: "07 ATTENTION TO DETAIL",
+    elevation: "EL +0.0M • GROUND LEVEL",
+    levelName: "Level 01: Detail & Execution",
+    title: "Attention to Detail & Code Quality",
+    subtitle: "Noticing the small things that make a massive difference in design and execution.",
+    description:
+      "Micro-details separate good websites from iconic digital products. We obsess over sub-pixel alignment, typography baseline grids, silky transition timing curves, and 100/100 Core Web Vitals performance before any release.",
+    deliverables: [
+      { label: "100/100 Core Web Vitals", tag: "Performance" },
+      { label: "Sub-Pixel Fluid Geometry", tag: "Figma 1:1" },
+      { label: "Cross-Device Parity Testing", tag: "QA SLA" },
+      { label: "WCAG AAA Accessibility", tag: "Compliance" },
     ],
-    metricLabel: "Planning Precision",
-    metricValue: "48h Scope Lock",
-    stackItems: [
-      {
-        id: "d1",
-        icon: Database,
-        iconBg: "bg-amber-500/15",
-        iconColor: "text-amber-600 dark:text-amber-400",
-        title: "PostgreSQL & Prisma Schema",
-        subtitle: "Relational data modeling with zero redundancy",
-      },
-      {
-        id: "d2",
-        icon: Cloud,
-        iconBg: "bg-blue-500/15",
-        iconColor: "text-blue-600 dark:text-blue-400",
-        title: "Cloud Infrastructure & Edge CDN",
-        subtitle: "Global low-latency serverless routing",
-      },
-      {
-        id: "d3",
-        icon: Layers,
-        iconBg: "bg-[#F75B00]/15",
-        iconColor: "text-[#F75B00]",
-        title: "Product Scope & Wireframe Blueprint",
-        subtitle: "User journey mapping optimized for conversion velocity",
-        tag: "FEATURED",
-        activeByDefault: true,
-      },
-      {
-        id: "d4",
-        icon: CreditCard,
-        iconBg: "bg-emerald-500/15",
-        iconColor: "text-emerald-600 dark:text-emerald-400",
-        title: "Stripe & Checkout Webhooks",
-        subtitle: "Automated billing & secure subscription pipelines",
-      },
-      {
-        id: "d5",
-        icon: Lock,
-        iconBg: "bg-purple-500/15",
-        iconColor: "text-purple-600 dark:text-purple-400",
-        title: "Zero-Trust Auth & API Guards",
-        subtitle: "Session protection with CSRF & rate-limiting",
-      },
-    ],
+    mask: "M391 653H553V788H391Z M325 648H392V788H325Z M575 626H716V777H575Z M550 670H576V676H550Z",
+    roomBox: { x: 325, y: 626, width: 391, height: 162 },
   },
   {
-    id: "design-system",
-    stepNumber: "02",
-    badge: "STAGE 02 • UI/UX & MOTION DESIGN",
-    title: "Design System & 60FPS Micro-Physics",
-    tagline: "Pixel-perfect visual luxury engineered for natural human touch.",
-    summary:
-      "Constructing end-to-end design token systems with fluid typography, elevation depths, and kinetic spring physics. Every micro-interaction feels alive, responsive, and locked at 60 FPS.",
-    keyDeliverables: [
-      { title: "Atomic Design Tokens", tag: "Figma 1:1" },
-      { title: "Kinetic Spring Physics", tag: "60 FPS" },
-      { title: "Adaptive Dark / Light Luxury", tag: "WCAG AAA" },
+    number: 6,
+    floorLabel: "06 COMMUNICATION",
+    elevation: "EL +3.2M • COLLABORATION SUITE",
+    levelName: "Level 02: Alignment & Collaboration",
+    title: "Transparent Communication & Scope Lock",
+    subtitle: "Clearly presenting and sharing ideas with clients, teams, and stakeholders.",
+    description:
+      "Engineering success requires transparent alignment. We provide daily async progress updates, interactive preview URLs on every Git commit, and an ironclad 48-hour scope lock to ensure zero surprises or budget drift.",
+    deliverables: [
+      { label: "48h Scope Lock Guarantee", tag: "Fixed Price" },
+      { label: "Automated Preview Deploys", tag: "CI/CD" },
+      { label: "Direct Founder Access", tag: "Slack / Discord" },
+      { label: "Unambiguous Roadmaps", tag: "Milestones" },
     ],
-    metricLabel: "Frame Rate Standard",
-    metricValue: "60 FPS Locked",
-    stackItems: [
-      {
-        id: "ds1",
-        icon: Palette,
-        iconBg: "bg-pink-500/15",
-        iconColor: "text-pink-600 dark:text-pink-400",
-        title: "Color Tokens & Fluid Typography",
-        subtitle: "Harmonious HSL scale with AAA contrast compliance",
-      },
-      {
-        id: "ds2",
-        icon: Zap,
-        iconBg: "bg-[#F75B00]/15",
-        iconColor: "text-[#F75B00]",
-        title: "GPU-Accelerated Spring Physics",
-        subtitle: "Micro-interactions engineered for tactile feedback",
-        tag: "FEATURED",
-        activeByDefault: true,
-      },
-      {
-        id: "ds3",
-        icon: Smartphone,
-        iconBg: "bg-cyan-500/15",
-        iconColor: "text-cyan-600 dark:text-cyan-400",
-        title: "Fluid Touch Gestures",
-        subtitle: "Natural swipe sheets, drawers & spring carousels",
-      },
-      {
-        id: "ds4",
-        icon: Layers,
-        iconBg: "bg-emerald-500/15",
-        iconColor: "text-emerald-600 dark:text-emerald-400",
-        title: "Adaptive Dark Luxury",
-        subtitle: "Seamless theme switching without layout flash",
-      },
-    ],
+    mask: "M194 550H336V684H194Z M336 550H551V650H336Z M336 650H391V684H336Z M38 554H194V677H38Z",
+    roomBox: { x: 38, y: 550, width: 353, height: 134 },
   },
   {
-    id: "development",
-    stepNumber: "03",
-    badge: "STAGE 03 • FULL-STACK DEVELOPMENT",
-    title: "Bulletproof Next.js 14 Engineering",
-    tagline: "Modern architectures crafted with strict TypeScript & clean code.",
-    summary:
-      "Transforming wireframes into lightning-fast Next.js applications using React Server Components, Server Actions, and modular state management with 100% strict type safety.",
-    keyDeliverables: [
-      { title: "Next.js App Router & RSC", tag: "Edge Ready" },
-      { title: "Strict Type Safety", tag: "TypeScript" },
-      { title: "Sub-Second Data Mutations", tag: "< 240ms" },
+    number: 5,
+    floorLabel: "05 PROBLEM SOLVING",
+    elevation: "EL +6.5M • FULL-STACK CORE",
+    levelName: "Level 03: Architecture & Problem Solving",
+    title: "Full-Stack Engineering & Problem Solving",
+    subtitle: "Finding efficient and innovative solutions to complex technical challenges.",
+    description:
+      "Transforming high-level vision into scalable software. We architect normalized relational databases, high-throughput Next.js Server Actions, edge-cached APIs, and resilient state machines that handle massive traffic effortlessly.",
+    deliverables: [
+      { label: "Normalized PostgreSQL Schemas", tag: "Prisma ORM" },
+      { label: "Sub-Second Server Actions", tag: "< 240ms" },
+      { label: "Zero-Trust Session Guards", tag: "Security" },
+      { label: "Multi-Region Cloud Hosting", tag: "AWS / Vercel" },
     ],
-    metricLabel: "Average TTFB",
-    metricValue: "< 240ms Latency",
-    stackItems: [
-      {
-        id: "dev1",
-        icon: Code2,
-        iconBg: "bg-blue-500/15",
-        iconColor: "text-blue-600 dark:text-blue-400",
-        title: "Next.js 14 App Router & RSC",
-        subtitle: "Zero-bundle client components with streaming SSR",
-      },
-      {
-        id: "dev2",
-        icon: ShieldCheck,
-        iconBg: "bg-[#F75B00]/15",
-        iconColor: "text-[#F75B00]",
-        title: "Strict TypeScript & Zod Validation",
-        subtitle: "End-to-end type safety from database to browser",
-        tag: "FEATURED",
-        activeByDefault: true,
-      },
-      {
-        id: "dev3",
-        icon: Cpu,
-        iconBg: "bg-purple-500/15",
-        iconColor: "text-purple-600 dark:text-purple-400",
-        title: "Server Actions & Cache Revalidation",
-        subtitle: "Instantaneous optimistic UI with zero network latency",
-      },
-      {
-        id: "dev4",
-        icon: Globe2,
-        iconBg: "bg-emerald-500/15",
-        iconColor: "text-emerald-600 dark:text-emerald-400",
-        title: "Multi-Region Cloud Hosting",
-        subtitle: "Automated edge scaling on Vercel & AWS",
-      },
-    ],
+    mask: "M330 477H551V551H330Z M552 549H573V651H552Z M575 449H720V608H575Z M542 489H577V497H542Z",
+    roomBox: { x: 330, y: 449, width: 390, height: 160 },
   },
   {
-    id: "launch",
-    stepNumber: "04",
-    badge: "STAGE 04 • AUDIT & PRODUCTION LAUNCH",
-    title: "Lighthouse 100 & Production Go-Live",
-    tagline: "Rigorous stress tests, automated CI/CD, and SEO dominance.",
-    summary:
-      "Before release, the platform undergoes exhaustive benchmarking: 100/100 Core Web Vitals optimization, asset preloading, automated CI/CD pipelines, and multi-device parity testing.",
-    keyDeliverables: [
-      { title: "Lighthouse 100/100 Audit", tag: "Perfect" },
-      { title: "Zero-Downtime Deployment", tag: "CI/CD" },
-      { title: "30-Day Post-Launch Care", tag: "Included" },
+    number: 4,
+    floorLabel: "04 CREATIVITY",
+    elevation: "EL +9.8M • CREATIVE STUDIO",
+    levelName: "Level 04: Spatial & Aesthetic Innovation",
+    title: "Creative Innovation & Unique Aesthetics",
+    subtitle: "Thinking outside the box to design unique, functional, and aesthetic spaces.",
+    description:
+      "Cookie-cutter templates kill brand authority. We engineer custom spatial layouts, distinctive typography treatments, bespoke iconography, and memorable visual metaphors that position your brand miles ahead of competitors.",
+    deliverables: [
+      { label: "Custom Spatial Layouts", tag: "Bespoke" },
+      { label: "Harmonious Color Systems", tag: "HSL Tokens" },
+      { label: "Adaptive Dark / Light Luxury", tag: "Zero Flash" },
+      { label: "Signature Visual Language", tag: "Branding" },
     ],
-    metricLabel: "Core Web Vitals",
-    metricValue: "100/100 Perfect",
-    stackItems: [
-      {
-        id: "l1",
-        icon: Gauge,
-        iconBg: "bg-[#F75B00]/15",
-        iconColor: "text-[#F75B00]",
-        title: "100/100 Core Web Vitals Audit",
-        subtitle: "Perfect scores across Performance, Accessibility & SEO",
-        tag: "FEATURED",
-        activeByDefault: true,
-      },
-      {
-        id: "l2",
-        icon: Rocket,
-        iconBg: "bg-emerald-500/15",
-        iconColor: "text-emerald-600 dark:text-emerald-400",
-        title: "Automated GitHub CI/CD Pipeline",
-        subtitle: "Instant preview deployments with rollback protection",
-      },
-      {
-        id: "l3",
-        icon: Smartphone,
-        iconBg: "bg-blue-500/15",
-        iconColor: "text-blue-600 dark:text-blue-400",
-        title: "Cross-Device Parity Testing",
-        subtitle: "Flawless rendering on iOS, Android, macOS & Windows",
-      },
-      {
-        id: "l4",
-        icon: CheckCircle2,
-        iconBg: "bg-amber-500/15",
-        iconColor: "text-amber-600 dark:text-amber-400",
-        title: "30-Day Founder Support & Care",
-        subtitle: "Dedicated monitoring, bug fixing & analytics calibration",
-      },
+    mask: "M190 363H331V498H190Z M331 388H553V478H331Z M42 382H190V498H42Z",
+    roomBox: { x: 42, y: 363, width: 289, height: 135 },
+  },
+  {
+    number: 3,
+    floorLabel: "03 VISUALIZATION SKILLS",
+    elevation: "EL +13.0M • MOTION ATELIER",
+    levelName: "Level 05: Motion & Kinetic Physics",
+    title: "Visualization & 60FPS Micro-Physics",
+    subtitle: "The ability to communicate ideas through fluid motion, models, and renderings.",
+    description:
+      "Bringing interfaces to life with tactile physics. Every hover effect, gesture swipe, card reveal, and transition is powered by hardware-accelerated spring curves locked at 60 frames per second for silky natural touch.",
+    deliverables: [
+      { label: "GPU-Accelerated Springs", tag: "60 FPS" },
+      { label: "Gesture Damping & Drawers", tag: "Tactile" },
+      { label: "Smooth Scroll Transitions", tag: "Framer Motion" },
+      { label: "Micro-Interaction Feedback", tag: "Sensory UX" },
     ],
+    mask: "M394 250H538V389H394Z M296 325H395V389H296Z M575 271H722V405H575Z M536 310H577V317H536Z",
+    roomBox: { x: 296, y: 250, width: 426, height: 155 },
+  },
+  {
+    number: 2,
+    floorLabel: "02 TECHNICAL KNOWLEDGE",
+    elevation: "EL +16.2M • ENGINEERING LAB",
+    levelName: "Level 06: Modern Technology Standards",
+    title: "Technical Mastery & Next.js Architecture",
+    subtitle: "Understanding of modern materials, construction, and resilient system engineering.",
+    description:
+      "Leveraging modern engineering standards: Next.js 14 App Router, React Server Components (RSC), strict end-to-end TypeScript validation, automated CI/CD pipelines, and zero-bundle hydration for blistering page speed.",
+    deliverables: [
+      { label: "Next.js 14 App Router & RSC", tag: "Edge Ready" },
+      { label: "Strict TypeScript Safety", tag: "Zero Any" },
+      { label: "Automated GitHub Actions", tag: "CI/CD" },
+      { label: "Zod Schema Type Guards", tag: "Runtime Safe" },
+    ],
+    mask: "M201 172H395V326H201Z M49 187H201V322H49Z",
+    roomBox: { x: 49, y: 172, width: 346, height: 154 },
+  },
+  {
+    number: 1,
+    floorLabel: "01 DESIGN THINKING (MASTER)",
+    elevation: "EL +19.5M • PENTHOUSE SUITE",
+    levelName: "Level 07: Master Product Strategy",
+    title: "Design Thinking & Strategic Architecture",
+    subtitle: "The overarching ability to imagine, conceptualize, and create meaningful solutions.",
+    description:
+      "At the summit of the sprint architecture sits Design Thinking. We fuse user psychology, business economics, and architectural elegance into a master product roadmap that maximizes user retention, conversions, and lifetime value.",
+    deliverables: [
+      { label: "Conversion Funnel Mapping", tag: "High ROI" },
+      { label: "User Psychology Architecture", tag: "Retention" },
+      { label: "Product Moat Construction", tag: "Strategic" },
+      { label: "30-Day Founder Partnership", tag: "Included" },
+    ],
+    mask: "M299 48H470V220H395V173H299Z M244 136H278V174H244Z M480 0H591V64H480Z M469 65H706V207H469Z",
+    roomBox: { x: 244, y: 0, width: 462, height: 220 },
   },
 ];
 
+export const FOUNDATION_MASK =
+  "M0 786H736V892H0Z M35 680H194V787H35Z M194 685H228V787H194Z M228 682H325V787H228Z M552 735H575V776H670V787H552Z";
+
 export function ProcessBlueprintSection() {
-  const [activeStageIdx, setActiveStageIdx] = useState(0);
-  const [activeItemIdx, setActiveItemIdx] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
+  const [activeStepIndex, setActiveStepIndex] = useState(0);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const isJumpingRef = useRef(false);
 
-  const stage = STAGES[activeStageIdx];
-
-  // Reset active item when stage changes
+  // Scroll tracking: As the user scrolls through the 350vh section,
+  // the building dynamically constructs floor by floor!
   useEffect(() => {
-    setActiveItemIdx(0);
-  }, [activeStageIdx]);
+    const handleScroll = () => {
+      if (isJumpingRef.current) return;
+      const section = sectionRef.current;
+      if (!section) return;
 
-  // Automated cycling: switches one card after another every 3.2 seconds
-  useEffect(() => {
-    if (isPaused) return;
-    const interval = setInterval(() => {
-      setActiveItemIdx((prev) => (prev + 1) % stage.stackItems.length);
-    }, 3200);
-    return () => clearInterval(interval);
-  }, [stage.stackItems.length, isPaused]);
+      const rect = section.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      const totalScrollDistance = section.offsetHeight - windowHeight;
+
+      // Distance scrolled into this section
+      const scrolled = -rect.top;
+
+      if (scrolled <= 0) {
+        setActiveStepIndex(0);
+        return;
+      }
+
+      const progress = Math.max(0, Math.min(1, scrolled / totalScrollDistance));
+      // 7 steps: 0 to 6
+      const stepIndex = Math.min(6, Math.floor(progress * 7));
+      setActiveStepIndex(stepIndex);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const jumpToStep = (index: number) => {
+    setActiveStepIndex(index);
+    const section = sectionRef.current;
+    if (!section) return;
+
+    isJumpingRef.current = true;
+    const totalScrollDistance = section.offsetHeight - window.innerHeight;
+    const targetScrollTop =
+      window.scrollY + section.getBoundingClientRect().top + (index / 6) * totalScrollDistance;
+
+    window.scrollTo({
+      top: targetScrollTop,
+      behavior: "smooth",
+    });
+
+    setTimeout(() => {
+      isJumpingRef.current = false;
+    }, 600);
+  };
+
+  const currentStep = ARCHITECTURE_STEPS[activeStepIndex];
 
   return (
-    <section className="py-20 sm:py-28 lg:py-32 relative bg-white dark:bg-[#0A0F0D] overflow-hidden border-t border-brand-ink/5 dark:border-white/5">
-      {/* Background ambient lighting */}
-      <div className="absolute inset-0 pointer-events-none -z-10 overflow-hidden">
-        <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-[#EFC320]/5 rounded-full blur-[140px]" />
-        <div className="absolute bottom-1/4 left-1/4 w-[500px] h-[500px] bg-[#F75B00]/5 rounded-full blur-[140px]" />
+    <div
+      ref={sectionRef}
+      className="relative bg-white dark:bg-[#0A0F0D] border-t border-brand-ink/5 dark:border-white/5"
+      // Long scroll runway so each floor stays in view comfortably while scrolling
+      style={{ minHeight: "380vh" }}
+    >
+      {/* Background Architectural Grid Pattern */}
+      <div className="absolute inset-0 pointer-events-none opacity-[0.35] dark:opacity-[0.10] -z-10">
+        <div className="w-full h-full bg-[linear-gradient(to_right,rgba(16,24,32,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(16,24,32,0.06)_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,rgba(255,255,255,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.06)_1px,transparent_1px)] bg-[size:36px_36px]" />
       </div>
 
-      <Container>
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 sm:mb-16 gap-6">
-          <div>
-            <Eyebrow>{"// SPRINT ARCHITECTURE & METHODOLOGY"}</Eyebrow>
-            <h2 className="font-heading font-extrabold text-3xl sm:text-4xl md:text-5xl text-brand-ink tracking-[0.03em] [word-spacing:0.18em] leading-[1.2]">
-              How great products get engineered.
-            </h2>
-            <p className="font-sans text-sm sm:text-base text-brand-muted mt-3 max-w-xl">
-              A transparent, battle-tested 4-step framework turning complex ideas into high-converting web platforms.
-            </p>
-          </div>
+      {/* Ambient background glowing orbs */}
+      <div className="absolute inset-0 pointer-events-none -z-10 overflow-hidden">
+        <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-[#EFC320]/8 rounded-full blur-[140px]" />
+        <div className="absolute bottom-1/4 left-1/4 w-[500px] h-[500px] bg-[#F75B00]/8 rounded-full blur-[140px]" />
+      </div>
 
-          <div className="flex items-center gap-2">
-            <span className="font-mono text-xs text-brand-muted uppercase tracking-wider">
-              Stage {activeStageIdx + 1} of 4
-            </span>
-            <div className="flex items-center gap-1.5 ml-2">
-              {STAGES.map((_, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => {
-                    setActiveStageIdx(idx);
-                    setActiveItemIdx(0);
-                  }}
-                  aria-label={`Jump to stage ${idx + 1}`}
-                  className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                    activeStageIdx === idx
-                      ? "w-7 bg-gradient-to-r from-[#F75B00] to-[#EFC320]"
-                      : "w-2 bg-brand-ink/15 dark:bg-white/15 hover:bg-brand-ink/30"
-                  }`}
-                />
-              ))}
+      {/* ========================================================================= */}
+      {/* STICKY STAGE CONTAINER (Locks to screen as user scrolls)                  */}
+      {/* ========================================================================= */}
+      <div className="sticky top-0 min-h-screen flex flex-col justify-center py-6 sm:py-8 lg:py-10">
+        <Container>
+          {/* Section Eyebrow Header */}
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-4 sm:mb-6">
+            <div>
+              <Eyebrow>{"// SPRINT ARCHITECTURE & METHODOLOGY"}</Eyebrow>
+              <h2 className="font-heading font-extrabold text-2xl sm:text-3xl lg:text-4xl text-brand-ink dark:text-white tracking-[0.02em] leading-tight">
+                Architectural Blueprint: <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F75B00] to-[#EFC320]">Step-by-Step Build</span>
+              </h2>
+            </div>
+
+            {/* Scroll Indicator / Level Badge */}
+            <div className="flex items-center gap-3 shrink-0">
+              <span className="font-mono text-xs text-brand-muted uppercase tracking-wider hidden sm:inline">
+                Scroll to Build Building:
+              </span>
+              <div className="px-3 py-1 rounded-full bg-[#F75B00]/10 border border-[#F75B00]/30 font-mono text-xs font-bold text-[#F75B00]">
+                Floor {activeStepIndex + 1} of 7
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* 4 Interactive Stage Tabs */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-8 sm:mb-10">
-          {STAGES.map((s, idx) => {
-            const isActive = activeStageIdx === idx;
-            return (
-              <button
-                key={s.id}
-                type="button"
-                onClick={() => {
-                  setActiveStageIdx(idx);
-                  setActiveItemIdx(0);
-                }}
-                className={`relative p-4 sm:p-5 rounded-2xl sm:rounded-3xl text-left transition-all duration-300 cursor-pointer border group ${
-                  isActive
-                    ? "bg-[#FFFBF8] dark:bg-[#121614] border-[#F75B00]/60 shadow-[0_12px_36px_-10px_rgba(247,91,0,0.22)]"
-                    : "bg-brand-soft/60 hover:bg-brand-soft border-brand-ink/5 dark:border-white/5 opacity-75 hover:opacity-100"
-                }`}
-              >
-                {isActive && (
-                  <motion.div
-                    layoutId="activeProcessBorder"
-                    className="absolute -inset-[1px] rounded-2xl sm:rounded-3xl border-2 border-[#F75B00] pointer-events-none"
-                    transition={{ type: "spring", stiffness: 350, damping: 30 }}
-                  />
-                )}
-
-                <div className="flex items-center justify-between mb-2">
-                  <span
-                    className={`font-heading font-extrabold text-xl sm:text-2xl block transition-colors ${
-                      isActive ? "text-[#F75B00]" : "text-brand-muted2 group-hover:text-brand-ink"
-                    }`}
-                  >
-                    {s.stepNumber}
-                  </span>
-                  <span
-                    className={`w-2.5 h-2.5 rounded-full ${
-                      isActive ? "bg-[#F75B00] animate-pulse" : "bg-brand-ink/15 dark:bg-white/15"
-                    }`}
-                  />
-                </div>
-
-                <h3 className="font-heading font-bold text-xs sm:text-sm text-brand-ink line-clamp-1 mb-1">
-                  {s.title}
-                </h3>
-                <span className="font-mono text-[10px] text-brand-muted2 uppercase tracking-wider block">
-                  {s.metricValue}
-                </span>
-              </button>
-            );
-          })}
-        </div>
-
-        {/* ========================================================================= */}
-        {/* Main Stage Bento Box                                                      */}
-        {/* ========================================================================= */}
-        {/* ========================================================================= */}
-        {/* Main Stage Bento Box                                                      */}
-        {/* ========================================================================= */}
-        <div className="relative rounded-[32px] sm:rounded-[40px] bg-white dark:bg-[#0E1512] border border-brand-ink/10 dark:border-white/10 shadow-[0_24px_70px_-15px_rgba(0,0,0,0.06)] dark:shadow-[0_28px_80px_-20px_rgba(0,0,0,0.85)] overflow-hidden">
-          <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch">
+          {/* ========================================================================= */}
+          {/* MAIN 2-COLUMN EXPERIENCE: Large Text (Left) + Building Reveal (Right)     */}
+          {/* ========================================================================= */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center bg-white/70 dark:bg-[#0E1512]/90 backdrop-blur-xl rounded-[28px] sm:rounded-[36px] border border-brand-ink/10 dark:border-white/10 p-5 sm:p-8 lg:p-10 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.06)] dark:shadow-[0_24px_70px_-20px_rgba(0,0,0,0.85)]">
             
-            {/* ================= LEFT COLUMN: Clean, Uncluttered Stage Summary ================= */}
-            <div className="lg:col-span-6 p-7 sm:p-10 lg:p-12 flex flex-col justify-between z-10">
+            {/* ================= LEFT COLUMN: Large, Highly Legible Methodology Text ================= */}
+            <div className="lg:col-span-7 flex flex-col justify-between space-y-6">
               <AnimatePresence mode="wait">
                 <motion.div
-                  key={stage.id}
-                  initial={{ opacity: 0, y: 15 }}
+                  key={currentStep.number}
+                  initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -15 }}
+                  exit={{ opacity: 0, y: -16 }}
                   transition={{ duration: 0.35, ease: "easeOut" }}
+                  className="space-y-4"
                 >
-                  {/* Badge */}
-                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-bold tracking-wider text-[#F75B00] bg-[#F75B00]/10 border border-[#F75B00]/25 uppercase mb-4">
-                    <Sparkles className="w-3.5 h-3.5 text-[#F75B00]" />
-                    <span>{stage.badge}</span>
+                  {/* Elevation & Level Tag */}
+                  <div className="flex items-center gap-2">
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-bold tracking-wider text-[#F75B00] bg-[#F75B00]/10 border border-[#F75B00]/30 uppercase">
+                      <Sparkles className="w-3.5 h-3.5 text-[#F75B00]" />
+                      <span>{currentStep.floorLabel}</span>
+                    </span>
+                    <span className="font-mono text-xs text-brand-muted hidden sm:inline">
+                      {currentStep.elevation}
+                    </span>
                   </div>
 
-                  {/* Title & Tagline */}
-                  <h3 className="font-heading font-extrabold text-2xl sm:text-3xl lg:text-4xl text-brand-ink tracking-[0.02em] leading-tight mb-3">
-                    {stage.title}
+                  {/* Big, Crisp, Easy-to-Read Title */}
+                  <h3 className="font-heading font-extrabold text-2xl sm:text-3xl lg:text-4xl text-brand-ink dark:text-white tracking-[0.015em] leading-[1.2]">
+                    {currentStep.title}
                   </h3>
-                  <p className="font-sans text-xs sm:text-sm text-[#F75B00] font-semibold mb-4">
-                    {stage.tagline}
+
+                  {/* Subtitle / Core Principle */}
+                  <p className="font-sans text-sm sm:text-base text-[#F75B00] font-semibold leading-relaxed">
+                    {currentStep.subtitle}
                   </p>
 
-                  {/* Concise summary without clutter */}
-                  <p className="font-sans text-sm sm:text-base text-[#101820] dark:text-[#E2E8F0] leading-relaxed mb-6">
-                    {stage.summary}
+                  {/* Detailed, Large Readable Methodology Description */}
+                  <p className="font-sans text-sm sm:text-base lg:text-lg text-brand-ink/80 dark:text-zinc-200 leading-relaxed font-normal">
+                    {currentStep.description}
                   </p>
 
-                  {/* Compact, clean deliverable chips */}
-                  <div className="space-y-2.5 mb-6">
-                    <span className="font-mono text-[11px] uppercase tracking-wider text-brand-muted2 block font-semibold">
+                  {/* Deliverable Matrix Chips */}
+                  <div className="pt-2">
+                    <span className="font-mono text-xs uppercase tracking-wider text-brand-muted font-bold block mb-2.5">
                       Key Sprint Deliverables:
                     </span>
-                    <div className="flex flex-wrap gap-2">
-                      {stage.keyDeliverables.map((item, dIdx) => (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-2.5">
+                      {currentStep.deliverables.map((item, dIdx) => (
                         <div
                           key={dIdx}
-                          className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white dark:bg-white/5 border border-brand-ink/10 dark:border-white/10 shadow-xs text-xs font-medium text-brand-ink"
+                          className="flex items-center justify-between p-2.5 px-3 rounded-xl bg-neutral-50 dark:bg-white/[0.04] border border-brand-ink/10 dark:border-white/10 text-xs sm:text-sm font-medium text-brand-ink dark:text-white"
                         >
-                          <CheckCircle2 className="w-3.5 h-3.5 text-[#F75B00] shrink-0" />
-                          <span>{item.title}</span>
-                          <span className="px-1.5 py-0.5 rounded bg-[#F75B00]/10 text-[#F75B00] font-mono text-[10px] font-bold">
+                          <div className="flex items-center gap-2 truncate">
+                            <CheckCircle2 className="w-4 h-4 text-[#F75B00] shrink-0" />
+                            <span className="truncate">{item.label}</span>
+                          </div>
+                          <span className="px-1.5 py-0.5 rounded bg-[#F75B00]/10 text-[#F75B00] font-mono text-[10px] font-bold shrink-0 ml-2">
                             {item.tag}
                           </span>
                         </div>
@@ -447,152 +320,154 @@ export function ProcessBlueprintSection() {
                 </motion.div>
               </AnimatePresence>
 
-              {/* Bottom Actions with updated Button Badge matching Image 2 */}
-              <div className="border-t border-brand-ink/10 dark:border-white/10 pt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                <span className="font-mono text-xs text-brand-muted">
-                  Next: {STAGES[(activeStageIdx + 1) % 4].title}
-                </span>
+              {/* Floor Switcher Tabs & Progress Controller */}
+              <div className="border-t border-brand-ink/10 dark:border-white/10 pt-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                {/* 7 Floor Navigation Buttons */}
+                <div className="flex items-center gap-1.5 sm:gap-2">
+                  {ARCHITECTURE_STEPS.map((step, idx) => {
+                    const isActive = idx === activeStepIndex;
+                    const isPassed = idx <= activeStepIndex;
+                    return (
+                      <button
+                        key={step.number}
+                        type="button"
+                        onClick={() => jumpToStep(idx)}
+                        className={`w-8 sm:w-9 h-8 sm:h-9 rounded-xl flex items-center justify-center font-mono text-xs font-bold transition-all duration-300 cursor-pointer border ${
+                          isActive
+                            ? "bg-gradient-to-tr from-[#F75B00] to-[#EFC320] text-white border-transparent shadow-md scale-110"
+                            : isPassed
+                            ? "bg-[#F75B00]/10 text-[#F75B00] border-[#F75B00]/30 hover:bg-[#F75B00]/20"
+                            : "bg-neutral-100 dark:bg-white/5 text-brand-muted border-brand-ink/10 dark:border-white/10 hover:bg-neutral-200"
+                        }`}
+                        title={step.title}
+                        aria-label={`Jump to floor ${step.number}`}
+                      >
+                        0{step.number}
+                      </button>
+                    );
+                  })}
+                </div>
 
+                {/* Next / CTA Actions */}
                 <div className="flex items-center gap-3 w-full sm:w-auto">
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setActiveStageIdx((prev) => (prev + 1) % STAGES.length);
-                      setActiveItemIdx(0);
-                    }}
-                    style={{ fontFamily: "var(--font-aventa), 'Aventa', sans-serif", fontSize: "16px", fontWeight: 400 }}
-                    className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2.5 px-[20px] py-[10px] rounded-full bg-gradient-to-r from-[#F75B00] to-[#EFC320] hover:from-[#e05200] hover:to-[#dfb51c] font-sans font-normal text-[16px] shadow-md hover:shadow-xl hover:shadow-[#F75B00]/30 hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer group btn-aventa"
-                  >
-                    <span
-                      style={{ color: "#ffffff", fontFamily: "var(--font-aventa), 'Aventa', sans-serif", fontSize: "16px", fontWeight: 400 }}
-                      className="!text-white text-white font-sans font-normal text-[16px] btn-label-text btn-label-white"
+                  {activeStepIndex < 6 ? (
+                    <button
+                      type="button"
+                      onClick={() => jumpToStep(activeStepIndex + 1)}
+                      className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-[#F75B00] to-[#EFC320] text-white font-sans font-medium text-xs sm:text-sm shadow-md hover:scale-105 active:scale-95 transition-all cursor-pointer group"
                     >
-                      Next Stage
-                    </span>
-                    <span
-                      style={{ backgroundColor: "#ffffff", color: "#101820" }}
-                      className="w-5 h-5 rounded-full bg-white shadow-xs flex items-center justify-center transition-transform duration-300 group-hover:scale-110 group-hover:rotate-45 shrink-0 btn-circle-icon text-[#101820]"
-                    >
-                      <ArrowRight
-                        color="#101820"
-                        stroke="#101820"
-                        strokeWidth={2.5}
-                        className="w-3 h-3 stroke-[2.5] !text-[#101820] !stroke-[#101820]"
-                        style={{ color: "#101820", stroke: "#101820" }}
-                      />
-                    </span>
-                  </button>
-
-                  <Button href="/contact" variant="ghost" size="sm">
-                    Book a Sprint
-                  </Button>
+                      <span>Next Floor</span>
+                      <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                    </button>
+                  ) : (
+                    <Button href="/contact" variant="primary" size="sm">
+                      <span>Book a Sprint</span>
+                      <ArrowUpRight className="w-3.5 h-3.5 ml-1" />
+                    </Button>
+                  )}
                 </div>
               </div>
             </div>
 
-            {/* ================= RIGHT COLUMN: Interactive 3D Stacked Cards (Clean Background & Auto-Switching) ================= */}
-            <div
-              onMouseEnter={() => setIsPaused(true)}
-              onMouseLeave={() => setIsPaused(false)}
-              className="lg:col-span-6 relative bg-white dark:bg-[#0B1411] p-6 sm:p-10 flex flex-col items-center justify-center overflow-hidden min-h-[460px] border-t lg:border-t-0 lg:border-l border-brand-ink/10 dark:border-white/10"
-            >
-              {/* Concentric ambient background rings */}
-              <div className="absolute w-[440px] h-[440px] rounded-full border border-brand-ink/5 dark:border-white/5 pointer-events-none" />
-              <div className="absolute w-[320px] h-[320px] rounded-full border border-brand-ink/10 dark:border-white/10 pointer-events-none" />
-              <div className="absolute w-80 h-80 rounded-full bg-gradient-to-tr from-[#F75B00]/10 to-[#EFC320]/10 blur-3xl pointer-events-none" />
+            {/* ================= RIGHT COLUMN: The Architectural Building Artwork Reveal ================= */}
+            <div className="lg:col-span-5 flex flex-col items-center justify-center">
+              <div className="relative w-full max-w-[420px] lg:max-w-[460px] aspect-[736/892] rounded-2xl sm:rounded-3xl overflow-hidden bg-[#FBF7F2] dark:bg-[#131916] border border-brand-ink/10 dark:border-white/10 shadow-lg p-3 sm:p-4">
+                
+                {/* Architectural Building Construction SVG */}
+                <svg
+                  viewBox="0 0 736 892"
+                  className="w-full h-full object-contain select-none pointer-events-none"
+                  preserveAspectRatio="xMidYMid meet"
+                  aria-hidden="true"
+                >
+                  <defs>
+                    <image
+                      id="architecture-building-art"
+                      href="/images/architecture-building.png"
+                      width={736}
+                      height={892}
+                    />
 
-              {/* Stack Cascade Container */}
-              <div className="relative z-10 w-full max-w-[360px] sm:max-w-[420px] py-4">
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={stage.id}
-                    initial={{ opacity: 0, scale: 0.94 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.94 }}
-                    transition={{ duration: 0.35 }}
-                    className="flex flex-col items-center space-y-[-10px] sm:space-y-[-14px]"
-                  >
-                    {stage.stackItems.map((item, idx) => {
-                      const Icon = item.icon;
-                      const isFocused = idx === activeItemIdx;
+                    {/* Foundation ground mask */}
+                    <clipPath id="building-foundation-clip" clipPathUnits="userSpaceOnUse">
+                      <path d={FOUNDATION_MASK} />
+                    </clipPath>
 
-                      return (
-                        <motion.div
-                          key={item.id}
-                          layout
-                          onClick={() => {
-                            setActiveItemIdx(idx);
-                            setIsPaused(true);
-                          }}
-                          whileHover={{ scale: isFocused ? 1.05 : 0.99 }}
-                          transition={{ type: "spring", stiffness: 350, damping: 28 }}
-                          className={`w-full rounded-2xl sm:rounded-3xl p-4 sm:p-4.5 transition-all duration-500 cursor-pointer flex items-center justify-between gap-3.5 select-none ${
-                            isFocused
-                              ? "bg-white dark:bg-[#161D19] border-2 border-[#F75B00] shadow-[0_20px_45px_-8px_rgba(247,91,0,0.28)] z-30 scale-105 opacity-100 filter-none"
-                              : "bg-white/70 dark:bg-white/[0.04] backdrop-blur-md border border-neutral-200/60 dark:border-white/10 shadow-none z-10 opacity-35 hover:opacity-75 blur-[1.5px] hover:blur-none scale-[0.97]"
-                          }`}
-                        >
-                          <div className="flex items-center gap-3.5 min-w-0">
-                            {/* Icon Box */}
-                            <div
-                              className={`w-10 h-10 sm:w-11 sm:h-11 rounded-xl sm:rounded-2xl flex items-center justify-center shrink-0 transition-transform ${
-                                isFocused ? item.iconBg : "bg-neutral-100 dark:bg-white/10"
-                              }`}
-                            >
-                              <Icon
-                                className={`w-5 h-5 ${
-                                  isFocused
-                                    ? item.iconColor
-                                    : "text-neutral-400 dark:text-white/40"
-                                }`}
-                              />
-                            </div>
+                    {/* Mask for each of the 7 floors */}
+                    {ARCHITECTURE_STEPS.map((step) => (
+                      <clipPath
+                        key={step.number}
+                        id={`building-floor-${step.number}-clip`}
+                        clipPathUnits="userSpaceOnUse"
+                      >
+                        <path d={step.mask} />
+                      </clipPath>
+                    ))}
+                  </defs>
 
-                            {/* Label & Details */}
-                            <div className="min-w-0">
-                              <h4
-                                className={`font-sans font-bold text-xs sm:text-sm truncate transition-colors ${
-                                  isFocused
-                                    ? "text-brand-ink dark:text-white"
-                                    : "text-brand-ink/70 dark:text-white/60"
-                                }`}
-                              >
-                                {item.title}
-                              </h4>
-                              <p
-                                className={`font-sans text-[11px] truncate transition-colors ${
-                                  isFocused
-                                    ? "text-brand-muted font-medium"
-                                    : "text-neutral-400 dark:text-white/40"
-                                }`}
-                              >
-                                {item.subtitle}
-                              </p>
-                            </div>
-                          </div>
+                  {/* 1. Foundation is permanently constructed at the bedrock */}
+                  <use
+                    href="#architecture-building-art"
+                    clipPath="url(#building-foundation-clip)"
+                  />
 
-                          {/* Status Tag or Indicator */}
-                          <div className="shrink-0 flex items-center gap-1">
-                            {isFocused ? (
-                              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-gradient-to-r from-[#F75B00] to-[#EFC320] text-white font-mono text-[9px] font-bold tracking-wider uppercase shadow-xs">
-                                <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
-                                ACTIVE
-                              </span>
-                            ) : (
-                              <div className="w-2 h-2 rounded-full bg-neutral-300 dark:bg-white/20" />
-                            )}
-                          </div>
-                        </motion.div>
-                      );
-                    })}
-                  </motion.div>
-                </AnimatePresence>
+                  {/* 2. Each floor reveals sequentially as the user scrolls */}
+                  {ARCHITECTURE_STEPS.map((step, idx) => {
+                    const isConstructed = idx <= activeStepIndex;
+                    const isCurrent = idx === activeStepIndex;
+
+                    return (
+                      <g
+                        key={step.number}
+                        opacity={isConstructed ? 1 : 0}
+                        transform={isConstructed ? "translate(0, 0)" : "translate(0, 18)"}
+                        style={{
+                          transition: "opacity 450ms cubic-bezier(0.16, 1, 0.3, 1), transform 450ms cubic-bezier(0.16, 1, 0.3, 1)",
+                        }}
+                      >
+                        <use
+                          href="#architecture-building-art"
+                          clipPath={`url(#building-floor-${step.number}-clip)`}
+                        />
+
+                        {/* Active Room Glowing Outline Indicator */}
+                        {isCurrent && (
+                          <rect
+                            x={step.roomBox.x}
+                            y={step.roomBox.y}
+                            width={step.roomBox.width}
+                            height={step.roomBox.height}
+                            fill="none"
+                            stroke="#F75B00"
+                            strokeWidth="3.5"
+                            strokeDasharray="8 6"
+                            className="animate-pulse"
+                            rx="8"
+                          />
+                        )}
+                      </g>
+                    );
+                  })}
+                </svg>
+
+                {/* Floating Status Pill over the building */}
+                <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between px-3.5 py-2 rounded-xl bg-white/90 dark:bg-[#1A221E]/95 backdrop-blur-md border border-brand-ink/10 dark:border-white/10 shadow-sm text-xs font-mono">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-[#F75B00] animate-ping" />
+                    <span className="font-bold text-brand-ink dark:text-white">
+                      FLOOR 0{currentStep.number} ACTIVE
+                    </span>
+                  </div>
+                  <span className="text-brand-muted text-[11px]">
+                    {Math.round(((activeStepIndex + 1) / 7) * 100)}% BUILT
+                  </span>
+                </div>
               </div>
             </div>
 
           </div>
-        </div>
-      </Container>
-    </section>
+        </Container>
+      </div>
+    </div>
   );
 }
