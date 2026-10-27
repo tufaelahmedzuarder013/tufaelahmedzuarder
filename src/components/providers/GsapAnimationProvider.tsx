@@ -16,50 +16,8 @@ interface GsapAnimationProviderProps {
 }
 
 /**
- * Splits all text nodes within an element into individual word spans,
- * preserving all inner HTML tags (strong, em, a, span, etc.) and whitespace.
- */
-function splitParagraphIntoWords(container: HTMLElement): HTMLElement[] {
-  const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT, null);
-  const textNodes: Text[] = [];
-  let node: Node | null;
-
-  while ((node = walker.nextNode())) {
-    if (node.nodeValue && node.nodeValue.trim().length > 0) {
-      textNodes.push(node as Text);
-    }
-  }
-
-  const wordSpans: HTMLElement[] = [];
-
-  textNodes.forEach((textNode) => {
-    const text = textNode.nodeValue || "";
-    const parent = textNode.parentNode;
-    if (!parent) return;
-
-    const fragment = document.createDocumentFragment();
-    const parts = text.split(/(\s+)/);
-
-    parts.forEach((part) => {
-      if (/^\s+$/.test(part)) {
-        fragment.appendChild(document.createTextNode(part));
-      } else if (part.length > 0) {
-        const span = document.createElement("span");
-        span.className = "gsap-word inline-block will-change-[color,opacity]";
-        span.textContent = part;
-        fragment.appendChild(span);
-        wordSpans.push(span);
-      }
-    });
-
-    parent.replaceChild(fragment, textNode);
-  });
-
-  return wordSpans;
-}
-
-/**
- * Processes a single paragraph to apply the GSAP Scroll Highlight illumination.
+ * Applies a smooth scroll-driven highlight to a paragraph without mutating its DOM or text nodes,
+ * preventing React hydration mismatch errors.
  */
 function processParagraphHighlight(
   p: HTMLElement,
@@ -77,53 +35,29 @@ function processParagraphHighlight(
 
   const text = p.textContent || "";
   const wordsCount = text.trim().split(/\s+/).filter(Boolean).length;
-
-  // Strictly target 2-line and 3-line paragraphs (typically 7 to 85 words in Aventa 20px)
-  // Skip short 1-line badges (< 7 words) and monolithic text dumps (> 85 words)
-  if (wordsCount < 7 || wordsCount > 85) return;
+  if (wordsCount < 4 || wordsCount > 100) return;
 
   p.setAttribute("data-gsap-processed", "true");
-  p.classList.add("gsap-scroll-highlight-container");
-
-  const words = splitParagraphIntoWords(p);
-  if (!words.length) return;
-
-  // Detect dark container or dark theme
-  const isDarkContainer = Boolean(
-    p.closest(
-      ".cta-banner-dark, [data-theme-inverted='true'], .bg-neutral-950, .dark-container"
-    ) || document.documentElement.classList.contains("dark")
-  );
-
-  const targetColor = isDarkContainer ? "#ffffff" : "#101820";
-  const fadedColor = isDarkContainer
-    ? "rgba(255, 255, 255, 0.22)"
-    : "rgba(16, 24, 32, 0.22)";
-
-  // Starting state: dimmed/muted reading state with subtle micro-offset
-  gsap.set(words, {
-    opacity: 0.22,
-    color: fadedColor,
-    y: 2,
-  });
 
   const isSticky = Boolean(p.closest(".sticky, [class*='sticky']"));
 
-  // GSAP Scroll Highlight animation (progressive scrub illumination)
-  const anim = gsap.to(words, {
-    opacity: 1,
-    color: targetColor,
-    y: 0,
-    stagger: 0.08,
-    ease: "power1.out",
-    scrollTrigger: {
-      trigger: isSticky ? (p.closest(".sticky") as HTMLElement) || p : p,
-      start: isSticky ? "top 80%" : "top 86%",
-      end: isSticky ? "top 30%" : "bottom 56%",
-      scrub: 0.65,
-      invalidateOnRefresh: true,
-    },
-  });
+  // Smooth CSS transform & opacity animation without modifying innerHTML
+  const anim = gsap.fromTo(
+    p,
+    { opacity: 0.35, y: 10 },
+    {
+      opacity: 1,
+      y: 0,
+      ease: "power1.out",
+      scrollTrigger: {
+        trigger: isSticky ? (p.closest(".sticky") as HTMLElement) || p : p,
+        start: isSticky ? "top 80%" : "top 86%",
+        end: isSticky ? "top 30%" : "bottom 56%",
+        scrub: 0.65,
+        invalidateOnRefresh: true,
+      },
+    }
+  );
 
   if (anim.scrollTrigger) {
     triggers.push(anim.scrollTrigger);
@@ -179,7 +113,7 @@ export function GsapAnimationProvider({ children }: GsapAnimationProviderProps) 
     };
   }, []);
 
-  // 2. Automated Scroll-Driven Text Illumination across ALL 2-line & 3-line Paragraphs
+  // 2. Safe Scroll-Driven Text Illumination (Zero DOM mutation)
   useEffect(() => {
     const prefersReducedMotion =
       typeof window !== "undefined" &&
@@ -189,7 +123,7 @@ export function GsapAnimationProvider({ children }: GsapAnimationProviderProps) 
 
     const triggers: ScrollTrigger[] = [];
 
-    // Helper to process all paragraphs
+    // Helper to process paragraphs safely
     const scanAndProcess = () => {
       const paragraphs = document.querySelectorAll<HTMLElement>(
         "main p:not([data-no-gsap]), p:not([data-no-gsap])"
@@ -199,91 +133,44 @@ export function GsapAnimationProvider({ children }: GsapAnimationProviderProps) 
       });
     };
 
-    // =========================================================================
-    // A. INITIAL BATCH PROCESSING
-    // =========================================================================
+    // A. Initial processing
     scanAndProcess();
 
-    // =========================================================================
-    // B. ALL HEADINGS: Scroll-driven scrub reveal (Orlean 59px / 47px)
-    // =========================================================================
+    // B. Safe Heading Scroll Reveal (Animates opacity and transform without touching innerHTML)
     const headings = document.querySelectorAll<HTMLElement>(
       "main h1:not([data-no-gsap]):not(.cta-banner-heading), main h2:not([data-no-gsap]):not(.cta-banner-heading), main h3:not([data-no-gsap]):not(.cta-banner-heading), main .gsap-heading:not(.cta-banner-heading)"
     );
 
     headings.forEach((heading) => {
       if (heading.getAttribute("data-gsap-processed") === "true") return;
-      if (heading.closest(".cta-banner-dark, .client-reviews-section")) return;
+      if (heading.closest(".cta-banner-dark, .client-reviews-section, .hero-section")) return;
       heading.setAttribute("data-gsap-processed", "true");
 
-      if (heading.querySelector(".gsap-reveal-word, .scroll-word-item, input, button")) return;
-
-      const originalText = heading.textContent || "";
-      const words = originalText.trim().split(/\s+/).filter(Boolean);
-      if (words.length > 0 && words.length < 30) {
-        heading.innerHTML = words
-          .map(
-            (word) =>
-              `<span class="inline-block overflow-hidden align-top leading-[1.2] pb-[0.06em] -mb-[0.06em] mr-[0.24em]"><span class="gsap-scrub-word inline-block will-change-transform will-change-[opacity]">${word}</span></span>`
-          )
-          .join("");
-
-        const wordEls = heading.querySelectorAll(".gsap-scrub-word");
-
-        gsap.set(wordEls, {
-          y: "85%",
-          opacity: 0.18,
-          rotateZ: 1.2,
-        });
-
-        const anim = gsap.to(wordEls, {
-          y: "0%",
+      const anim = gsap.fromTo(
+        heading,
+        { opacity: 0.35, y: 16 },
+        {
           opacity: 1,
-          rotateZ: 0,
-          stagger: 0.08,
-          ease: "none",
+          y: 0,
+          ease: "power2.out",
           scrollTrigger: {
             trigger: heading,
-            start: "top 90%",
-            end: "top 62%",
-            scrub: 0.8,
+            start: "top 92%",
+            end: "top 65%",
+            scrub: 0.7,
+            invalidateOnRefresh: true,
           },
-        });
+        }
+      );
 
-        if (anim.scrollTrigger) triggers.push(anim.scrollTrigger);
-      }
+      if (anim.scrollTrigger) triggers.push(anim.scrollTrigger);
     });
 
-    // =========================================================================
-    // C. DYNAMIC MUTATION OBSERVER
-    // Watches for tab switches (MissionVisionSection, ProcessBlueprintSection)
-    // and automatically applies Scroll Highlight to newly mounted paragraphs!
-    // =========================================================================
-    let debounceTimer: ReturnType<typeof setTimeout> | null = null;
-    const observer = new MutationObserver(() => {
-      if (debounceTimer) clearTimeout(debounceTimer);
-      debounceTimer = setTimeout(() => {
-        scanAndProcess();
-        ScrollTrigger.refresh();
-      }, 80);
-    });
-
-    const targetContainer = document.querySelector("main") || document.body;
-    if (targetContainer) {
-      observer.observe(targetContainer, {
-        childList: true,
-        subtree: true,
-      });
-    }
-
-    // =========================================================================
-    // D. MULTI-STAGE SCROLLTRIGGER REFRESH (Accounting for images & fonts)
-    // =========================================================================
+    // C. Periodic ScrollTrigger refresh
     const refreshTimers = [
       setTimeout(() => ScrollTrigger.refresh(), 150),
-      setTimeout(() => ScrollTrigger.refresh(), 450),
-      setTimeout(() => ScrollTrigger.refresh(), 1000),
-      setTimeout(() => ScrollTrigger.refresh(), 2000),
+      setTimeout(() => ScrollTrigger.refresh(), 600),
+      setTimeout(() => ScrollTrigger.refresh(), 1500),
     ];
 
     if (typeof document !== "undefined" && document.fonts) {
@@ -297,8 +184,6 @@ export function GsapAnimationProvider({ children }: GsapAnimationProviderProps) 
     window.addEventListener("resize", onWindowLoad);
 
     return () => {
-      observer.disconnect();
-      if (debounceTimer) clearTimeout(debounceTimer);
       window.removeEventListener("load", onWindowLoad);
       window.removeEventListener("resize", onWindowLoad);
       refreshTimers.forEach(clearTimeout);

@@ -6,10 +6,10 @@ import { Sparkles, CheckCircle2 } from "lucide-react";
 import { Container } from "@/components/layout/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Button } from "@/components/ui/Button";
+import { ArchitecturalTowerGraphic } from "./ArchitecturalTowerGraphic";
 
 /**
  * 7 Architectural Stages (from Ground Floor to Master Penthouse)
- * Matching the exact visual layout and SVG masks of the architectural drawing
  */
 export const ARCHITECTURE_STEPS = [
   {
@@ -27,8 +27,6 @@ export const ARCHITECTURE_STEPS = [
       { label: "Cross-Device Parity Testing", tag: "QA SLA" },
       { label: "WCAG AAA Accessibility", tag: "Compliance" },
     ],
-    mask: "M391 653H553V788H391Z M325 648H392V788H325Z M575 626H716V777H575Z M550 670H576V676H550Z",
-    roomBox: { x: 325, y: 626, width: 391, height: 162 },
   },
   {
     number: 6,
@@ -45,8 +43,6 @@ export const ARCHITECTURE_STEPS = [
       { label: "Direct Founder Access", tag: "Slack / Discord" },
       { label: "Unambiguous Roadmaps", tag: "Milestones" },
     ],
-    mask: "M194 550H336V684H194Z M336 550H551V650H336Z M336 650H391V684H336Z M38 554H194V677H38Z",
-    roomBox: { x: 38, y: 550, width: 353, height: 134 },
   },
   {
     number: 5,
@@ -63,8 +59,6 @@ export const ARCHITECTURE_STEPS = [
       { label: "Zero-Trust Session Guards", tag: "Security" },
       { label: "Multi-Region Cloud Hosting", tag: "AWS / Vercel" },
     ],
-    mask: "M330 477H551V551H330Z M552 549H573V651H552Z M575 449H720V608H575Z M542 489H577V497H542Z",
-    roomBox: { x: 330, y: 449, width: 390, height: 160 },
   },
   {
     number: 4,
@@ -81,8 +75,6 @@ export const ARCHITECTURE_STEPS = [
       { label: "Adaptive Dark / Light Luxury", tag: "Zero Flash" },
       { label: "Signature Visual Language", tag: "Branding" },
     ],
-    mask: "M190 363H331V498H190Z M331 388H553V478H331Z M42 382H190V498H42Z",
-    roomBox: { x: 42, y: 363, width: 289, height: 135 },
   },
   {
     number: 3,
@@ -99,8 +91,6 @@ export const ARCHITECTURE_STEPS = [
       { label: "Smooth Scroll Transitions", tag: "Framer Motion" },
       { label: "Micro-Interaction Feedback", tag: "Sensory UX" },
     ],
-    mask: "M394 250H538V389H394Z M296 325H395V389H296Z M575 271H722V405H575Z M536 310H577V317H536Z",
-    roomBox: { x: 296, y: 250, width: 426, height: 155 },
   },
   {
     number: 2,
@@ -117,8 +107,6 @@ export const ARCHITECTURE_STEPS = [
       { label: "Automated GitHub Actions", tag: "CI/CD" },
       { label: "Zod Schema Type Guards", tag: "Runtime Safe" },
     ],
-    mask: "M201 172H395V326H201Z M49 187H201V322H49Z",
-    roomBox: { x: 49, y: 172, width: 346, height: 154 },
   },
   {
     number: 1,
@@ -135,13 +123,8 @@ export const ARCHITECTURE_STEPS = [
       { label: "Product Moat Construction", tag: "Strategic" },
       { label: "30-Day Founder Partnership", tag: "Included" },
     ],
-    mask: "M299 48H470V220H395V173H299Z M244 136H278V174H244Z M480 0H591V64H480Z M469 65H706V207H469Z",
-    roomBox: { x: 244, y: 0, width: 462, height: 220 },
   },
 ];
-
-export const FOUNDATION_MASK =
-  "M0 786H736V892H0Z M35 680H194V787H35Z M194 685H228V787H194Z M228 682H325V787H228Z M552 735H575V776H670V787H552Z";
 
 export function ProcessBlueprintSection() {
   const [activeStepIndex, setActiveStepIndex] = useState(0);
@@ -287,84 +270,8 @@ export function ProcessBlueprintSection() {
 
             {/* ================= RIGHT COLUMN: The Architectural Building Artwork Reveal ================= */}
             <div className="lg:col-span-5 flex flex-col items-center justify-center">
-              <div className="relative w-full max-w-[420px] lg:max-w-[460px] aspect-[736/892] rounded-2xl sm:rounded-3xl overflow-hidden bg-[#FBF7F2] dark:bg-[#131916] border border-brand-ink/10 dark:border-white/10 shadow-lg p-3 sm:p-4">
-                
-                {/* Architectural Building Construction SVG */}
-                <svg
-                  viewBox="0 0 736 892"
-                  className="w-full h-full object-contain select-none pointer-events-none"
-                  preserveAspectRatio="xMidYMid meet"
-                  aria-hidden="true"
-                >
-                  <defs>
-                    <image
-                      id="architecture-building-art"
-                      href="/images/architecture-building.png"
-                      width={736}
-                      height={892}
-                    />
-
-                    {/* Foundation ground mask */}
-                    <clipPath id="building-foundation-clip" clipPathUnits="userSpaceOnUse">
-                      <path d={FOUNDATION_MASK} />
-                    </clipPath>
-
-                    {/* Mask for each of the 7 floors */}
-                    {ARCHITECTURE_STEPS.map((step) => (
-                      <clipPath
-                        key={step.number}
-                        id={`building-floor-${step.number}-clip`}
-                        clipPathUnits="userSpaceOnUse"
-                      >
-                        <path d={step.mask} />
-                      </clipPath>
-                    ))}
-                  </defs>
-
-                  {/* 1. Foundation is permanently constructed at the bedrock */}
-                  <use
-                    href="#architecture-building-art"
-                    clipPath="url(#building-foundation-clip)"
-                  />
-
-                  {/* 2. Each floor reveals sequentially as the user scrolls */}
-                  {ARCHITECTURE_STEPS.map((step, idx) => {
-                    const isConstructed = idx <= activeStepIndex;
-                    const isCurrent = idx === activeStepIndex;
-
-                    return (
-                      <g
-                        key={step.number}
-                        opacity={isConstructed ? 1 : 0}
-                        transform={isConstructed ? "translate(0, 0)" : "translate(0, 18)"}
-                        style={{
-                          transition: "opacity 450ms cubic-bezier(0.16, 1, 0.3, 1), transform 450ms cubic-bezier(0.16, 1, 0.3, 1)",
-                        }}
-                      >
-                        <use
-                          href="#architecture-building-art"
-                          clipPath={`url(#building-floor-${step.number}-clip)`}
-                        />
-
-                        {/* Active Room Glowing Outline Indicator */}
-                        {isCurrent && (
-                          <rect
-                            x={step.roomBox.x}
-                            y={step.roomBox.y}
-                            width={step.roomBox.width}
-                            height={step.roomBox.height}
-                            fill="none"
-                            stroke="#F75B00"
-                            strokeWidth="3.5"
-                            strokeDasharray="8 6"
-                            className="animate-pulse"
-                            rx="8"
-                          />
-                        )}
-                      </g>
-                    );
-                  })}
-                </svg>
+              <div className="relative w-full max-w-[440px] lg:max-w-[480px] aspect-[680/880] rounded-2xl sm:rounded-3xl overflow-hidden bg-[#FBF7F2] dark:bg-[#0F1512] border border-brand-ink/10 dark:border-white/10 shadow-lg p-3 sm:p-4">
+                <ArchitecturalTowerGraphic activeStepIndex={activeStepIndex} />
               </div>
             </div>
 

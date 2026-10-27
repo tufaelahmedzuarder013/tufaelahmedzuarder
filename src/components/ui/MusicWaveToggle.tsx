@@ -33,10 +33,7 @@ function getSharedAudio(): HTMLAudioElement | null {
 }
 
 export function MusicWaveToggle({ className }: MusicWaveToggleProps = {}) {
-  const [isPlaying, setIsPlaying] = useState<boolean>(() => {
-    if (typeof window === "undefined" || !sharedAudio) return false;
-    return !sharedAudio.paused;
-  });
+  const [isPlaying, setIsPlaying] = useState<boolean>(false);
 
   useEffect(() => {
     // Keep this component's isPlaying state in sync with the shared audio

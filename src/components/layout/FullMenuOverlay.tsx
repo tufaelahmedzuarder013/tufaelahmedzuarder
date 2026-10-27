@@ -262,7 +262,7 @@ export function FullMenuOverlay({ isOpen, onClose }: FullMenuOverlayProps) {
             <footer className="taz-menu-footer">
               <span className="taz-menu-footer-line" aria-hidden="true" />
               <div className="taz-menu-footer-row">
-                <p className="taz-menu-copyright" suppressHydrationWarning>© {new Date().getFullYear()} Tufael Ahmed Zuarder. All rights reserved.</p>
+                <p className="taz-menu-copyright">© 2025 Tufael Ahmed Zuarder. All rights reserved.</p>
                 <div className="taz-menu-socials" aria-label="Social profiles">
                   {SOCIALS.map((social) => {
                     const icon = <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{social.paths.map((path) => <path key={path} d={path} />)}</svg>;
