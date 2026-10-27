@@ -172,8 +172,32 @@ button span:not(.btn-circle-icon):not(.btn-circle-icon *),
 .dark-container p,
 .bg-neutral-950 p,
 [data-theme-inverted="true"] p,
-.text-white-forced {
+.text-white-forced,
+footer p {
   color: #ffffff !important;
+}
+
+/* Explicit footer typography reset to ensure readability on dark background */
+footer p {
+  font-size: 14px !important;
+  line-height: 22px !important;
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+footer h3 {
+  font-family: var(--font-orlean), 'Orlean', var(--font-space-grotesk), sans-serif !important;
+  color: #ffffff !important;
+  font-size: 18px !important;
+  line-height: 24px !important;
+  font-weight: 600 !important;
+}
+
+footer a {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+footer a:hover {
+  color: #F75B00 !important;
 }
 
 .cta-banner-dark p,
