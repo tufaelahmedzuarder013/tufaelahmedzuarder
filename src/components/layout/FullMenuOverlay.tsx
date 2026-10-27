@@ -262,7 +262,7 @@ export function FullMenuOverlay({ isOpen, onClose }: FullMenuOverlayProps) {
             <footer className="taz-menu-footer">
               <span className="taz-menu-footer-line" aria-hidden="true" />
               <div className="taz-menu-footer-row">
-                <p className="taz-menu-copyright">© 2025 Tufael Ahmed Zuarder. All rights reserved.</p>
+                <p className="taz-menu-copyright" style={{ color: "#101820" }}>© 2025 Tufael Ahmed Zuarder. All rights reserved.</p>
                 <div className="taz-menu-socials" aria-label="Social profiles">
                   {SOCIALS.map((social) => {
                     const icon = <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{social.paths.map((path) => <path key={path} d={path} />)}</svg>;
@@ -724,7 +724,7 @@ const MENU_STYLES = `
 .taz-menu-footer { grid-column: 1/-1; grid-row: 4; width: 100%; min-width: 0; color: #5B6871; font-size: calc(1.6 * var(--u)); line-height: 1.2; }
 .taz-menu-footer-line { display: block; width: 100%; height: 1px; margin-bottom: min(calc(3.5 * var(--u)),3.5vh); background: rgba(16, 24, 32, 0.12); opacity: 0; transform: scaleX(0); transition: opacity var(--menu-duration) var(--menu-ease), transform var(--menu-duration) var(--menu-ease); }
 .taz-menu-footer-row { position: relative; display: flex; align-items: center; justify-content: space-between; gap: calc(2 * var(--u)); }
-.taz-menu-copyright { max-width: 43%; }
+.taz-menu-copyright { max-width: 43%; color: #101820 !important; }
 .taz-menu-socials { position: absolute; top: 50%; left: 50%; display: flex; align-items: center; gap: calc(1 * var(--u)); opacity: 0; transform: translate(-50%,50%); transition: opacity var(--menu-duration) var(--menu-ease), transform var(--menu-duration) var(--menu-ease); }
 .taz-menu-social { display: grid; place-items: center; flex-shrink: 0; width: calc(3.5 * var(--u)); height: calc(3.5 * var(--u)); border: 1px solid rgba(16, 24, 32, 0.18); border-radius: 50%; color: #5B6871 !important; transition: color 300ms ease, border-color 300ms ease, transform 300ms ease, background-color 300ms ease; }
 .taz-menu-social svg { width: 49%; height: 49%; }
@@ -927,9 +927,12 @@ html.dark .taz-menu-collaboration p {
 }
 :root.dark .taz-menu-footer,
 html.dark .taz-menu-footer,
+:root.dark .taz-menu-copyright,
+html.dark .taz-menu-copyright,
+.dark .taz-menu-copyright,
 :root.dark .taz-menu-legal a,
 html.dark .taz-menu-legal a {
-  color: #9C9DB5;
+  color: #9C9DB5 !important;
 }
 :root.dark .taz-menu-social,
 html.dark .taz-menu-social {
