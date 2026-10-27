@@ -274,7 +274,7 @@ export function HeroSection() {
             </div>
 
             {/* Main Headline */}
-            <h1 className="font-heading text-3xl sm:text-4xl tracking-[0.04em] [word-spacing:0.18em] leading-[1.18] text-brand-ink mb-2 select-none" data-no-gsap="true">
+            <h1 aria-hidden="true" className="font-heading text-3xl sm:text-4xl tracking-[0.04em] [word-spacing:0.18em] leading-[1.18] text-brand-ink mb-2 select-none" data-no-gsap="true">
               <span className="block overflow-hidden pb-1 -mb-1">
                 <span className="gsap-hero-title block will-change-transform">Tufael Ahmed</span>
               </span>
