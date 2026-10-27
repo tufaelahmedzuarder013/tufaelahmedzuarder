@@ -173,8 +173,25 @@ button span:not(.btn-circle-icon):not(.btn-circle-icon *),
 .bg-neutral-950 p,
 [data-theme-inverted="true"] p,
 .text-white-forced,
-footer p {
+.about-showcase .text-white-forced {
   color: #ffffff !important;
+}
+
+/* About Partner Showcase section typography isolation */
+.about-showcase h2,
+.about-showcase h3,
+.about-showcase p,
+.about-showcase span {
+  color: unset;
+}
+.about-showcase p {
+  font-size: unset;
+  line-height: unset;
+}
+.about-showcase h2 {
+  font-size: unset;
+  line-height: unset;
+  font-weight: unset;
 }
 
 /* Explicit footer typography reset to ensure readability on dark background */
@@ -240,12 +257,103 @@ div.btn-circle-icon {
   fill: none !important;
 }
 
-/* Section directly below reviews: CTA Banner Heading MUST be pure white ONLY */
-.cta-banner-dark h2,
-.cta-banner-heading,
-.cta-banner-heading span,
-.cta-banner-heading * {
-  color: #ffffff !important;
+/* ========================================================================== */
+/* ABOUT PARTNER SHOWCASE SECTION ISOLATION (PIXEL PERFECT EXACT REPLICA)     */
+/* ========================================================================== */
+.about-showcase h2,
+.about-showcase .showcase-headline {
+  font-family: var(--font-plus-jakarta-sans), var(--font-aventa), sans-serif !important;
+  font-size: clamp(38px, 5.5vw, 76px) !important;
+  line-height: 1.05 !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.035em !important;
+  color: #000000 !important;
+}
+
+:is(.dark) .about-showcase h2,
+:is(.dark) .about-showcase .showcase-headline {
+  color: #FFFFFF !important;
+}
+
+.about-showcase .showcase-eyebrow {
+  font-family: var(--font-casko-luxury), 'Times New Roman', Georgia, serif !important;
+  font-size: 12px !important;
+  line-height: 16px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.12em !important;
+  color: #2D2D2D !important;
+  text-transform: capitalize !important;
+}
+
+:is(.dark) .about-showcase .showcase-eyebrow {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.about-showcase .showcase-subtitle {
+  font-family: var(--font-aventa), var(--font-plus-jakarta-sans), sans-serif !important;
+  font-size: 16px !important;
+  line-height: 1.55 !important;
+  font-weight: 400 !important;
+  color: #71717A !important;
+}
+
+:is(.dark) .about-showcase .showcase-subtitle {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.about-showcase .showcase-metric-number {
+  font-family: var(--font-plus-jakarta-sans), var(--font-aventa), sans-serif !important;
+  font-size: clamp(56px, 7vw, 84px) !important;
+  line-height: 0.95 !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.03em !important;
+  color: #FFFFFF !important;
+}
+
+.about-showcase .showcase-metric-label {
+  font-family: var(--font-plus-jakarta-sans), var(--font-aventa), sans-serif !important;
+  font-size: clamp(13px, 1.1vw, 15px) !important;
+  line-height: 1.25 !important;
+  font-weight: 500 !important;
+  color: #FFFFFF !important;
+}
+
+.about-showcase .showcase-advanced-title {
+  font-family: var(--font-plus-jakarta-sans), var(--font-aventa), sans-serif !important;
+  font-size: clamp(22px, 2.4vw, 32px) !important;
+  line-height: 1.12 !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.02em !important;
+  color: #FFFFFF !important;
+}
+
+.about-showcase .showcase-advanced-desc {
+  font-family: var(--font-aventa), var(--font-plus-jakarta-sans), sans-serif !important;
+  font-size: clamp(12px, 1vw, 14px) !important;
+  line-height: 1.4 !important;
+  font-weight: 400 !important;
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.about-showcase .showcase-blox-item {
+  font-family: var(--font-plus-jakarta-sans), var(--font-aventa), sans-serif !important;
+  font-size: 13.5px !important;
+  line-height: 1 !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.01em !important;
+  color: #000000 !important;
+}
+
+:is(.dark) .about-showcase .showcase-blox-item {
+  color: #FFFFFF !important;
+}
+
+/* Ensure .botanical-about styles are not clobbered by global h2/p !important rules */
+.botanical-about p,
+.botanical-about h2,
+.botanical-about h3,
+.botanical-about strong {
+  margin: unset;
 }
 
 /* Sodu Client reviews gula te font size strictly 16px hobe */

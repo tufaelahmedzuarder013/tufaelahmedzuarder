@@ -2,7 +2,7 @@ import React from "react";
 import type { Metadata } from "next";
 import { constructMetadata } from "@/lib/seo";
 import { AboutHeroSection } from "@/features/about/components/AboutHeroSection";
-import { AboutBrandPartners } from "@/features/about/components/AboutBrandPartners";
+import { AboutPartnerShowcase } from "@/features/about/components/AboutPartnerShowcase";
 import { AboutCollaborationSection } from "@/features/about/components/AboutCollaborationSection";
 import { AboutDarkImpactSection } from "@/features/about/components/AboutDarkImpactSection";
 import { AboutDeepDiveTabs } from "@/features/about/components/AboutDeepDiveTabs";
@@ -20,8 +20,8 @@ export default function AboutPage() {
       {/* 1. Main 3-Column Hero Banner (Reference Image Top) */}
       <AboutHeroSection />
 
-      {/* 2. Trusted By Brands Logo Bar (Reference Image Middle Bar) */}
-      <AboutBrandPartners />
+      {/* 2. Intelligent Partner Showcase (Reference Image Section 2) */}
+      <AboutPartnerShowcase />
 
       {/* 3. Collaboration & Dual Mockup Showcase (Reference Image Middle Section) */}
       <AboutCollaborationSection />
