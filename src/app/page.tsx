@@ -20,11 +20,7 @@ export default function HomePage() {
       <FeaturedWork />
       <ProcessBlueprintSection />
       <ClientReviews />
-      <CtaBanner
-        title="Ready to bring your vision to life?"
-        subtitle="Let's build a web experience that exceeds expectations. Open for new contracts and freelance projects."
-        buttonText="Get in touch"
-      />
+      <CtaBanner />
     </>
   );
 }
