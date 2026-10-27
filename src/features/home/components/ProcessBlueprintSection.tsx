@@ -2,16 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  Sparkles,
-  ArrowRight,
-  ChevronDown,
-  Layers,
-  Building,
-  CheckCircle2,
-  Compass,
-  ArrowUpRight,
-} from "lucide-react";
+import { Sparkles, CheckCircle2 } from "lucide-react";
 import { Container } from "@/components/layout/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Button } from "@/components/ui/Button";
@@ -155,13 +146,11 @@ export const FOUNDATION_MASK =
 export function ProcessBlueprintSection() {
   const [activeStepIndex, setActiveStepIndex] = useState(0);
   const sectionRef = useRef<HTMLDivElement>(null);
-  const isJumpingRef = useRef(false);
 
-  // Scroll tracking: As the user scrolls through the 350vh section,
+  // Scroll tracking: As the user scrolls through the section,
   // the building dynamically constructs floor by floor!
   useEffect(() => {
     const handleScroll = () => {
-      if (isJumpingRef.current) return;
       const section = sectionRef.current;
       if (!section) return;
 
@@ -187,26 +176,6 @@ export function ProcessBlueprintSection() {
     handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  const jumpToStep = (index: number) => {
-    setActiveStepIndex(index);
-    const section = sectionRef.current;
-    if (!section) return;
-
-    isJumpingRef.current = true;
-    const totalScrollDistance = section.offsetHeight - window.innerHeight;
-    const targetScrollTop =
-      window.scrollY + section.getBoundingClientRect().top + (index / 6) * totalScrollDistance;
-
-    window.scrollTo({
-      top: targetScrollTop,
-      behavior: "smooth",
-    });
-
-    setTimeout(() => {
-      isJumpingRef.current = false;
-    }, 600);
-  };
 
   const currentStep = ARCHITECTURE_STEPS[activeStepIndex];
 
@@ -234,23 +203,11 @@ export function ProcessBlueprintSection() {
       <div className="sticky top-0 min-h-screen flex flex-col justify-center py-6 sm:py-8 lg:py-10">
         <Container>
           {/* Section Eyebrow Header */}
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-4 sm:mb-6">
-            <div>
-              <Eyebrow>{"// SPRINT ARCHITECTURE & METHODOLOGY"}</Eyebrow>
-              <h2 className="font-heading font-extrabold text-2xl sm:text-3xl lg:text-4xl text-brand-ink dark:text-white tracking-[0.02em] leading-tight">
-                Architectural Blueprint: <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F75B00] to-[#EFC320]">Step-by-Step Build</span>
-              </h2>
-            </div>
-
-            {/* Scroll Indicator / Level Badge */}
-            <div className="flex items-center gap-3 shrink-0">
-              <span className="font-mono text-xs text-brand-muted uppercase tracking-wider hidden sm:inline">
-                Scroll to Build Building:
-              </span>
-              <div className="px-3 py-1 rounded-full bg-[#F75B00]/10 border border-[#F75B00]/30 font-mono text-xs font-bold text-[#F75B00]">
-                Floor {activeStepIndex + 1} of 7
-              </div>
-            </div>
+          <div className="mb-4 sm:mb-6">
+            <Eyebrow>SPRINT ARCHITECTURE & METHODOLOGY</Eyebrow>
+            <h2 className="font-heading font-extrabold text-2xl sm:text-3xl lg:text-4xl text-brand-ink dark:text-white tracking-[0.02em] leading-tight">
+              Architectural Blueprint: <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F75B00] to-[#EFC320]">Step-by-Step Build</span>
+            </h2>
           </div>
 
           {/* ========================================================================= */}
@@ -320,52 +277,11 @@ export function ProcessBlueprintSection() {
                 </motion.div>
               </AnimatePresence>
 
-              {/* Floor Switcher Tabs & Progress Controller */}
-              <div className="border-t border-brand-ink/10 dark:border-white/10 pt-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                {/* 7 Floor Navigation Buttons */}
-                <div className="flex items-center gap-1.5 sm:gap-2">
-                  {ARCHITECTURE_STEPS.map((step, idx) => {
-                    const isActive = idx === activeStepIndex;
-                    const isPassed = idx <= activeStepIndex;
-                    return (
-                      <button
-                        key={step.number}
-                        type="button"
-                        onClick={() => jumpToStep(idx)}
-                        className={`w-8 sm:w-9 h-8 sm:h-9 rounded-xl flex items-center justify-center font-mono text-xs font-bold transition-all duration-300 cursor-pointer border ${
-                          isActive
-                            ? "bg-gradient-to-tr from-[#F75B00] to-[#EFC320] text-white border-transparent shadow-md scale-110"
-                            : isPassed
-                            ? "bg-[#F75B00]/10 text-[#F75B00] border-[#F75B00]/30 hover:bg-[#F75B00]/20"
-                            : "bg-neutral-100 dark:bg-white/5 text-brand-muted border-brand-ink/10 dark:border-white/10 hover:bg-neutral-200"
-                        }`}
-                        title={step.title}
-                        aria-label={`Jump to floor ${step.number}`}
-                      >
-                        0{step.number}
-                      </button>
-                    );
-                  })}
-                </div>
-
-                {/* Next / CTA Actions */}
-                <div className="flex items-center gap-3 w-full sm:w-auto">
-                  {activeStepIndex < 6 ? (
-                    <button
-                      type="button"
-                      onClick={() => jumpToStep(activeStepIndex + 1)}
-                      className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-[#F75B00] to-[#EFC320] text-white font-sans font-medium text-xs sm:text-sm shadow-md hover:scale-105 active:scale-95 transition-all cursor-pointer group"
-                    >
-                      <span>Next Floor</span>
-                      <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                    </button>
-                  ) : (
-                    <Button href="/contact" variant="primary" size="sm">
-                      <span>Book a Sprint</span>
-                      <ArrowUpRight className="w-3.5 h-3.5 ml-1" />
-                    </Button>
-                  )}
-                </div>
+              {/* CTA Action */}
+              <div className="border-t border-brand-ink/10 dark:border-white/10 pt-5 flex items-center justify-start">
+                <Button href="/contact" variant="primary">
+                  Book a Sprint
+                </Button>
               </div>
             </div>
 
@@ -449,19 +365,6 @@ export function ProcessBlueprintSection() {
                     );
                   })}
                 </svg>
-
-                {/* Floating Status Pill over the building */}
-                <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between px-3.5 py-2 rounded-xl bg-white/90 dark:bg-[#1A221E]/95 backdrop-blur-md border border-brand-ink/10 dark:border-white/10 shadow-sm text-xs font-mono">
-                  <div className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-[#F75B00] animate-ping" />
-                    <span className="font-bold text-brand-ink dark:text-white">
-                      FLOOR 0{currentStep.number} ACTIVE
-                    </span>
-                  </div>
-                  <span className="text-brand-muted text-[11px]">
-                    {Math.round(((activeStepIndex + 1) / 7) * 100)}% BUILT
-                  </span>
-                </div>
               </div>
             </div>
 
