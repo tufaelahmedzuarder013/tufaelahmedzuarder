@@ -119,7 +119,7 @@ export function FullMenuOverlay({ isOpen, onClose }: FullMenuOverlayProps) {
         dialog.dataset.state = "closed";
         restoreScrollRef.current?.();
         restoreScrollRef.current = null;
-      }, reducedMotion ? 0 : 420);
+      }, reducedMotion ? 0 : 650);
     }
     return () => {
       cancelAnimationFrame(frame);
@@ -201,23 +201,23 @@ export function FullMenuOverlay({ isOpen, onClose }: FullMenuOverlayProps) {
 
             <div className="taz-menu-main">
               <section className="taz-menu-intro">
-                <p className="taz-menu-eyebrow taz-menu-heading-reveal" style={delay(140)}><span />Connect with me</p>
-                <h2 className="taz-menu-title taz-menu-heading-reveal" style={delay(500)}>Turn Your Vision Into an Experience That Lasts</h2>
+                <p className="taz-menu-eyebrow taz-menu-heading-reveal" style={delay(220)}><span />Connect with me</p>
+                <h2 className="taz-menu-title taz-menu-heading-reveal" style={delay(450)}>Turn Your Vision Into an Experience That Lasts</h2>
                 <span className="taz-menu-short-line" aria-hidden="true" />
-                <a href="mailto:support@zuarder.com" className="taz-menu-email taz-menu-heading-reveal" style={delay(600)}>
+                <a href="mailto:support@zuarder.com" className="taz-menu-email taz-menu-heading-reveal" style={delay(620)}>
                   <Mail strokeWidth={1.5} aria-hidden="true" /><span>support@zuarder.com</span>
                 </a>
-                <div className="taz-menu-desktop-button taz-menu-heading-reveal" style={delay(700)}>{contactButton()}</div>
+                <div className="taz-menu-desktop-button taz-menu-heading-reveal" style={delay(780)}>{contactButton()}</div>
               </section>
 
               <div className="taz-menu-nav-wrapper">
                 <nav className="taz-menu-navigation" aria-label="Main navigation">
-                  <h3 className="taz-menu-section-title taz-menu-item-reveal" style={delay(300)}>NAVIGATION</h3>
+                  <h3 className="taz-menu-section-title taz-menu-item-reveal" style={delay(380)}>NAVIGATION</h3>
                   <ul className="taz-menu-nav-list">
                     {NAVIGATION.map((item, index) => {
                       const active = item.href === "/" ? pathname === "/" : pathname === item.href || pathname.startsWith(`${item.href}/`);
                       return (
-                        <li key={item.href} className="taz-menu-item-reveal" style={delay(400 + index * 100)}>
+                        <li key={item.href} className="taz-menu-item-reveal" style={delay(480 + index * 110)}>
                           <Link href={item.href} onClick={onClose} aria-current={active ? "page" : undefined} className={`taz-menu-nav-link${active ? " is-active" : ""}`}>
                             <span className="taz-menu-link-dot" aria-hidden="true" /><span className="taz-menu-link-text">{item.label}</span>
                           </Link>
@@ -229,7 +229,7 @@ export function FullMenuOverlay({ isOpen, onClose }: FullMenuOverlayProps) {
 
                 <div className="taz-menu-right-column" tabIndex={0} role="region" aria-label="Services and collaboration">
                   <section className="taz-menu-services">
-                    <div className="taz-menu-section-heading taz-menu-item-reveal" style={delay(500)}>
+                    <div className="taz-menu-section-heading taz-menu-item-reveal" style={delay(580)}>
                       <h3 className="taz-menu-section-title">SERVICES</h3>
                       <Link href="/services" onClick={onClose} className="taz-menu-all-services" aria-label="View all services">
                         <span>All Services</span>
@@ -238,7 +238,7 @@ export function FullMenuOverlay({ isOpen, onClose }: FullMenuOverlayProps) {
                     </div>
                     <ul className="taz-menu-service-list">
                       {SERVICES.map((item, index) => (
-                        <li key={item.href} className="taz-menu-item-reveal" style={delay(600 + index * 100)}>
+                        <li key={item.href} className="taz-menu-item-reveal" style={delay(680 + index * 90)}>
                           <Link href={item.href} onClick={onClose} className="taz-menu-nav-link">
                             <span className="taz-menu-link-dot" aria-hidden="true" /><span className="taz-menu-link-text">{item.label}</span>
                           </Link>
@@ -247,8 +247,8 @@ export function FullMenuOverlay({ isOpen, onClose }: FullMenuOverlayProps) {
                     </ul>
                   </section>
                   <section className="taz-menu-collaboration">
-                    <h3 className="taz-menu-section-title taz-menu-item-reveal" style={delay(600)}>COLLABORATION</h3>
-                    <div className="taz-menu-item-reveal" style={delay(700)}>
+                    <h3 className="taz-menu-section-title taz-menu-item-reveal" style={delay(750)}>COLLABORATION</h3>
+                    <div className="taz-menu-item-reveal" style={delay(850)}>
                       <Link href="/contact" onClick={onClose} className="taz-menu-nav-link"><span className="taz-menu-link-dot" aria-hidden="true" /><span className="taz-menu-link-text">Available For Projects</span></Link>
                       <p>Open for Custom Development, SaaS Architecture &amp; Dedicated Contracts</p>
                     </div>
@@ -292,7 +292,7 @@ const MENU_STYLES = `
   --menu-muted: #5B6871;
   --menu-border: rgba(16, 24, 32, 0.1);
   --menu-ease: cubic-bezier(0.16, 1, 0.3, 1);
-  --menu-duration: 550ms;
+  --menu-duration: 850ms;
   --menu-body-font: var(--font-aventa, "Aventa"), Arial, sans-serif;
   --menu-display-font: var(--font-orlean, "Orlean"), var(--font-aventa, "Aventa"), Arial, sans-serif;
   position: fixed; inset: 0; width: 100%; height: 100%; height: 100dvh;
@@ -301,7 +301,7 @@ const MENU_STYLES = `
   overflow: hidden !important;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 450ms var(--menu-ease);
+  transition: opacity 750ms var(--menu-ease);
   will-change: opacity;
   background:
     radial-gradient(
@@ -342,7 +342,7 @@ const MENU_STYLES = `
 .taz-menu[data-state="closing"] {
   opacity: 0;
   pointer-events: none;
-  transition: opacity 420ms var(--menu-ease);
+  transition: opacity 650ms var(--menu-ease);
 }
 .taz-menu::-webkit-scrollbar { display: none !important; width: 0 !important; height: 0 !important; }
 .taz-menu:not([open]) { display: none; }
@@ -355,7 +355,7 @@ const MENU_STYLES = `
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  transition: opacity 300ms var(--menu-ease), transform 300ms var(--menu-ease);
+  transition: opacity 400ms var(--menu-ease), transform 400ms var(--menu-ease);
 }
 .taz-menu[data-state="closing"] .taz-menu-container {
   opacity: 0;
@@ -380,7 +380,7 @@ const MENU_STYLES = `
       transparent 75%
     );
   opacity: 0;
-  transition: opacity 550ms var(--menu-ease);
+  transition: opacity 850ms var(--menu-ease);
   pointer-events: none;
 }
 .taz-menu-shell {
@@ -393,8 +393,8 @@ const MENU_STYLES = `
   height: 100%;
   padding: calc(10 * var(--u)) calc(11 * var(--u)) calc(5 * var(--u));
   opacity: 0;
-  transform: scale(0.96) translateY(12px);
-  transition: opacity 550ms var(--menu-ease), transform 550ms var(--menu-ease);
+  transform: scale(0.97) translateY(16px);
+  transition: opacity 850ms var(--menu-ease), transform 850ms var(--menu-ease);
   will-change: opacity, transform;
 }
 .taz-menu-surface {
@@ -424,8 +424,8 @@ const MENU_STYLES = `
 }
 .taz-menu[data-state="open"] .taz-menu-shell { opacity: 1; transform: scale(1) translateY(0); }
 .taz-menu[data-state="open"] .taz-menu-ellipse { opacity: .7; }
-.taz-menu[data-state="closing"] .taz-menu-shell { opacity: 0; transform: scale(.96) translateY(10px); transition: opacity 350ms var(--menu-ease), transform 350ms var(--menu-ease); }
-.taz-menu[data-state="closing"] .taz-menu-ellipse { opacity: 0; transition: opacity 350ms var(--menu-ease); }
+.taz-menu[data-state="closing"] .taz-menu-shell { opacity: 0; transform: scale(.97) translateY(12px); transition: opacity 450ms var(--menu-ease), transform 450ms var(--menu-ease); }
+.taz-menu[data-state="closing"] .taz-menu-ellipse { opacity: 0; transition: opacity 450ms var(--menu-ease); }
 .taz-menu-header { position: absolute; z-index: 3; top: calc(3 * var(--u)); left: calc(11 * var(--u)); right: calc(16 * var(--u)); display: flex; align-items: center; justify-content: space-between; pointer-events: none; }
 .taz-menu-header > * { pointer-events: auto; }
 .taz-menu-brand-group, .taz-menu-header-right { display: flex; align-items: center; gap: calc(4.2 * var(--u)); }
@@ -466,13 +466,13 @@ const MENU_STYLES = `
   height: max(1.5px, calc(.2 * var(--u)));
   background: currentColor;
   transform: translate(-50%, -50%) rotate(var(--bar-angle)) scale(0);
-  transition: transform 450ms var(--menu-ease);
+  transition: transform 650ms var(--menu-ease);
 }
 .taz-menu-close-bar-one { --bar-angle: 45deg; }
 .taz-menu-close-bar-two { --bar-angle: -45deg; }
-.taz-menu[data-state="open"] .taz-menu-close-bar { transform: translate(-50%,-50%) rotate(var(--bar-angle)) scale(1); transition-delay: 180ms; }
-.taz-menu[data-state="open"] .taz-menu-close-bar-two { transition-delay: 240ms; }
-.taz-menu[data-state="closing"] .taz-menu-close-bar { transform: translate(-50%,-50%) rotate(0deg) scale(0); transition: transform 250ms var(--menu-ease); }
+.taz-menu[data-state="open"] .taz-menu-close-bar { transform: translate(-50%,-50%) rotate(var(--bar-angle)) scale(1); transition-delay: 240ms; }
+.taz-menu[data-state="open"] .taz-menu-close-bar-two { transition-delay: 320ms; }
+.taz-menu[data-state="closing"] .taz-menu-close-bar { transform: translate(-50%,-50%) rotate(0deg) scale(0); transition: transform 320ms var(--menu-ease); }
 .taz-menu-main {
   grid-column: 1/-1;
   grid-row: 2;
@@ -731,8 +731,8 @@ const MENU_STYLES = `
 .taz-menu-legal { display: flex; align-items: center; gap: calc(6 * var(--u)); }
 .taz-menu-legal a { color: #5B6871; transition: color 200ms ease; }
 .taz-menu-legal a:hover { color: #F75B00 !important; }
-.taz-menu[data-state="open"] .taz-menu-socials, .taz-menu[data-state="closing"] .taz-menu-socials { opacity: 1; transform: translate(-50%,-50%); transition-delay: 600ms; }
-.taz-menu[data-state="open"] .taz-menu-footer-line, .taz-menu[data-state="closing"] .taz-menu-footer-line { opacity: 1; transform: scaleX(1); transition-delay: 800ms; }
+.taz-menu[data-state="open"] .taz-menu-socials, .taz-menu[data-state="closing"] .taz-menu-socials { opacity: 1; transform: translate(-50%,-50%); transition-delay: 720ms; }
+.taz-menu[data-state="open"] .taz-menu-footer-line, .taz-menu[data-state="closing"] .taz-menu-footer-line { opacity: 1; transform: scaleX(1); transition-delay: 880ms; }
 @media (hover: hover) and (pointer: fine) {
   .taz-menu-close:hover { transform: scale(.9); color: #F75B00; }
   .taz-menu-navigation:hover .taz-menu-link-text, .taz-menu-services:hover .taz-menu-link-text { opacity: .5; }
