@@ -66,10 +66,31 @@ export default function AboutSection({
       <section className={`botanical-about ${className}`.trim()} style={style} aria-labelledby={`${uid}-title`}>
         <header className="botanical-about__intro">
           <p className="botanical-about__eyebrow">{eyebrow}</p>
-          <h2 className="botanical-about__title" id={`${uid}-title`}>
+          <h2
+            className="botanical-about__title"
+            id={`${uid}-title`}
+            style={{
+              fontFamily: "var(--font-orlean), 'Orlean', sans-serif",
+              fontSize: "35px",
+              fontWeight: 400,
+              lineHeight: 1.2,
+              letterSpacing: "0.035em",
+            }}
+          >
             {titleLines.map((line, index) => <span key={index}>{line}</span>)}
           </h2>
-          <p className="botanical-about__description">{description}</p>
+          <p
+            className="botanical-about__description"
+            style={{
+              fontFamily: "var(--font-aventa), 'Aventa', sans-serif",
+              fontSize: "20px",
+              fontWeight: 400,
+              lineHeight: 1.45,
+              letterSpacing: "0.02em",
+            }}
+          >
+            {description}
+          </p>
           <a className="botanical-about__cta" href={ctaHref}>
             <span>{ctaLabel}</span>
             <span className="botanical-about__cta-icon" aria-hidden="true">
@@ -170,19 +191,21 @@ export const ABOUT_SECTION_CSS = `
 :is(.dark) .botanical-about__eyebrow {
   color: rgba(255, 255, 255, 0.75) !important;
 }
-.botanical-about__title {
+h2.botanical-about__title,
+.botanical-about .botanical-about__title {
   width: 100%;
   max-width: 1060px;
   margin: clamp(14px, 2.2vw, 26px) 0 0 !important;
   color: var(--about-ink) !important;
   font-family: var(--font-orlean), 'Orlean', sans-serif !important;
-  font-size: clamp(32px, 4.4vw, 57px) !important;
-  font-weight: 500 !important;
-  line-height: 1.1 !important;
-  letter-spacing: -0.02em !important;
+  font-size: 35px !important;
+  font-weight: 400 !important;
+  line-height: 1.2 !important;
+  letter-spacing: 0.035em !important;
 }
 .botanical-about__title span { display: block; text-wrap: balance; }
-.botanical-about__description { width: 72%; max-width: 870px; margin: clamp(12px,2.1vw,27px) 0 0 !important; color: #858585 !important; font-size: clamp(12px,1.77vw,22px) !important; font-weight: 400 !important; line-height: 1.45 !important; letter-spacing: -.024em !important; text-wrap: pretty; font-family: "About Inter", var(--font-aventa), var(--font-plus-jakarta-sans), Arial, sans-serif !important; }
+p.botanical-about__description,
+.botanical-about .botanical-about__description { width: 72%; max-width: 870px; margin: clamp(12px,2.1vw,27px) 0 0 !important; color: #858585 !important; font-size: 20px !important; font-weight: 400 !important; line-height: 1.45 !important; letter-spacing: 0.02em !important; text-wrap: pretty; font-family: var(--font-aventa), 'Aventa', "About Inter", var(--font-plus-jakarta-sans), Arial, sans-serif !important; }
 :is(.dark) .botanical-about__description { color: rgba(255,255,255,0.65) !important; }
 .botanical-about__cta {
   display: inline-flex;

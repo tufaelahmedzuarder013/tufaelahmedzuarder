@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { constructMetadata } from "@/lib/seo";
 import { AboutHeroSection } from "@/features/about/components/AboutHeroSection";
 import { AboutPartnerShowcase } from "@/features/about/components/AboutPartnerShowcase";
+import { AboutProcessSection } from "@/features/about/components/AboutProcessSection";
 import { AboutCollaborationSection } from "@/features/about/components/AboutCollaborationSection";
 import { AboutDarkImpactSection } from "@/features/about/components/AboutDarkImpactSection";
 import { AboutDeepDiveTabs } from "@/features/about/components/AboutDeepDiveTabs";
@@ -23,7 +24,10 @@ export default function AboutPage() {
       {/* 2. Intelligent Partner Showcase (Reference Image Section 2) */}
       <AboutPartnerShowcase />
 
-      {/* 3. Collaboration & Dual Mockup Showcase (Reference Image Middle Section) */}
+      {/* 3. How I Work — My Process */}
+      <AboutProcessSection />
+
+      {/* 4. Collaboration & Dual Mockup Showcase (Reference Image Middle Section) */}
       <AboutCollaborationSection />
 
       {/* 4. Dark Mission Statement & Stats Bar (Reference Image Bottom Dark Card) */}

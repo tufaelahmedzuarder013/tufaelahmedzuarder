@@ -348,12 +348,60 @@ div.btn-circle-icon {
   color: #FFFFFF !important;
 }
 
-/* Ensure .botanical-about styles are not clobbered by global h2/p !important rules */
-.botanical-about p,
-.botanical-about h2,
-.botanical-about h3,
-.botanical-about strong {
-  margin: unset;
+/* Explicit Typography for About Partner Showcase & About Process Section */
+.botanical-about h2.botanical-about__title,
+.botanical-about .botanical-about__title {
+  font-family: var(--font-orlean), 'Orlean', sans-serif !important;
+  font-size: 35px !important;
+  font-weight: 400 !important;
+  line-height: 1.2 !important;
+  letter-spacing: 0.035em !important;
+}
+
+.botanical-about p.botanical-about__description,
+.botanical-about .botanical-about__description {
+  font-family: var(--font-aventa), 'Aventa', sans-serif !important;
+  font-size: 20px !important;
+  font-weight: 400 !important;
+  line-height: 1.45 !important;
+  letter-spacing: 0.02em !important;
+}
+
+.about-process-section h2.process-main-title,
+.about-process-section .process-main-title {
+  font-family: var(--font-orlean), 'Orlean', sans-serif !important;
+  font-size: 30px !important;
+  font-weight: 400 !important;
+  line-height: 1.2 !important;
+}
+
+.about-process-section p.process-main-subtitle,
+.about-process-section .process-main-subtitle {
+  font-family: var(--font-aventa), 'Aventa', sans-serif !important;
+  font-size: 18px !important;
+  font-weight: 400 !important;
+  line-height: 1.6 !important;
+}
+
+.about-process-section h3.process-card-title,
+.about-process-section .process-card-title {
+  font-family: var(--font-orlean), 'Orlean', sans-serif !important;
+  font-size: 25px !important;
+  font-weight: 400 !important;
+  line-height: 1.25 !important;
+}
+
+.about-process-section .process-card-number {
+  font-size: 25px !important;
+  font-weight: 400 !important;
+}
+
+.about-process-section p.process-card-desc,
+.about-process-section .process-card-desc {
+  font-family: var(--font-aventa), 'Aventa', sans-serif !important;
+  font-size: 18px !important;
+  font-weight: 300 !important;
+  line-height: 1.55 !important;
 }
 
 /* Sodu Client reviews gula te font size strictly 16px hobe */
