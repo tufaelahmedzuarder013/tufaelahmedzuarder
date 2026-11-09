@@ -177,6 +177,48 @@ button span:not(.btn-circle-icon):not(.btn-circle-icon *),
   color: #ffffff !important;
 }
 
+/* ========================================================================== */
+/* ABOUT DARK IMPACT SECTION & CTA ISOLATION (ZERO DIMMING, MAXIMUM CONTRAST) */
+/* ========================================================================== */
+.about-dark-impact,
+.cta-banner-dark {
+  color: #ffffff !important;
+}
+
+.about-dark-impact h2,
+.about-dark-impact .impact-headline,
+.cta-banner-dark h2,
+.cta-banner-dark .impact-headline {
+  font-family: var(--font-orlean), 'Orlean', var(--font-space-grotesk), sans-serif !important;
+  color: #ffffff !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.about-dark-impact p,
+.cta-banner-dark p {
+  color: rgba(255, 255, 255, 0.85) !important;
+  opacity: 1 !important;
+}
+
+.about-dark-impact span,
+.cta-banner-dark span {
+  opacity: 1 !important;
+}
+
+.about-dark-impact .stat-value,
+.cta-banner-dark .stat-value {
+  font-family: var(--font-orlean), 'Orlean', var(--font-space-grotesk), sans-serif !important;
+  color: #ffffff !important;
+  opacity: 1 !important;
+}
+
+.about-dark-impact .stat-label,
+.cta-banner-dark .stat-label {
+  color: rgba(255, 255, 255, 0.70) !important;
+  opacity: 1 !important;
+}
+
 /* About Partner Showcase section typography isolation */
 .about-showcase h2,
 .about-showcase h3,
@@ -658,6 +700,64 @@ button,
 ::selection {
   background: #F75B00;
   color: #ffffff;
+}
+
+/* ========================================================================== */
+/* ABSOLUTE FINAL OVERRIDE FOR DARK IMPACT SECTION & CTA CONTAINERS           */
+/* (Highest cascade priority to ensure text is never dimmed or turned black)  */
+/* ========================================================================== */
+.about-dark-impact,
+.about-dark-impact *,
+.cta-banner-dark,
+.cta-banner-dark * {
+  /* Prevent dark text leaking from global p/h2 rules */
+}
+
+.about-dark-impact h1,
+.about-dark-impact h2,
+.about-dark-impact h3,
+.about-dark-impact h4,
+.about-dark-impact .impact-headline,
+.cta-banner-dark h1,
+.cta-banner-dark h2,
+.cta-banner-dark h3,
+.cta-banner-dark h4,
+.cta-banner-dark .impact-headline {
+  font-family: var(--font-orlean), 'Orlean', var(--font-space-grotesk), sans-serif !important;
+  color: #ffffff !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.about-dark-impact p,
+.about-dark-impact .p-text,
+.about-dark-impact .description-text,
+.cta-banner-dark p {
+  color: rgba(255, 255, 255, 0.88) !important;
+  font-size: unset;
+  line-height: unset;
+  opacity: 1 !important;
+}
+
+.about-dark-impact .text-muted,
+.about-dark-impact .text-neutral-400,
+.about-dark-impact span.text-neutral-400,
+.about-dark-impact div.text-neutral-400 {
+  color: #a3a3a3 !important;
+  opacity: 1 !important;
+}
+
+.about-dark-impact .stat-value,
+.cta-banner-dark .stat-value {
+  font-family: var(--font-orlean), 'Orlean', var(--font-space-grotesk), sans-serif !important;
+  color: #ffffff !important;
+  opacity: 1 !important;
+}
+
+.about-dark-impact .stat-label,
+.cta-banner-dark .stat-label {
+  color: rgba(255, 255, 255, 0.72) !important;
+  opacity: 1 !important;
 }
 
 /* Custom Scrollbar */

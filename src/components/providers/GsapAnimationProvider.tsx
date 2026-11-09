@@ -25,9 +25,11 @@ function processParagraphHighlight(
 ): void {
   if (p.getAttribute("data-gsap-processed") === "true") return;
 
-  // Skip excluded elements: navigation, footer, buttons, client reviews, or elements with data-no-gsap
+  // Skip excluded elements: navigation, footer, buttons, client reviews, dark impact sections, or elements with data-no-gsap
   if (
-    p.closest("footer, nav, button, form, [aria-live], [data-no-gsap], .client-reviews-section") ||
+    p.closest(
+      "footer, nav, button, form, [aria-live], [data-no-gsap], .client-reviews-section, .about-dark-impact, .cta-banner-dark"
+    ) ||
     p.hasAttribute("data-no-gsap")
   ) {
     return;
@@ -143,7 +145,7 @@ export function GsapAnimationProvider({ children }: GsapAnimationProviderProps) 
 
     headings.forEach((heading) => {
       if (heading.getAttribute("data-gsap-processed") === "true") return;
-      if (heading.closest(".cta-banner-dark, .client-reviews-section, .hero-section")) return;
+      if (heading.closest(".cta-banner-dark, .about-dark-impact, .client-reviews-section, .hero-section")) return;
       heading.setAttribute("data-gsap-processed", "true");
 
       const anim = gsap.fromTo(

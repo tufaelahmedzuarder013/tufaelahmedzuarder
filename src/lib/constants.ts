@@ -11,7 +11,7 @@ export const SITE_CONFIG = {
   location: "Sylhet, Bangladesh",
   availability: "Open for new projects",
   socials: {
-    github: "https://github.com/tufaelahemdzuarder013/",
+    github: "https://github.com/tufaelahmedzuarder013/",
     linkedin: "https://www.linkedin.com/in/tufael-ahmedzuarder/",
     x: "https://x.com/TazAhmed4711",
     twitter: "https://x.com/TazAhmed4711",

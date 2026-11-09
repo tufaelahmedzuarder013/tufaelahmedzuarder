@@ -5,7 +5,6 @@ import { AboutHeroSection } from "@/features/about/components/AboutHeroSection";
 import { AboutPartnerShowcase } from "@/features/about/components/AboutPartnerShowcase";
 import { AboutProcessSection } from "@/features/about/components/AboutProcessSection";
 import { AboutCollaborationSection } from "@/features/about/components/AboutCollaborationSection";
-import { AboutDarkImpactSection } from "@/features/about/components/AboutDarkImpactSection";
 import { AboutDeepDiveTabs } from "@/features/about/components/AboutDeepDiveTabs";
 import { CtaBanner } from "@/features/home/components/CtaBanner";
 
@@ -29,9 +28,6 @@ export default function AboutPage() {
 
       {/* 4. Collaboration & Dual Mockup Showcase (Reference Image Middle Section) */}
       <AboutCollaborationSection />
-
-      {/* 4. Dark Mission Statement & Stats Bar (Reference Image Bottom Dark Card) */}
-      <AboutDarkImpactSection />
 
       {/* 5. Deep-Dive Skills Matrix & Career Milestones */}
       <AboutDeepDiveTabs />
