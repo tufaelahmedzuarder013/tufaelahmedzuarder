@@ -32,12 +32,8 @@ export default function AboutPage() {
       {/* 5. Deep-Dive Skills Matrix & Career Milestones */}
       <AboutDeepDiveTabs />
 
-      {/* 6. High-Conversion Final CTA */}
-      <CtaBanner
-        title="Let's build something exceptional together."
-        subtitle="Have an ambitious web application or UI/UX project in mind? Let's connect and make it a reality."
-        buttonText="Get in touch"
-      />
+      {/* 6. High-Conversion Final CTA (Matching Home Page) */}
+      <CtaBanner />
     </div>
   );
 }
