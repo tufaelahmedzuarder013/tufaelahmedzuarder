@@ -5,10 +5,9 @@ import { ArrowUpRight } from "lucide-react";
 import { SERVICES } from "@/features/services/data/services.data";
 import { ServicesHeroSection } from "@/features/services/components/ServicesHeroSection";
 import { ServicesWaveProcessSection } from "@/features/services/components/ServicesWaveProcessSection";
+import { ServicesCardsShowcaseSection } from "@/features/services/components/ServicesCardsShowcaseSection";
 import { ServicesTechMarquee } from "@/features/services/components/ServicesTechMarquee";
 import { ServicesPhilosophySection } from "@/features/services/components/ServicesPhilosophySection";
-import { ServicesFeaturedSlider } from "@/features/services/components/ServicesFeaturedSlider";
-import { ServicesProcessSection } from "@/features/services/components/ServicesProcessSection";
 import { constructMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = constructMetadata({
@@ -20,23 +19,20 @@ export const metadata: Metadata = constructMetadata({
 export default function ServicesPage() {
   return (
     <div className="min-h-screen bg-brand-bg transition-colors duration-500">
-      {/* 1. Hero Showcase (Section 1) */}
+      {/* 1. Hero Showcase */}
       <ServicesHeroSection />
 
-      {/* 2. Flowing Wave Process Section (Added right after Hero) */}
+      {/* 2. Flowing Wave Process Section */}
       <ServicesWaveProcessSection />
 
-      {/* 3. Tech Partners Strip */}
+      {/* 3. Services Cards Showcase (Card Design from User Image) */}
+      <ServicesCardsShowcaseSection services={SERVICES} />
+
+      {/* 4. Tech Partners Strip */}
       <ServicesTechMarquee />
 
-      {/* 3. About My Services & Philosophy (Section 3) */}
+      {/* 5. About My Services & Philosophy */}
       <ServicesPhilosophySection />
-
-      {/* 4. Featured Services Slider (Section 4) */}
-      <ServicesFeaturedSlider services={SERVICES} />
-
-      {/* 5. Process Bento Grid (Section 5) */}
-      <ServicesProcessSection />
 
       {/* 6. Clean, Minimal Bottom Touchpoint (No Form) */}
       <section className="py-16 sm:py-20 border-t border-neutral-200/60 dark:border-white/10 text-center">
