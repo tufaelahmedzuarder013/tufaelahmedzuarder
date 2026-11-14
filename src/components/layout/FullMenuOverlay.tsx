@@ -4,7 +4,7 @@ import { useEffect, useId, useRef, useState, type CSSProperties } from "react";
 import { createPortal } from "react-dom";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ArrowRight, ArrowUpRight, Mail } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Mail, X } from "lucide-react";
 import { MusicWaveToggle } from "../ui/MusicWaveToggle";
 import { TazLogo } from "../ui/TazLogo";
 import { SITE_CONFIG } from "@/lib/constants";
@@ -22,16 +22,16 @@ const NAVIGATION = [
 ];
 
 const SERVICES = [
-  { label: "Custom Development", href: "/services#custom-development" },
-  { label: "Mobile App Development", href: "/services#mobile-app-development" },
-  { label: "Software Development", href: "/services#software-development" },
-  { label: "SAAS Products Development", href: "/services#saas-development" },
-  { label: "HR Management System", href: "/services#hr-management" },
-  { label: "CRM System", href: "/services#crm" },
-  { label: "CMS Development", href: "/services#cms-development" },
-  { label: "Branding", href: "/services#branding" },
-  { label: "Digital Marketing", href: "/services#digital-marketing" },
-  { label: "Graphic Design", href: "/services#graphic-design" },
+  { label: "Custom Development", href: "/services/custom-development" },
+  { label: "Mobile App Development", href: "/services/mobile-app-development" },
+  { label: "Software Development", href: "/services/software-development" },
+  { label: "SAAS Products Development", href: "/services/saas-products-development" },
+  { label: "HR Management System", href: "/services/hr-management-system" },
+  { label: "CRM System", href: "/services/crm-system" },
+  { label: "CMS Development", href: "/services/cms-development" },
+  { label: "Branding", href: "/services/branding" },
+  { label: "Digital Marketing", href: "/services/digital-marketing" },
+  { label: "Graphic Design", href: "/services/graphic-design" },
 ];
 
 // Add your real profile URLs. Empty entries display an icon without a fake link.
@@ -43,9 +43,6 @@ const SOCIALS = [
   { name: "LinkedIn", href: SITE_CONFIG.socials.linkedin, paths: ["M5 9v12", "M5 4v.01", "M10 21V9h4v2c1-3 7-3 7 3v7", "M14 21v-7"] },
 ];
 
-// The display face on the reference is Orlean Medium; the body face is Aventa.
-// Load your local fonts through next/font/local and expose --font-orlean and
-// --font-aventa on <body>. Existing Aventa is used if Orlean is not loaded.
 const delay = (milliseconds: number) => ({ "--reveal-delay": `${milliseconds}ms` } as CSSProperties);
 
 function AnimatedLabel({ text }: { text: string }) {
@@ -159,119 +156,298 @@ export function FullMenuOverlay({ isOpen, onClose }: FullMenuOverlayProps) {
   return createPortal(
     <>
       <dialog
-        ref={dialogRef} id="taz-full-menu" className="taz-menu" aria-labelledby={titleId}
+        ref={dialogRef}
+        id="taz-full-menu"
+        className="taz-menu"
+        aria-labelledby={titleId}
         onCancel={(event) => { event.preventDefault(); onClose(); }}
         onClick={(event) => { if (event.target === event.currentTarget) onClose(); }}
       >
         <span id={titleId} className="taz-menu-sr-only">Main navigation</span>
-        <svg width="0" height="0" className="taz-menu-defs" aria-hidden="true" focusable="false">
-          <defs>
-            <clipPath id={shapeId} clipPathUnits="objectBoundingBox">
-              <path d="M0 .115C0 .0983 .00738 .0849 .01648 .0849H.92747C.93658 .0849 .94396 .0715 .94396 .05495V.02997C.94396 .01342 .95134 0 .96044 0H.98352C.99262 0 1 .01342 1 .02997V.97003C1 .98658 .99262 1 .98352 1H.01648C.00738 1 0 .98658 0 .97003Z" />
-            </clipPath>
-          </defs>
-        </svg>
 
-        <div className="taz-menu-ellipse" aria-hidden="true" />
-
-        <div key={openKey} className="taz-menu-container">
-          <div className="taz-menu-header">
-            <div className="taz-menu-brand-group">
-              <Link href="/" onClick={onClose} aria-label="T A Z Homepage" className="taz-menu-brand">
+        {/* ================================================================= */}
+        {/* MOBILE VIEW (< 1024px) - Clean Document Flow, Never Collides      */}
+        {/* ================================================================= */}
+        <div className="taz-mob-view" key={`mob-${openKey}`}>
+          {/* Sticky Header with Logo, Sound toggle, and Close Button */}
+          <header className="taz-mob-header">
+            <div className="taz-mob-header-left">
+              <Link href="/" onClick={onClose} aria-label="T A Z Homepage" className="taz-mob-logo-link">
                 <TazLogo size="sm" className="!text-[#101820] dark:!text-white" />
               </Link>
-              <span className="taz-menu-header-divider" aria-hidden="true" />
-              <div className="taz-menu-sound"><MusicWaveToggle className="!text-[#101820] dark:!text-white !border-black/10 dark:!border-white/20" /></div>
+              <span className="taz-mob-header-divider" aria-hidden="true" />
+              <MusicWaveToggle className="!text-[#101820] dark:!text-white !border-black/10 dark:!border-white/20" />
             </div>
-            <div className="taz-menu-header-right">
-              <Link href="/contact" onClick={onClose} className="taz-menu-top-cta" aria-label="Let's talk">
-                <AnimatedLabel text="Let's talk" /><ArrowUpRight aria-hidden="true" />
-              </Link>
-              <span className="taz-menu-header-divider" aria-hidden="true" />
-            </div>
-          </div>
-
-          <div className="taz-menu-shell">
-            <div className="taz-menu-surface" style={{ clipPath: `url(#${shapeId})` }} aria-hidden="true" />
-
-            <button ref={closeRef} type="button" onClick={onClose} className="taz-menu-close" aria-label="Close navigation menu">
-              <span className="taz-menu-close-bar taz-menu-close-bar-one" aria-hidden="true" />
-              <span className="taz-menu-close-bar taz-menu-close-bar-two" aria-hidden="true" />
+            <button
+              type="button"
+              onClick={onClose}
+              className="taz-mob-close-btn"
+              aria-label="Close navigation menu"
+            >
+              <X className="w-5 h-5" strokeWidth={2} />
             </button>
+          </header>
 
-            <div className="taz-menu-main">
-              <section className="taz-menu-intro">
-                <p className="taz-menu-eyebrow taz-menu-heading-reveal" style={delay(220)}><span />Connect with me</p>
-                <h2 className="taz-menu-title taz-menu-heading-reveal" style={delay(450)}>Turn Your Vision Into an Experience That Lasts</h2>
-                <span className="taz-menu-short-line" aria-hidden="true" />
-                <a href="mailto:support@zuarder.com" className="taz-menu-email taz-menu-heading-reveal" style={delay(620)}>
-                  <Mail strokeWidth={1.5} aria-hidden="true" /><span>support@zuarder.com</span>
-                </a>
-                <div className="taz-menu-desktop-button taz-menu-heading-reveal" style={delay(780)}>{contactButton()}</div>
-              </section>
+          {/* Unified Smooth Scrolling Menu Body */}
+          <div className="taz-mob-scroll">
+            {/* Intro / Contact Info */}
+            <section className="taz-mob-intro">
+              <p className="taz-mob-eyebrow">
+                <span className="taz-mob-pulse-dot" /> Connect with me
+              </p>
+              <h2 className="taz-mob-title">
+                Turn Your Vision Into an Experience That Lasts
+              </h2>
+              <div className="taz-mob-short-line" aria-hidden="true" />
+              <a href="mailto:support@zuarder.com" className="taz-mob-email">
+                <Mail className="w-4 h-4 shrink-0" strokeWidth={1.75} aria-hidden="true" />
+                <span>support@zuarder.com</span>
+              </a>
+            </section>
 
-              <div className="taz-menu-nav-wrapper">
-                <nav className="taz-menu-navigation" aria-label="Main navigation">
-                  <h3 className="taz-menu-section-title taz-menu-item-reveal" style={delay(380)}>NAVIGATION</h3>
-                  <ul className="taz-menu-nav-list">
-                    {NAVIGATION.map((item, index) => {
-                      const active = item.href === "/" ? pathname === "/" : pathname === item.href || pathname.startsWith(`${item.href}/`);
-                      return (
-                        <li key={item.href} className="taz-menu-item-reveal" style={delay(480 + index * 110)}>
-                          <Link href={item.href} onClick={onClose} aria-current={active ? "page" : undefined} className={`taz-menu-nav-link${active ? " is-active" : ""}`}>
-                            <span className="taz-menu-link-dot" aria-hidden="true" /><span className="taz-menu-link-text">{item.label}</span>
-                          </Link>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </nav>
+            <div className="taz-mob-divider" aria-hidden="true" />
 
-                <div className="taz-menu-right-column" tabIndex={0} role="region" aria-label="Services and collaboration">
-                  <section className="taz-menu-services">
-                    <div className="taz-menu-section-heading taz-menu-item-reveal" style={delay(580)}>
-                      <h3 className="taz-menu-section-title">SERVICES</h3>
-                      <Link href="/services" onClick={onClose} className="taz-menu-all-services" aria-label="View all services">
-                        <span>All Services</span>
-                        <ArrowRight aria-hidden="true" />
+            {/* Navigation Links */}
+            <nav className="taz-mob-nav" aria-label="Mobile main navigation">
+              <h3 className="taz-mob-section-title">NAVIGATION</h3>
+              <ul className="taz-mob-nav-list">
+                {NAVIGATION.map((item) => {
+                  const active = item.href === "/" ? pathname === "/" : pathname === item.href || pathname.startsWith(`${item.href}/`);
+                  return (
+                    <li key={item.href}>
+                      <Link
+                        href={item.href}
+                        onClick={onClose}
+                        aria-current={active ? "page" : undefined}
+                        className={`taz-mob-nav-link${active ? " is-active" : ""}`}
+                      >
+                        <span className="taz-mob-nav-dot" aria-hidden="true" />
+                        <span className="taz-mob-nav-text">{item.label}</span>
                       </Link>
-                    </div>
-                    <ul className="taz-menu-service-list">
-                      {SERVICES.map((item, index) => (
-                        <li key={item.href} className="taz-menu-item-reveal" style={delay(680 + index * 90)}>
-                          <Link href={item.href} onClick={onClose} className="taz-menu-nav-link">
-                            <span className="taz-menu-link-dot" aria-hidden="true" /><span className="taz-menu-link-text">{item.label}</span>
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </section>
-                  <section className="taz-menu-collaboration">
-                    <h3 className="taz-menu-section-title taz-menu-item-reveal" style={delay(750)}>COLLABORATION</h3>
-                    <div className="taz-menu-item-reveal" style={delay(850)}>
-                      <Link href="/contact" onClick={onClose} className="taz-menu-nav-link"><span className="taz-menu-link-dot" aria-hidden="true" /><span className="taz-menu-link-text">Available For Projects</span></Link>
-                      <p>Open for Custom Development, SaaS Architecture &amp; Dedicated Contracts</p>
-                    </div>
-                  </section>
-                </div>
+                    </li>
+                  );
+                })}
+              </ul>
+            </nav>
+
+            <div className="taz-mob-divider" aria-hidden="true" />
+
+            {/* Services Grid */}
+            <section className="taz-mob-services">
+              <div className="taz-mob-section-header">
+                <h3 className="taz-mob-section-title">SERVICES</h3>
+                <Link
+                  href="/services"
+                  onClick={onClose}
+                  className="taz-mob-all-services"
+                  aria-label="View all services"
+                >
+                  <span>All Services</span>
+                  <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
+                </Link>
               </div>
+
+              <div className="taz-mob-service-grid">
+                {SERVICES.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={onClose}
+                    className="taz-mob-service-card"
+                  >
+                    <span className="taz-mob-service-title">{item.label}</span>
+                    <ArrowUpRight className="w-3.5 h-3.5 text-[#F75B00] opacity-70 shrink-0 ml-1" />
+                  </Link>
+                ))}
+              </div>
+            </section>
+
+            {/* Collaboration Card */}
+            <section className="taz-mob-collab">
+              <h3 className="taz-mob-section-title">COLLABORATION</h3>
+              <div className="taz-mob-collab-card">
+                <Link href="/contact" onClick={onClose} className="taz-mob-collab-link">
+                  <span className="taz-mob-status-dot" aria-hidden="true" />
+                  <span>Available For Projects</span>
+                </Link>
+                <p>Open for Custom Development, SaaS Architecture &amp; Dedicated Contracts</p>
+              </div>
+            </section>
+
+            {/* Mobile Let's Talk CTA */}
+            <div className="taz-mob-cta-box">
+              <Link
+                href="/contact"
+                onClick={onClose}
+                className="taz-mob-cta-button"
+                aria-label="Let's talk"
+              >
+                <span>LET&apos;S TALK</span>
+                <ArrowUpRight className="w-5 h-5 text-[#F75B00]" strokeWidth={2} />
+              </Link>
             </div>
 
-            <div className="taz-menu-mobile-cta">{contactButton(true)}</div>
+            {/* Mobile Footer */}
+            <footer className="taz-mob-footer">
+              <div className="taz-mob-socials" aria-label="Social profiles">
+                {SOCIALS.map((social) => {
+                  const icon = (
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="w-[18px] h-[18px]">
+                      {social.paths.map((path) => (
+                        <path key={path} d={path} />
+                      ))}
+                    </svg>
+                  );
+                  return social.href ? (
+                    <a
+                      key={social.name}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={social.name}
+                      className="taz-mob-social-btn"
+                    >
+                      {icon}
+                    </a>
+                  ) : (
+                    <span
+                      key={social.name}
+                      role="img"
+                      aria-label={social.name}
+                      className="taz-mob-social-btn"
+                    >
+                      {icon}
+                    </span>
+                  );
+                })}
+              </div>
 
-            <footer className="taz-menu-footer">
-              <span className="taz-menu-footer-line" aria-hidden="true" />
-              <div className="taz-menu-footer-row">
-                <p className="taz-menu-copyright" style={{ color: "#101820" }}>© 2025 Tufael Ahmed Zuarder. All rights reserved.</p>
-                <div className="taz-menu-socials" aria-label="Social profiles">
-                  {SOCIALS.map((social) => {
-                    const icon = <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{social.paths.map((path) => <path key={path} d={path} />)}</svg>;
-                    return social.href ? <a key={social.name} href={social.href} target="_blank" rel="noopener noreferrer" aria-label={social.name} className="taz-menu-social">{icon}</a> : <span key={social.name} role="img" aria-label={social.name} className="taz-menu-social">{icon}</span>;
-                  })}
-                </div>
-                <div className="taz-menu-legal"><Link href="/privacy-policy" onClick={onClose}>Privacy Policy</Link><Link href="/terms-of-use" onClick={onClose}>Terms Of Use</Link></div>
+              <p className="taz-mob-copyright">
+                © 2026 Tufael Ahmed Zuarder. All rights reserved.
+              </p>
+
+              <div className="taz-mob-legal">
+                <Link href="/privacy-policy" onClick={onClose}>Privacy Policy</Link>
+                <span className="taz-mob-legal-sep">•</span>
+                <Link href="/terms-of-use" onClick={onClose}>Terms Of Use</Link>
               </div>
             </footer>
+          </div>
+        </div>
+
+        {/* ================================================================= */}
+        {/* DESKTOP VIEW (>= 1024px) - Original SVG ClipPath & Grid Layout    */}
+        {/* ================================================================= */}
+        <div className="taz-desk-view" key={`desk-${openKey}`}>
+          <svg width="0" height="0" className="taz-menu-defs" aria-hidden="true" focusable="false">
+            <defs>
+              <clipPath id={shapeId} clipPathUnits="objectBoundingBox">
+                <path d="M0 .115C0 .0983 .00738 .0849 .01648 .0849H.92747C.93658 .0849 .94396 .0715 .94396 .05495V.02997C.94396 .01342 .95134 0 .96044 0H.98352C.99262 0 1 .01342 1 .02997V.97003C1 .98658 .99262 1 .98352 1H.01648C.00738 1 0 .98658 0 .97003Z" />
+              </clipPath>
+            </defs>
+          </svg>
+
+          <div className="taz-menu-ellipse" aria-hidden="true" />
+
+          <div className="taz-menu-container">
+            <div className="taz-menu-header">
+              <div className="taz-menu-brand-group">
+                <Link href="/" onClick={onClose} aria-label="T A Z Homepage" className="taz-menu-brand">
+                  <TazLogo size="sm" className="!text-[#101820] dark:!text-white" />
+                </Link>
+                <span className="taz-menu-header-divider" aria-hidden="true" />
+                <div className="taz-menu-sound">
+                  <MusicWaveToggle className="!text-[#101820] dark:!text-white !border-black/10 dark:!border-white/20" />
+                </div>
+              </div>
+              <div className="taz-menu-header-right">
+                <Link href="/contact" onClick={onClose} className="taz-menu-top-cta" aria-label="Let's talk">
+                  <AnimatedLabel text="Let's talk" /><ArrowUpRight aria-hidden="true" />
+                </Link>
+                <span className="taz-menu-header-divider" aria-hidden="true" />
+              </div>
+            </div>
+
+            <div className="taz-menu-shell">
+              <div className="taz-menu-surface" style={{ clipPath: `url(#${shapeId})` }} aria-hidden="true" />
+
+              <button ref={closeRef} type="button" onClick={onClose} className="taz-menu-close" aria-label="Close navigation menu">
+                <span className="taz-menu-close-bar taz-menu-close-bar-one" aria-hidden="true" />
+                <span className="taz-menu-close-bar taz-menu-close-bar-two" aria-hidden="true" />
+              </button>
+
+              <div className="taz-menu-main">
+                <section className="taz-menu-intro">
+                  <p className="taz-menu-eyebrow taz-menu-heading-reveal" style={delay(220)}><span />Connect with me</p>
+                  <h2 className="taz-menu-title taz-menu-heading-reveal" style={delay(450)}>Turn Your Vision Into an Experience That Lasts</h2>
+                  <span className="taz-menu-short-line" aria-hidden="true" />
+                  <a href="mailto:support@zuarder.com" className="taz-menu-email taz-menu-heading-reveal" style={delay(620)}>
+                    <Mail strokeWidth={1.5} aria-hidden="true" /><span>support@zuarder.com</span>
+                  </a>
+                  <div className="taz-menu-desktop-button taz-menu-heading-reveal" style={delay(780)}>{contactButton()}</div>
+                </section>
+
+                <div className="taz-menu-nav-wrapper">
+                  <nav className="taz-menu-navigation" aria-label="Main navigation">
+                    <h3 className="taz-menu-section-title taz-menu-item-reveal" style={delay(380)}>NAVIGATION</h3>
+                    <ul className="taz-menu-nav-list">
+                      {NAVIGATION.map((item, index) => {
+                        const active = item.href === "/" ? pathname === "/" : pathname === item.href || pathname.startsWith(`${item.href}/`);
+                        return (
+                          <li key={item.href} className="taz-menu-item-reveal" style={delay(480 + index * 110)}>
+                            <Link href={item.href} onClick={onClose} aria-current={active ? "page" : undefined} className={`taz-menu-nav-link${active ? " is-active" : ""}`}>
+                              <span className="taz-menu-link-dot" aria-hidden="true" /><span className="taz-menu-link-text">{item.label}</span>
+                            </Link>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </nav>
+
+                  <div className="taz-menu-right-column" tabIndex={0} role="region" aria-label="Services and collaboration">
+                    <section className="taz-menu-services">
+                      <div className="taz-menu-section-heading taz-menu-item-reveal" style={delay(580)}>
+                        <h3 className="taz-menu-section-title">SERVICES</h3>
+                        <Link href="/services" onClick={onClose} className="taz-menu-all-services" aria-label="View all services">
+                          <span>All Services</span>
+                          <ArrowRight aria-hidden="true" />
+                        </Link>
+                      </div>
+                      <ul className="taz-menu-service-list">
+                        {SERVICES.map((item, index) => (
+                          <li key={item.href} className="taz-menu-item-reveal" style={delay(680 + index * 90)}>
+                            <Link href={item.href} onClick={onClose} className="taz-menu-nav-link">
+                              <span className="taz-menu-link-dot" aria-hidden="true" /><span className="taz-menu-link-text">{item.label}</span>
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </section>
+                    <section className="taz-menu-collaboration">
+                      <h3 className="taz-menu-section-title taz-menu-item-reveal" style={delay(750)}>COLLABORATION</h3>
+                      <div className="taz-menu-item-reveal" style={delay(850)}>
+                        <Link href="/contact" onClick={onClose} className="taz-menu-nav-link"><span className="taz-menu-link-dot" aria-hidden="true" /><span className="taz-menu-link-text">Available For Projects</span></Link>
+                        <p>Open for Custom Development, SaaS Architecture &amp; Dedicated Contracts</p>
+                      </div>
+                    </section>
+                  </div>
+                </div>
+              </div>
+
+              <footer className="taz-menu-footer">
+                <span className="taz-menu-footer-line" aria-hidden="true" />
+                <div className="taz-menu-footer-row">
+                  <p className="taz-menu-copyright" style={{ color: "#101820" }}>© 2026 Tufael Ahmed Zuarder. All rights reserved.</p>
+                  <div className="taz-menu-socials" aria-label="Social profiles">
+                    {SOCIALS.map((social) => {
+                      const icon = <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{social.paths.map((path) => <path key={path} d={path} />)}</svg>;
+                      return social.href ? <a key={social.name} href={social.href} target="_blank" rel="noopener noreferrer" aria-label={social.name} className="taz-menu-social">{icon}</a> : <span key={social.name} role="img" aria-label={social.name} className="taz-menu-social">{icon}</span>;
+                    })}
+                  </div>
+                  <div className="taz-menu-legal"><Link href="/privacy-policy" onClick={onClose}>Privacy Policy</Link><Link href="/terms-of-use" onClick={onClose}>Terms Of Use</Link></div>
+                </div>
+              </footer>
+            </div>
           </div>
         </div>
       </dialog>
@@ -282,8 +458,10 @@ export function FullMenuOverlay({ isOpen, onClose }: FullMenuOverlayProps) {
   );
 }
 
-// Viewport units are scoped to the menu; the rest of your app's rem scale is untouched.
 const MENU_STYLES = `
+/* ========================================================================== */
+/* BASE OVERLAY DIALOG STYLES                                                 */
+/* ========================================================================== */
 .taz-menu {
   --u: clamp(6.5px, .5208333333vw, 8.3333px);
   --menu-ink: #101820;
@@ -347,6 +525,568 @@ const MENU_STYLES = `
 .taz-menu::-webkit-scrollbar { display: none !important; width: 0 !important; height: 0 !important; }
 .taz-menu:not([open]) { display: none; }
 .taz-menu::backdrop { background: transparent; }
+.taz-menu *, .taz-menu *::before, .taz-menu *::after, .taz-menu { box-sizing: border-box; }
+.taz-menu a { color: inherit; text-decoration: none; }
+.taz-menu ul { list-style: none; padding: 0; margin: 0; }
+.taz-menu h2, .taz-menu h3, .taz-menu p { margin: 0; }
+.taz-menu a:focus-visible, .taz-menu button:focus-visible, .taz-menu [tabindex="0"]:focus-visible { outline: 2px solid var(--menu-orange); outline-offset: 5px; }
+.taz-menu-sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+.taz-menu-defs { position: absolute; pointer-events: none; }
+
+/* ========================================================================== */
+/* VIEWPORT DISPATCH: DEDICATED MOBILE VS DESKTOP                             */
+/* ========================================================================== */
+@media (max-width: 1023px) {
+  .taz-desk-view { display: none !important; }
+  .taz-mob-view { display: flex !important; }
+  .taz-menu {
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    height: 100dvh !important;
+    max-height: 100dvh !important;
+    border: none !important;
+    background: transparent !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .taz-mob-view { display: none !important; }
+  .taz-desk-view { display: flex !important; flex-direction: column !important; width: 100% !important; height: 100% !important; }
+}
+
+/* ========================================================================== */
+/* MOBILE VIEW STYLES (0px - 1023px) - 100% Responsive, Zero Collision       */
+/* ========================================================================== */
+.taz-mob-view {
+  flex-direction: column;
+  width: 100%;
+  height: 100dvh;
+  max-height: 100dvh;
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(247, 91, 0, 0.14) 0%,
+      rgba(239, 195, 32, 0.07) 35%,
+      transparent 70%
+    ),
+    linear-gradient(180deg, #FAFAFD 0%, #F5F6FA 45%, #ECEEF5 100%);
+  color: #101820;
+  font-family: var(--menu-body-font);
+}
+:root.dark .taz-mob-view,
+html.dark .taz-mob-view,
+.dark .taz-mob-view,
+body.dark .taz-mob-view {
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(247, 91, 0, 0.16) 0%,
+      rgba(239, 195, 32, 0.06) 35%,
+      transparent 70%
+    ),
+    linear-gradient(180deg, #0B0B12 0%, #11111E 45%, #0B0B12 100%);
+  color: #F3F4FA;
+}
+
+/* Sticky Header on Mobile */
+.taz-mob-header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  flex-shrink: 0;
+  height: calc(56px + env(safe-area-inset-top, 0px));
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-left: clamp(14px, 4vw, 22px);
+  padding-right: clamp(14px, 4vw, 22px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(250, 250, 253, 0.92);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid rgba(16, 24, 32, 0.08);
+}
+:root.dark .taz-mob-header,
+html.dark .taz-mob-header,
+.dark .taz-mob-header,
+body.dark .taz-mob-header {
+  background: rgba(11, 11, 18, 0.92);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.taz-mob-header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.taz-mob-logo-link {
+  display: flex;
+  align-items: center;
+}
+.taz-mob-logo-link svg {
+  width: 80px !important;
+  height: 20px !important;
+}
+.taz-mob-header-divider {
+  width: 1px;
+  height: 16px;
+  background: rgba(16, 24, 32, 0.15);
+}
+:root.dark .taz-mob-header-divider,
+html.dark .taz-mob-header-divider,
+.dark .taz-mob-header-divider {
+  background: rgba(255, 255, 255, 0.2);
+}
+.taz-mob-close-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(16, 24, 32, 0.12);
+  background: rgba(16, 24, 32, 0.05);
+  color: #101820;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 180ms ease, background-color 180ms ease, border-color 180ms ease;
+  outline: none;
+}
+:root.dark .taz-mob-close-btn,
+html.dark .taz-mob-close-btn,
+.dark .taz-mob-close-btn {
+  border-color: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.08);
+  color: #F3F4FA;
+}
+.taz-mob-close-btn:active {
+  transform: scale(0.92);
+  background: rgba(247, 91, 0, 0.12);
+  border-color: #F75B00;
+  color: #F75B00;
+}
+
+/* Scroll Container */
+.taz-mob-scroll {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
+  padding: 20px clamp(16px, 4.5vw, 24px) calc(36px + env(safe-area-inset-bottom, 0px));
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.taz-mob-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* Intro */
+.taz-mob-intro {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+.taz-mob-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #F75B00 !important;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.taz-mob-pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #F75B00;
+  box-shadow: 0 0 10px rgba(247, 91, 0, 0.6);
+  flex-shrink: 0;
+}
+.taz-mob-title {
+  font-family: var(--menu-display-font);
+  font-size: clamp(22px, 5.8vw, 30px);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  font-weight: 500;
+  color: #101820;
+}
+:root.dark .taz-mob-title,
+html.dark .taz-mob-title,
+.dark .taz-mob-title {
+  color: #F3F4FA !important;
+}
+.taz-mob-short-line {
+  width: 44px;
+  height: 1px;
+  background: rgba(16, 24, 32, 0.15);
+  margin-top: 2px;
+}
+:root.dark .taz-mob-short-line,
+html.dark .taz-mob-short-line,
+.dark .taz-mob-short-line {
+  background: rgba(255, 255, 255, 0.15);
+}
+.taz-mob-email {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #5B6871;
+  text-decoration: none;
+  transition: color 200ms ease;
+  margin-top: 2px;
+}
+.taz-mob-email:hover, .taz-mob-email:active {
+  color: #F75B00 !important;
+}
+:root.dark .taz-mob-email,
+html.dark .taz-mob-email,
+.dark .taz-mob-email {
+  color: #9C9DB5;
+}
+.taz-mob-email span {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Divider */
+.taz-mob-divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(16, 24, 32, 0.08);
+}
+:root.dark .taz-mob-divider,
+html.dark .taz-mob-divider,
+.dark .taz-mob-divider {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.taz-mob-section-title {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  color: #7A8690;
+  margin: 0;
+  line-height: 1.2;
+}
+:root.dark .taz-mob-section-title,
+html.dark .taz-mob-section-title,
+.dark .taz-mob-section-title {
+  color: #8C8EAA;
+}
+
+/* Navigation List */
+.taz-mob-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.taz-mob-nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.taz-mob-nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 0;
+  text-decoration: none;
+}
+.taz-mob-nav-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #F75B00;
+  box-shadow: 0 0 10px rgba(247, 91, 0, 0.7);
+  flex-shrink: 0;
+  opacity: 0;
+  transform: scale(0);
+  transition: opacity 250ms ease, transform 250ms ease;
+}
+.taz-mob-nav-link.is-active .taz-mob-nav-dot {
+  opacity: 1;
+  transform: scale(1);
+}
+.taz-mob-nav-text {
+  font-family: var(--menu-display-font);
+  font-size: clamp(24px, 6.2vw, 30px);
+  font-weight: 500;
+  line-height: 1.15;
+  color: #101820;
+  opacity: 0.65;
+  transition: opacity 200ms ease, color 200ms ease;
+}
+:root.dark .taz-mob-nav-text,
+html.dark .taz-mob-nav-text,
+.dark .taz-mob-nav-text {
+  color: #F3F4FA;
+}
+.taz-mob-nav-link.is-active .taz-mob-nav-text {
+  opacity: 1;
+  color: #F75B00 !important;
+  font-weight: 600;
+}
+.taz-mob-nav-link:active .taz-mob-nav-text {
+  color: #F75B00;
+  opacity: 1;
+}
+
+/* Services */
+.taz-mob-services {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.taz-mob-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.taz-mob-all-services {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #F75B00 !important;
+  text-decoration: none;
+}
+.taz-mob-service-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+@media (max-width: 340px) {
+  .taz-mob-service-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.taz-mob-service-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(16, 24, 32, 0.03);
+  border: 1px solid rgba(16, 24, 32, 0.07);
+  text-decoration: none;
+  transition: transform 180ms ease, background-color 180ms ease, border-color 180ms ease;
+}
+:root.dark .taz-mob-service-card,
+html.dark .taz-mob-service-card,
+.dark .taz-mob-service-card {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+.taz-mob-service-card:active {
+  transform: scale(0.97);
+  background: rgba(247, 91, 0, 0.08);
+  border-color: rgba(247, 91, 0, 0.3);
+}
+.taz-mob-service-title {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.3;
+  color: #101820;
+  white-space: normal;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+:root.dark .taz-mob-service-title,
+html.dark .taz-mob-service-title,
+.dark .taz-mob-service-title {
+  color: #F3F4FA;
+}
+.taz-mob-service-card:active .taz-mob-service-title {
+  color: #F75B00 !important;
+}
+
+/* Collaboration */
+.taz-mob-collab {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.taz-mob-collab-card {
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: rgba(16, 24, 32, 0.03);
+  border: 1px solid rgba(16, 24, 32, 0.07);
+}
+:root.dark .taz-mob-collab-card,
+html.dark .taz-mob-collab-card,
+.dark .taz-mob-collab-card {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+.taz-mob-collab-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #101820;
+  text-decoration: none;
+}
+:root.dark .taz-mob-collab-link,
+html.dark .taz-mob-collab-link,
+.dark .taz-mob-collab-link {
+  color: #F3F4FA;
+}
+.taz-mob-status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #10B981;
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.6);
+  flex-shrink: 0;
+}
+.taz-mob-collab-card p {
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: #5B6871;
+  margin: 6px 0 0;
+}
+:root.dark .taz-mob-collab-card p,
+html.dark .taz-mob-collab-card p,
+.dark .taz-mob-collab-card p {
+  color: #9C9DB5;
+}
+
+/* CTA */
+.taz-mob-cta-box {
+  width: 100%;
+  margin-top: 4px;
+}
+.taz-mob-cta-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  height: 52px;
+  border-radius: 999px;
+  background: #101820;
+  color: #FFFFFF !important;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  box-shadow: 0 10px 24px -4px rgba(247, 91, 0, 0.35);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+:root.dark .taz-mob-cta-button,
+html.dark .taz-mob-cta-button,
+.dark .taz-mob-cta-button {
+  background: #F3F4FA;
+  color: #101820 !important;
+}
+.taz-mob-cta-button:active {
+  transform: scale(0.98);
+}
+
+/* Footer */
+.taz-mob-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(16, 24, 32, 0.08);
+}
+:root.dark .taz-mob-footer,
+html.dark .taz-mob-footer,
+.dark .taz-mob-footer {
+  border-top-color: rgba(255, 255, 255, 0.08);
+}
+.taz-mob-socials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+}
+.taz-mob-social-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid rgba(16, 24, 32, 0.12);
+  background: rgba(16, 24, 32, 0.03);
+  color: #5B6871;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: transform 180ms ease, border-color 180ms ease, color 180ms ease;
+}
+:root.dark .taz-mob-social-btn,
+html.dark .taz-mob-social-btn,
+.dark .taz-mob-social-btn {
+  border-color: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.05);
+  color: #9C9DB5;
+}
+.taz-mob-social-btn:active {
+  transform: scale(0.92);
+  border-color: #F75B00;
+  color: #F75B00;
+}
+.taz-mob-copyright {
+  font-size: 12px;
+  color: #7A8690;
+  text-align: center;
+  margin: 0;
+}
+:root.dark .taz-mob-copyright,
+html.dark .taz-mob-copyright,
+.dark .taz-mob-copyright {
+  color: #8C8EAA;
+}
+.taz-mob-legal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-size: 12px;
+}
+.taz-mob-legal a {
+  color: #7A8690;
+  text-decoration: none;
+}
+:root.dark .taz-mob-legal a,
+html.dark .taz-mob-legal a,
+.dark .taz-mob-legal a {
+  color: #8C8EAA;
+}
+.taz-mob-legal a:hover, .taz-mob-legal a:active {
+  color: #F75B00;
+}
+.taz-mob-legal-sep {
+  color: #7A8690;
+  opacity: 0.5;
+}
+
+/* ========================================================================== */
+/* DESKTOP VIEW STYLES (>= 1024px) - Unaltered Original Reference Fidelity    */
+/* ========================================================================== */
 .taz-menu-container {
   position: relative;
   width: 100%;
@@ -361,13 +1101,6 @@ const MENU_STYLES = `
   opacity: 0;
   transform: translateY(-8px);
 }
-.taz-menu *, .taz-menu *::before, .taz-menu *::after, .taz-menu { box-sizing: border-box; }
-.taz-menu a { color: inherit; text-decoration: none; }
-.taz-menu ul { list-style: none; padding: 0; margin: 0; }
-.taz-menu h2, .taz-menu h3, .taz-menu p { margin: 0; }
-.taz-menu a:focus-visible, .taz-menu button:focus-visible, .taz-menu [tabindex="0"]:focus-visible { outline: 2px solid var(--menu-orange); outline-offset: 5px; }
-.taz-menu-sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
-.taz-menu-defs { position: absolute; pointer-events: none; }
 .taz-menu-ellipse {
   position: absolute;
   inset: 0;
@@ -720,7 +1453,6 @@ const MENU_STYLES = `
 .taz-menu-heading-reveal { transform: translateX(50px); }
 .taz-menu[data-state="open"] .taz-menu-item-reveal, .taz-menu[data-state="open"] .taz-menu-heading-reveal { opacity: 1; transform: translate(0); transition-delay: var(--reveal-delay,300ms); }
 .taz-menu[data-state="closing"] .taz-menu-item-reveal, .taz-menu[data-state="closing"] .taz-menu-heading-reveal { opacity: 1; transform: translate(0); transition: none; }
-.taz-menu-mobile-cta { display: none; }
 .taz-menu-footer { grid-column: 1/-1; grid-row: 4; width: 100%; min-width: 0; color: #5B6871; font-size: calc(1.6 * var(--u)); line-height: 1.2; }
 .taz-menu-footer-line { display: block; width: 100%; height: 1px; margin-bottom: min(calc(3.5 * var(--u)),3.5vh); background: rgba(16, 24, 32, 0.12); opacity: 0; transform: scaleX(0); transition: opacity var(--menu-duration) var(--menu-ease), transform var(--menu-duration) var(--menu-ease); }
 .taz-menu-footer-row { position: relative; display: flex; align-items: center; justify-content: space-between; gap: calc(2 * var(--u)); }
@@ -733,6 +1465,7 @@ const MENU_STYLES = `
 .taz-menu-legal a:hover { color: #F75B00 !important; }
 .taz-menu[data-state="open"] .taz-menu-socials, .taz-menu[data-state="closing"] .taz-menu-socials { opacity: 1; transform: translate(-50%,-50%); transition-delay: 720ms; }
 .taz-menu[data-state="open"] .taz-menu-footer-line, .taz-menu[data-state="closing"] .taz-menu-footer-line { opacity: 1; transform: scaleX(1); transition-delay: 880ms; }
+
 @media (hover: hover) and (pointer: fine) {
   .taz-menu-close:hover { transform: scale(.9); color: #F75B00; }
   .taz-menu-navigation:hover .taz-menu-link-text, .taz-menu-services:hover .taz-menu-link-text { opacity: .5; }
@@ -743,67 +1476,7 @@ const MENU_STYLES = `
   .taz-menu-social[href]:hover { border-color: #F75B00 !important; color: #F75B00 !important; background-color: rgba(247, 91, 0, 0.08); }
   .taz-menu-legal a:hover, .taz-menu-email:hover { color: #F75B00 !important; }
 }
-@media (max-width: 991px) { .taz-menu { --u: 2.2727272727vw; } }
-@media (min-width: 482px) and (max-width: 991px) { .taz-menu { --u: 1.3020833333vw; } }
-@media (orientation: portrait), (max-width: 700px) {
-  .taz-menu {
-    padding: 0;
-    background:
-      radial-gradient(
-        circle at 50% 30%,
-        rgba(247, 91, 0, 0.12) 0%,
-        rgba(239, 195, 32, 0.08) 45%,
-        transparent 70%
-      ),
-      linear-gradient(180deg, #FAFAFD 0%, #F4F5F9 100%);
-    backdrop-filter: blur(40px);
-    -webkit-backdrop-filter: blur(40px);
-  }
-  .taz-menu-container { width: 100%; max-width: 100%; height: 100%; padding: 0; margin: 0; }
-  .taz-menu-ellipse { display: none; }
-  .taz-menu-header { top: calc(3.5 * var(--u)); left: calc(3.2 * var(--u)); right: calc(3.2 * var(--u)); }
-  .taz-menu-brand-group { gap: calc(1.1 * var(--u)); }
-  .taz-menu-brand svg { width: 74px !important; height: 18px !important; }
-  .taz-menu-header-divider { height: 13px; }
-  .taz-menu-sound button { width: 26px; height: 26px; }
-  .taz-menu-header-right { display: none; }
-  .taz-menu-shell { grid-template-columns: minmax(0,1fr); grid-template-rows: minmax(0,1fr) auto auto; padding: max(min(calc(10 * var(--u)),10vh),calc(7 * var(--u))) 0 max(min(calc(4 * var(--u)),3vh),env(safe-area-inset-bottom)); transform: scale(1); }
-  .taz-menu-surface { background: transparent; clip-path: none !important; backdrop-filter: none; -webkit-backdrop-filter: none; }
-  .taz-menu-close { top: calc(4 * var(--u)); right: calc(3.2 * var(--u)); width: calc(2 * var(--u)); height: calc(2 * var(--u)); }
-  .taz-menu-close-bar { width: calc(2.8 * var(--u)); height: 1.5px; }
-  .taz-menu-main { grid-column: 1; grid-row: 1; display: flex; flex-direction: column; width: 100%; height: 100%; max-height: none; overflow: hidden; }
-  .taz-menu-intro { display: grid; gap: calc(1.4 * var(--u)); width: 100%; justify-items: center; padding: 0 calc(3 * var(--u)); margin-bottom: min(calc(5 * var(--u)),2.5vh); flex-shrink: 0; }
-  .taz-menu-eyebrow { gap: calc(.5 * var(--u)); font-size: calc(1.4 * var(--u)); }
-  .taz-menu-eyebrow > span { width: calc(.8 * var(--u)); height: calc(.8 * var(--u)); }
-  .taz-menu-title { width: 100%; text-align: center; font-size: min(calc(3.8 * var(--u)),3.5vh); line-height: 1.1; letter-spacing: 0; }
-  .taz-menu-short-line, .taz-menu-email, .taz-menu-desktop-button { display: none; }
-  .taz-menu-nav-wrapper { display: block; width: 100%; padding: 0 calc(3.5 * var(--u)); overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; flex: 1; min-height: 0; }
-  .taz-menu-navigation, .taz-menu-right-column { width: 100%; max-width: none; max-height: none; overflow: visible; padding: 0; margin: 0; box-sizing: border-box; }
-  .taz-menu-navigation, .taz-menu-services { margin-bottom: min(calc(4 * var(--u)),2.5vh); }
-  .taz-menu-section-title { font-size: min(calc(1.5 * var(--u)),1.5vh); }
-  .taz-menu-nav-list, .taz-menu-service-list { gap: min(calc(2 * var(--u)),1.2vh); margin-top: min(calc(2 * var(--u)),1.2vh) !important; }
-  .taz-menu-service-list { grid-template-columns: 1fr; }
-  .taz-menu-service-list .taz-menu-link-text { white-space: normal; }
-  .taz-menu-link-text { display: block; font-size: min(calc(2.4 * var(--u)),2vh); line-height: .9; text-box-trim: none; }
-  .taz-menu-link-dot { display: none; }
-  .taz-menu-section-heading { width: 100%; }
-  .taz-menu-all-services { width: calc(1.5 * var(--u)); height: calc(1.5 * var(--u)); }
-  .taz-menu-collaboration { margin-top: min(calc(4 * var(--u)),2.5vh); padding-bottom: calc(2 * var(--u)); }
-  .taz-menu-collaboration > div { margin-top: min(calc(2 * var(--u)),1.2vh); }
-  .taz-menu-collaboration p { font-size: min(calc(1.6 * var(--u)),1.7vh); }
-  .taz-menu-item-reveal { transform: translateY(30px); }
-  .taz-menu-heading-reveal { transform: none; }
-  .taz-menu-mobile-cta { display: flex; justify-content: center; grid-column: 1; grid-row: 2; margin: min(calc(2.5 * var(--u)),1.5vh) 0; }
-  .taz-menu-mobile-button { padding: calc(1.2 * var(--u)) calc(2.2 * var(--u)); font-size: calc(1.4 * var(--u)); }
-  .taz-menu-mobile-button > svg { width: calc(1.8 * var(--u)); height: calc(1.8 * var(--u)); }
-  .taz-menu-footer { grid-column: 1; grid-row: 3; display: grid; justify-items: center; }
-  .taz-menu-footer-line { width: calc(14.5 * var(--u)); margin-bottom: min(calc(2 * var(--u)),2vh); }
-  .taz-menu-footer-row { width: 100%; justify-content: center; }
-  .taz-menu-copyright, .taz-menu-legal { display: none; }
-  .taz-menu-socials { position: static; transform: translateY(100%); }
-  .taz-menu[data-state="open"] .taz-menu-socials, .taz-menu[data-state="closing"] .taz-menu-socials { transform: translateY(0); transition-delay: 800ms; }
-  .taz-menu-social { width: min(calc(3.3 * var(--u)),3vh); height: min(calc(3.3 * var(--u)),3vh); }
-}
+
 @media (min-width: 992px) and (orientation: portrait) { .taz-menu { --u: 1.6666666667vw; } }
 @media (max-height: 480px) and (orientation: landscape) { .taz-menu { --u: .5208333333vw; } .taz-menu-main { max-height: calc(100dvh - 24 * var(--u)); } }
 @media (prefers-reduced-motion: reduce) {

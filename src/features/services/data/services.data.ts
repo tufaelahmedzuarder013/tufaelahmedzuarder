@@ -321,7 +321,7 @@ export const SERVICES: ServiceItem[] = [
     overview:
       "A tailored CRM designed around your exact sales funnel. Visual drag-and-drop Kanban deal boards, lead source attribution, automated follow-up email sequences, contact interaction histories, and real-time revenue forecast analytics.",
     heroImage:
-      "https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=1000",
+      "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1200&auto=format&fit=crop&q=80",
     included: [
       "Drag-and-drop Kanban sales deal stages with stage probability",
       "Lead capture forms with automatic deduplication & scoring",

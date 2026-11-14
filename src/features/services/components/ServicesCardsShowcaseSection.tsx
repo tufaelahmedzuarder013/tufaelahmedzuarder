@@ -210,10 +210,10 @@ const SERVICE_CARDS: ServiceCardData[] = [
     price: "$2,400 / sprint",
     buttonText: "Read More",
     images: [
-      "https://images.unsplash.com/photo-1556742049-0a67c5574f73?w=1000&auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1552581234-26160f608093?w=1000&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1000&auto=format&fit=crop&q=80",
       "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1000&auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1531497865144-0464ef8fb9a9?w=1000&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1556761175-4b46a572b786?w=1000&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1552581234-26160f608093?w=1000&auto=format&fit=crop&q=80",
     ],
   },
   {
@@ -294,6 +294,34 @@ const SERVICE_CARDS: ServiceCardData[] = [
   },
 ];
 
+function CardSlideImage({
+  src,
+  alt,
+  priority,
+}: {
+  src: string;
+  alt: string;
+  priority: boolean;
+}) {
+  const [imgSrc, setImgSrc] = useState(src);
+
+  return (
+    <Image
+      src={imgSrc}
+      alt={alt}
+      fill
+      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+      className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+      priority={priority}
+      onError={() => {
+        setImgSrc(
+          "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=1000&auto=format&fit=crop&q=80"
+        );
+      }}
+    />
+  );
+}
+
 function ServiceCardItem({
   card,
   index,
@@ -341,12 +369,9 @@ function ServiceCardItem({
                 : "opacity-0 z-[-1] pointer-events-none"
             }`}
           >
-            <Image
+            <CardSlideImage
               src={imgUrl}
               alt={`${card.title} - Preview ${imgIdx + 1}`}
-              fill
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
               priority={index < 3 && imgIdx === 0}
             />
           </div>
