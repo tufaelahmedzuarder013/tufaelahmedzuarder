@@ -1,13 +1,11 @@
 import React from "react";
 import type { Metadata } from "next";
-import { SERVICES } from "@/features/services/data/services.data";
 import { ServicesHeroSection } from "@/features/services/components/ServicesHeroSection";
+import { ServicesTechMarquee } from "@/features/services/components/ServicesTechMarquee";
 import { ServicesWaveProcessSection } from "@/features/services/components/ServicesWaveProcessSection";
 import { ServicesCardsShowcaseSection } from "@/features/services/components/ServicesCardsShowcaseSection";
 import { ServicesMethodologySection } from "@/features/services/components/ServicesMethodologySection";
-import { ServicesTechMarquee } from "@/features/services/components/ServicesTechMarquee";
-import { ServicesPhilosophySection } from "@/features/services/components/ServicesPhilosophySection";
-import { ServicesBottomCta } from "@/features/services/components/ServicesBottomCta";
+import { CtaBanner } from "@/features/home/components/CtaBanner";
 import { constructMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = constructMetadata({
@@ -22,23 +20,20 @@ export default function ServicesPage() {
       {/* 1. Hero Showcase with Signature Kinetic Text Reveal */}
       <ServicesHeroSection />
 
-      {/* 2. Flowing Wave Process Section */}
-      <ServicesWaveProcessSection />
-
-      {/* 3. Services Cards Showcase (Card Design from User Image) */}
-      <ServicesCardsShowcaseSection services={SERVICES} />
-
-      {/* 4. 5-Tier Engineering Architecture & Methodology (New Section from User Reference Image) */}
-      <ServicesMethodologySection />
-
-      {/* 5. Tech Partners Strip */}
+      {/* 2. Technologies Marquee Strip (Right after Hero - Continuous Infinite Loop) */}
       <ServicesTechMarquee />
 
-      {/* 6. About My Services & Philosophy */}
-      <ServicesPhilosophySection />
+      {/* 3. Flowing Wave Process Section */}
+      <ServicesWaveProcessSection />
 
-      {/* 7. Clean, Minimal Bottom Touchpoint with Smooth In-View Animation */}
-      <ServicesBottomCta />
+      {/* 4. Complete Services Showcase (All 14 Services - Exact Petra Spec Card Design & Read More) */}
+      <ServicesCardsShowcaseSection />
+
+      {/* 5. 5-Tier Engineering Architecture & Methodology */}
+      <ServicesMethodologySection />
+
+      {/* 6. Signature Professional Interactive CTA Section (Exact as Home Page) */}
+      <CtaBanner />
     </div>
   );
 }

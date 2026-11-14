@@ -32,12 +32,12 @@ const SERVICE_CARDS: ServiceCardData[] = [
     title: "Full-Stack Web Apps",
     badge: "Top rated",
     rating: "4.9",
-    tags: ["Next.js 14", "TypeScript"],
+    tags: ["Next.js 15", "TypeScript"],
     metadata: "Architecture & QA • Production Ready",
     description:
       "Production-grade web applications with modular component architecture, sub-second latency, and responsive fidelity across all screens.",
     price: "$1,800 / sprint",
-    buttonText: "Book Now",
+    buttonText: "Read More",
     images: [
       "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1000&auto=format&fit=crop&q=80",
       "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1000&auto=format&fit=crop&q=80",
@@ -50,13 +50,13 @@ const SERVICE_CARDS: ServiceCardData[] = [
     slug: "ui-ux-design",
     title: "UI / UX & Design Systems",
     badge: "Top rated",
-    rating: "4.8",
+    rating: "4.9",
     tags: ["Figma UI", "Tokens"],
     metadata: "Design Tokens • Sub-Pixel 1:1",
     description:
       "Translating complex product requirements into clean visual hierarchies, intuitive user journeys, and pixel-perfect interactive prototypes.",
     price: "$1,400 / sprint",
-    buttonText: "Book Now",
+    buttonText: "Read More",
     images: [
       "https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=1000&auto=format&fit=crop&q=80",
       "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=1000&auto=format&fit=crop&q=80",
@@ -70,17 +70,17 @@ const SERVICE_CARDS: ServiceCardData[] = [
     title: "Cloud SaaS Platforms",
     badge: "Enterprise",
     rating: "4.9",
-    tags: ["SaaS Core", "Cloud"],
+    tags: ["SaaS Core", "Stripe API"],
     metadata: "Multi-Tenant • Role-Based Auth",
     description:
-      "Scalable multi-tenant SaaS architecture, payment gate flows, automated analytics pipelines, and secure role-based authentication.",
+      "Scalable multi-tenant SaaS architecture, subscription billing flows, automated analytics pipelines, and secure role-based authentication.",
     price: "$2,400 / sprint",
-    buttonText: "Book Now",
+    buttonText: "Read More",
     images: [
       "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1000&auto=format&fit=crop&q=80",
       "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=1000&auto=format&fit=crop&q=80",
       "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=1000&auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1000&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1000&auto=format&fit=crop&q=80",
     ],
   },
   {
@@ -94,7 +94,7 @@ const SERVICE_CARDS: ServiceCardData[] = [
     description:
       "High-performance cross-platform mobile experiences with native animations, offline-first sync, and smooth gesture navigation.",
     price: "$2,200 / sprint",
-    buttonText: "Book Now",
+    buttonText: "Read More",
     images: [
       "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=1000&auto=format&fit=crop&q=80",
       "https://images.unsplash.com/photo-1556656793-08538906a9f8?w=1000&auto=format&fit=crop&q=80",
@@ -108,36 +108,188 @@ const SERVICE_CARDS: ServiceCardData[] = [
     title: "Speed & Web Vitals",
     badge: "100/100 Score",
     rating: "5.0",
-    tags: ["Lighthouse", "SEO Boost"],
-    metadata: "Core Web Vitals • Edge Caching",
+    tags: ["Core Vitals", "Lighthouse 100"],
+    metadata: "Sub-Second TTI • Edge Caching",
     description:
-      "Comprehensive speed audits, bundle tree-shaking, edge caching, and database query optimization for sub-second page loads.",
-    price: "$950 / audit",
-    buttonText: "Book Now",
+      "Deep Core Web Vitals audit, asset compression pipelines, bundle code-splitting, and sub-second load times that elevate search rankings.",
+    price: "$1,200 / audit",
+    buttonText: "Read More",
     images: [
-      "https://images.unsplash.com/photo-1518770660439-4636190af475?w=1000&auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1000&auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1000&auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=1000&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=1000&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=1000&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1000&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1000&auto=format&fit=crop&q=80",
     ],
   },
   {
     id: "software",
     slug: "software-development",
     title: "Software Architecture",
-    badge: "Scalable",
-    rating: "4.8",
-    tags: ["Node.js", "PostgreSQL"],
-    metadata: "Microservices • CI/CD Pipelines",
+    badge: "Enterprise",
+    rating: "4.9",
+    tags: ["Microservices", "PostgreSQL"],
+    metadata: "Distributed Systems • Docker CI",
     description:
-      "Enterprise microservices, resilient GraphQL and REST APIs, Docker containerization, and zero-downtime deployment pipelines.",
-    price: "$2,600 / sprint",
-    buttonText: "Book Now",
+      "Mission-critical backend architectures, microservices, containerized deployments, and robust database layers built for massive data throughput.",
+    price: "$2,500 / sprint",
+    buttonText: "Read More",
+    images: [
+      "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1000&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=1000&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1000&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1000&auto=format&fit=crop&q=80",
+    ],
+  },
+  {
+    id: "motion",
+    slug: "motion-interaction",
+    title: "Motion & Interactions",
+    badge: "Creative",
+    rating: "4.9",
+    tags: ["GSAP 3", "Framer Motion"],
+    metadata: "60 FPS Physics • Smooth Scroll",
+    description:
+      "Captivating kinetic web animations, magnetic cursor interactions, and fluid physics-based micro-interactions that leave a lasting impression.",
+    price: "$1,500 / sprint",
+    buttonText: "Read More",
+    images: [
+      "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=1000&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1518770660439-4636190af475?w=1000&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=1000&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1000&auto=format&fit=crop&q=80",
+    ],
+  },
+  {
+    id: "custom",
+    slug: "custom-development",
+    title: "Custom Web Solutions",
+    badge: "Bespoke",
+    rating: "4.9",
+    tags: ["Bespoke API", "Custom Logic"],
+    metadata: "Tailored Logic • High Security",
+    description:
+      "Bespoke full-stack applications engineered to your exact business specifications, custom integrations, and specialized data models.",
+    price: "$2,000 / sprint",
+    buttonText: "Read More",
     images: [
       "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1000&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=1000&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1000&auto=format&fit=crop&q=80",
       "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1000&auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1000&auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1000&auto=format&fit=crop&q=80",
+    ],
+  },
+  {
+    id: "hr-system",
+    slug: "hr-management-system",
+    title: "HR Management Systems",
+    badge: "Enterprise",
+    rating: "4.9",
+    tags: ["HRMS Core", "Payroll & Role"],
+    metadata: "Role Security • Audit Logs",
+    description:
+      "Custom human resource management systems featuring automated payroll processing, employee onboarding, attendance tracking, and reporting.",
+    price: "$2,800 / sprint",
+    buttonText: "Read More",
+    images: [
+      "https://images.unsplash.com/photo-1552664730-d307ca884978?w=1000&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1000&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=1000&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=1000&auto=format&fit=crop&q=80",
+    ],
+  },
+  {
+    id: "crm-system",
+    slug: "crm-system",
+    title: "CRM Platforms",
+    badge: "High Impact",
+    rating: "4.9",
+    tags: ["Lead Funnel", "Pipelines"],
+    metadata: "Lead Automation • Real-Time Sync",
+    description:
+      "End-to-end customer relationship management systems with visual deal pipelines, contact sync, and automated email workflows.",
+    price: "$2,400 / sprint",
+    buttonText: "Read More",
+    images: [
+      "https://images.unsplash.com/photo-1556742049-0a67c5574f73?w=1000&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1552581234-26160f608093?w=1000&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1000&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1531497865144-0464ef8fb9a9?w=1000&auto=format&fit=crop&q=80",
+    ],
+  },
+  {
+    id: "cms-dev",
+    slug: "cms-development",
+    title: "Headless CMS Solutions",
+    badge: "Modern",
+    rating: "4.8",
+    tags: ["Sanity / Strapi", "Content Model"],
+    metadata: "Decoupled Content • Instant Previews",
+    description:
+      "Headless content management architectures with flexible schema definitions, instant staging previews, and localized content delivery.",
+    price: "$1,600 / sprint",
+    buttonText: "Read More",
+    images: [
+      "https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=1000&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?w=1000&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=1000&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=1000&auto=format&fit=crop&q=80",
+    ],
+  },
+  {
+    id: "branding",
+    slug: "branding",
+    title: "Brand Identity Systems",
+    badge: "Signature",
+    rating: "4.9",
+    tags: ["Brand Guidelines", "Visual Assets"],
+    metadata: "Vector Systems • Design Tokens",
+    description:
+      "Comprehensive brand identity development including logo typography, color theory, iconography systems, and comprehensive brand books.",
+    price: "$1,200 / brand",
+    buttonText: "Read More",
+    images: [
+      "https://images.unsplash.com/photo-1600132806370-bf17e65e942f?w=1000&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1626785774573-4b799315345d?w=1000&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=1000&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1542744094-3a31f272c490?w=1000&auto=format&fit=crop&q=80",
+    ],
+  },
+  {
+    id: "digital-marketing",
+    slug: "digital-marketing",
+    title: "Growth & Technical SEO",
+    badge: "ROI Driven",
+    rating: "4.8",
+    tags: ["Schema Markup", "Analytics"],
+    metadata: "Organic Traffic • Conversion Rate",
+    description:
+      "Technical search engine optimization, programmatic landing page pipelines, and funnel analytics engineered to scale organic acquisition.",
+    price: "$1,100 / month",
+    buttonText: "Read More",
+    images: [
+      "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=1000&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=1000&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1000&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=1000&auto=format&fit=crop&q=80",
+    ],
+  },
+  {
+    id: "graphic-design",
+    slug: "graphic-design",
+    title: "Graphic Design & Creatives",
+    badge: "Creative",
+    rating: "4.9",
+    tags: ["Visual Assets", "Pitch Decks"],
+    metadata: "Marketing Collateral • High Impact",
+    description:
+      "High-impact marketing assets, investor pitch decks, digital collateral, and social media creative systems that communicate value with elegance.",
+    price: "$950 / sprint",
+    buttonText: "Read More",
+    images: [
+      "https://images.unsplash.com/photo-1626785774573-4b799315345d?w=1000&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=1000&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1542744094-3a31f272c490?w=1000&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1000&auto=format&fit=crop&q=80",
     ],
   },
 ];
@@ -174,10 +326,10 @@ function ServiceCardItem({
       initial={{ opacity: 0, y: 22 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.55, delay: index * 0.08 }}
+      transition={{ duration: 0.55, delay: (index % 3) * 0.08 }}
       className="group relative rounded-[20px] sm:rounded-[22px] p-[7px] pb-0 bg-white dark:bg-[#151622] border border-neutral-200/90 dark:border-white/10 shadow-[0_15px_30px_rgba(0,0,0,0.08)] dark:shadow-[0_20px_45px_rgba(0,0,0,0.55)] transition-all duration-400 hover:-translate-y-2 hover:shadow-[0_22px_45px_rgba(0,0,0,0.12)] dark:hover:shadow-[0_24px_50px_rgba(0,0,0,0.75)] hover:border-neutral-300 dark:hover:border-white/20 flex flex-col justify-between overflow-hidden"
     >
-      {/* Top Photo Frame with Interactive 4-Image Slider */}
+      {/* Top Photo Frame with Interactive 4-Image Slider (Exact Petra Aspect Ratio & Inner Border-Radius) */}
       <div className="group/slider relative w-full aspect-[412/350] sm:aspect-[412/365] rounded-[14px] overflow-hidden bg-neutral-200 dark:bg-neutral-800 select-none">
         {/* Images */}
         {card.images.map((imgUrl, imgIdx) => (
@@ -216,7 +368,7 @@ function ServiceCardItem({
           </span>
         </div>
 
-        {/* Top-Right: Star Rating Badge (Reference: ★ 4.8) */}
+        {/* Top-Right: Star Rating Badge */}
         <div className="absolute top-3 right-3 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/35 backdrop-blur-md border border-white/20 text-white text-xs font-semibold drop-shadow-md z-20">
           <Star className="w-3.5 h-3.5 text-white fill-white" />
           <span>{card.rating}</span>
@@ -277,7 +429,7 @@ function ServiceCardItem({
             </span>
           </div>
 
-          {/* Row 2: Metadata (17px Aventa per user instruction) */}
+          {/* Row 2: Metadata (Strictly 17px Aventa per user instruction) */}
           <div
             style={{
               fontFamily: "var(--font-aventa), 'Aventa', sans-serif",
@@ -289,7 +441,7 @@ function ServiceCardItem({
             <span>{card.metadata}</span>
           </div>
 
-          {/* Row 3: Description (17px Aventa per user instruction) */}
+          {/* Row 3: Description (Strictly 17px Aventa per user instruction) */}
           <p
             style={{
               fontFamily: "var(--font-aventa), 'Aventa', sans-serif",
@@ -302,7 +454,7 @@ function ServiceCardItem({
           </p>
         </div>
 
-        {/* Row 4: Footer with Price and Interactive Button with Website Signature Hover Effect */}
+        {/* Row 4: Footer with Price and Interactive Button with Read More */}
         <div className="flex items-center justify-between gap-3 pt-3 border-t border-neutral-100 dark:border-white/5">
           <div
             style={{
@@ -357,7 +509,7 @@ export function ServicesCardsShowcaseSection({ services: _services }: ServicesCa
           <div className="flex items-center justify-center gap-3">
             <span className="w-7 h-[1.5px] bg-[#F75B00]/70 rounded-full" />
             <span className="text-[11px] sm:text-xs font-mono uppercase tracking-[0.22em] text-brand-muted">
-              services
+              services ({SERVICE_CARDS.length})
             </span>
             <span className="w-7 h-[1.5px] bg-[#F75B00]/70 rounded-full" />
           </div>
@@ -374,11 +526,11 @@ export function ServicesCardsShowcaseSection({ services: _services }: ServicesCa
             style={{ fontFamily: "var(--font-aventa), sans-serif" }}
             className="text-sm sm:text-base text-brand-muted font-light max-w-lg mx-auto leading-relaxed"
           >
-            End-to-end full-stack web applications, custom SaaS architectures, and bespoke UI/UX design systems.
+            Explore all 14 end-to-end digital engineering services—from full-stack web and SaaS development to UI/UX, systems, and brand strategy.
           </p>
         </motion.div>
 
-        {/* ================= 3-COLUMN SERVICES CARDS GRID ================= */}
+        {/* ================= 3-COLUMN SERVICES CARDS GRID (All 14 Services) ================= */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 sm:gap-8 lg:gap-9">
           {SERVICE_CARDS.map((card, idx) => (
             <ServiceCardItem key={card.id} card={card} index={idx} />
