@@ -1,14 +1,78 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import gsap from "gsap";
 import { ArrowUpRight, ShieldCheck, Gauge } from "lucide-react";
 
 export function ServicesHeroSection() {
+  // Signature Kinetic Entrance Animation (Matching Home Hero)
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    if (prefersReducedMotion) return;
+
+    const titles = document.querySelectorAll(".gsap-services-hero-title");
+    const leads = document.querySelectorAll(".gsap-services-hero-lead");
+    const cta = document.querySelectorAll(".gsap-services-hero-cta");
+
+    gsap.set(titles, {
+      y: "115%",
+      rotateZ: 2,
+      opacity: 0,
+    });
+
+    gsap.set(leads, {
+      y: 24,
+      opacity: 0,
+    });
+
+    gsap.set(cta, {
+      y: 20,
+      opacity: 0,
+    });
+
+    const tl = gsap.timeline({ delay: 0.15 });
+
+    tl.to(titles, {
+      y: "0%",
+      rotateZ: 0,
+      opacity: 1,
+      duration: 1.15,
+      stagger: 0.12,
+      ease: "power4.out",
+    })
+      .to(
+        leads,
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.9,
+          ease: "power3.out",
+        },
+        "-=0.75"
+      )
+      .to(
+        cta,
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.75,
+          ease: "power3.out",
+        },
+        "-=0.6"
+      );
+
+    return () => {
+      tl.kill();
+    };
+  }, []);
+
   return (
     <section
-      className="relative min-h-[82vh] sm:min-h-[88vh] pt-28 sm:pt-32 pb-20 sm:pb-24 flex items-center justify-center overflow-hidden bg-brand-bg"
+      className="services-hero-section relative min-h-[82vh] sm:min-h-[88vh] pt-28 sm:pt-32 pb-20 sm:pb-24 flex items-center justify-center overflow-hidden bg-brand-bg"
       aria-label="Services Hero"
     >
       {/* ================= SCULPTED 3D CONCENTRIC SWIRL BACKDROP ================= */}
@@ -90,37 +154,41 @@ export function ServicesHeroSection() {
         </motion.div>
 
         {/* Headline + Subtitle + Connected CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-col items-center space-y-5 sm:space-y-6"
-        >
-          {/* Uniform Clean Headline (Website Orlean Font, crisp ink color) */}
+        <div className="flex flex-col items-center space-y-5 sm:space-y-6">
+          {/* Uniform Clean Headline with GSAP Kinetic Mask Reveal */}
           <h1
+            data-no-gsap="true"
             style={{
               fontFamily: "var(--font-orlean), 'Orlean', var(--font-space-grotesk), sans-serif",
               lineHeight: 1.32,
             }}
-            className="text-3xl sm:text-5xl md:text-[54px] lg:text-[60px] font-medium tracking-tight leading-[1.32] text-brand-ink"
+            className="text-3xl sm:text-5xl md:text-[54px] lg:text-[60px] font-medium tracking-tight leading-[1.32] text-brand-ink select-none"
           >
-            Design, engineering, growth
-            <br />
-            — all in one studio
+            <span className="block overflow-hidden pb-1 -mb-1">
+              <span className="gsap-services-hero-title block will-change-transform">
+                Design, engineering, growth
+              </span>
+            </span>
+            <span className="block overflow-hidden pb-1 -mb-1">
+              <span className="gsap-services-hero-title block will-change-transform">
+                — all in one studio
+              </span>
+            </span>
           </h1>
 
-          {/* Concise 2-Line Subtitle (Website Aventa Font) */}
+          {/* Concise 2-Line Subtitle with GSAP Reveal */}
           <p
+            data-no-gsap="true"
             style={{
               fontFamily: "var(--font-aventa), 'Aventa', var(--font-plus-jakarta-sans), sans-serif",
             }}
-            className="text-sm sm:text-base text-brand-muted max-w-md sm:max-w-lg mx-auto font-light leading-relaxed"
+            className="gsap-services-hero-lead text-sm sm:text-base text-brand-muted max-w-md sm:max-w-lg mx-auto font-light leading-relaxed will-change-transform"
           >
             I help founders design intuitive UI/UX systems, build scalable Next.js applications, and launch products that perform.
           </p>
 
-          {/* Signature Connected Pill + Circular Arrow Button */}
-          <div className="pt-2 sm:pt-3">
+          {/* Signature Connected Pill + Circular Arrow Button with GSAP Reveal */}
+          <div className="gsap-services-hero-cta pt-2 sm:pt-3 will-change-transform">
             <Link
               href="/contact"
               className="group inline-flex items-center transition-transform duration-300 hover:scale-[1.03] active:scale-[0.98]"
@@ -139,7 +207,7 @@ export function ServicesHeroSection() {
               </span>
             </Link>
           </div>
-        </motion.div>
+        </div>
 
       </div>
     </section>

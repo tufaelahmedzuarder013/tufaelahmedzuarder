@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { ArrowUpRight, Phone } from "lucide-react";
 import { SITE_CONFIG } from "@/lib/constants";
 
@@ -12,8 +13,14 @@ export function ServicesPhilosophySection() {
       <div className="w-full max-w-[1520px] px-4 sm:px-6 lg:px-10 mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
           
-          {/* Left Column: Clean Image + Socials (Matching reference) */}
-          <div className="lg:col-span-5 flex flex-col space-y-4">
+          {/* Left Column: Clean Image + Socials with Smooth Entrance */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-5 flex flex-col space-y-4"
+          >
             <div className="relative aspect-[4/3] rounded-3xl overflow-hidden bg-neutral-100 dark:bg-neutral-900 border border-neutral-200/80 dark:border-white/10 shadow-lg group">
               <Image
                 src="/images/services/developer_3d_desk.png"
@@ -53,10 +60,16 @@ export function ServicesPhilosophySection() {
                 X (Twitter) ↗
               </a>
             </div>
-          </div>
+          </motion.div>
 
-          {/* Right Column: Statement + Actions (Matching reference) */}
-          <div className="lg:col-span-7 flex flex-col space-y-6 sm:space-y-8">
+          {/* Right Column: Statement + Actions with Smooth Entrance */}
+          <motion.div
+            initial={{ opacity: 0, y: 28 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-7 flex flex-col space-y-6 sm:space-y-8"
+          >
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-[#F75B00]" />
               <span className="text-xs font-mono font-medium uppercase tracking-wider text-brand-muted">
@@ -64,7 +77,7 @@ export function ServicesPhilosophySection() {
               </span>
             </div>
 
-            {/* Clean, High-Impact Editorial Statement (Text Reduced) */}
+            {/* Clean, High-Impact Editorial Statement */}
             <h2 
               style={{
                 fontFamily: "var(--font-orlean), 'Space Grotesk', sans-serif",
@@ -101,7 +114,7 @@ export function ServicesPhilosophySection() {
                 <span>Call Us Now ↗</span>
               </a>
             </div>
-          </div>
+          </motion.div>
 
         </div>
       </div>

@@ -35,7 +35,13 @@ export function ServicesWaveProcessSection() {
     >
       <div className="w-full max-w-[1360px] px-4 sm:px-6 lg:px-10 mx-auto relative">
         {/* ================= SECTION HEADER (Matching Reference) ================= */}
-        <div className="text-center max-w-xl mx-auto mb-12 sm:mb-16 space-y-3">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
+          className="text-center max-w-xl mx-auto mb-12 sm:mb-16 space-y-3"
+        >
           {/* Eyebrow with thin horizontal line accents */}
           <div className="flex items-center justify-center gap-3">
             <span className="w-7 h-[1.5px] bg-[#F75B00]/70 rounded-full" />
@@ -53,7 +59,7 @@ export function ServicesWaveProcessSection() {
           >
             Process section<span className="text-[#F75B00]">.</span>
           </h2>
-        </div>
+        </motion.div>
 
         {/* ================= DESKTOP FLOWING WAVE TIMELINE (md+) ================= */}
         {/* Aspect ratio container ensures SVG and HTML text never drift apart on any screen width */}
@@ -276,8 +282,12 @@ export function ServicesWaveProcessSection() {
         {/* ================= MOBILE CLEAN STACKED VIEW (< md) ================= */}
         <div className="md:hidden space-y-5">
           {WAVE_STEPS.map((step, idx) => (
-            <div
+            <motion.div
               key={step.num}
+              initial={{ opacity: 0, y: 22 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: idx * 0.12 }}
               className="relative flex items-start gap-4 p-5 rounded-2xl bg-brand-surface border border-neutral-200/80 dark:border-white/10 shadow-sm overflow-hidden"
             >
               <span
@@ -337,7 +347,7 @@ export function ServicesWaveProcessSection() {
                   {step.description}
                 </p>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
 

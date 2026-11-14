@@ -124,54 +124,76 @@ export function GsapAnimationProvider({ children }: GsapAnimationProviderProps) 
     if (prefersReducedMotion) return;
 
     const triggers: ScrollTrigger[] = [];
+    const processedElements: HTMLElement[] = [];
 
-    // Helper to process paragraphs safely
-    const scanAndProcess = () => {
+    // Helper to scan and process paragraphs and headings safely
+    const scanAll = () => {
+      // A. Process paragraphs
       const paragraphs = document.querySelectorAll<HTMLElement>(
         "main p:not([data-no-gsap]), p:not([data-no-gsap])"
       );
       paragraphs.forEach((p) => {
-        processParagraphHighlight(p, triggers);
+        if (!p.hasAttribute("data-gsap-processed")) {
+          processParagraphHighlight(p, triggers);
+          if (p.getAttribute("data-gsap-processed") === "true") {
+            processedElements.push(p);
+          }
+        }
+      });
+
+      // B. Safe Heading Scroll Reveal
+      const headings = document.querySelectorAll<HTMLElement>(
+        "main h1:not([data-no-gsap]):not(.cta-banner-heading), main h2:not([data-no-gsap]):not(.cta-banner-heading), main h3:not([data-no-gsap]):not(.cta-banner-heading), main .gsap-heading:not(.cta-banner-heading)"
+      );
+
+      headings.forEach((heading) => {
+        if (heading.getAttribute("data-gsap-processed") === "true") return;
+        if (
+          heading.closest(
+            ".cta-banner-dark, .about-dark-impact, .client-reviews-section, .hero-section, .services-hero-section"
+          ) ||
+          heading.hasAttribute("data-no-gsap")
+        ) {
+          return;
+        }
+
+        heading.setAttribute("data-gsap-processed", "true");
+        processedElements.push(heading);
+
+        const anim = gsap.fromTo(
+          heading,
+          { opacity: 0.35, y: 16 },
+          {
+            opacity: 1,
+            y: 0,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: heading,
+              start: "top 92%",
+              end: "top 65%",
+              scrub: 0.7,
+              invalidateOnRefresh: true,
+            },
+          }
+        );
+
+        if (anim.scrollTrigger) triggers.push(anim.scrollTrigger);
       });
     };
 
-    // A. Initial processing
-    scanAndProcess();
+    // Initial scan
+    scanAll();
 
-    // B. Safe Heading Scroll Reveal (Animates opacity and transform without touching innerHTML)
-    const headings = document.querySelectorAll<HTMLElement>(
-      "main h1:not([data-no-gsap]):not(.cta-banner-heading), main h2:not([data-no-gsap]):not(.cta-banner-heading), main h3:not([data-no-gsap]):not(.cta-banner-heading), main .gsap-heading:not(.cta-banner-heading)"
-    );
-
-    headings.forEach((heading) => {
-      if (heading.getAttribute("data-gsap-processed") === "true") return;
-      if (heading.closest(".cta-banner-dark, .about-dark-impact, .client-reviews-section, .hero-section")) return;
-      heading.setAttribute("data-gsap-processed", "true");
-
-      const anim = gsap.fromTo(
-        heading,
-        { opacity: 0.35, y: 16 },
-        {
-          opacity: 1,
-          y: 0,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: heading,
-            start: "top 92%",
-            end: "top 65%",
-            scrub: 0.7,
-            invalidateOnRefresh: true,
-          },
-        }
-      );
-
-      if (anim.scrollTrigger) triggers.push(anim.scrollTrigger);
-    });
-
-    // C. Periodic ScrollTrigger refresh
+    // Re-scan after App Router route transitions and refresh ScrollTrigger
     const refreshTimers = [
-      setTimeout(() => ScrollTrigger.refresh(), 150),
-      setTimeout(() => ScrollTrigger.refresh(), 600),
+      setTimeout(() => {
+        scanAll();
+        ScrollTrigger.refresh();
+      }, 150),
+      setTimeout(() => {
+        scanAll();
+        ScrollTrigger.refresh();
+      }, 500),
       setTimeout(() => ScrollTrigger.refresh(), 1500),
     ];
 
@@ -190,6 +212,9 @@ export function GsapAnimationProvider({ children }: GsapAnimationProviderProps) 
       window.removeEventListener("resize", onWindowLoad);
       refreshTimers.forEach(clearTimeout);
       triggers.forEach((t) => t.kill());
+      processedElements.forEach((el) => {
+        el.removeAttribute("data-gsap-processed");
+      });
     };
   }, [pathname]);
 

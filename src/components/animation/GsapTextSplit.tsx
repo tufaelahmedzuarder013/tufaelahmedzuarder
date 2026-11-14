@@ -126,6 +126,7 @@ export function GsapTextSplit({
   return (
     <Comp
       ref={containerRef}
+      data-no-gsap="true"
       className={cn("overflow-visible select-none", className)}
     >
       {renderChildren(children)}
